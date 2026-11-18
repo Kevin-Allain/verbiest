@@ -3,6 +3,9 @@
 A first prototype of an app for exploring car history, built from Wikipedia data.
 It runs in any modern browser on a computer, iPad or phone.
 
+**Live version: <https://kevin-allain.github.io/verbiest/>**. On an iPad or iPhone, open it in
+Safari and use *Share → Add to Home Screen* to get an app icon.
+
 The project is named after **Ferdinand Verbiest** (1623–1688), the Flemish Jesuit who
 built a small steam-powered trolley in China around 1672. It is possibly the first
 self-propelled vehicle.
@@ -56,8 +59,10 @@ The app is plain HTML/CSS/JavaScript with no build step and no dependencies.
   ```
 
   then open <http://localhost:8765>.
-- **On an iPad or phone**: put the folder on any static host (GitHub Pages, Netlify,
-  Cloudflare Pages…), open the URL in Safari and use *Share → Add to Home Screen*.
+- **Online**: the site is hosted with GitHub Pages from the `main` branch of
+  [Kevin-Allain/verbiest](https://github.com/Kevin-Allain/verbiest). Every push to `main`
+  republishes it within a minute or two. After changing CSS/JS, bump the `?v=` numbers
+  in `index.html` so browsers fetch the new files.
 
 Photos and the long article introductions are loaded live from Wikimedia, so an
 internet connection is needed for those. Everything else (the timeline, lists, search,
