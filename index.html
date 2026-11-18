@@ -1,163 +1,230 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light" data-tab="timeline">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Verbiest — A visual history of the automobile</title>
   <meta name="description" content="Explore the history of the automobile, year by year, from Wikipedia.">
-  <meta name="theme-color" content="#12110f" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#f5f1e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Verbiest">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/icon-180.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap">
-  <link rel="stylesheet" href="css/style.css?v=13">
+  <link rel="stylesheet" href="css/style.css?v=21">
   <script>
     // pick the saved / system theme before first paint
     (function () {
       try {
         var t = localStorage.getItem("verbiest-theme");
-        if (!t) t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         document.documentElement.setAttribute("data-theme", t);
       } catch (e) {}
     })();
   </script>
 </head>
 <body>
-  <div class="app">
-    <header class="topbar">
-      <a class="brand" href="#/" aria-label="Verbiest, home">
-        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
-          <circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="2.5"/>
-          <circle cx="24" cy="24" r="4.5" fill="currentColor"/>
-          <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <line x1="24" y1="5" x2="24" y2="17"/><line x1="24" y1="31" x2="24" y2="43"/>
-            <line x1="5" y1="24" x2="17" y2="24"/><line x1="31" y1="24" x2="43" y2="24"/>
-            <line x1="10.6" y1="10.6" x2="19" y2="19"/><line x1="29" y1="29" x2="37.4" y2="37.4"/>
-            <line x1="37.4" y1="10.6" x2="29" y2="19"/><line x1="19" y1="29" x2="10.6" y2="37.4"/>
-          </g>
-        </svg>
-        <span class="brand-text">
-          <span class="brand-name">Verbiest</span>
-          <span class="brand-tag">A visual history of the automobile</span>
-        </span>
+  <!-- ======================= navigation bar ======================= -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#/" id="navBrand" aria-label="Verbiest, back to the timeline">
+        <img src="assets/icon.svg" alt="" width="28" height="28">
+        <span>Verbiest</span>
       </a>
-
-      <div class="search" id="search">
-        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <input id="searchInput" type="search" placeholder="Search cars &amp; makers" autocomplete="off" spellcheck="false"
-               role="combobox" aria-expanded="false" aria-controls="searchResults" aria-label="Search cars and makers">
-        <kbd class="search-kbd" aria-hidden="true">/</kbd>
-        <div class="search-results" id="searchResults" role="listbox"></div>
+      <div class="nav-title" id="navTitle" aria-hidden="true">Timeline</div>
+      <div class="nav-actions">
+        <button class="glass-btn" id="themeBtn" type="button" aria-label="Switch between light and dark appearance" title="Appearance">
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></g></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8Z" fill="currentColor"/></svg>
+        </button>
       </div>
+    </div>
+  </header>
 
-      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch light / dark theme" title="Light / dark">
-        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
-        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+  <!-- ======================= tab bar ======================= -->
+  <nav class="tabbar" id="tabbar" aria-label="Sections">
+    <div class="tabs glass" id="tabs" role="tablist">
+      <span class="tab-lens" id="tabLens" aria-hidden="true"></span>
+      <button class="tab" type="button" role="tab" data-tab="timeline" aria-selected="true" aria-controls="view-timeline">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12.5" width="4.6" height="8" rx="1.6" fill="currentColor"/><rect x="9.7" y="7.5" width="4.6" height="13" rx="1.6" fill="currentColor"/><rect x="16.4" y="3.5" width="4.6" height="17" rx="1.6" fill="currentColor"/></svg>
+        <span>Timeline</span>
       </button>
-    </header>
+      <button class="tab" type="button" role="tab" data-tab="milestones" aria-selected="false" aria-controls="view-milestones">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.6 21V3.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M5.6 4.3c2.5-1.5 5-1.3 7.2 0 2.2 1.2 4.4 1.4 6.7.3v9.1c-2.3 1.1-4.5.9-6.7-.3-2.2-1.3-4.7-1.5-7.2 0Z" fill="currentColor"/></svg>
+        <span>Milestones</span>
+      </button>
+      <button class="tab" type="button" role="tab" data-tab="makers" aria-selected="false" aria-controls="view-makers">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.8 20.6v-9.2c0-.6.6-.9 1.1-.6l4.9 2.9v-2.3c0-.6.6-.9 1.1-.6l4.9 2.9V4.2c0-.4.3-.7.7-.7h3.7c.4 0 .7.3.7.7v16.4Z" fill="currentColor"/></svg>
+        <span>Makers</span>
+      </button>
+    </div>
+    <button class="tab-search glass" type="button" role="tab" data-tab="search" aria-selected="false" aria-controls="view-search" aria-label="Search" title="Search (/)">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15.6 15.6 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
 
-    <section class="intro">
-      <h1 class="intro-title">From steam trolleys to electric cars</h1>
-      <p class="intro-text" id="introText">Loading the archive…</p>
-      <div class="stats" id="stats"></div>
-    </section>
+  <main class="app" id="app">
+    <!-- ======================= Timeline ======================= -->
+    <section class="view" id="view-timeline" data-title="Timeline" role="tabpanel" aria-label="Timeline">
+      <header class="page-head">
+        <p class="eyebrow">A visual history of the automobile</p>
+        <h1 class="large-title">Timeline</h1>
+        <p class="lede" id="introText">Loading the archive…</p>
+        <div class="stat-row" id="stats"></div>
+      </header>
 
-    <section class="panel chart-panel" aria-label="Timeline">
-      <div class="controls">
-        <div class="seg" id="metricSeg" role="radiogroup" aria-label="What to count">
-          <button type="button" data-v="models" role="radio" aria-checked="true"><span class="lng">New models</span><span class="sht">Models</span></button>
-          <button type="button" data-v="makers" role="radio" aria-checked="false"><span class="lng">Makers founded</span><span class="sht">Makers</span></button>
+      <section class="card chart-card" id="chartCard" aria-label="Timeline chart">
+        <div class="chart-head">
+          <div class="readout" aria-live="polite">
+            <div class="ro-cap" id="roCap">New models</div>
+            <div class="ro-val"><span id="roNum">0</span> <span class="ro-unit" id="roUnit">models</span></div>
+            <div class="ro-sub" id="roSub"></div>
+          </div>
+          <div class="seg" id="metricSeg" role="radiogroup" aria-label="What to count">
+            <span class="seg-thumb" aria-hidden="true"></span>
+            <button type="button" data-v="models" role="radio" aria-checked="true">Models</button>
+            <button type="button" data-v="makers" role="radio" aria-checked="false">Makers</button>
+          </div>
         </div>
-        <div class="seg" id="colorSeg" role="radiogroup" aria-label="Colour by">
-          <span class="seg-label">Colour</span>
-          <button type="button" data-v="country" role="radio" aria-checked="true">Country</button>
-          <button type="button" data-v="body" role="radio" aria-checked="false">Body</button>
+
+        <div class="chart-controls">
+          <div class="seg seg-sm" id="colorSeg" role="radiogroup" aria-label="Colour the bars by">
+            <span class="seg-thumb" aria-hidden="true"></span>
+            <button type="button" data-v="country" role="radio" aria-checked="true"><span class="lng">By </span>Country</button>
+            <button type="button" data-v="body" role="radio" aria-checked="false"><span class="lng">By </span>Body<span class="lng"> Style</span></button>
+          </div>
+          <div class="chips" id="typePills" role="radiogroup" aria-label="Kind of car"></div>
         </div>
-        <div class="pills" id="typePills" role="radiogroup" aria-label="Kind of car"></div>
-      </div>
 
-      <div class="eras" id="eraChips" aria-label="Jump to an era"></div>
+        <div class="scope" id="eraChips" aria-label="Jump to an era"></div>
 
-      <div class="chart" id="chart" tabindex="0" aria-label="Histogram of cars per year. Use arrow keys to move between years."></div>
-      <div class="overview" id="overview" aria-label="Zoom window"></div>
-
-      <div class="chart-foot">
+        <div class="chart" id="chart" tabindex="0" aria-label="Histogram of cars per year. Use the arrow keys to move between years."></div>
+        <div class="overview" id="overview" aria-label="Zoom window: drag it, or drag its handles"></div>
         <div class="legend" id="legend"></div>
-        <div class="zoom-btns">
-          <button class="icon-btn sm" id="zoomOut" type="button" aria-label="Zoom out">−</button>
-          <button class="icon-btn sm" id="zoomIn" type="button" aria-label="Zoom in">+</button>
-          <button class="text-btn" id="zoomReset" type="button">All years</button>
-          <button class="text-btn play-btn" id="playBtn" type="button" aria-pressed="false" title="Step through the years">
-            <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg>
-            <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg>
+
+        <div class="chart-toolbar">
+          <div class="stepper" role="group" aria-label="Zoom">
+            <button id="zoomOut" type="button" aria-label="Zoom out"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 12h13" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+            <i aria-hidden="true"></i>
+            <button id="zoomIn" type="button" aria-label="Zoom in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.5v13M5.5 12h13" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+          </div>
+          <span class="toolbar-spacer"></span>
+          <button class="pill-btn tinted" id="playBtn" type="button" aria-pressed="false" title="Step through the years">
+            <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5.2v13.6c0 .8.9 1.3 1.6.9l10.6-6.8c.6-.4.6-1.4 0-1.8L9.1 4.3c-.7-.4-1.6.1-1.6.9Z" fill="currentColor"/></svg>
+            <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4.5" width="4.4" height="15" rx="1.4" fill="currentColor"/><rect x="13.6" y="4.5" width="4.4" height="15" rx="1.4" fill="currentColor"/></svg>
             <span>Play</span>
           </button>
         </div>
-      </div>
-      <p class="hint" id="hint"></p>
-      <details class="table-view" id="tableView">
-        <summary>View the numbers as a table</summary>
-        <div class="table-wrap" id="tableWrap"></div>
-      </details>
+        <p class="footnote hint" id="hint"></p>
+        <details class="table-view" id="tableView">
+          <summary>Show Data Table</summary>
+          <div class="table-wrap" id="tableWrap"></div>
+        </details>
+      </section>
+
+      <section class="results" aria-live="polite">
+        <div class="section-head">
+          <div>
+            <h2 class="title2" id="resultsTitle"></h2>
+            <p class="footnote" id="resultsSub"></p>
+          </div>
+          <label class="popup-btn" title="Sort order">
+            <span class="sr-only">Sort</span>
+            <select id="sortSel">
+              <option value="fame">Most Famous</option>
+              <option value="year">Oldest First</option>
+              <option value="name">Name</option>
+            </select>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7.5 9.5 4.5-4.5 4.5 4.5M7.5 14.5l4.5 4.5 4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </label>
+        </div>
+        <div class="tokens" id="activeFilters"></div>
+        <div class="era-note card" id="eraNote" hidden></div>
+        <div class="grid" id="grid"></div>
+        <div class="more"><button class="pill-btn gray" id="moreBtn" type="button" hidden>Show More</button></div>
+      </section>
     </section>
 
-    <section class="results" aria-live="polite">
-      <div class="results-head">
-        <div>
-          <h2 class="results-title" id="resultsTitle"></h2>
-          <p class="results-sub" id="resultsSub"></p>
+    <!-- ======================= Milestones ======================= -->
+    <section class="view" id="view-milestones" data-title="Milestones" role="tabpanel" aria-label="Milestones" hidden>
+      <header class="page-head">
+        <p class="eyebrow" id="msEyebrow">From 1672 to today</p>
+        <h1 class="large-title">Milestones</h1>
+        <p class="lede">The moments that shaped the automobile, era by era. Open one to read its story.</p>
+      </header>
+      <div id="msList"></div>
+    </section>
+
+    <!-- ======================= Makers ======================= -->
+    <section class="view" id="view-makers" data-title="Makers" role="tabpanel" aria-label="Makers" hidden>
+      <header class="page-head">
+        <p class="eyebrow" id="makerCount"></p>
+        <h1 class="large-title">Makers</h1>
+        <div class="searchfield">
+          <svg class="mag" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15.6 15.6 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <input id="makerFilter" type="search" placeholder="Search Makers" autocomplete="off" spellcheck="false" aria-label="Search makers">
+          <button class="clear" id="makerClear" type="button" aria-label="Clear" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="m8.6 8.6 6.8 6.8m0-6.8-6.8 6.8" stroke="var(--bg-2)" stroke-width="2" stroke-linecap="round"/></svg></button>
         </div>
-        <label class="sort">
-          <span>Sort</span>
-          <select id="sortSel">
-            <option value="fame">Most famous</option>
-            <option value="year">Oldest first</option>
-            <option value="name">A – Z</option>
-          </select>
-        </label>
-      </div>
-      <div class="active-filters" id="activeFilters"></div>
-      <div class="era-note" id="eraNote" hidden></div>
-      <div class="grid" id="grid"></div>
-      <div class="more"><button class="text-btn" id="moreBtn" type="button" hidden>Show more</button></div>
+        <div class="seg seg-wide" id="makerSortSeg" role="radiogroup" aria-label="Group makers">
+          <span class="seg-thumb" aria-hidden="true"></span>
+          <button type="button" data-v="az" role="radio" aria-checked="true">A–Z</button>
+          <button type="button" data-v="country" role="radio" aria-checked="false">Country</button>
+          <button type="button" data-v="founded" role="radio" aria-checked="false">Founded</button>
+        </div>
+      </header>
+      <div id="makerList"></div>
+    </section>
+
+    <!-- ======================= Search ======================= -->
+    <section class="view" id="view-search" data-title="Search" role="tabpanel" aria-label="Search" hidden>
+      <header class="page-head">
+        <h1 class="large-title">Search</h1>
+        <div class="searchfield" id="search">
+          <svg class="mag" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15.6 15.6 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <input id="searchInput" type="search" placeholder="Cars, Makers and Years" autocomplete="off" spellcheck="false" enterkeyhint="search"
+                 role="combobox" aria-expanded="false" aria-controls="searchResults" aria-label="Search cars, makers and years">
+          <button class="clear" id="searchClear" type="button" aria-label="Clear" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="m8.6 8.6 6.8 6.8m0-6.8-6.8 6.8" stroke="var(--bg-2)" stroke-width="2" stroke-linecap="round"/></svg></button>
+        </div>
+      </header>
+      <div id="searchResults" role="listbox" aria-label="Search results"></div>
     </section>
 
     <footer class="footer">
       <p>Data from <a href="https://en.wikipedia.org/" target="_blank" rel="noopener">Wikipedia</a> and
-        <a href="https://www.wikidata.org/" target="_blank" rel="noopener">Wikidata</a>
-        (text CC BY-SA 4.0, images from Wikimedia Commons under their own licences).
+        <a href="https://www.wikidata.org/" target="_blank" rel="noopener">Wikidata</a>.
+        Text CC BY-SA 4.0; images from Wikimedia Commons under their own licences.
         <span id="generated"></span></p>
-      <p class="footer-dedication">Named after Ferdinand Verbiest (1623–1688), the Flemish Jesuit who built a small steam-powered trolley around 1672 — possibly the first self-propelled vehicle.</p>
+      <p class="footer-dedication">Named after Ferdinand Verbiest (1623–1688), the Flemish Jesuit who built a small steam-powered trolley around 1672, possibly the first self-propelled vehicle.</p>
     </footer>
-  </div>
+  </main>
 
+  <div class="index-bar" id="makerIndex" aria-hidden="true" hidden></div>
+
+  <!-- ======================= detail sheet ======================= -->
   <div class="scrim" id="scrim" hidden></div>
-  <aside class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" aria-hidden="true">
-    <div class="sheet-grab" id="sheetGrab"><span></span></div>
-    <div class="sheet-bar">
-      <button class="icon-btn" id="sheetBack" type="button" aria-label="Back" hidden>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" aria-hidden="true" tabindex="-1" inert>
+    <div class="sheet-grab" id="sheetGrab" aria-hidden="true"><span></span></div>
+    <div class="sheet-nav" id="sheetNav">
+      <button class="glass-btn" id="sheetBack" type="button" aria-label="Back" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.8 4.8 7.6 12l7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <span class="sheet-kicker" id="sheetKicker"></span>
-      <button class="icon-btn" id="sheetClose" type="button" aria-label="Close">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <div class="sheet-nav-title" id="sheetNavTitle" aria-hidden="true"></div>
+      <button class="glass-btn" id="sheetClose" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.8 6.8 10.4 10.4m0-10.4L6.8 17.2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
       </button>
     </div>
-    <div class="sheet-body" id="sheetBody"></div>
-  </aside>
+    <div class="sheet-stack" id="sheetStack"></div>
+  </section>
 
   <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
 
-  <script src="data/verbiest-data.js?v=13"></script>
-  <script src="js/util.js?v=13"></script>
-  <script src="js/chart.js?v=13"></script>
-  <script src="js/app.js?v=13"></script>
+  <script src="data/verbiest-data.js?v=21"></script>
+  <script src="js/util.js?v=21"></script>
+  <script src="js/chart.js?v=21"></script>
+  <script src="js/app.js?v=21"></script>
 </body>
 </html>

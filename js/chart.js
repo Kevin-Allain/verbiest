@@ -200,7 +200,8 @@
     dims() {
       const W = this.el.clientWidth, H = this.el.clientHeight;
       const compact = W < 560;
-      const M = { l: compact ? 30 : 36, r: 6, t: compact ? 40 : 46, b: 22 };
+      // Apple-chart layout: value axis on the trailing (right) edge
+      const M = { l: 2, r: compact ? 34 : 40, t: compact ? 40 : 46, b: 24 };
       return { W, H, M, pw: Math.max(10, W - M.l - M.r), ph: Math.max(10, H - M.t - M.b), compact };
     }
 
@@ -254,10 +255,10 @@
         const a = clipX(x0), b = clipX(x1);
         eraNodes.push(s("rect", { class: "c-era" + (k % 2 ? " alt" : ""), x: a, y: M.t - 4, width: Math.max(0, b - a), height: ph + 4 }));
         if (x0 > xL + 1) eraNodes.push(s("line", { class: "c-era-line", x1: x0, x2: x0, y1: 4, y2: base }));
-        const cw = 7.6; // uppercase, tracked label: ~7.6px per character
+        const cw = 7.4; // uppercase, tracked label: ~7.4px per character
         const label = (b - a) > (e.name.length * cw + 18) ? e.name : (b - a) > (e.short.length * cw + 14) ? e.short : null;
         if (label) {
-          const t = s("text", { x: a + 7, y: 14, class: "c-xlab", style: { cursor: "pointer", letterSpacing: ".04em", fontWeight: 600 } }, label.toUpperCase());
+          const t = s("text", { x: a + 7, y: 14, class: "c-era-lab" }, label.toUpperCase());
           t.addEventListener("click", () => this.o.onEra && this.o.onEra(e));
           eraNodes.push(t);
         }
@@ -270,9 +271,9 @@
       for (let v = step; v <= this.yMaxD * 1.001; v += step) {
         const y = Math.round(yOf(v)) + 0.5;
         gridNodes.push(s("line", { class: "c-grid", x1: xL, x2: xR, y1: y, y2: y }));
-        gridNodes.push(s("text", { class: "c-ylab", x: xL - 6, y: y + 3.5, "text-anchor": "end" }, num(v)));
+        gridNodes.push(s("text", { class: "c-ylab", x: xR + 7, y: y + 3.5 }, num(v)));
       }
-      gridNodes.push(s("text", { class: "c-ylab", x: xL - 6, y: base + 3.5, "text-anchor": "end" }, "0"));
+      gridNodes.push(s("text", { class: "c-ylab", x: xR + 7, y: base + 3.5 }, "0"));
       this.gGrid.replaceChildren(...gridNodes);
 
       /* bars ---------------------------------------------------------- */
@@ -312,35 +313,43 @@
       this.gBars.replaceChildren(...paths.map((p, g) => s("path", { d: p, fill: this.colors[g] })));
       this.gBarsSel.replaceChildren(...selPaths.map((p, g) => s("path", { d: p, fill: this.colors[g] })));
 
-      /* hover / selection bands -------------------------------------- */
+      /* hover band / selection rule ----------------------------------- */
       const bandNodes = [];
-      if (this.hover != null && this.hover !== this.sel) {
-        const x0 = this.xOf(this.hover, d), x1 = this.xOf(this.hover + 1, d);
-        if (x1 > xL && x0 < xR) bandNodes.push(s("rect", { class: "c-hover-band", x: x0, y: M.t - 4, width: Math.max(1, x1 - x0), height: ph + 4, rx: 3 }));
-      }
       const topNodes = [];
-      if (this.sel != null) {
-        const x0 = this.xOf(this.sel, d), x1 = this.xOf(this.sel + 1, d);
+      const barTop = (year) => {
+        const i = year - this.years0;
+        let tot = 0;
+        if (i >= 0 && i < this.nY) for (let g = 0; g < G; g++) tot += this.disp[i * G + g];
+        return yOf(tot);
+      };
+      const ruleYear = this.sel != null ? this.sel : null;
+      if (this.hover != null && this.hover !== ruleYear) {
+        const x0 = this.xOf(this.hover, d), x1 = this.xOf(this.hover + 1, d);
+        if (x1 > xL && x0 < xR) bandNodes.push(s("rect", { class: "c-hover-band", x: x0, y: M.t - 4, width: Math.max(1, x1 - x0), height: ph + 4, rx: Math.min(6, (x1 - x0) / 2) }));
+      }
+      if (ruleYear != null) {
+        const x0 = this.xOf(ruleYear, d), x1 = this.xOf(ruleYear + 1, d);
         if (x1 > xL && x0 < xR) {
-          bandNodes.push(s("rect", { class: "c-sel-band", x: x0, y: M.t - 4, width: Math.max(1.5, x1 - x0), height: ph + 4, rx: 3 }));
-          const cx = (x0 + x1) / 2;
-          topNodes.push(s("line", { class: "c-sel-line", x1: cx, x2: cx, y1: base + 1, y2: base + 6 }));
+          // a "rule mark" from the top of the plot down to the selected bar, as in Apple's charts
+          const cx = Math.round((x0 + x1) / 2) + 0.5;
+          const yTop = Math.min(base, barTop(ruleYear)) - 5;
+          if (yTop > M.t - 2) topNodes.push(s("line", { class: "c-rule", x1: cx, x2: cx, y1: M.t - 6, y2: yTop }));
         }
       }
       this.gHoverBand.replaceChildren(...bandNodes);
 
-      /* x axis -------------------------------------------------------- */
+      /* x axis (Swift Charts style: gridline at the start of the year, label just after it) */
       const axisNodes = [s("line", { class: "c-base", x1: xL, x2: xR, y1: base + 0.5, y2: base + 0.5 })];
       const ticks = this.xTicks(d);
+      const selX = this.sel != null ? this.xOf(this.sel + 0.5, d) : null;
       for (const tk of ticks) {
-        const x = tk.y >= Warp.yb ? this.xOf(tk.y + 0.5, d) : this.xOf(tk.y, d);
-        if (this.sel != null) { // keep clear of the selected-year label
-          const xs = this.xOf(this.sel + 0.5, d);
-          if (Math.abs(x - xs) < 36) continue;
-        }
-        if (x < xL - 1 || x > xR + 1) continue;
-        axisNodes.push(s("line", { class: "c-base", x1: x, x2: x, y1: base, y2: base + 4 }));
-        axisNodes.push(s("text", { class: "c-xlab" + (tk.major ? " major" : ""), x, y: base + 16, "text-anchor": "middle" }, String(tk.y)));
+        const x = Math.round(this.xOf(tk.y, d)) + 0.5;
+        if (x < xL - 1 || x > xR - 4) continue;
+        axisNodes.push(s("line", { class: "c-vgrid", x1: x, x2: x, y1: M.t - 4, y2: base + 5 }));
+        const lx = x + 4, lw = String(tk.y).length * 6.6;
+        if (selX != null && lx < selX + 24 && lx + lw > selX - 24) continue; // keep clear of the selected-year pill
+        if (lx + lw > xR + 30) continue;
+        axisNodes.push(s("text", { class: "c-xlab", x: lx, y: base + 16 }, String(tk.y)));
       }
       // compression break
       const xb = this.xOf(Warp.yb, d);
@@ -352,13 +361,13 @@
           axisNodes.push(s("text", { class: "c-prelude-note", x: (xp0 + xb) / 2, y: base - 8, "text-anchor": "middle" }, "compressed scale"));
         }
       }
-      // selected year label on the axis
+      // selected year as a tinted pill on the axis
       if (this.sel != null) {
         const x0 = this.xOf(this.sel, d), x1 = this.xOf(this.sel + 1, d);
         if (x1 > xL && x0 < xR) {
           const cx = (x0 + x1) / 2;
-          topNodes.push(s("rect", { x: cx - 19, y: base + 4, width: 38, height: 16, rx: 8, fill: "var(--surface-1)" }));
-          topNodes.push(s("text", { class: "c-sel-label", x: cx, y: base + 16, "text-anchor": "middle" }, String(this.sel)));
+          topNodes.push(s("rect", { class: "c-sel-pill", x: cx - 21, y: base + 4, width: 42, height: 18, rx: 9 }));
+          topNodes.push(s("text", { class: "c-sel-label", x: cx, y: base + 17, "text-anchor": "middle" }, String(this.sel)));
         }
       }
       this.gAxis.replaceChildren(...axisNodes);
@@ -426,15 +435,30 @@
     bindEvents() {
       const el = this.el;
       let downX = 0, downY = 0, startView = null, moved = false, pinch = null;
+      // touch: press and hold, then slide, to scrub through the years (as in Apple's Health charts)
+      let holdTimer = 0, scrubbing = false;
+      const cancelHold = () => { clearTimeout(holdTimer); holdTimer = 0; };
 
       el.addEventListener("pointerdown", (ev) => {
         if (ev.target.closest && ev.target.closest(".c-pin")) return;
-        if (ev.target.tagName === "text" && ev.target.style.cursor === "pointer") return;
+        if (ev.target.classList && ev.target.classList.contains("c-era-lab")) return;
         this.pointers.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
         try { el.setPointerCapture(ev.pointerId); } catch (e) { /* synthetic pointer */ }
         if (this.pointers.size === 1) {
           downX = ev.clientX; downY = ev.clientY; startView = this.view.slice(); moved = false;
+          if (ev.pointerType !== "mouse") {
+            cancelHold();
+            holdTimer = setTimeout(() => {
+              holdTimer = 0;
+              if (moved || this.pointers.size !== 1) return;
+              scrubbing = true;
+              el.classList.add("scrubbing");
+              this.setHover(this.yearAt(downX), ev);
+            }, 260);
+          }
         } else if (this.pointers.size === 2) {
+          cancelHold();
+          if (scrubbing) { scrubbing = false; el.classList.remove("scrubbing"); this.setHover(null); }
           const [p1, p2] = [...this.pointers.values()];
           pinch = { dist: Math.abs(p1.x - p2.x) || 1, view: this.view.slice(), tc: this.tAt((p1.x + p2.x) / 2) };
           moved = true;
@@ -444,6 +468,8 @@
       el.addEventListener("pointermove", (ev) => {
         if (this.pointers.has(ev.pointerId)) {
           this.pointers.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
+          if (scrubbing) { this.setHover(this.yearAt(ev.clientX), ev); return; }
+          if (holdTimer && Math.hypot(ev.clientX - downX, ev.clientY - downY) > 6) cancelHold();
           if (this.pointers.size >= 2 && pinch) {
             const [p1, p2] = [...this.pointers.values()];
             const dist = Math.abs(p1.x - p2.x) || 1;
@@ -469,6 +495,17 @@
       });
 
       const end = (ev) => {
+        cancelHold();
+        if (scrubbing) {
+          scrubbing = false;
+          el.classList.remove("scrubbing");
+          const y = this.hover;
+          this.pointers.delete(ev.pointerId);
+          this.setHover(null);
+          if (ev.type === "pointerup" && y != null) this.o.onSelect && this.o.onSelect(y, "scrub");
+          if (this.pointers.size === 0) { startView = null; moved = false; }
+          return;
+        }
         const wasTap = this.pointers.size === 1 && !moved && ev.type === "pointerup";
         this.pointers.delete(ev.pointerId);
         if (this.pointers.size < 2) pinch = null;
@@ -489,6 +526,9 @@
       el.addEventListener("pointerup", end);
       el.addEventListener("pointercancel", end);
       el.addEventListener("pointerleave", (ev) => { if (ev.pointerType === "mouse") this.setHover(null); });
+      // while scrubbing, keep the page from scrolling under the finger
+      el.addEventListener("touchmove", (ev) => { if (scrubbing) ev.preventDefault(); }, { passive: false });
+      el.addEventListener("contextmenu", (ev) => { if (scrubbing || holdTimer) ev.preventDefault(); });
 
       el.addEventListener("wheel", (ev) => {
         if (ev.ctrlKey || ev.metaKey) {
@@ -563,8 +603,9 @@
 
     dims() {
       const W = this.el.clientWidth, H = this.el.clientHeight;
-      const M = { l: this.o.marginLeft ? this.o.marginLeft() : 36, r: 6 };
-      return { W, H, M, pw: Math.max(10, W - M.l - M.r), barsH: H - 14 };
+      const m = this.o.margins ? this.o.margins() : { l: 2, r: 40 };
+      const M = { l: m.l, r: m.r };
+      return { W, H, M, pw: Math.max(10, W - M.l - M.r), barsH: H - 15 };
     }
     x(t, d) { return d.M.l + t * d.pw; }
 
@@ -604,23 +645,28 @@
       const xa = this.x(a, d), xb = this.x(b, d);
       const full = a <= 0.0005 && b >= 0.9995;
       const nodes = [];
+      const H = d.barsH, hw = 11; // handle width
       if (!full) {
-        nodes.push(s("rect", { class: "o-shade", x: d.M.l, y: 0, width: Math.max(0, xa - d.M.l), height: d.barsH }));
-        nodes.push(s("rect", { class: "o-shade", x: xb, y: 0, width: Math.max(0, d.M.l + d.pw - xb), height: d.barsH }));
+        nodes.push(s("rect", { class: "o-shade", x: d.M.l - hw, y: 0, width: Math.max(0, xa - d.M.l + hw), height: H }));
+        nodes.push(s("rect", { class: "o-shade", x: xb, y: 0, width: Math.max(0, d.M.l + d.pw - xb + hw), height: H }));
       }
-      this.win = s("rect", { class: "o-win", x: xa, y: 0.5, width: Math.max(2, xb - xa), height: d.barsH - 1, rx: 5 });
-      nodes.push(this.win);
       if (this.sel != null) {
         const xs = this.x(Warp.t(this.sel + 0.5), d);
-        nodes.push(s("line", { class: "o-sel", x1: xs, x2: xs, y1: 2, y2: d.barsH - 2 }));
+        nodes.push(s("line", { class: "o-sel", x1: xs, x2: xs, y1: 4, y2: H - 4 }));
       }
-      for (const [side, x] of [["l", xa], ["r", xb]]) {
-        const g = s("g", { class: "o-handle", "data-side": side, transform: `translate(${x},${d.barsH / 2})` });
+      // trimmer frame, like the trim control in Apple's Photos: thick handles with chevrons
+      const r = 7, bw = 2.5, w = Math.max(2, xb - xa);
+      const outer = `M${xa - hw + r},0H${xb + hw - r}Q${xb + hw},0 ${xb + hw},${r}V${H - r}Q${xb + hw},${H} ${xb + hw - r},${H}H${xa - hw + r}Q${xa - hw},${H} ${xa - hw},${H - r}V${r}Q${xa - hw},0 ${xa - hw + r},0Z`;
+      const inner = `M${xa},${bw}V${H - bw}H${xa + w}V${bw}Z`;
+      this.win = s("rect", { class: "o-win", x: xa, y: bw, width: w, height: H - 2 * bw });
+      nodes.push(this.win);
+      nodes.push(s("path", { class: "o-frame", d: outer + inner, "fill-rule": "evenodd" }));
+      for (const [side, x] of [["l", xa - hw / 2], ["r", xb + hw / 2]]) {
+        const g = s("g", { class: "o-handle", "data-side": side, transform: `translate(${x},${H / 2})` });
+        const c = side === "l" ? "M1.6,-4.5 -1.6,0 1.6,4.5" : "M-1.6,-4.5 1.6,0 -1.6,4.5";
         g.append(
-          s("rect", { class: "hit", x: -14, y: -d.barsH / 2, width: 28, height: d.barsH }),
-          s("rect", { class: "grip", x: -4.5, y: -11, width: 9, height: 22, rx: 4.5 }),
-          s("line", { x1: -1.2, x2: -1.2, y1: -5, y2: 5 }),
-          s("line", { x1: 1.2, x2: 1.2, y1: -5, y2: 5 })
+          s("rect", { class: "hit", x: -14, y: -H / 2, width: 28, height: H }),
+          s("path", { class: "o-chev", d: c })
         );
         nodes.push(g);
       }
@@ -667,7 +713,7 @@
   /** Small, static histogram used in maker details. */
   function miniHistogram(el, counts, y0, y1, color, onBar) {
     const W = el.clientWidth || 400, H = el.clientHeight || 110;
-    const M = { l: 24, r: 4, t: 6, b: 18 };
+    const M = { l: 2, r: 28, t: 6, b: 20 };
     const pw = W - M.l - M.r, ph = H - M.t - M.b;
     const n = y1 - y0 + 1;
     let max = 1;
@@ -681,7 +727,7 @@
     for (let v = st; v <= top; v += st) {
       const y = Math.round(base - (v / top) * ph) + 0.5;
       svg.append(s("line", { class: "c-grid", x1: M.l, x2: W - M.r, y1: y, y2: y }));
-      svg.append(s("text", { class: "c-ylab", x: M.l - 5, y: y + 3.5, "text-anchor": "end" }, num(v)));
+      svg.append(s("text", { class: "c-ylab", x: W - M.r + 6, y: y + 3.5 }, num(v)));
     }
     let path = "";
     for (let y = y0; y <= y1; y++) {
@@ -693,10 +739,11 @@
     }
     svg.append(s("path", { d: path, fill: color }));
     svg.append(s("line", { class: "c-base", x1: M.l, x2: W - M.r, y1: base + 0.5, y2: base + 0.5 }));
-    const stepY = niceStep(n, Math.max(2, Math.floor(pw / 60)));
+    const stepY = niceStep(n, Math.max(2, Math.floor(pw / 64)));
     for (let y = Math.ceil(y0 / stepY) * stepY; y <= y1; y += stepY) {
-      const x = M.l + (y - y0 + 0.5) * band;
-      svg.append(s("text", { class: "c-xlab", x, y: H - 3, "text-anchor": "middle" }, String(y)));
+      const x = Math.round(M.l + (y - y0) * band) + 0.5;
+      svg.prepend(s("line", { class: "c-vgrid", x1: x, x2: x, y1: M.t, y2: base + 4 }));
+      if (x + 30 < W) svg.append(s("text", { class: "c-xlab", x: x + 4, y: H - 4 }, String(y)));
     }
     // hit areas with native tooltips
     for (let y = y0; y <= y1; y++) {

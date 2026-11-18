@@ -131,11 +131,32 @@
 
   const CAR_SVG = '<svg viewBox="0 0 120 60" aria-hidden="true"><path d="M8 42c0-6 3-9 9-10l14-3 14-11c3-2 6-3 10-3h22c4 0 7 1 10 4l10 10 12 2c5 1 8 4 8 9v5c0 2-1 3-3 3h-7" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M43 48H76M8 42v3c0 2 1 3 3 3h6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="47" r="8" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="89" cy="47" r="8" fill="none" stroke="currentColor" stroke-width="3"/><path d="M49 29l8-8c2-1 3-2 5-2h12v10zM78 19h7c2 0 3 1 4 2l7 8H78z" fill="currentColor" opacity=".5"/></svg>';
 
+  /* SF-Symbols-like line icons (drawn for this app). */
+  const ICONS = {
+    chevronRight: '<svg viewBox="0 0 24 24"><path d="m9 4.8 7.2 7.2L9 19.2" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    arrowUpRight: '<svg viewBox="0 0 24 24"><path d="M7 17 17 7M8.5 7H17v8.5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    xmarkCircle: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" opacity=".22"/><path d="m8.6 8.6 6.8 6.8m0-6.8-6.8 6.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+    chart: '<svg viewBox="0 0 24 24"><rect x="3" y="12.5" width="4.6" height="8" rx="1.6" fill="currentColor"/><rect x="9.7" y="7.5" width="4.6" height="13" rx="1.6" fill="currentColor"/><rect x="16.4" y="3.5" width="4.6" height="17" rx="1.6" fill="currentColor"/></svg>',
+    search: '<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15.6 15.6 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>',
+    calendar: '<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+    clock: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    flag: '<svg viewBox="0 0 24 24"><path d="M5.6 21V3.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M5.6 4.3c2.5-1.5 5-1.3 7.2 0 2.2 1.2 4.4 1.4 6.7.3v9.1c-2.3 1.1-4.5.9-6.7-.3-2.2-1.3-4.7-1.5-7.2 0Z" fill="currentColor"/></svg>',
+  };
+  const tpl = document.createElement("template");
+  function icon(name, cls) {
+    tpl.innerHTML = ICONS[name] || ""; // static, trusted markup
+    const el = tpl.content.firstElementChild;
+    if (!el) return null;
+    el.setAttribute("aria-hidden", "true");
+    if (cls) el.setAttribute("class", cls);
+    return el;
+  }
+
   function placeholder() {
     const d = h("div", { class: "ph" });
     d.innerHTML = CAR_SVG; // static, trusted markup
     return d;
   }
 
-  window.V = { h, s, num, norm, clamp, debounce, thumbUrl, originalUrl, wikiImg, commonsPage, wikiUrl, splitTitle, placeholder, SVGNS };
+  window.V = { h, s, num, norm, clamp, debounce, thumbUrl, originalUrl, wikiImg, commonsPage, wikiUrl, splitTitle, placeholder, icon, SVGNS };
 })();

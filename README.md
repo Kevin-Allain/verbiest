@@ -22,30 +22,46 @@ Snapshot taken on 18 November 2026:
 
 ## What it does
 
-- **Timeline histogram**: the number of car models introduced each year, from 1860 to
-  today. Bars are coloured by **country** or **body style**. The years before 1860
-  (Verbiest, Cugnot, Trevithick…) are shown on a compressed scale at the left.
-- **Play**: step through the years one by one, with each year's most famous cars.
-- **Zoom & pan**: drag the chart, drag the window in the strip below it, pinch on touch
-  screens, Ctrl/⌘ + scroll, double-click, or use the **era** buttons (Veteran, Brass,
-  Vintage, Pre-war, Post-war, Modern).
-- **Hover or tap a bar** to see that year's breakdown and its most famous cars. **Click a
-  bar** to list all cars of that year below the chart.
-- **Milestones**: the dots above the bars mark key moments (Benz Patent-Motorwagen,
-  Model T, Le Mans, Citroën DS, Prius…). Click one to read about it.
-- **Filters**: click legend entries to hide or show countries or body styles
-  (Shift-click shows only that one). The pills filter by kind of car: sports, luxury,
-  small, electric & hybrid, steam, racing or concept.
-- **Makers founded**: switch the chart to count car makers by the year they were
-  founded. The list then shows each maker's lifespan.
-- **Detail panel** for every car, maker and milestone. It has the photo, key facts and the
-  Wikipedia introduction (loaded live). Cars also show a "place in history" ribbon with the
-  maker's other models, "more from this maker" and "also new that year". Makers show a
-  models-per-year chart and the full model list.
-- **Search** (press `/`) across all cars and makers. Type a year (e.g. `1955`) to jump
-  to it.
-- Light and dark themes, deep links (e.g. `#/car/Citroën DS`, `#/year/1955`) and
-  "Add to Home Screen" support on iPad and iPhone.
+The app is laid out like an Apple app (iOS / iPadOS style): system fonts, Apple's system
+colours, a glass tab bar (at the bottom on a phone, at the top on an iPad or computer),
+large titles that shrink into the navigation bar, sheets that slide up, and springy
+animations. It follows the device's light or dark appearance; the moon/sun button
+switches it by hand.
+
+Four tabs:
+
+- **Timeline**: the number of car models introduced each year, from 1860 to today,
+  coloured by **country** or **body style**. The years before 1860 (Verbiest, Cugnot,
+  Trevithick…) sit on a compressed scale at the left.
+  - The big number above the chart (as in Apple's Health app) shows the total for the
+    period on screen, or for the year you point at.
+  - **Move through time**: drag the chart, drag the blue frame below it, pinch on touch
+    screens, Ctrl/⌘ + scroll, double-click, use the − / + buttons, or pick an **era**
+    (Pioneers, Veteran, Brass, Vintage, Pre-war, Post-war, Modern).
+  - **Tap or click a bar** to list that year's cars below the chart. On a touch screen,
+    touch and hold, then slide, to scrub through the years.
+  - **Play** steps through the years one by one.
+  - **Filters**: tap legend entries to hide or show countries or body styles
+    (Shift-click shows only one). The chips filter by kind of car (sports, luxury,
+    small, electric & hybrid, steam, racing, concept).
+  - **Makers** (top-right switch) counts car makers by the year they were founded; the
+    list then shows each maker's lifespan.
+  - The dots above the bars are **milestones**; tap one to read about it.
+- **Milestones**: the 27 key moments as large picture cards, grouped by era.
+- **Makers**: all makers with their logos, A–Z (with a Contacts-style letter index),
+  by country or by founding decade, with a search field.
+- **Search** (or press `/`, or ⌘K): cars, makers and years, with your recently viewed
+  cars and makers.
+
+Every car, maker and milestone opens in a **sheet**, laid out like an App Store page:
+photo, key facts in a row (year, maker, country, body style…), the Wikipedia
+introduction (loaded live, with "more"), the car's place in its maker's history,
+"More from this maker" and "Also new that year" shelves. Tapping a car inside a sheet
+slides the next page in, with a back button; drag the sheet down (phone) or press Esc
+to close it.
+
+Deep links work too, e.g. `#/car/Citroën DS`, `#/maker/Ferrari`, `#/year/1955`,
+`#/milestones`. On an iPad or iPhone, "Add to Home Screen" gives an app icon.
 
 ## Running it
 
@@ -109,10 +125,10 @@ VERBIEST_CONTACT="you@example.org" python3 scripts/fetch_raw.py
 
 ```
 index.html               page structure
-css/style.css            all styling (light + dark themes, phone/tablet/desktop layouts)
+css/style.css            all styling (Apple-style; light + dark; phone/tablet/desktop layouts)
 js/util.js               small helpers (DOM, Wikimedia image URLs)
 js/chart.js              timeline histogram, zoom strip, mini charts (hand-written SVG)
-js/app.js                state, filters, results, detail panel, search, routing
+js/app.js                tabs, state, filters, results, detail sheet, search, routing
 data/verbiest-data.js    generated dataset
 data/raw/                raw downloads from Wikipedia / Wikidata
 scripts/                 data pipeline (Python 3, standard library only)
@@ -132,5 +148,5 @@ assets/                  app icons
 
 - Add other data sources (production numbers, specifications, prices, race results).
 - Timelines per maker (mergers and brand families), and a "compare two cars" view.
-- Offline mode (service worker) and a proper hosted version for the iPad.
+- Offline mode (service worker), so the app also works without a connection.
 - Favourites and personal notes (e.g. "cars I have owned").
