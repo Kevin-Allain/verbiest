@@ -54,6 +54,58 @@
   function histPush(st, url) { try { history.pushState(st, "", url); } catch (e) { try { location.hash = url; } catch (e2) {} } }
   function histReplace(st, url) { try { history.replaceState(st, "", url); } catch (e) { /* ignore */ } }
 
+  /* ------------------------------------------------------------------ my garage: storage
+     Favourite cars and makers, and the cars you have owned (with years and a note),
+     kept on this device only (localStorage). Keyed by Wikipedia title, so they survive
+     data refreshes. A backup can be exported and imported from the Garage tab. */
+  const GARAGE_KEY = "verbiest-garage";
+  const CURRENT_YEAR = new Date().getFullYear();
+  const garage = { fav: new Map(), favMakers: new Map(), owned: new Map() };
+  const toYear = (v) => { const n = parseInt(v, 10); return n >= 1600 && n <= CURRENT_YEAR + 1 ? n : null; };
+
+  /** Merge a stored/imported garage into memory. Returns how many new items were added. */
+  function mergeGarage(raw) {
+    let added = 0;
+    if (!raw || typeof raw !== "object") return 0;
+    const stamp = (t) => (Number.isFinite(+t) && +t > 0 ? +t : Date.now());
+    for (const [key, map] of [["fav", garage.fav], ["favMakers", garage.favMakers]]) {
+      for (const f of Array.isArray(raw[key]) ? raw[key] : []) {
+        if (!f || typeof f.n !== "string" || map.has(f.n)) continue;
+        map.set(f.n, { t: stamp(f.t) });
+        added++;
+      }
+    }
+    for (const o of Array.isArray(raw.owned) ? raw.owned : []) {
+      if (!o || typeof o.n !== "string") continue;
+      const cur = garage.owned.get(o.n);
+      if (!cur) added++;
+      garage.owned.set(o.n, {
+        from: toYear(o.from) ?? (cur ? cur.from : null),
+        to: toYear(o.to) ?? (cur ? cur.to : null),
+        note: typeof o.note === "string" && o.note ? o.note.slice(0, 2000) : (cur ? cur.note : ""),
+        t: cur ? cur.t : stamp(o.t),
+      });
+    }
+    return added;
+  }
+  function serializeGarage() {
+    const ser = (map) => [...map].map(([n, v]) => Object.assign({ n }, v));
+    return { app: "Verbiest", v: 1, saved: new Date().toISOString(), fav: ser(garage.fav), favMakers: ser(garage.favMakers), owned: ser(garage.owned) };
+  }
+  try { mergeGarage(JSON.parse(localStorage.getItem(GARAGE_KEY) || "null")); } catch (e) { /* storage unavailable */ }
+
+  let persistAsked = false;
+  function saveGarage() {
+    try { localStorage.setItem(GARAGE_KEY, JSON.stringify(serializeGarage())); }
+    catch (e) { toast("Couldn’t save on this device"); }
+    // ask the browser to keep this site's storage (no prompt in Safari / Chrome)
+    if (!persistAsked && navigator.storage && navigator.storage.persist) { persistAsked = true; navigator.storage.persist().catch(() => {}); }
+    garageChanged();
+  }
+  const isFav = (c) => garage.fav.has(c.n);
+  const isOwned = (c) => garage.owned.has(c.n);
+  const isFavMaker = (m) => garage.favMakers.has(m.n);
+
   /* ------------------------------------------------------------------ flags */
   // Flag emoji for modern countries (Apple platforms draw them beautifully; Windows has none).
   const FLAG_CODES = {
@@ -92,10 +144,20 @@
   /* ------------------------------------------------------------------ filters */
   function carPasses(c, ignoreDim) {
     if (state.maker != null && c.m !== state.maker) return false;
-    if (state.kind && !(c.k & KIND[state.kind])) return false;
+    if (state.kind) {
+      if (state.kind === "@fav") { if (!garage.fav.has(c.n)) return false; }
+      else if (state.kind === "@owned") { if (!garage.owned.has(c.n)) return false; }
+      else if (!(c.k & KIND[state.kind])) return false;
+    }
     if (ignoreDim !== "country" && state.off.country.size && state.off.country.has(carGroup(c, "country"))) return false;
     if (ignoreDim !== "body" && state.off.body.size && state.off.body.has(c.b)) return false;
     return true;
+  }
+  function kindName(k) {
+    if (k === "@fav") return "Favourites";
+    if (k === "@owned") return "Cars I’ve Owned";
+    const d = D.kinds.find((x) => x.k === k);
+    return d ? d.n : k;
   }
   function makerPasses(m) {
     if (m.f == null) return false;
@@ -203,7 +265,7 @@
     const makersMode = state.metric === "makers";
     let cap = makersMode ? "Makers founded" : "New models";
     if (!makersMode && state.maker != null) cap = `New ${makers[state.maker].n} models`;
-    else if (!makersMode && state.kind) cap = `New models · ${D.kinds.find((k) => k.k === state.kind).n}`;
+    else if (!makersMode && state.kind) cap = kindName(state.kind);
     let val = 0, sub = "";
     if (year != null) {
       val = agg.totals[year - START_YEAR] || 0;
@@ -270,16 +332,20 @@
 
   // kind chips
   function renderPills() {
-    const all = [{ k: null, n: "All Cars" }, ...D.kinds];
+    const mine = [];
+    if (garage.fav.size) mine.push({ k: "@fav", n: "Favourites", icon: "heartFill" });
+    if (garage.owned.size) mine.push({ k: "@owned", n: "My Cars", icon: "keyFill" });
+    const all = [{ k: null, n: "All Cars" }, ...mine, ...D.kinds];
     $("typePills").replaceChildren(...all.map((k) => h("button", {
       class: "chip", type: "button", role: "radio", "aria-checked": String(state.kind === k.k),
       title: k.hint || null,
+      "data-mine": k.k === "@fav" ? "fav" : k.k === "@owned" ? "own" : null,
       onclick: () => {
         state.kind = k.k; renderPills(); refresh();
         const on = $("typePills").querySelector('[aria-checked="true"]');
         if (on) on.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
       },
-    }, k.n)));
+    }, k.icon ? icon(k.icon) : null, k.n)));
   }
 
   // era scope bar
@@ -548,7 +614,7 @@
     const token = (label, clear) => h("span", { class: "token" }, label,
       h("button", { type: "button", "aria-label": `Remove filter: ${label}`, onclick: clear }, icon("xmarkCircle")));
     if (state.maker != null) chips.push(token(makers[state.maker].n, () => { state.maker = null; refresh(); }));
-    if (state.kind && state.metric === "models") chips.push(token(D.kinds.find((k) => k.k === state.kind).n, () => { state.kind = null; renderPills(); refresh(); }));
+    if (state.kind && state.metric === "models") chips.push(token(kindName(state.kind), () => { state.kind = null; renderPills(); refresh(); }));
     for (const dim of ["country", "body"]) {
       if (!state.off[dim].size) continue;
       if (dim === "body" && state.metric === "makers") continue;
@@ -572,8 +638,11 @@
     const thumb = h("div", { class: "thumb" });
     if (c.i) thumb.append(wikiImg(c.i, 250, "")); else thumb.append(placeholder());
     thumb.append(h("span", { class: "yr" }, yearsLabel(c)));
+    const b = tileBadges(c);
+    if (b) thumb.append(b);
     return h("button", {
       class: "tile" + (extraClass ? " " + extraClass : ""), type: "button", style: { "--i": Math.min(k, 24) },
+      "data-car": String(c._i),
       onclick: () => openDetail("car", c._i),
       "aria-label": `${c.n}, ${yearsLabel(c)}`,
     },
@@ -614,9 +683,9 @@
   }
 
   function makerRow(m, k) {
-    return h("button", { class: "mrow", type: "button", style: { "--i": Math.min(k, 30) }, onclick: () => openDetail("maker", m._i) },
+    return h("button", { class: "mrow" + (isFavMaker(m) ? " is-fav" : ""), type: "button", style: { "--i": Math.min(k, 30) }, "data-maker": String(m._i), onclick: () => openDetail("maker", m._i) },
       makerTile(m),
-      h("div", { class: "mname" }, h("b", null, m.n),
+      h("div", { class: "mname" }, h("b", null, m.n, icon("heartFill", "fav-mark")),
         h("span", null, h("i", { class: "dot", style: { "--c": COLORS.country[makerGroup(m)] } }), countryName(m.c), m._count ? ` · ${m._count} model${m._count > 1 ? "s" : ""}` : "")),
       lifeBar(m),
       icon("chevronRight", "chev"));
@@ -798,6 +867,7 @@
           h("button", { class: "pill-btn gray", type: "button", onclick: () => revealYear(c.y) }, icon("chart"), `See ${c.y}`))),
       h("div", { class: "info-strip" }, infos),
       h("div", { class: "d-body" },
+        garageControls(c),
         tags.length ? h("div", { class: "d-tags" }, tags) : null,
         introBlock(c.n, c.s),
         h("section", { class: "d-sec" },
@@ -820,10 +890,10 @@
     const [name, paren] = splitTitle(c.n);
     const th = h("span", { class: "row-thumb" });
     if (c.i) th.append(wikiImg(c.i, 120, "")); else th.append(placeholder());
-    return h("button", { class: "lrow", type: "button", onclick: () => openDetail("car", id) },
+    return markCarRow(h("button", { class: "lrow", type: "button", onclick: () => openDetail("car", id) },
       th,
       h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, name + (paren ? ` (${paren})` : "")), h("span", { class: "lrow-sub" }, yearsLabel(c) + (c.s ? ` · ${c.s}` : ""))),
-      icon("chevronRight", "chev"));
+      icon("chevronRight", "chev")), c);
   }
 
   function buildMaker(mi) {
@@ -862,6 +932,7 @@
         info("Models", num(ids.length), "on Wikipedia"),
         m.p ? info("Wikipedia", String(m.p), m.p === 1 ? "language" : "languages") : null),
       h("div", { class: "d-body" },
+        makerFavButton(m),
         ids.length ? h("section", { class: "d-sec" },
           secHead("New Models per Year"),
           h("p", { class: "d-note" }, coarse ? "Tap a bar to see that year on the timeline." : "Click a bar to see that year on the timeline."),
@@ -1127,7 +1198,7 @@
   }
 
   /* ------------------------------------------------------------------ tabs */
-  const TABS = ["timeline", "milestones", "makers", "search"];
+  const TABS = ["timeline", "milestones", "makers", "garage", "search"];
   const scrollMem = {};
   let tab = "timeline";
 
@@ -1170,6 +1241,7 @@
     if (t === "milestones") buildMilestones();
     if (t === "makers") buildMakers();
     if (t === "search") renderSearch();
+    if (t === "garage") renderGarage();
     if (t === "search" && opts.focus) $("searchInput").focus(); // synchronously, so iOS shows the keyboard
     syncTabbar();
     if (t === "timeline") { chart.draw(); overview.draw(); for (const id of ["metricSeg", "colorSeg"]) syncSeg($(id), true); }
@@ -1245,9 +1317,9 @@
       m.f ? `${m.f}–${m.d || "today"}` : null,
       m._count ? `${m._count} model${m._count > 1 ? "s" : ""}` : null,
     ].filter(Boolean).join(" · ");
-    return h("button", { class: "lrow", type: "button", onclick: () => openDetail("maker", m._i) },
+    return h("button", { class: "lrow" + (isFavMaker(m) ? " is-fav" : ""), type: "button", "data-maker": String(m._i), onclick: () => openDetail("maker", m._i) },
       makerTile(m),
-      h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, m.n), h("span", { class: "lrow-sub" }, meta)),
+      h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, m.n, icon("heartFill", "fav-mark")), h("span", { class: "lrow-sub" }, meta)),
       icon("chevronRight", "chev"));
   }
 
@@ -1327,6 +1399,278 @@
       localStorage.setItem(RECENT_KEY, JSON.stringify(raw.slice(0, 12)));
     } catch (e) { /* private mode */ }
   }
+
+  /* ------------------------------------------------------------------ my garage: UI */
+  function tileBadges(c) {
+    const f = isFav(c), o = isOwned(c);
+    if (!f && !o) return null;
+    return h("span", { class: "badges" },
+      o ? h("span", { class: "badge own", title: "In my garage" }, icon("keyFill")) : null,
+      f ? h("span", { class: "badge fav", title: "Favourite" }, icon("heartFill")) : null);
+  }
+  /** Car rows in lists show a small heart / key after the name. */
+  function markCarRow(el, c) {
+    el.dataset.car = String(c._i);
+    el.classList.toggle("is-fav", isFav(c));
+    el.classList.toggle("is-owned", isOwned(c));
+    const title = el.querySelector(".lrow-title");
+    if (title && !title.querySelector(".fav-mark")) title.append(icon("heartFill", "fav-mark"), icon("keyFill", "own-mark"));
+    return el;
+  }
+  function updateMarks() {
+    for (const t of document.querySelectorAll(".tile[data-car]")) {
+      const th = t.querySelector(".thumb");
+      if (!th) continue;
+      const old = th.querySelector(".badges");
+      if (old) old.remove();
+      const b = tileBadges(cars[+t.dataset.car]);
+      if (b) th.append(b);
+    }
+    for (const r of document.querySelectorAll(".lrow[data-car]")) markCarRow(r, cars[+r.dataset.car]);
+    for (const r of document.querySelectorAll("[data-maker]")) r.classList.toggle("is-fav", isFavMaker(makers[+r.dataset.maker]));
+  }
+
+  function garageChanged() {
+    updateMarks();
+    const stale = (state.kind === "@fav" && !garage.fav.size) || (state.kind === "@owned" && !garage.owned.size);
+    if (stale) state.kind = null;
+    renderPills();
+    if (stale || (state.kind && state.kind[0] === "@")) refresh();
+    if (tab === "garage") renderGarage();
+  }
+
+  /* Apple-style HUD toast */
+  let toastTimer = 0;
+  function toast(text, iconName) {
+    const el = $("toast");
+    el.replaceChildren(...[iconName ? icon(iconName) : null, h("span", null, text)].filter(Boolean));
+    el.classList.remove("show");
+    void el.offsetWidth;
+    el.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove("show"), 1900);
+  }
+
+  function toggleFav(c) {
+    if (garage.fav.delete(c.n)) toast("Removed from Favourites", "heart");
+    else { garage.fav.set(c.n, { t: Date.now() }); toast("Added to Favourites", "heartFill"); }
+    saveGarage();
+  }
+  function toggleOwned(c) {
+    if (garage.owned.delete(c.n)) toast("Removed from My Garage", "key");
+    else { garage.owned.set(c.n, { from: null, to: null, note: "", t: Date.now() }); toast("Added to My Garage", "keyFill"); }
+    saveGarage();
+  }
+  function toggleFavMaker(m) {
+    if (garage.favMakers.delete(m.n)) toast("Removed from Favourites", "heart");
+    else { garage.favMakers.set(m.n, { t: Date.now() }); toast("Added to Favourites", "heartFill"); }
+    saveGarage();
+  }
+
+  function bigButton(kind, onclick) { return h("button", { class: "big-btn", type: "button", "data-kind": kind, onclick }); }
+
+  /** Favourite / "I Owned One" buttons on a car page, plus the ownership form. */
+  function garageControls(c) {
+    const favBtn = bigButton("fav", () => { toggleFav(c); sync(); });
+    const ownBtn = bigButton("own", () => { toggleOwned(c); sync(); form.render(true); });
+    const form = ownForm(c);
+    function sync() {
+      const f = isFav(c), o = isOwned(c);
+      favBtn.setAttribute("aria-pressed", String(f));
+      favBtn.replaceChildren(icon(f ? "heartFill" : "heart"), h("span", null, "Favourite"));
+      ownBtn.setAttribute("aria-pressed", String(o));
+      ownBtn.replaceChildren(icon(o ? "keyFill" : "key"), h("span", null, o ? "In My Garage" : "I Owned One"));
+    }
+    sync();
+    return h("div", { class: "garage-ctl" }, h("div", { class: "garage-btns" }, favBtn, ownBtn), form);
+  }
+
+  function yearField(value, placeholder, onChange) {
+    const inp = h("input", { type: "text", inputmode: "numeric", pattern: "[0-9]*", maxlength: "4", placeholder, autocomplete: "off", enterkeyhint: "done" });
+    inp.value = value != null ? String(value) : "";
+    const commit = () => {
+      const v = inp.value.trim() ? toYear(inp.value) : null;
+      if (inp.value.trim() && v == null) { inp.classList.add("invalid"); return; }
+      inp.classList.remove("invalid");
+      onChange(v);
+    };
+    inp.addEventListener("input", debounce(commit, 400));
+    inp.addEventListener("change", commit);
+    inp.addEventListener("keydown", (ev) => { if (ev.key === "Enter") inp.blur(); });
+    return inp;
+  }
+
+  function ownForm(c) {
+    const box = h("div", { class: "own-form" });
+    const save = debounce(() => saveGarage(), 250);
+    box.render = (animate) => {
+      const o = garage.owned.get(c.n);
+      if (!o) { box.hidden = true; box.replaceChildren(); return; }
+      const note = h("textarea", { rows: "2", maxlength: "2000", placeholder: "A note — e.g. “Our family car, bought new in 1972”" });
+      note.value = o.note || "";
+      note.addEventListener("input", () => { o.note = note.value; save(); });
+      box.replaceChildren(
+        h("div", { class: "list form-list" },
+          h("label", { class: "frow" }, h("span", null, "Owned from"), yearField(o.from, "Year", (v) => { o.from = v; save(); })),
+          h("label", { class: "frow" }, h("span", null, "Until"), yearField(o.to, "Still own it", (v) => { o.to = v; save(); })),
+          h("label", { class: "frow note" }, h("span", { class: "sr-only" }, "Note"), note)),
+        h("p", { class: "footnote form-foot" }, "Saved on this device. It appears in the Garage tab and on your timeline."));
+      box.hidden = false;
+      if (animate && !reduceMotion.matches && box.animate) box.animate([{ opacity: 0, transform: "translateY(-6px)" }, { opacity: 1, transform: "none" }], { duration: 320, easing: "cubic-bezier(.32,.72,0,1)" });
+    };
+    box.render(false);
+    return box;
+  }
+
+  function makerFavButton(m) {
+    const btn = bigButton("fav", () => { toggleFavMaker(m); sync(); });
+    function sync() {
+      const f = isFavMaker(m);
+      btn.setAttribute("aria-pressed", String(f));
+      btn.replaceChildren(icon(f ? "heartFill" : "heart"), h("span", null, f ? "Favourite Maker" : "Favourite"));
+    }
+    sync();
+    return h("div", { class: "garage-ctl" }, h("div", { class: "garage-btns one" }, btn));
+  }
+
+  /* ---- the Garage tab */
+  const ownedYears = (o) => (o.from && o.to ? (o.from === o.to ? String(o.from) : `${o.from}–${o.to}`) : o.from ? `since ${o.from}` : o.to ? `until ${o.to}` : null);
+
+  function ownershipChart(list) {
+    const dated = list.filter(([, o]) => o.from || o.to);
+    if (!dated.length) return null;
+    let a = Infinity, b = -Infinity;
+    for (const [, o] of dated) { a = Math.min(a, o.from || o.to); b = Math.max(b, o.to || CURRENT_YEAR); }
+    a = Math.floor((a - 1) / 5) * 5; b = Math.ceil((b + 1) / 5) * 5;
+    const span = Math.max(1, b - a);
+    const pos = (y) => ((y - a) / span) * 100;
+    const step = span <= 20 ? 5 : span <= 50 ? 10 : 20;
+    const ticks = [];
+    for (let y = Math.ceil(a / step) * step; y <= b; y += step) ticks.push(y);
+    const rows = dated.sort(([, x], [, y]) => (x.from || x.to) - (y.from || y.to)).map(([c, o]) => {
+      const from = o.from || o.to, to = o.to || CURRENT_YEAR;
+      const [name] = splitTitle(c.n);
+      return h("button", { class: "oc-row", type: "button", onclick: () => openDetail("car", c._i), title: `${c.n}, ${ownedYears(o)}` },
+        h("span", { class: "oc-name" }, name),
+        h("span", { class: "oc-track" },
+          h("span", { class: "oc-bar" + (o.to ? "" : " open"), style: { left: pos(from) + "%", width: Math.max(1.6, pos(to + 1) - pos(from)) + "%" } }),
+          ocLabel(ownedYears(o), pos(from), pos(to + 1))));
+    });
+    return h("div", { class: "card own-chart" },
+      h("div", { class: "oc-grid" }, ticks.map((y) => h("span", { class: "oc-tick", style: { left: pos(y) + "%" } }, h("i"), h("b", null, String(y))))),
+      rows);
+  }
+
+  /** Year label next to an ownership bar: after it, before it, or inside it — wherever it fits. */
+  function ocLabel(text, x0, x1) {
+    if (100 - x1 >= 24) return h("span", { class: "oc-lbl", style: { left: `calc(${x1}% + 6px)` } }, text);
+    if (x0 >= 24) return h("span", { class: "oc-lbl", style: { right: `calc(${100 - x0}% + 6px)` } }, text);
+    return h("span", { class: "oc-lbl inside", style: { left: `calc(${x0}% + 8px)` } }, text);
+  }
+
+  function ownedRow(c, o) {
+    const th = h("span", { class: "row-thumb" });
+    if (c.i) th.append(wikiImg(c.i, 120, "")); else th.append(placeholder());
+    const yrs = ownedYears(o);
+    return markCarRow(h("button", { class: "lrow", type: "button", onclick: () => openDetail("car", c._i) },
+      th,
+      h("span", { class: "lrow-main" },
+        h("span", { class: "lrow-title" }, c.n),
+        h("span", { class: "lrow-sub" }, [yrs ? `Owned ${yrs}` : "Years not set", o.note].filter(Boolean).join(" · "))),
+      icon("chevronRight", "chev")), c);
+  }
+
+  function showOnTimeline(kind) {
+    state.kind = kind;
+    state.maker = null;
+    resetToModels();
+    renderPills();
+    setTab("timeline");
+    refresh({ grow: true });
+    const ys = cars.filter((c) => carPasses(c)).map((c) => c.y);
+    if (ys.length) chart.showYears(Math.min(...ys) - 2, Math.max(...ys) + 2, true);
+    setTimeout(() => $("chartCard").scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "start" }), 350);
+  }
+
+  function renderGarage() {
+    const owned = [...garage.owned].filter(([n]) => carByTitle.has(n)).map(([n, o]) => [cars[carByTitle.get(n)], o]);
+    const favCars = [...garage.fav].filter(([n]) => carByTitle.has(n)).sort(([, x], [, y]) => y.t - x.t).map(([n]) => cars[carByTitle.get(n)]);
+    const favMakers = [...garage.favMakers].filter(([n]) => makerByName.has(n)).sort(([, x], [, y]) => y.t - x.t).map(([n]) => makers[makerByName.get(n)]);
+    const nodes = [];
+    const head = (title, count, action, onAction) => h("div", { class: "section-head" },
+      h("div", null, h("h2", { class: "title2" }, title), h("p", { class: "footnote" }, count)),
+      action ? h("button", { class: "see-all", type: "button", onclick: onAction }, action) : null);
+
+    if (!owned.length && !favCars.length && !favMakers.length) {
+      nodes.push(h("div", { class: "card garage-empty" },
+        h("span", { class: "ge-icon" }, icon("car")),
+        h("h2", null, "Your Garage Is Empty"),
+        h("p", null, "Open any car and tap ", h("b", null, "I Owned One"), " to build the story of the cars in your life, or ", h("b", null, "Favourite"), " to keep the ones you love."),
+        h("div", { class: "d-actions" },
+          h("button", { class: "pill-btn filled", type: "button", onclick: () => setTab("search", { focus: true }) }, icon("search"), "Find a Car"),
+          h("button", { class: "pill-btn gray", type: "button", onclick: () => setTab("timeline") }, icon("chart"), "Browse the Timeline"))));
+    }
+    if (owned.length) {
+      const sorted = owned.slice().sort(([, x], [, y]) => (x.from || x.to || 9999) - (y.from || y.to || 9999) || x.t - y.t);
+      nodes.push(h("section", { class: "g-sec" },
+        head("Cars I’ve Owned", `${owned.length} car${owned.length > 1 ? "s" : ""}`, "Show on Timeline", () => showOnTimeline("@owned")),
+        ownershipChart(sorted) || h("p", { class: "footnote g-hint" }, "Add the years you owned each car to see them on a timeline here."),
+        h("div", { class: "list owned-list" }, sorted.map(([c, o]) => ownedRow(c, o)))));
+    }
+    if (favCars.length) {
+      nodes.push(h("section", { class: "g-sec" },
+        head("Favourite Cars", `${favCars.length} car${favCars.length > 1 ? "s" : ""}`, "Show on Timeline", () => showOnTimeline("@fav")),
+        h("div", { class: "grid" }, favCars.map((c, k) => carTile(c, k)))));
+    }
+    if (favMakers.length) {
+      nodes.push(h("section", { class: "g-sec" },
+        head("Favourite Makers", `${favMakers.length} maker${favMakers.length > 1 ? "s" : ""}`),
+        h("div", { class: "list" }, favMakers.map((m) => {
+          const meta = [countryLabel(m.c), m.f ? `${m.f}–${m.d || "today"}` : null, m._count ? `${m._count} model${m._count > 1 ? "s" : ""}` : null].filter(Boolean).join(" · ");
+          return h("button", { class: "lrow is-fav", type: "button", "data-maker": String(m._i), onclick: () => openDetail("maker", m._i) },
+            makerTile(m), h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, m.n), h("span", { class: "lrow-sub" }, meta)), icon("chevronRight", "chev"));
+        }))));
+    }
+    nodes.push(h("section", { class: "g-sec" },
+      h("div", { class: "sr-head" }, h("h3", null, "Backup")),
+      h("div", { class: "list backup-list" },
+        h("button", { class: "lrow tinted", type: "button", onclick: exportGarage }, h("span", { class: "row-icon" }, icon("share")), h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, "Export Backup…"))),
+        h("button", { class: "lrow tinted", type: "button", onclick: () => importPicker.click() }, h("span", { class: "row-icon" }, icon("tray")), h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, "Import Backup…")))),
+      h("p", { class: "footnote sr-foot" }, "Your garage is stored only on this device, in this browser. On iPhone and iPad, add Verbiest to your Home Screen so Safari keeps it, and export a backup to move it to another device.")));
+    $("garageBody").replaceChildren(...nodes);
+  }
+
+  async function exportGarage() {
+    const data = JSON.stringify(serializeGarage(), null, 2);
+    const name = `verbiest-garage-${new Date().toISOString().slice(0, 10)}.json`;
+    let file = null;
+    try { file = new File([data], name, { type: "application/json" }); } catch (e) { /* very old browsers */ }
+    if (coarse && file && navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file], title: "Verbiest garage backup" }); return; }
+      catch (e) { if (e && e.name === "AbortError") return; }
+    }
+    const url = URL.createObjectURL(file || new Blob([data], { type: "application/json" }));
+    const a = h("a", { href: url, download: name });
+    document.body.append(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    toast("Backup saved", "share");
+  }
+  const importPicker = h("input", { type: "file", accept: "application/json,.json", hidden: true });
+  document.body.append(importPicker);
+  importPicker.addEventListener("change", async () => {
+    const f = importPicker.files && importPicker.files[0];
+    importPicker.value = "";
+    if (!f) return;
+    try {
+      const raw = JSON.parse(await f.text());
+      if (!raw || raw.v !== 1 || !(raw.fav || raw.owned || raw.favMakers)) throw new Error("not a backup");
+      const n = mergeGarage(raw);
+      saveGarage();
+      toast(n ? `Imported ${n} item${n > 1 ? "s" : ""}` : "Already up to date", "tray");
+    } catch (e) { toast("That file isn’t a Verbiest backup"); }
+  });
 
   /* ------------------------------------------------------------------ Search tab */
   let renderSearch = () => {};
@@ -1428,7 +1772,7 @@
       if (mk.length) nodes.push(section("Makers", "icons", mk.slice(0, 6).map(([, m]) => row(makerTile(m), m.n, [countryLabel(m.c), m.f ? `since ${m.f}` : null, `${m._count} models`].filter(Boolean).join(" · "), () => openDetail("maker", m._i), tokens))));
       if (cs.length) {
         const shown = cs.slice(0, 25);
-        const sec = section("Cars", "", shown.map(([, c]) => row(carThumb(c), c.n, [yearsLabel(c), c.m >= 0 ? makers[c.m].n : null].filter(Boolean).join(" · "), () => openDetail("car", c._i), tokens)));
+        const sec = section("Cars", "", shown.map(([, c]) => markCarRow(row(carThumb(c), c.n, [yearsLabel(c), c.m >= 0 ? makers[c.m].n : null].filter(Boolean).join(" · "), () => openDetail("car", c._i), tokens), c)));
         if (cs.length > shown.length) sec.append(h("p", { class: "footnote sr-foot" }, `Showing the 25 most famous of ${num(cs.length)} matches.`));
         nodes.push(sec);
       }
@@ -1508,7 +1852,7 @@
 
   /* ------------------------------------------------------------------ routing */
   function parseRoute() {
-    const t = /^#\/(milestones|makers|search)$/.exec(location.hash);
+    const t = /^#\/(milestones|makers|garage|search)$/.exec(location.hash);
     if (t) return { type: "tab", id: t[1] };
     const m = /^#\/(car|maker|milestone|year)\/(.+)$/.exec(location.hash);
     if (!m) return null;

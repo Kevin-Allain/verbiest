@@ -15,7 +15,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/icon-180.png">
-  <link rel="stylesheet" href="css/style.css?v=21">
+  <link rel="stylesheet" href="css/style.css?v=23">
   <script>
     // pick the saved / system theme before first paint
     (function () {
@@ -60,6 +60,10 @@
       <button class="tab" type="button" role="tab" data-tab="makers" aria-selected="false" aria-controls="view-makers">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.8 20.6v-9.2c0-.6.6-.9 1.1-.6l4.9 2.9v-2.3c0-.6.6-.9 1.1-.6l4.9 2.9V4.2c0-.4.3-.7.7-.7h3.7c.4 0 .7.3.7.7v16.4Z" fill="currentColor"/></svg>
         <span>Makers</span>
+      </button>
+      <button class="tab" type="button" role="tab" data-tab="garage" aria-selected="false" aria-controls="view-garage">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" fill="currentColor" d="M4 11.4 5.6 6.6A2.6 2.6 0 0 1 8 4.8h8a2.6 2.6 0 0 1 2.4 1.8l1.6 4.8c.9.5 1.5 1.5 1.5 2.6v4.6c0 .6-.4 1-1 1h-1.7c-.6 0-1-.4-1-1v-1.3H6.2v1.3c0 .6-.4 1-1 1H3.5c-.6 0-1-.4-1-1V14c0-1.1.6-2.1 1.5-2.6ZM6.5 10.9h11l-1.2-3.5a1 1 0 0 0-.9-.7H8.6a1 1 0 0 0-.9.7ZM5.6 14.7a1.4 1.4 0 1 0 2.8 0 1.4 1.4 0 1 0-2.8 0ZM15.6 14.7a1.4 1.4 0 1 0 2.8 0 1.4 1.4 0 1 0-2.8 0Z"/></svg>
+        <span>Garage</span>
       </button>
     </div>
     <button class="tab-search glass" type="button" role="tab" data-tab="search" aria-selected="false" aria-controls="view-search" aria-label="Search" title="Search (/)">
@@ -179,6 +183,16 @@
       <div id="makerList"></div>
     </section>
 
+    <!-- ======================= My Garage ======================= -->
+    <section class="view" id="view-garage" data-title="My Garage" role="tabpanel" aria-label="My Garage" hidden>
+      <header class="page-head">
+        <p class="eyebrow">Saved on this device</p>
+        <h1 class="large-title">My Garage</h1>
+        <p class="lede">The cars you have owned and the ones you love. Open any car and tap <b>Favourite</b> or <b>I Owned One</b>.</p>
+      </header>
+      <div id="garageBody"></div>
+    </section>
+
     <!-- ======================= Search ======================= -->
     <section class="view" id="view-search" data-title="Search" role="tabpanel" aria-label="Search" hidden>
       <header class="page-head">
@@ -221,10 +235,11 @@
   </section>
 
   <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="data/verbiest-data.js?v=21"></script>
-  <script src="js/util.js?v=21"></script>
-  <script src="js/chart.js?v=21"></script>
-  <script src="js/app.js?v=21"></script>
+  <script src="data/verbiest-data.js?v=23"></script>
+  <script src="js/util.js?v=23"></script>
+  <script src="js/chart.js?v=23"></script>
+  <script src="js/app.js?v=23"></script>
 </body>
 </html>

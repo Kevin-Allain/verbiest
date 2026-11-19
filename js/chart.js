@@ -267,7 +267,7 @@
 
       /* grid ---------------------------------------------------------- */
       const gridNodes = [];
-      const step = niceStep(this.yMaxT, d.compact ? 3 : 4);
+      const step = Math.max(1, niceStep(this.yMaxT, d.compact ? 3 : 4)); // counts: whole numbers only
       for (let v = step; v <= this.yMaxD * 1.001; v += step) {
         const y = Math.round(yOf(v)) + 0.5;
         gridNodes.push(s("line", { class: "c-grid", x1: xL, x2: xR, y1: y, y2: y }));
@@ -723,7 +723,7 @@
     const bw = Math.max(1, Math.min(band - (band > 4 ? 1.5 : 0.5), 18));
     const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, role: "img" });
     const base = M.t + ph;
-    const st = niceStep(top, 2);
+    const st = Math.max(1, niceStep(top, 2));
     for (let v = st; v <= top; v += st) {
       const y = Math.round(base - (v / top) * ph) + 0.5;
       svg.append(s("line", { class: "c-grid", x1: M.l, x2: W - M.r, y1: y, y2: y }));

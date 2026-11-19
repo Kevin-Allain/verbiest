@@ -28,7 +28,7 @@ large titles that shrink into the navigation bar, sheets that slide up, and spri
 animations. It follows the device's light or dark appearance; the moon/sun button
 switches it by hand.
 
-Four tabs:
+Five tabs:
 
 - **Timeline**: the number of car models introduced each year, from 1860 to today,
   coloured by **country** or **body style**. The years before 1860 (Verbiest, Cugnot,
@@ -52,6 +52,12 @@ Four tabs:
   by country or by founding decade, with a search field.
 - **Search** (or press `/`, or ⌘K): cars, makers and years, with your recently viewed
   cars and makers.
+- **Garage**: your own cars. Open any car and tap **Favourite** or **I Owned One**
+  (with the years you owned it and a note); makers can be favourites too. The Garage
+  shows an ownership timeline, your favourites, and **Export / Import Backup**. The
+  chart's **Favourites** and **My Cars** chips show them on the timeline. Everything is
+  stored on the device only (browser storage), so it also works offline. On an iPhone
+  or iPad, add the site to the Home Screen so Safari keeps the data.
 
 Every car, maker and milestone opens in a **sheet**, laid out like an App Store page:
 photo, key facts in a row (year, maker, country, body style…), the Wikipedia
