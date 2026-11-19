@@ -937,6 +937,7 @@
           secHead("New Models per Year"),
           h("p", { class: "d-note" }, coarse ? "Tap a bar to see that year on the timeline." : "Click a bar to see that year on the timeline."),
           chartBox) : null,
+        ownershipSection(ownOfMaker.get(mi)),
         m.a ? h("section", { class: "d-sec" }, secHead("About"), introBlock(m.a, m.s)) : null,
         ids.length ? h("section", { class: "d-sec" }, secHead("Models"), list) : null,
         m.a ? linksList([["Read on Wikipedia", wikiUrl(m.a)], m.i ? ["Image on Wikimedia Commons", commonsPage(m.i)] : null]) : null,
@@ -1020,6 +1021,7 @@
   function routeFor(type, id) {
     if (type === "car") return "#/car/" + encodeURIComponent(cars[id].n);
     if (type === "maker") return "#/maker/" + encodeURIComponent(makers[id].n);
+    if (type === "company") return "#/company/" + id;
     return "#/milestone/" + id;
   }
 
@@ -1035,7 +1037,7 @@
   function showDetail(type, id, dir) {
     hideTip();
     stopPlay();
-    const page = type === "car" ? buildCar(id) : type === "maker" ? buildMaker(id) : buildMilestone(id);
+    const page = type === "car" ? buildCar(id) : type === "maker" ? buildMaker(id) : type === "company" ? buildCompany(id) : buildMilestone(id);
     const depth = (history.state && history.state.depth) || 1;
     $("sheetBack").hidden = depth <= 1;
     if (!sheetOpen) {
@@ -1044,7 +1046,7 @@
       openSheetChrome();
     } else present(page, dir || "push");
     curDepth = depth;
-    if (type !== "milestone") remember(type, id);
+    if (type === "car" || type === "maker") remember(type, id);
   }
 
   function openSheetChrome() {
@@ -1324,6 +1326,18 @@
   }
 
   function renderMakers() {
+    const groupsMode = makerMode === "groups";
+    $("ownView").hidden = !groupsMode;
+    $("makerList").hidden = groupsMode;
+    $("makerFilter").closest(".searchfield").hidden = groupsMode;
+    if (groupsMode) {
+      $("makerList").classList.remove("with-index");
+      $("makerIndex").replaceChildren();
+      renderOwnership(false);
+      syncTabbar();
+      return;
+    }
+    stopOwnPlay();
     const tokens = norm(makerQuery.trim()).split(/\s+/).filter(Boolean);
     const list = makers.filter((m) => !tokens.length || tokens.every((t) => m._n.includes(t)));
     let keyOf, sortRows, sortKeys;
@@ -1359,6 +1373,7 @@
     syncTabbar();
   }
   bindSeg("makerSortSeg", () => makerMode, (v) => { makerMode = v; renderMakers(); scrollTo(0, 0); });
+  function setMakerMode(v) { makerMode = v; setSegValue("makerSortSeg", v); renderMakers(); }
   $("makerFilter").addEventListener("input", debounce(() => {
     makerQuery = $("makerFilter").value;
     $("makerClear").hidden = !makerQuery;
@@ -1382,6 +1397,295 @@
     bar.addEventListener("pointerup", off);
     bar.addEventListener("pointercancel", off);
   })();
+
+  /* ------------------------------------------------------------------ who owns whom, year by year */
+  const OWN = D.owners || { nodes: [], links: [] };
+  const ownNodes = OWN.nodes.map(([m, n, logo, f, d, wiki], i) => ({ i, m, n, logo, f, d, wiki: m >= 0 ? makers[m].a : wiki }));
+  const pushMap = (map, k, v) => { let a = map.get(k); if (!a) map.set(k, (a = [])); a.push(v); };
+  const ownByChild = new Map(), ownByParent = new Map();
+  for (const [c, p, a, b, fl] of OWN.links) { const l = { c, p, a, b, fl }; pushMap(ownByChild, c, l); pushMap(ownByParent, p, l); }
+  const ownOfMaker = new Map();
+  ownNodes.forEach((n) => { if (n.m >= 0) ownOfMaker.set(n.m, n.i); });
+  const firstWord = (t) => norm(t).split(/[\s-]/)[0];
+  const isBranch = (c, p) => { const w = firstWord(ownNodes[p].n); return w.length >= 3 && norm(ownNodes[c].n).startsWith(w + " "); };
+  const linkActive = (l, y) => l.a <= y && (l.b == null || y < l.b);
+  const spanText = (l) => (l.fl & 1 ? "c. " : "") + (l.b ? `${l.a}–${l.b}` : `since ${l.a}`);
+
+  /** The ownership forest in year y: each company's main owner that year, and the groups (trees). */
+  function ownForest(y, withBranches) {
+    const par = new Map();
+    for (const [c, ls] of ownByChild) {
+      let best = null, bs = -1;
+      for (const l of ls) if (linkActive(l, y)) { const sc = (l.fl & 1 ? 0 : 100000) + l.a; if (sc > bs) { bs = sc; best = l; } }
+      if (best) par.set(c, best);
+    }
+    for (const c of [...par.keys()]) { // break cycles (two companies owning each other in the data)
+      const seen = new Set([c]);
+      let x = par.get(c).p;
+      while (par.has(x)) { if (seen.has(x)) { par.delete(c); break; } seen.add(x); x = par.get(x).p; }
+    }
+    let kids = new Map();
+    for (const [c, l] of par) pushMap(kids, l.p, c);
+    if (!withBranches) for (const [c, l] of [...par]) if (!kids.has(c) && isBranch(c, l.p)) par.delete(c);
+    kids = new Map();
+    for (const [c, l] of par) pushMap(kids, l.p, c);
+    const size = (n) => (kids.get(n) || []).reduce((t, k) => t + 1 + size(k), 0);
+    const groups = [...kids.keys()].filter((p) => !par.has(p)).map((r) => ({ root: r, size: size(r) }))
+      .sort((a, b) => b.size - a.size || ownNodes[a.root].n.localeCompare(ownNodes[b.root].n));
+    return { par, kids, groups };
+  }
+
+  function openCompany(i) {
+    const n = ownNodes[i];
+    if (n.m >= 0) openDetail("maker", n.m); else openDetail("company", i);
+  }
+
+  function ownAvatar(n, cls) {
+    const el = h("span", { class: "on-av" + (cls ? " " + cls : "") });
+    if (n.logo) {
+      const img = h("img", { alt: "", loading: "lazy", decoding: "async", referrerpolicy: "no-referrer", src: thumbUrl(n.logo, 120) });
+      img.addEventListener("error", () => { el.classList.add("letter"); el.textContent = initials(n.n); });
+      el.append(img);
+    } else { el.classList.add("letter"); el.textContent = initials(n.n); }
+    return el;
+  }
+
+  function companyTile(n, size) {
+    const el = ownAvatar(n, "tile" + (size ? " " + size : ""));
+    return el;
+  }
+
+  const own = { year: D.lastYear, scope: "major", branches: false, timer: 0, raf: 0, focus: null };
+  const OWN_FIRST = 1890;
+
+  function ownKid(k, F) {
+    const l = F.par.get(k);
+    const n = ownNodes[k];
+    const subs = [];
+    const walk = (x) => { for (const c of (F.kids.get(x) || []).slice().sort((a, b) => ownNodes[a].n.localeCompare(ownNodes[b].n))) { subs.push(c); walk(c); } };
+    walk(k);
+    return h("div", { class: "own-kid" + (l.fl & 1 ? " approx" : "") + (subs.length > 8 ? " wide" : "") },
+      h("button", { class: "on-node", type: "button", "data-node": String(k), title: `${n.n} — ${spanText(l)}`, onclick: () => openCompany(k) },
+        ownAvatar(n), h("span", { class: "on-name" }, n.n), h("span", { class: "on-since" }, l.fl & 1 ? `c. ${l.a}` : `since ${l.a}`)),
+      subs.length ? h("div", { class: "own-subs" }, subs.map((x) => h("button", { class: "on-sub", type: "button", "data-node": String(x), title: `${ownNodes[x].n} (owned by ${ownNodes[F.par.get(x).p].n})`, onclick: () => openCompany(x) }, ownAvatar(ownNodes[x], "sm")))) : null);
+  }
+
+  function ownCard(g, F) {
+    // a holding that owns a single group (Porsche SE → Volkswagen Group): head the card with the group itself
+    let head = g.root;
+    const chain = [];
+    while ((F.kids.get(head) || []).length === 1 && (F.kids.get(F.kids.get(head)[0]) || []).length >= 2) {
+      chain.push(head);
+      head = F.kids.get(head)[0];
+    }
+    const r = ownNodes[head];
+    const size = g.size - chain.length;
+    const kids = (F.kids.get(head) || []).slice().sort((a, b) => {
+      const sa = (F.kids.get(a) || []).length, sb = (F.kids.get(b) || []).length;
+      return sb - sa || ownNodes[a].n.localeCompare(ownNodes[b].n);
+    });
+    const owner = chain.length ? chain[chain.length - 1] : null;
+    return h("section", { class: "card own-card", "data-root": String(g.root) },
+      h("div", { class: "own-head-row" },
+        h("button", { class: "own-head", type: "button", onclick: () => openCompany(head) },
+          h("span", { "data-node": String(head), class: "own-head-av" }, ownAvatar(r, "lg")),
+          h("span", { class: "own-head-txt" }, h("b", null, r.n), h("span", null, `${size} ${size === 1 ? "company" : "companies"}`)),
+          icon("chevronRight", "chev")),
+        owner != null ? h("button", { class: "own-chain", type: "button", onclick: () => openCompany(owner), title: chain.map((c) => ownNodes[c].n).join(" → ") },
+          h("span", { "data-node": String(owner), class: "own-chain-av" }, ownAvatar(ownNodes[owner], "sm")),
+          h("span", null, `Owned by ${ownNodes[owner].n} ${spanText(F.par.get(head))}`)) : null),
+      h("div", { class: "own-kids" }, kids.map((k) => ownKid(k, F))));
+  }
+
+  /** Org-chart lines: a trunk from the owner down the left, a bus above each row, a drop to each brand. */
+  /** Position of an element inside an ancestor, from layout offsets (ignores transforms and column flow). */
+  function boxIn(el, anc) {
+    let x = 0, y = 0, e = el;
+    while (e && e !== anc) { x += e.offsetLeft; y += e.offsetTop; e = e.offsetParent; }
+    return { x, y, w: el.offsetWidth, h: el.offsetHeight };
+  }
+
+  function drawOwnLines(card) {
+    const old = card.querySelector(".own-lines");
+    if (old) old.remove();
+    const head = card.querySelector(".own-head-av .on-av");
+    const avs = [...card.querySelectorAll(".own-kid > .on-node > .on-av")];
+    if (!head || !avs.length || !card.offsetWidth) return null;
+    const hb = boxIn(head, card);
+    const x0 = Math.round(hb.x + hb.w / 2) + 0.5;
+    const rows = new Map();
+    for (const av of avs) {
+      const b = boxIn(av, card);
+      pushMap(rows, b.y, { x: Math.round(b.x + b.w / 2) + 0.5, y: b.y, approx: av.closest(".own-kid").classList.contains("approx") });
+    }
+    let solid = "", dashed = "", lastBus = 0;
+    for (const [top, items] of rows) {
+      const bus = top - 10;
+      lastBus = Math.max(lastBus, bus);
+      const xr = Math.max(...items.map((it) => it.x));
+      solid += `M${x0},${bus}H${xr}`;
+      for (const it of items) (it.approx ? (dashed += `M${it.x},${bus}V${it.y - 2}`) : (solid += `M${it.x},${bus}V${it.y - 2}`));
+    }
+    solid = `M${x0},${hb.y + hb.h + 2}V${lastBus}` + solid;
+    const svg = s("svg", { class: "own-lines", width: card.offsetWidth, height: card.offsetHeight, "aria-hidden": "true" },
+      s("path", { d: solid }), dashed ? s("path", { d: dashed, class: "approx" }) : null);
+    card.prepend(svg);
+    return svg;
+  }
+
+  function renderOwnership(animate) {
+    const wrap = $("ownCards");
+    const F = ownForest(own.year, own.branches);
+    const minSize = own.scope === "major" ? 3 : 1;
+    const groups = F.groups.filter((g) => g.size >= minSize);
+    const total = F.groups.reduce((t, g) => t + g.size, 0);
+    $("ownYear").textContent = own.year >= D.lastYear ? `${own.year}` : String(own.year);
+    $("ownSlider").value = String(own.year);
+    $("ownSlider").style.setProperty("--p", ((own.year - OWN_FIRST) / (D.lastYear - OWN_FIRST) * 100).toFixed(2) + "%");
+    const big = F.groups[0];
+    $("ownSummary").textContent = F.groups.length
+      ? `${F.groups.length} ${F.groups.length === 1 ? "group" : "groups"} · ${total} companies owned` + (big ? ` · largest: ${ownNodes[big.root].n}` : "")
+      : "No ownership links recorded for this year";
+    $("makerCount").textContent = `${num(OWN.nodes.length)} companies · ${num(OWN.links.length)} ownership links`;
+
+    const before = new Map();
+    const doAnim = animate && !reduceMotion.matches && wrap.childElementCount;
+    if (doAnim) for (const el of wrap.querySelectorAll("[data-node]")) before.set(el.dataset.node, el.getBoundingClientRect());
+    wrap.replaceChildren(...(groups.length ? groups.map((g) => ownCard(g, F))
+      : [h("div", { class: "card empty-state" }, h("b", null, "No Groups Yet"), own.scope === "major" ? "No group owned three or more companies this year. Try “All”." : "No ownership links are recorded for this year.")]));
+    const lines = [...wrap.querySelectorAll(".own-card")].map(drawOwnLines);
+    requestAnimationFrame(() => { for (const c of wrap.querySelectorAll(".own-card")) drawOwnLines(c); });
+    if (own.focus != null) {
+      const el = wrap.querySelector(`[data-node="${own.focus}"]`);
+      if (el) el.classList.add("focus");
+    }
+    if (!doAnim) return;
+    const dur = own.timer ? 380 : 620, easing = "cubic-bezier(.32,.72,0,1)";
+    for (const el of wrap.querySelectorAll("[data-node]")) {
+      const r0 = before.get(el.dataset.node), r1 = el.getBoundingClientRect();
+      if (r0 && r1.width) {
+        const dx = r0.left - r1.left, dy = r0.top - r1.top, sc = r0.width / r1.width;
+        if (Math.abs(dx) + Math.abs(dy) > 1 || Math.abs(sc - 1) > 0.02) {
+          el.style.transformOrigin = "0 0";
+          el.animate([{ transform: `translate(${dx}px, ${dy}px) scale(${sc})` }, { transform: "none" }], { duration: dur, easing });
+        }
+      } else if (r1.width) {
+        el.animate([{ opacity: 0, transform: "scale(.5)" }, { opacity: 1, transform: "none" }], { duration: dur * 0.8, easing });
+      }
+    }
+    for (const svg of lines) if (svg) svg.animate([{ opacity: 0 }, { opacity: 0, offset: 0.5 }, { opacity: 1 }], { duration: dur, easing: "linear" });
+  }
+
+  function setOwnYear(y, animate) {
+    own.year = clamp(Math.round(y), OWN_FIRST, D.lastYear);
+    $("ownYear").textContent = String(own.year);
+    if (own.raf) return;
+    own.raf = requestAnimationFrame(() => { own.raf = 0; renderOwnership(animate); });
+  }
+  function stopOwnPlay() {
+    if (!own.timer) return;
+    clearInterval(own.timer);
+    own.timer = 0;
+    $("ownPlay").setAttribute("aria-pressed", "false");
+    $("ownPlay").querySelector("span").textContent = "Play";
+  }
+  $("ownPlay").onclick = () => {
+    if (own.timer) { stopOwnPlay(); return; }
+    if (own.year >= D.lastYear) own.year = 1900;
+    $("ownPlay").setAttribute("aria-pressed", "true");
+    $("ownPlay").querySelector("span").textContent = "Pause";
+    own.timer = setInterval(() => {
+      if (own.year >= D.lastYear) { stopOwnPlay(); return; }
+      setOwnYear(own.year + 1, true);
+    }, 520);
+    setOwnYear(own.year, true);
+  };
+  $("ownSlider").min = String(OWN_FIRST);
+  $("ownSlider").max = String(D.lastYear);
+  $("ownSlider").addEventListener("input", () => { stopOwnPlay(); own.focus = null; setOwnYear(+$("ownSlider").value, true); });
+  $("ownPrev").onclick = () => { stopOwnPlay(); setOwnYear(own.year - 1, true); };
+  $("ownNext").onclick = () => { stopOwnPlay(); setOwnYear(own.year + 1, true); };
+  $("ownBranches").onchange = () => { own.branches = $("ownBranches").checked; renderOwnership(true); };
+  bindSeg("ownScopeSeg", () => own.scope, (v) => { own.scope = v; renderOwnership(true); });
+  $("ownTicks").replaceChildren(...[1900, 1925, 1950, 1975, 2000, D.lastYear].map((y) =>
+    h("button", { type: "button", style: { left: ((y - OWN_FIRST) / (D.lastYear - OWN_FIRST) * 100) + "%" }, onclick: () => { stopOwnPlay(); setOwnYear(y, true); } }, y === D.lastYear ? "Today" : String(y))));
+  new ResizeObserver(debounce(() => { if (makerMode === "groups" && tab === "makers") for (const c of $("ownCards").querySelectorAll(".own-card")) drawOwnLines(c); }, 120)).observe($("ownCards"));
+
+  /** Jump to the Groups view in a given year, with one company highlighted. */
+  function showInGroups(i, year) {
+    if (sheetOpen) { closeSheet(() => showInGroups(i, year)); return; }
+    own.focus = i;
+    own.year = clamp(year, OWN_FIRST, D.lastYear);
+    if (tab !== "makers") setTab("makers");
+    setMakerMode("groups");
+    requestAnimationFrame(() => {
+      const el = $("ownCards").querySelector(`[data-node="${i}"]`);
+      if (el) el.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "center" });
+    });
+  }
+  function bestYearFor(i) {
+    const mine = ownByChild.get(i) || [], theirs = ownByParent.get(i) || [];
+    const cur = mine.find((l) => !l.b) || theirs.find((l) => !l.b);
+    if (cur) return D.lastYear;
+    const last = [...mine, ...theirs].sort((a, b) => (b.b || 0) - (a.b || 0))[0];
+    return last ? Math.max(last.a, (last.b || D.lastYear) - 1) : D.lastYear;
+  }
+
+  /** "Owners over time" and "Companies it owned", for maker and company pages. */
+  function ownershipSection(i) {
+    if (i == null) return null;
+    const owners = (ownByChild.get(i) || []).slice().sort((a, b) => a.a - b.a);
+    const owned = (ownByParent.get(i) || []).slice().sort((a, b) => a.a - b.a || ownNodes[a.c].n.localeCompare(ownNodes[b.c].n));
+    if (!owners.length && !owned.length) return null;
+    const out = [];
+    if (owners.length) {
+      out.push(h("section", { class: "d-sec" },
+        secHead("Owners Over Time", "See in Groups", () => showInGroups(i, bestYearFor(i))),
+        h("p", { class: "d-note" }, "Who controlled the company, from Wikidata. “c.” marks an estimated start year."),
+        spanChart(owners.map((l) => ({ label: ownNodes[l.p].n, from: l.a, to: l.b, approx: l.fl & 1, text: spanText(l), title: `${ownNodes[l.p].n}: ${spanText(l)}`, onclick: () => openCompany(l.p) })), "in-sheet")));
+    }
+    if (owned.length) {
+      const rows = owned.map((l) => h("button", { class: "lrow", type: "button", onclick: () => openCompany(l.c) },
+        ownAvatar(ownNodes[l.c], "tile"),
+        h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, ownNodes[l.c].n), h("span", { class: "lrow-sub" }, spanText(l))),
+        icon("chevronRight", "chev")));
+      const show = 20;
+      const list = h("div", { class: "list models-list owned-cos" }, rows.slice(0, show));
+      if (rows.length > show) {
+        const more = h("button", { class: "lrow tinted", type: "button", onclick: () => { more.remove(); rows.slice(show).forEach((r) => list.append(r)); } },
+          h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, `Show All ${rows.length}`)));
+        list.append(more);
+      }
+      out.push(h("section", { class: "d-sec" },
+        secHead("Companies It Owned", owners.length ? null : "See in Groups", owners.length ? null : () => showInGroups(i, bestYearFor(i))), list));
+    }
+    return out;
+  }
+
+  function buildCompany(i) {
+    const n = ownNodes[i];
+    const owners = ownByChild.get(i) || [], owned = ownByParent.get(i) || [];
+    return h("div", { class: "sheet-page no-hero", "data-title": n.n },
+      h("div", { class: "d-head" },
+        h("div", { class: "app-head" },
+          companyTile(n, "xl"),
+          h("div", { class: "app-head-txt" },
+            h("h2", { class: "d-title", id: "sheetTitle" }, n.n),
+            h("p", { class: "d-sub" }, n.f ? `Company · ${n.f}–${n.d || "today"}` : "Company"),
+            h("div", { class: "d-actions" },
+              n.wiki ? extLink(n.wiki) : null,
+              h("button", { class: "pill-btn gray", type: "button", onclick: () => showInGroups(i, bestYearFor(i)) }, icon("chart"), "Groups"))))),
+      h("div", { class: "info-strip" },
+        info("Founded", n.f ? String(n.f) : "—", n.f ? `${D.lastYear - n.f} years ago` : null),
+        info(n.d ? "Closed" : "Status", n.d ? String(n.d) : "Active", n.d ? null : "today", { cls: n.d ? "" : "text" }),
+        info("Owned", String(owned.length), owned.length === 1 ? "company" : "companies"),
+        info("Owners", String(owners.length), "over time")),
+      h("div", { class: "d-body" },
+        ownershipSection(i),
+        n.wiki ? h("section", { class: "d-sec" }, secHead("About"), introBlock(n.wiki, null)) : null,
+        n.wiki ? linksList([["Read on Wikipedia", wikiUrl(n.wiki)]]) : null,
+        h("p", { class: "d-source" }, "Ownership from Wikidata (CC0)", n.wiki ? "; text from Wikipedia (CC BY-SA 4.0)." : ".")));
+  }
 
   /* ------------------------------------------------------------------ recently viewed */
   const RECENT_KEY = "verbiest-recent";
@@ -1536,36 +1840,48 @@
   /* ---- the Garage tab */
   const ownedYears = (o) => (o.from && o.to ? (o.from === o.to ? String(o.from) : `${o.from}–${o.to}`) : o.from ? `since ${o.from}` : o.to ? `until ${o.to}` : null);
 
-  function ownershipChart(list) {
-    const dated = list.filter(([, o]) => o.from || o.to);
-    if (!dated.length) return null;
+  /** Gantt-style rows of year spans: [{label, from, to (null = still), text, approx, title, onclick}] */
+  function spanChart(rows, cls) {
+    if (!rows.length) return null;
     let a = Infinity, b = -Infinity;
-    for (const [, o] of dated) { a = Math.min(a, o.from || o.to); b = Math.max(b, o.to || CURRENT_YEAR); }
+    for (const r of rows) { a = Math.min(a, r.from); b = Math.max(b, r.to || CURRENT_YEAR); }
     a = Math.floor((a - 1) / 5) * 5; b = Math.ceil((b + 1) / 5) * 5;
     const span = Math.max(1, b - a);
     const pos = (y) => ((y - a) / span) * 100;
-    const step = span <= 20 ? 5 : span <= 50 ? 10 : 20;
+    const step = span <= 20 ? 5 : span <= 50 ? 10 : span <= 120 ? 20 : 50;
     const ticks = [];
     for (let y = Math.ceil(a / step) * step; y <= b; y += step) ticks.push(y);
-    const rows = dated.sort(([, x], [, y]) => (x.from || x.to) - (y.from || y.to)).map(([c, o]) => {
-      const from = o.from || o.to, to = o.to || CURRENT_YEAR;
-      const [name] = splitTitle(c.n);
-      return h("button", { class: "oc-row", type: "button", onclick: () => openDetail("car", c._i), title: `${c.n}, ${ownedYears(o)}` },
-        h("span", { class: "oc-name" }, name),
-        h("span", { class: "oc-track" },
-          h("span", { class: "oc-bar" + (o.to ? "" : " open"), style: { left: pos(from) + "%", width: Math.max(1.6, pos(to + 1) - pos(from)) + "%" } }),
-          ocLabel(ownedYears(o), pos(from), pos(to + 1))));
-    });
-    return h("div", { class: "card own-chart" },
+    return h("div", { class: "card own-chart" + (cls ? " " + cls : "") },
       h("div", { class: "oc-grid" }, ticks.map((y) => h("span", { class: "oc-tick", style: { left: pos(y) + "%" } }, h("i"), h("b", null, String(y))))),
-      rows);
+      rows.map((r) => {
+        const to = r.to || CURRENT_YEAR;
+        return h("button", { class: "oc-row", type: "button", onclick: r.onclick, title: r.title || null },
+          h("span", { class: "oc-name" }, r.label),
+          h("span", { class: "oc-track" },
+            h("span", { class: "oc-bar" + (r.to ? "" : " open") + (r.approx ? " approx" : ""), style: { left: pos(r.from) + "%", width: Math.max(1.6, pos(to + 1) - pos(r.from)) + "%" } }),
+            ocLabel(r.text, pos(r.from), pos(to + 1))));
+      }));
+  }
+
+  function ownershipChart(list) {
+    const dated = list.filter(([, o]) => o.from || o.to);
+    return spanChart(dated.sort(([, x], [, y]) => (x.from || x.to) - (y.from || y.to)).map(([c, o]) => ({
+      label: splitTitle(c.n)[0], from: o.from || o.to, to: o.to, text: ownedYears(o),
+      title: `${c.n}, ${ownedYears(o)}`, onclick: () => openDetail("car", c._i),
+    })));
   }
 
   /** Year label next to an ownership bar: after it, before it, or inside it — wherever it fits. */
   function ocLabel(text, x0, x1) {
-    if (100 - x1 >= 24) return h("span", { class: "oc-lbl", style: { left: `calc(${x1}% + 6px)` } }, text);
-    if (x0 >= 24) return h("span", { class: "oc-lbl", style: { right: `calc(${100 - x0}% + 6px)` } }, text);
-    return h("span", { class: "oc-lbl inside", style: { left: `calc(${x0}% + 8px)` } }, text);
+    const need = String(text).length * 3.3; // ≈ % of a phone-sized track
+    const after = 100 - x1, before = x0;
+    const put = (side) => side === "after" ? h("span", { class: "oc-lbl", style: { left: `calc(${x1}% + 6px)` } }, text)
+      : side === "before" ? h("span", { class: "oc-lbl", style: { right: `calc(${100 - x0}% + 6px)` } }, text)
+      : h("span", { class: "oc-lbl inside", style: { left: `calc(${x0}% + 8px)` } }, text);
+    if (after >= need) return put("after");
+    if (before >= need) return put("before");
+    if (x1 - x0 >= need) return put("inside");
+    return put(after >= before ? "after" : "before");
   }
 
   function ownedRow(c, o) {
@@ -1854,13 +2170,14 @@
   function parseRoute() {
     const t = /^#\/(milestones|makers|garage|search)$/.exec(location.hash);
     if (t) return { type: "tab", id: t[1] };
-    const m = /^#\/(car|maker|milestone|year)\/(.+)$/.exec(location.hash);
+    const m = /^#\/(car|maker|milestone|year|company)\/(.+)$/.exec(location.hash);
     if (!m) return null;
     const val = decodeURIComponent(m[2]);
     if (m[1] === "car") return carByTitle.has(val) ? { type: "car", id: carByTitle.get(val) } : null;
     if (m[1] === "maker") return makerByName.has(val) ? { type: "maker", id: makerByName.get(val) } : null;
     if (m[1] === "milestone") return D.milestones[+val] ? { type: "milestone", id: +val } : null;
     if (m[1] === "year") return { type: "year", id: +val };
+    if (m[1] === "company") return OWN.nodes[+val] ? { type: "company", id: +val } : null;
     return null;
   }
   addEventListener("popstate", () => {

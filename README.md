@@ -49,7 +49,12 @@ Five tabs:
   - The dots above the bars are **milestones**; tap one to read about it.
 - **Milestones**: the 27 key moments as large picture cards, grouped by era.
 - **Makers**: all makers with their logos, A–Z (with a Contacts-style letter index),
-  by country or by founding decade, with a search field.
+  by country or by founding decade, with a search field. **Groups** shows *who owned
+  whom* in any year: drag the year slider (or press Play) and brands move from one owner
+  to the next (Jaguar: British Leyland → Ford → Tata). Each group is drawn as a small
+  family tree; dashed lines mean the start year is estimated. Maker pages get an
+  **Owners Over Time** timeline and a list of the companies they owned, and the other
+  companies (Porsche SE, Groupe PSA…) get their own page.
 - **Search** (or press `/`, or ⌘K): cars, makers and years, with your recently viewed
   cars and makers.
 - **Garage**: your own cars. Open any car and tap **Favourite** or **I Owned One**
@@ -104,6 +109,7 @@ facts) is in `data/verbiest-data.js` and works offline.
 | "Fame" ranking | Number of Wikipedia language editions with an article on the car |
 | Milestones | A hand-picked list of Wikipedia articles (in `scripts/fetch_raw.py`) |
 | Eras | Era names and dates follow Wikipedia's *History of the automobile* |
+| Who owns whom | Wikidata *owned by* P127, *parent organization* P749, *subsidiary* P355, *owner of* P1830, with start/end years (P580/P582); majority owners only, governments left out; plus a short hand-checked list of well-known acquisitions in `scripts/ownership.py` |
 
 Text is © Wikipedia contributors (CC BY-SA 4.0). Images come from Wikimedia Commons
 under their own licences; each detail panel links to the image page.
@@ -137,7 +143,7 @@ js/chart.js              timeline histogram, zoom strip, mini charts (hand-writt
 js/app.js                tabs, state, filters, results, detail sheet, search, routing
 data/verbiest-data.js    generated dataset
 data/raw/                raw downloads from Wikipedia / Wikidata
-scripts/                 data pipeline (Python 3, standard library only)
+scripts/                 data pipeline (Python 3, standard library only); ownership.py builds "who owns whom"
 assets/                  app icons
 ```
 
