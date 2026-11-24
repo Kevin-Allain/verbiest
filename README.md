@@ -26,7 +26,8 @@ The app is laid out like an Apple app (iOS / iPadOS style): system fonts, Apple'
 colours, a glass tab bar (at the bottom on a phone, at the top on an iPad or computer),
 large titles that shrink into the navigation bar, sheets that slide up, and springy
 animations. It follows the device's light or dark appearance; the moon/sun button
-switches it by hand.
+switches it by hand. It speaks **English and French**: the **EN / FR** button next to it
+switches the language (the first time, it follows the device's language).
 
 Five tabs:
 
@@ -66,8 +67,11 @@ Five tabs:
 
 Every car, maker and milestone opens in a **sheet**, laid out like an App Store page:
 photo, key facts in a row (year, maker, country, body style…), the Wikipedia
-introduction (loaded live, with "more"), the car's place in its maker's history,
-"More from this maker" and "Also new that year" shelves. Tapping a car inside a sheet
+introduction (loaded live, with "more") and **Read the Full Article**, a reading view of
+the whole Wikipedia article (references and tables left out), the other generations of
+the same model, the car's place in its maker's history, and "More from this maker" and
+"Also new that year" shelves. In French, the French Wikipedia article is shown when one
+exists; otherwise the English one, with a note saying the page only exists in English. Tapping a car inside a sheet
 slides the next page in, with a back button; drag the sheet down (phone) or press Esc
 to close it.
 
@@ -103,6 +107,8 @@ facts) is in `data/verbiest-data.js` and works offline.
 | Discontinuation year | Wikipedia categories *Cars discontinued in …* |
 | Body style, class, power (sedan, roadster, luxury, electric…) | Wikipedia categories such as *Sedans*, *Roadsters*, *Luxury vehicles*, *Production electric cars* |
 | Short description, lead photo | Wikipedia page properties |
+| French titles and descriptions | Wikidata sitelinks (French Wikipedia) and French descriptions (`scripts/fetch_fr.py`) |
+| Article text | Loaded live from Wikipedia (English or French) when a page is opened |
 | Gaps in country / body style | Words in the short description, e.g. "American car", "compact crossover SUV" |
 | Maker / brand, country of origin | Wikidata (*brand* P1716, *manufacturer* P176, *country of origin* P495) |
 | Maker founding / closing year, country, logo | Wikidata (P571, P576, P17, P154) |
@@ -118,6 +124,7 @@ under their own licences; each detail panel links to the image page.
 
 ```bash
 python3 scripts/fetch_raw.py     # downloads into data/raw/ (cached in scripts/.cache/)
+python3 scripts/fetch_fr.py      # French descriptions and milestone titles (optional)
 python3 scripts/build_data.py    # writes data/verbiest-data.js
 ```
 
@@ -138,6 +145,7 @@ VERBIEST_CONTACT="you@example.org" python3 scripts/fetch_raw.py
 ```
 index.html               page structure
 css/style.css            all styling (Apple-style; light + dark; phone/tablet/desktop layouts)
+js/i18n.js               interface text in English and French, French names for the data labels
 js/util.js               small helpers (DOM, Wikimedia image URLs)
 js/chart.js              timeline histogram, zoom strip, mini charts (hand-written SVG)
 js/app.js                tabs, state, filters, results, detail sheet, search, routing

@@ -261,6 +261,21 @@ def main():
     milestones_raw = load("milestones.json", [])
     tag_members = load("tags.json", {})
     disc = load("discontinued.json", {})
+    fr = load("fr.json", {"desc": {}, "milestones": {}})   # from fetch_fr.py (optional)
+    wd_all = ownership.load_cached_entities()               # full Wikidata items, for French sitelinks
+
+    def fr_title(qids):
+        for q in qids:
+            t = (((wd_all.get(q) or {}).get("sitelinks") or {}).get("frwiki") or {}).get("title")
+            if t:
+                return t
+        return None
+
+    def fr_desc(qids):
+        for q in qids:
+            if fr["desc"].get(q):
+                return fr["desc"][q]
+        return None
 
     # ---------------------------------------------------------- countries
     def country_name(qid):
@@ -404,6 +419,7 @@ def main():
             "pid": pid, "n": title, "y": y, "e": end, "mk": mk, "country": cname,
             "body": body, "kinds": kinds, "tags": tag_names, "i": img_c,
             "s": c.get("desc") or e.get("desc"), "p": e.get("sitelinks") or 1, "len": c.get("len") or 0,
+            "fr": fr_title([c.get("qid")]) if c.get("qid") else None, "sf": fr_desc([c.get("qid")]) if c.get("qid") else None,
         })
     print(f"  {len(cars)} cars")
 
@@ -506,6 +522,10 @@ def main():
             rec["i"] = c["i"]
         if c["s"]:
             rec["s"] = c["s"]
+        if c["fr"]:
+            rec["fr"] = c["fr"]
+        if c["sf"]:
+            rec["sf"] = c["sf"]
         rec["p"] = c["p"]
         out_cars.append(rec)
     for c in out_cars:
@@ -521,6 +541,13 @@ def main():
                 rec["logo"] = 1
         if m["s"]:
             rec["s"] = m["s"]
+        art_q = [q for q in m["_q"]]
+        ft = fr_title(art_q[::-1])            # the article's own item comes last in _q
+        if ft:
+            rec["fr"] = ft
+        fd = fr_desc(art_q[::-1])
+        if fd:
+            rec["sf"] = fd
         out_makers.append(rec)
 
     def trim_extract(t, limit=1400):
@@ -542,6 +569,8 @@ def main():
             rec["x"] = trim_extract(m["extract"])
         if m.get("img"):
             rec["i"] = img_code(m["img"], m.get("img_free", True))
+        if fr["milestones"].get(m.get("title")):
+            rec["fr"] = fr["milestones"][m["title"]]
         out_ms.append(rec)
 
     years = [c["y"] for c in out_cars] or [1860, datetime.date.today().year]

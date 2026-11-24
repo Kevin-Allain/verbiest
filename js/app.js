@@ -3,6 +3,7 @@
   "use strict";
   const { h, s, num, norm, clamp, debounce, wikiImg, thumbUrl, commonsPage, wikiUrl, splitTitle, placeholder, icon } = V;
   const { Warp, TimelineChart, Overview, miniHistogram } = VChart;
+  const { t, lang: LANG } = I18N;
 
   const D = window.VERBIEST_DATA;
   if (!D) {
@@ -13,6 +14,8 @@
 
   /* ------------------------------------------------------------------ setup */
   const $ = (id) => document.getElementById(id);
+  I18N.localizeData(D);
+  I18N.applyStatic(document);
   const coarse = matchMedia("(pointer: coarse)").matches;
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const phoneMQ = matchMedia("(max-width: 767px)");
@@ -31,6 +34,7 @@
   cars.forEach((c, i) => {
     c._i = i;
     c._n = norm(c.n);
+    if (c.fr && c.fr !== c.n) c._nf = norm(c.fr);
     if (c.m >= 0) makerCars[c.m].push(i);
   });
   makerCars.forEach((list) => list.sort((a, b) => cars[a].y - cars[b].y || cars[a].n.localeCompare(cars[b].n)));
@@ -97,7 +101,7 @@
   let persistAsked = false;
   function saveGarage() {
     try { localStorage.setItem(GARAGE_KEY, JSON.stringify(serializeGarage())); }
-    catch (e) { toast("Couldn’t save on this device"); }
+    catch (e) { toast(t("g.saveFail")); }
     // ask the browser to keep this site's storage (no prompt in Safari / Chrome)
     if (!persistAsked && navigator.storage && navigator.storage.persist) { persistAsked = true; navigator.storage.persist().catch(() => {}); }
     garageChanged();
@@ -121,10 +125,10 @@
   const flagsOK = !/Windows/.test(navigator.userAgent);
   function flagOf(ci) {
     if (!flagsOK || ci == null || ci < 0) return "";
-    const code = FLAG_CODES[countries[ci].n];
+    const code = FLAG_CODES[countries[ci].en || countries[ci].n];
     return code ? String.fromCodePoint(...[...code].map((ch) => 0x1f1e6 + ch.charCodeAt(0) - 65)) : "";
   }
-  const countryName = (ci) => (ci >= 0 ? countries[ci].n : "Unknown country");
+  const countryName = (ci) => (ci >= 0 ? countries[ci].n : t("unknownCountry"));
   const countryLabel = (ci) => { const f = flagOf(ci); return f ? `${f} ${countryName(ci)}` : countryName(ci); };
 
   /* ------------------------------------------------------------------ colours */
@@ -154,8 +158,8 @@
     return true;
   }
   function kindName(k) {
-    if (k === "@fav") return "Favourites";
-    if (k === "@owned") return "Cars I’ve Owned";
+    if (k === "@fav") return t("kind.fav");
+    if (k === "@owned") return t("kind.ownedLong");
     const d = D.kinds.find((x) => x.k === k);
     return d ? d.n : k;
   }
@@ -259,12 +263,12 @@
 
   /* ------------------------------------------------------------------ readout (Health / Stocks style) */
   function eraOf(year) { return D.eras.find((e) => year >= e.from && year <= e.to); }
-  const eraYears = (e) => `${e.from < 1700 ? 1672 : e.from}–${e.to >= D.lastYear ? "Today" : e.to}`;
+  const eraYears = (e) => `${e.from < 1700 ? 1672 : e.from}–${e.to >= D.lastYear ? t("today") : e.to}`;
 
   function setReadout(year) {
     const makersMode = state.metric === "makers";
-    let cap = makersMode ? "Makers founded" : "New models";
-    if (!makersMode && state.maker != null) cap = `New ${makers[state.maker].n} models`;
+    let cap = makersMode ? t("ro.makers") : t("ro.models");
+    if (!makersMode && state.maker != null) cap = t("ro.makerModels", makers[state.maker].n);
     else if (!makersMode && state.kind) cap = kindName(state.kind);
     let val = 0, sub = "";
     if (year != null) {
@@ -275,10 +279,10 @@
       const [y0, y1] = visibleYears();
       let a = null, b = null;
       for (let y = y0; y <= y1; y++) { const v = agg.totals[y - START_YEAR]; if (v) { val += v; if (a == null) a = y; b = y; } }
-      sub = a == null ? "Nothing in this period" : a === b ? String(a) : `${a}–${b}`;
+      sub = a == null ? t("ro.none") : a === b ? String(a) : `${a}–${b}`;
       if (state.era && a != null) sub += ` · ${state.era.name}`;
     }
-    const unit = makersMode ? (val === 1 ? "maker" : "makers") : (val === 1 ? "model" : "models");
+    const unit = makersMode ? t("unit.maker", val) : t("unit.model", val);
     const put = (id, t) => { const el = $(id); if (el.textContent !== t) el.textContent = t; };
     put("roCap", cap); put("roNum", num(val)); put("roUnit", unit); put("roSub", sub);
   }
@@ -333,9 +337,9 @@
   // kind chips
   function renderPills() {
     const mine = [];
-    if (garage.fav.size) mine.push({ k: "@fav", n: "Favourites", icon: "heartFill" });
-    if (garage.owned.size) mine.push({ k: "@owned", n: "My Cars", icon: "keyFill" });
-    const all = [{ k: null, n: "All Cars" }, ...mine, ...D.kinds];
+    if (garage.fav.size) mine.push({ k: "@fav", n: t("kind.fav"), icon: "heartFill" });
+    if (garage.owned.size) mine.push({ k: "@owned", n: t("kind.owned"), icon: "keyFill" });
+    const all = [{ k: null, n: t("kind.all") }, ...mine, ...D.kinds];
     $("typePills").replaceChildren(...all.map((k) => h("button", {
       class: "chip", type: "button", role: "radio", "aria-checked": String(state.kind === k.k),
       title: k.hint || null,
@@ -351,7 +355,7 @@
   // era scope bar
   function renderEraChips() {
     const allBtn = h("button", { class: "era-chip", type: "button", "data-era": "all", onclick: () => { selectYear(null); hideTip(); goAll(); } },
-      h("b", null, "All Years"), h("span", null, `1672–Today`));
+      h("b", null, t("eras.all")), h("span", null, `1672–${t("today")}`));
     const chips = D.eras.map((e, k) => h("button", {
       class: "era-chip", type: "button", "data-era": String(k),
       onclick: () => (state.era === e ? goAll() : goEra(e)),
@@ -391,7 +395,7 @@
     clearInterval(player.timer);
     player.timer = 0;
     $("playBtn").setAttribute("aria-pressed", "false");
-    $("playBtn").querySelector("span").textContent = "Play";
+    $("playBtn").querySelector("span").textContent = t("play");
   }
   function startPlay() {
     const [y0, y1] = visibleYears();
@@ -405,7 +409,7 @@
       showYearTip(y);
     };
     $("playBtn").setAttribute("aria-pressed", "true");
-    $("playBtn").querySelector("span").textContent = "Pause";
+    $("playBtn").querySelector("span").textContent = t("pause");
     step();
     player.timer = setInterval(step, 1400);
   }
@@ -416,9 +420,7 @@
   $("zoomIn").onclick = () => chart.zoomAt(0.6, null, true);
   $("zoomOut").onclick = () => chart.zoomAt(1 / 0.6, null, true);
   $("sortSel").onchange = (ev) => { state.sort = ev.target.value; state.shown = PAGE; renderResults(); };
-  $("hint").textContent = coarse
-    ? "Swipe the chart to travel through time and pinch to zoom. Tap a bar for its cars, or touch and hold, then slide, to scrub through the years."
-    : "Drag the chart or the frame below it to travel through time · ⌘/Ctrl + scroll or double-click to zoom · click a bar to pick a year · ← → step through years.";
+  $("hint").textContent = coarse ? t("hint.touch") : t("hint.mouse");
 
   /* ------------------------------------------------------------------ legend */
   function renderLegend() {
@@ -431,7 +433,7 @@
       return h("button", {
         class: "lg" + (off.has(k) ? " off" : ""), type: "button", style: { "--c": COLORS[dim][k] },
         "aria-pressed": String(!off.has(k)),
-        title: off.has(k) ? `Show ${g.n}` : `Hide ${g.n} (Shift-click to show only ${g.n})`,
+        title: off.has(k) ? t("legend.show", g.n) : t("legend.hide", g.n),
         onclick: (ev) => {
           if (ev.shiftKey || ev.altKey) {
             const onlyThis = groups.every((_, j) => j === k || off.has(j)) && !off.has(k);
@@ -466,23 +468,23 @@
     if (i < 0 || i >= NY) return hideTip();
     const G = agg.G, dim = agg.dim;
     const total = agg.totals[i];
-    const what = state.metric === "makers" ? (total === 1 ? "maker founded" : "makers founded") : (total === 1 ? "new model" : "new models");
+    const what = state.metric === "makers" ? t("tt.makersFounded", total) : t("tt.newModels", total);
     const rows = [];
     for (let g = 0; g < G; g++) {
       const v = agg.matrix[i * G + g];
       if (v > 0) rows.push(h("div", { class: "tt-row", style: { "--c": COLORS[dim][g] } }, h("i"), h("b", null, num(v)), h("span", null, D.dims[dim].groups[g].n)));
     }
     const list = agg.byYear.get(year) || [];
-    const top = list.slice(0, 3).map((k) => (state.metric === "makers" ? makers[k].n : cars[k].n));
+    const top = list.slice(0, 3).map((k) => (state.metric === "makers" ? makers[k].n : carName(cars[k])));
     const era = eraOf(year);
     const ms = D.milestones.filter((m) => m.year === year);
     fillTip(
       h("div", { class: "tt-head" }, h("span", { class: "tt-year" }, String(year)), h("span", { class: "tt-total" }, num(total), " ", h("small", null, what))),
       era ? h("div", { class: "tt-era" }, era.name) : null,
       ...rows,
-      top.length ? h("div", { class: "tt-notable" }, "Notable: ", ...top.flatMap((t, k) => [k ? ", " : "", h("b", null, t)]), list.length > 3 ? ` and ${num(list.length - 3)} more` : "") : null,
+      top.length ? h("div", { class: "tt-notable" }, t("tt.notable"), ...top.flatMap((x, k) => [k ? ", " : "", h("b", null, x)]), list.length > 3 ? t("tt.andMore", num(list.length - 3)) : "") : null,
       ms.length ? h("div", { class: "tt-notable" }, "★ ", ms.map((m) => m.label).join(" · ")) : null,
-      h("div", { class: "tt-tip" }, state.sel === year ? (coarse ? "Selected · the list is below" : "Selected · click again to clear") : (coarse ? "Tap to see them all" : "Click to see them all"))
+      h("div", { class: "tt-tip" }, state.sel === year ? (coarse ? t("tt.selTouch") : t("tt.selMouse")) : (coarse ? t("tt.seeTouch") : t("tt.seeMouse")))
     );
     const a = chart.anchorFor(year);
     placeTip(a.x, a.y);
@@ -496,7 +498,7 @@
         h("div", null,
           h("div", { class: "tt-head" }, h("span", { class: "tt-year" }, String(ms.year))),
           h("div", { style: { fontWeight: 600 } }, ms.label),
-          h("div", { class: "tt-tip" }, coarse ? "Tap to read more" : "Click to read more")))
+          h("div", { class: "tt-tip" }, coarse ? t("tt.readTouch") : t("tt.readMouse"))))
     );
     placeTip(r.left + r.width / 2, r.top, false);
   }
@@ -543,14 +545,14 @@
   function renderResults() {
     const { ids, y0, y1 } = currentList();
     const makersMode = state.metric === "makers";
-    const noun = makersMode ? "Makers Founded" : state.maker != null ? `${makers[state.maker].n} Models` : "Cars Introduced";
+    const noun = makersMode ? t("res.makersFounded") : state.maker != null ? t("res.makerModels", makers[state.maker].n) : t("res.cars");
     let ya = y1, yb = y0;
     for (const id of ids) { const y = makersMode ? makers[id].f : cars[id].y; if (y < ya) ya = y; if (y > yb) yb = y; }
-    $("resultsTitle").textContent = y0 === y1 ? `${noun} in ${y0}` : ids.length ? `${noun}, ${ya}–${yb}` : `${noun}, ${Math.max(y0, D.firstYear)}–${y1}`;
-    const sortTxt = { fame: "most famous first", year: "oldest first", name: "by name" }[state.sort];
+    $("resultsTitle").textContent = y0 === y1 ? t("res.in", noun, y0) : ids.length ? t("res.range", noun, ya, yb) : t("res.range", noun, Math.max(y0, D.firstYear), y1);
+    const sortTxt = t("res.sort." + state.sort);
     $("resultsSub").textContent = ids.length
-      ? `${num(ids.length)} ${makersMode ? (ids.length === 1 ? "maker" : "makers") : (ids.length === 1 ? "model" : "models")}, ${sortTxt}` +
-        (state.sel == null ? " · follows the chart" : "")
+      ? `${t("res.count", num(ids.length), makersMode)}, ${sortTxt}` +
+        (state.sel == null ? t("res.follows") : "")
       : "";
 
     // era note
@@ -562,7 +564,7 @@
         h("h3", null, era.name),
         h("p", { class: "years" }, eraYears(era)),
         h("p", null, era.text),
-        era.link ? h("a", { href: era.link, target: "_blank", rel: "noopener" }, "Learn More on Wikipedia", icon("chevronRight", "chev")) : null,
+        era.link ? h("a", { href: era.link, target: "_blank", rel: "noopener" }, t("res.learnMore"), icon("chevronRight", "chev")) : null,
       ].filter(Boolean));
     } else if (state.sel != null && D.milestones.some((m) => m.year === state.sel)) {
       const ms = D.milestones.filter((m) => m.year === state.sel);
@@ -577,10 +579,8 @@
     const grid = $("grid");
     grid.classList.toggle("makers", makersMode);
     if (!ids.length) {
-      grid.replaceChildren(h("div", { class: "empty-state" }, h("b", null, "No Results"),
-        state.sel != null
-          ? `No ${makersMode ? "makers founded" : "cars introduced"} in ${state.sel} match the current filters.`
-          : "Nothing matches the current filters in this period."));
+      grid.replaceChildren(h("div", { class: "empty-state" }, h("b", null, t("noResults")),
+        state.sel != null ? t("res.noneYear", makersMode, state.sel) : t("res.nonePeriod")));
       $("moreBtn").hidden = true;
       return;
     }
@@ -588,7 +588,7 @@
     grid.replaceChildren(...slice.map((id, k) => (makersMode ? makerRow(makers[id], k) : carTile(cars[id], k))));
     const more = $("moreBtn");
     more.hidden = ids.length <= state.shown;
-    more.textContent = `Show More (${num(ids.length - state.shown)})`;
+    more.textContent = t("moreN", num(ids.length - state.shown));
     if (!moreObserver && "IntersectionObserver" in window) {
       moreObserver = new IntersectionObserver((entries) => {
         if (entries.some((e) => e.isIntersecting) && !$("moreBtn").hidden && tab === "timeline") loadMore();
@@ -605,23 +605,23 @@
     ids.slice(from, state.shown).forEach((id, k) => grid.appendChild(makersMode ? makerRow(makers[id], k) : carTile(cars[id], k)));
     const more = $("moreBtn");
     more.hidden = ids.length <= state.shown;
-    more.textContent = `Show More (${num(ids.length - state.shown)})`;
+    more.textContent = t("moreN", num(ids.length - state.shown));
   }
   $("moreBtn").onclick = loadMore;
 
   function renderActiveFilters() {
     const chips = [];
     const token = (label, clear) => h("span", { class: "token" }, label,
-      h("button", { type: "button", "aria-label": `Remove filter: ${label}`, onclick: clear }, icon("xmarkCircle")));
+      h("button", { type: "button", "aria-label": t("tok.remove", label), onclick: clear }, icon("xmarkCircle")));
     if (state.maker != null) chips.push(token(makers[state.maker].n, () => { state.maker = null; refresh(); }));
     if (state.kind && state.metric === "models") chips.push(token(kindName(state.kind), () => { state.kind = null; renderPills(); refresh(); }));
     for (const dim of ["country", "body"]) {
       if (!state.off[dim].size) continue;
       if (dim === "body" && state.metric === "makers") continue;
       const hidden = [...state.off[dim]].map((k) => D.dims[dim].groups[k].n);
-      chips.push(token(`Hiding ${hidden.length > 2 ? hidden.length + " " + (dim === "country" ? "countries" : "body styles") : hidden.join(", ")}`, () => { state.off[dim].clear(); refresh(); }));
+      chips.push(token(t("tok.hiding", hidden.length > 2 ? (dim === "country" ? t("tok.nCountries", hidden.length) : t("tok.nBodies", hidden.length)) : hidden.join(", ")), () => { state.off[dim].clear(); refresh(); }));
     }
-    if (state.sel != null) chips.push(token(`Year ${state.sel}`, () => { selectYear(null); hideTip(); }));
+    if (state.sel != null) chips.push(token(t("tok.year", state.sel), () => { selectYear(null); hideTip(); }));
     $("activeFilters").replaceChildren(...chips);
   }
 
@@ -631,7 +631,7 @@
   }
 
   function carTile(c, k, extraClass) {
-    const [name, paren] = splitTitle(c.n);
+    const [name, paren] = splitTitle(carName(c));
     const maker = c.m >= 0 ? makers[c.m].n : null;
     const dim = state.metric === "models" ? state.colorBy : "country";
     const col = COLORS[dim][carGroup(c, dim)];
@@ -644,7 +644,7 @@
       class: "tile" + (extraClass ? " " + extraClass : ""), type: "button", style: { "--i": Math.min(k, 24) },
       "data-car": String(c._i),
       onclick: () => openDetail("car", c._i),
-      "aria-label": `${c.n}, ${yearsLabel(c)}`,
+      "aria-label": `${carName(c)}, ${yearsLabel(c)}`,
     },
       thumb,
       h("div", { class: "nm" }, name, paren ? h("small", null, ` (${paren})`) : null),
@@ -675,7 +675,7 @@
     if (f != null) {
       const end = d != null ? d : b;
       life.append(h("div", { class: "bar" + (d == null ? " open" : ""), style: { left: pos(f) + "%", width: Math.max(0.6, pos(end) - pos(f)) + "%", "--c": col } }));
-      const txt = d != null ? `${f}–${d}` : `${f}–today`;
+      const txt = d != null ? `${f}–${d}` : `${f}–${t("todayLc")}`;
       const left = pos(f);
       life.append(h("span", { class: "lbl", style: left > 70 ? { right: (100 - left + 1) + "%" } : { left: `calc(${left}% + 2px)` } }, txt));
     }
@@ -686,7 +686,7 @@
     return h("button", { class: "mrow" + (isFavMaker(m) ? " is-fav" : ""), type: "button", style: { "--i": Math.min(k, 30) }, "data-maker": String(m._i), onclick: () => openDetail("maker", m._i) },
       makerTile(m),
       h("div", { class: "mname" }, h("b", null, m.n, icon("heartFill", "fav-mark")),
-        h("span", null, h("i", { class: "dot", style: { "--c": COLORS.country[makerGroup(m)] } }), countryName(m.c), m._count ? ` · ${m._count} model${m._count > 1 ? "s" : ""}` : "")),
+        h("span", null, h("i", { class: "dot", style: { "--c": COLORS.country[makerGroup(m)] } }), countryName(m.c), m._count ? ` · ${t("nModels", m._count)}` : "")),
       lifeBar(m),
       icon("chevronRight", "chev"));
   }
@@ -696,7 +696,7 @@
     const [y0, y1] = visibleYears();
     const dim = agg.dim, G = agg.G;
     const groups = D.dims[dim].groups;
-    const head = h("tr", null, h("th", null, "Year"), h("th", null, "Total"), ...groups.map((g) => h("th", null, g.n)));
+    const head = h("tr", null, h("th", null, t("table.year")), h("th", null, t("table.total")), ...groups.map((g) => h("th", null, g.n)));
     const rows = [];
     for (let y = y0; y <= y1; y++) {
       const i = y - START_YEAR;
@@ -707,24 +707,98 @@
   }
   $("tableView").addEventListener("toggle", () => {
     const open = $("tableView").open;
-    $("tableView").querySelector("summary").textContent = open ? "Hide Data Table" : "Show Data Table";
+    $("tableView").querySelector("summary").textContent = open ? t("table.hide") : t("table.show");
     if (open) renderTable();
   });
 
-  /* ------------------------------------------------------------------ Wikipedia text */
-  const introCache = new Map();
-  function fetchIntro(title) {
-    if (introCache.has(title)) return introCache.get(title);
-    const url = "https://en.wikipedia.org/w/api.php?" + new URLSearchParams({
-      action: "query", prop: "extracts", exintro: "1", explaintext: "1", redirects: "1",
-      titles: title, format: "json", formatversion: "2", origin: "*",
-    });
-    const p = fetch(url)
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status))))
-      .then((j) => ((j.query && j.query.pages && j.query.pages[0]) || {}).extract || "");
-    introCache.set(title, p);
-    p.catch(() => introCache.delete(title));
+  /* ------------------------------------------------------------------ Wikipedia text (whole article, in the app's language) */
+  const carName = (c) => (LANG === "fr" && c.fr ? c.fr : c.n);
+  // French Wikipedia titles known from the data; others are looked up when needed
+  const frTitleOf = new Map();
+  for (const c of cars) if (c.fr) frTitleOf.set(c.n, c.fr);
+  for (const m of makers) if (m.a && m.fr) frTitleOf.set(m.a, m.fr);
+  for (const ms of D.milestones) if (ms.title && ms.fr) frTitleOf.set(ms.title, ms.fr);
+  const wikiUrlIn = (lang, title) => `https://${lang}.wikipedia.org/wiki/` + encodeURIComponent(title.replace(/ /g, "_"));
+  /** Link to the article in the app's language when we know it exists there. */
+  const wikiLink = (enTitle) => (LANG === "fr" && frTitleOf.get(enTitle) ? wikiUrlIn("fr", frTitleOf.get(enTitle)) : wikiUrl(enTitle));
+
+  const wikiCache = new Map();
+  function wikiGet(lang, params) {
+    const url = `https://${lang}.wikipedia.org/w/api.php?` + new URLSearchParams(Object.assign({}, params, { format: "json", formatversion: "2", origin: "*" }));
+    if (wikiCache.has(url)) return wikiCache.get(url);
+    const p = fetch(url).then((r) => (r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status))));
+    wikiCache.set(url, p);
+    p.catch(() => wikiCache.delete(url));
     return p;
+  }
+  const firstPage = (j) => (j && j.query && j.query.pages && j.query.pages[0]) || {};
+  function fetchExtract(lang, title) {
+    return wikiGet(lang, { action: "query", prop: "extracts|pageprops", ppprop: "disambiguation", explaintext: "1", exsectionformat: "wiki", redirects: "1", titles: title })
+      .then((j) => {
+        const pg = firstPage(j);
+        const usable = !pg.missing && !(pg.pageprops && "disambiguation" in pg.pageprops);
+        return { title: pg.title || title, text: usable ? pg.extract || "" : "" };
+      });
+  }
+  function frTitleFor(enTitle) {
+    if (frTitleOf.has(enTitle)) return Promise.resolve(frTitleOf.get(enTitle));
+    return wikiGet("en", { action: "query", prop: "langlinks", lllang: "fr", redirects: "1", titles: enTitle })
+      .then((j) => {
+        const ll = (firstPage(j).langlinks || [])[0];
+        const fr = ll ? ll.title || ll["*"] || null : null;
+        frTitleOf.set(enTitle, fr);
+        return fr;
+      }, () => null);
+  }
+  /** The article in the app's language: {lang, title, text, fallback}. In French, falls back to English. */
+  async function getArticle(enTitle) {
+    if (LANG === "fr") {
+      const fr = await frTitleFor(enTitle);
+      // no interlanguage link: many car names are the same in French ("Fiat Panda", "Trabant"), so try that title too
+      for (const cand of fr ? [fr] : [enTitle]) {
+        try {
+          const a = await fetchExtract("fr", cand);
+          if (a.text.trim()) {
+            if (!fr) frTitleOf.set(enTitle, a.title);
+            return { lang: "fr", title: a.title, text: a.text, fallback: false };
+          }
+        } catch (e) { /* fall back to English */ }
+      }
+      const a = await fetchExtract("en", enTitle);
+      return { lang: "en", title: a.title, text: a.text, fallback: true };
+    }
+    const a = await fetchExtract("en", enTitle);
+    return { lang: "en", title: a.title, text: a.text, fallback: false };
+  }
+
+  // sections left out of the reading view (normalised: lower case, no accents)
+  const SKIP_SECTIONS = new Set(["references", "notes", "see also", "external links", "further reading", "bibliography", "sources", "source",
+    "gallery", "citations", "footnotes", "notes and references", "explanatory notes", "works cited", "notes et references", "voir aussi",
+    "liens externes", "lien externe", "bibliographie", "articles connexes", "annexes", "galerie", "pour approfondir", "references externes"]);
+
+  /** Plain-text article ("== Heading ==" markers) -> lead paragraphs + sections. */
+  function parseArticle(text) {
+    const lead = [], sections = [];
+    let cur = null, skipping = 0, words = 0;
+    for (const raw of (text || "").split("\n")) {
+      const line = raw.trim();
+      if (!line) continue;
+      const m = /^(={2,6})\s*(.*?)\s*\1$/.exec(line);
+      if (m) {
+        const level = m[1].length;
+        if (skipping && level > skipping) continue;
+        skipping = 0;
+        if (SKIP_SECTIONS.has(norm(m[2]).replace(/[^a-z ]/g, "").trim())) { skipping = level; cur = null; continue; }
+        cur = { level, title: m[2], paras: [] };
+        sections.push(cur);
+        continue;
+      }
+      if (skipping || line.length < 2) continue;
+      (cur ? cur.paras : lead).push(line);
+      words += line.split(/\s+/).length;
+    }
+    const kept = sections.filter((sec, k) => sec.paras.length || sections.slice(k + 1).some((n2) => n2.level > sec.level && n2.paras.length));
+    return { lead, sections: kept, chapters: kept.filter((sec) => sec.level === 2).length || kept.length, minutes: Math.max(1, Math.round(words / 220)) };
   }
 
   /** Long text, clamped to a few lines with a "more" button (App Store style). */
@@ -739,28 +813,73 @@
         more.remove();
         box.style.maxHeight = box.scrollHeight + "px";
         setTimeout(() => { box.style.maxHeight = "none"; }, 520);
-      } }, "more");
+      } }, t("textMore"));
       box.append(more);
     });
   }
 
-  function textBlock(paras, note) {
-    const box = h("div", { class: "d-text" }, paras.map((t) => h("p", null, t)), note ? h("p", { class: "footnote" }, note) : null);
-    clampText(box, 6);
+  const langNotice = () => h("p", { class: "lang-note" }, icon("info"), h("span", null, t("art.englishOnly")));
+  const toParas = (txt) => (txt || "").split(/\n+/).map((x) => x.trim()).filter((x) => x.length > 1);
+
+  /** The article's opening on a detail page, with "Read the Full Article". */
+  function articleBlock(enTitle, fallbackText) {
+    const box = h("div", { class: "art-block" });
+    const text = h("div", { class: "d-text loading" }, h("p", null, t("art.loading")), h("p", null, "…"), h("p", null, "…"));
+    box.append(text);
+    const fallbackParas = toParas(fallbackText);
+    if (!enTitle) {
+      text.classList.remove("loading");
+      text.replaceChildren(...(fallbackParas.length ? fallbackParas : [t("art.none")]).map((x) => h("p", null, x)));
+      return box;
+    }
+    getArticle(enTitle).then((a) => {
+      const art = parseArticle(a.text);
+      text.classList.remove("loading");
+      const paras = art.lead.length ? art.lead : fallbackParas.length ? fallbackParas : [t("art.none")];
+      text.replaceChildren(...paras.map((x) => h("p", null, x)));
+      if (a.fallback) box.prepend(langNotice());
+      clampText(text, 6);
+      if (art.sections.length) {
+        box.append(h("div", { class: "list d-list art-list" },
+          h("button", { class: "lrow tinted", type: "button", onclick: () => openDetail("article", enTitle) },
+            h("span", { class: "row-icon" }, icon("book")),
+            h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, t("art.full")), h("span", { class: "lrow-sub" }, t("art.meta", art.chapters, art.minutes))),
+            icon("chevronRight", "chev"))));
+      }
+    }, () => {
+      text.classList.remove("loading");
+      text.replaceChildren(...(fallbackParas.length ? fallbackParas : [t("art.none")]).map((x) => h("p", null, x)), h("p", { class: "footnote" }, t("art.offline")));
+    });
     return box;
   }
 
-  function introBlock(title, fallback) {
-    const box = h("div", { class: "d-text loading" }, h("p", null, "Loading the Wikipedia introduction for this article…"), h("p", null, "…"), h("p", null, "…"));
-    const fill = (text, note) => {
-      box.classList.remove("loading");
-      const paras = (text || "").split(/\n+/).map((t) => t.trim()).filter((t) => t.length > 1);
-      if (!paras.length) paras.push(fallback || "No introduction available.");
-      box.replaceChildren(...paras.map((t) => h("p", null, t)), note ? h("p", { class: "footnote" }, note) : null);
-      clampText(box, 6);
-    };
-    fetchIntro(title).then((t) => fill(t), () => fill(fallback, "Could not reach Wikipedia, so only the short description is shown."));
-    return box;
+  /** The whole article, as a reading view pushed inside the sheet. */
+  function buildArticle(enTitle) {
+    const shown = LANG === "fr" && frTitleOf.get(enTitle) ? frTitleOf.get(enTitle) : enTitle;
+    const eyebrow = h("p", { class: "d-eyebrow" }, t("wiki"));
+    const title = h("h2", { class: "d-title", id: "sheetTitle" }, shown);
+    const sub = h("p", { class: "d-sub" }, "");
+    const body = h("div", { class: "d-body reader-body" },
+      h("div", { class: "d-text loading" }, h("p", null, t("art.loading")), h("p", null, "…"), h("p", null, "…"), h("p", null, "…")));
+    const page = h("div", { class: "sheet-page no-hero reader", "data-title": shown }, h("div", { class: "d-head" }, eyebrow, title, sub), body);
+    getArticle(enTitle).then((a) => {
+      const art = parseArticle(a.text);
+      eyebrow.textContent = t("art.source", a.lang);
+      title.textContent = a.title;
+      page.dataset.title = a.title;
+      if (page.isConnected && !page.classList.contains("leaving")) $("sheetNavTitle").textContent = a.title;
+      sub.textContent = t("art.meta", art.chapters, art.minutes);
+      const nodes = [];
+      if (a.fallback) nodes.push(langNotice());
+      const txt = h("div", { class: "reader-text" }, art.lead.map((x) => h("p", null, x)));
+      for (const sec of art.sections) {
+        txt.append(h(sec.level <= 2 ? "h3" : "h4", null, sec.title));
+        for (const x of sec.paras) txt.append(h("p", null, x));
+      }
+      nodes.push(txt, linksList([[t("art.open"), wikiUrlIn(a.lang, a.title)]]), h("p", { class: "d-source" }, t("art.licence")));
+      body.replaceChildren(...nodes);
+    }, () => body.replaceChildren(h("p", { class: "footnote" }, t("art.offline")), linksList([[t("art.open"), wikiLink(enTitle)]])));
+    return page;
   }
 
   /* ------------------------------------------------------------------ detail pages */
@@ -771,12 +890,12 @@
     const img = wikiImg(code, 500, alt);
     img.loading = "eager";
     hero.append(img);
-    hero.append(h("a", { class: "credit", href: commonsPage(code), target: "_blank", rel: "noopener" }, "Wikimedia"));
+    hero.append(h("a", { class: "credit", href: commonsPage(code), target: "_blank", rel: "noopener" }, t("wikimedia")));
     return hero;
   }
 
   function extLink(title, label) {
-    return h("a", { class: "pill-btn filled", href: wikiUrl(title), target: "_blank", rel: "noopener" }, label || "Wikipedia", icon("arrowUpRight"));
+    return h("a", { class: "pill-btn filled", href: wikiLink(title), target: "_blank", rel: "noopener" }, label || t("wiki"), icon("arrowUpRight"));
   }
 
   function info(cap, val, sub, opts = {}) {
@@ -826,7 +945,7 @@
           if (id === c._i) continue;
           const o = cars[id];
           const dot = s("circle", { class: "rb-other", cx: x(o.y + 0.5), cy: base, r: 3.4 });
-          dot.append(s("title", null, `${o.n} (${yearsLabel(o)})`));
+          dot.append(s("title", null, `${carName(o)} (${yearsLabel(o)})`));
           dot.addEventListener("click", () => openDetail("car", id));
           svg.append(dot);
         }
@@ -840,54 +959,64 @@
     return box;
   }
 
+  // model families: "Jeep Grand Cherokee" and its generations "Jeep Grand Cherokee (ZJ)", "(WJ)"…
+  const families = new Map();
+  for (const c of cars) pushFamily(splitTitle(c.n)[0], c._i);
+  function pushFamily(k, i) { let a = families.get(k); if (!a) families.set(k, (a = [])); a.push(i); }
+  for (const a of families.values()) a.sort((x, y) => cars[x].y - cars[y].y || (splitTitle(cars[x].n)[1] ? 1 : 0) - (splitTitle(cars[y].n)[1] ? 1 : 0));
+
+  const capFirst = (x) => (x ? x.charAt(0).toUpperCase() + x.slice(1) : x);
+
   function buildCar(i) {
     const c = cars[i];
     const m = c.m >= 0 ? makers[c.m] : null;
-    const [name, paren] = splitTitle(c.n);
+    const [name, paren] = splitTitle(carName(c));
     const bodyGroup = D.dims.body.groups[c.b];
     const flag = flagOf(c.c);
     const infos = [
-      info("Introduced", String(c.y), c.e && c.e !== c.y ? `until ${c.e}` : "model year"),
-      m ? info("Maker", makerTile(m, "sm"), m.n, { onclick: () => openDetail("maker", c.m), label: `Maker: ${m.n}` }) : null,
-      info("Country", flag || (c.c >= 0 ? countryName(c.c) : "—"), flag ? countryName(c.c) : null, { cls: flag ? "flag" : "text" }),
-      bodyGroup && !bodyGroup.other ? info("Body", bodyGroup.n.split(/,| [&/] /)[0], bodyGroup.n.includes("&") || bodyGroup.n.includes("/") ? bodyGroup.n : "style", { cls: "text" }) : null,
-      c.e && c.e > c.y ? info("Production", String(c.e - c.y + 1), "years") : null,
-      c.p ? info("Wikipedia", String(c.p), c.p === 1 ? "language" : "languages") : null,
+      info(t("info.introduced"), String(c.y), c.e && c.e !== c.y ? t("info.until", c.e) : t("info.modelYear")),
+      m ? info(t("info.maker"), makerTile(m, "sm"), m.n, { onclick: () => openDetail("maker", c.m), label: t("info.makerLabel", m.n) }) : null,
+      info(t("info.country"), flag || (c.c >= 0 ? countryName(c.c) : "—"), flag ? countryName(c.c) : null, { cls: flag ? "flag" : "text" }),
+      bodyGroup && !bodyGroup.other ? info(t("info.body"), bodyGroup.short || bodyGroup.n, bodyGroup.short && bodyGroup.short !== bodyGroup.n ? bodyGroup.n : t("info.style"), { cls: "text" }) : null,
+      c.e && c.e > c.y ? info(t("info.production"), String(c.e - c.y + 1), t("info.years")) : null,
+      c.p ? info(t("info.wikipedia"), String(c.p), t("info.language", c.p)) : null,
     ];
-    const tags = (c.t || []).map((t) => h("span", { class: "d-tag" }, D.tags[t]));
+    const tags = (c.t || []).map((x) => h("span", { class: "d-tag" }, D.tags[x]));
     const sameYear = cars.filter((o) => o.y === c.y && o._i !== i).sort((a, b) => b.p - a.p).slice(0, 16).map((o) => o._i);
+    const family = families.get(splitTitle(c.n)[0]) || [];
 
     return h("div", { class: "sheet-page", "data-title": name },
-      heroImage(c.i, c.n),
+      heroImage(c.i, carName(c)),
       h("div", { class: "d-head" },
         h("h2", { class: "d-title", id: "sheetTitle" }, name, paren ? h("small", null, ` (${paren})`) : null),
-        h("p", { class: "d-sub" }, c.s ? c.s.charAt(0).toUpperCase() + c.s.slice(1) : [m && m.n, yearsLabel(c)].filter(Boolean).join(" · ")),
+        h("p", { class: "d-sub" }, c.s ? capFirst(c.s) : [m && m.n, yearsLabel(c)].filter(Boolean).join(" · ")),
         h("div", { class: "d-actions" },
           extLink(c.n),
-          h("button", { class: "pill-btn gray", type: "button", onclick: () => revealYear(c.y) }, icon("chart"), `See ${c.y}`))),
+          h("button", { class: "pill-btn gray", type: "button", onclick: () => revealYear(c.y) }, icon("chart"), t("see", c.y)))),
       h("div", { class: "info-strip" }, infos),
       h("div", { class: "d-body" },
         garageControls(c),
         tags.length ? h("div", { class: "d-tags" }, tags) : null,
-        introBlock(c.n, c.s),
+        articleBlock(c.n, c.s),
+        family.length > 1 ? h("section", { class: "d-sec" }, secHead(t("sec.generations")), shelf(family, i)) : null,
         h("section", { class: "d-sec" },
-          secHead(m ? `In ${m.n}’s History` : "Place in History"),
-          h("p", { class: "d-note" }, m ? `Production years, with ${m.n}’s other models as dots.` : "Production years on the full timeline."),
+          secHead(m ? t("sec.inHistory", m.n) : t("sec.placeInHistory")),
+          h("p", { class: "d-note" }, m ? t("note.ribbonMaker", m.n) : t("note.ribbon")),
           ribbon(c)),
         m && makerCars[c.m].length > 1 ? h("section", { class: "d-sec" },
-          secHead(`More from ${m.n}`, "See All", () => openDetail("maker", c.m)),
+          secHead(t("sec.moreFrom", m.n), t("seeAll"), () => openDetail("maker", c.m)),
           shelf(makerCars[c.m].slice(0, 150), i)) : null,
         sameYear.length ? h("section", { class: "d-sec" },
-          secHead(`Also New in ${c.y}`, "See All", () => revealYear(c.y)),
+          secHead(t("sec.alsoNew", c.y), t("seeAll"), () => revealYear(c.y)),
           shelf(sameYear)) : null,
-        linksList([["Read on Wikipedia", wikiUrl(c.n)], c.i ? ["Photo on Wikimedia Commons", commonsPage(c.i)] : null]),
-        h("p", { class: "d-source" }, "Text from Wikipedia, “", h("a", { href: wikiUrl(c.n), target: "_blank", rel: "noopener" }, c.n), "” (CC BY-SA 4.0). Facts from Wikipedia categories and Wikidata."))
+        linksList([[t("link.read"), wikiLink(c.n)], c.i ? [t("link.photo"), commonsPage(c.i)] : null]),
+        h("p", { class: "d-source" }, t("src.car")))
     );
   }
 
   function modelRow(id) {
     const c = cars[id];
-    const [name, paren] = splitTitle(c.n);
+    const [name, paren] = splitTitle(carName(c));
     const th = h("span", { class: "row-thumb" });
     if (c.i) th.append(wikiImg(c.i, 120, "")); else th.append(placeholder());
     return markCarRow(h("button", { class: "lrow", type: "button", onclick: () => openDetail("car", id) },
@@ -909,7 +1038,7 @@
     const list = h("div", { class: "list models-list" }, ids.slice(0, showN).map(modelRow));
     if (ids.length > showN) {
       const moreRow = h("button", { class: "lrow tinted", type: "button", onclick: () => { moreRow.remove(); ids.slice(showN).forEach((id) => list.append(modelRow(id))); } },
-        h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, `Show All ${num(ids.length)} Models`)));
+        h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, t("showAllModels", num(ids.length)))));
       list.append(moreRow);
     }
     const hero = !m.logo && m.i;
@@ -921,27 +1050,27 @@
           hero ? null : makerTile(m, "xl"),
           h("div", { class: "app-head-txt" },
             h("h2", { class: "d-title", id: "sheetTitle" }, m.n),
-            h("p", { class: "d-sub" }, m.s ? m.s.charAt(0).toUpperCase() + m.s.slice(1) : countryName(m.c)),
+            h("p", { class: "d-sub" }, m.s ? capFirst(m.s) : countryName(m.c)),
             h("div", { class: "d-actions" },
               m.a ? extLink(m.a) : null,
-              ids.length ? h("button", { class: "pill-btn gray", type: "button", onclick: () => focusMaker(mi) }, icon("chart"), "Timeline") : null)))),
+              ids.length ? h("button", { class: "pill-btn gray", type: "button", onclick: () => focusMaker(mi) }, icon("chart"), t("timelineBtn")) : null)))),
       h("div", { class: "info-strip" },
-        info("Founded", m.f ? String(m.f) : "—", m.f ? `${D.lastYear - m.f} years ago` : null),
-        info(m.d ? "Closed" : "Status", m.d ? String(m.d) : m.f ? "Active" : "—", m.d && m.f ? `after ${m.d - m.f} years` : m.f ? "today" : null, { cls: m.d ? "" : "text" }),
-        info("Country", flag || countryName(m.c), flag ? countryName(m.c) : null, { cls: flag ? "flag" : "text" }),
-        info("Models", num(ids.length), "on Wikipedia"),
-        m.p ? info("Wikipedia", String(m.p), m.p === 1 ? "language" : "languages") : null),
+        info(t("info.founded"), m.f ? String(m.f) : "—", m.f ? t("info.yearsAgo", D.lastYear - m.f) : null),
+        info(m.d ? t("info.closed") : t("info.status"), m.d ? String(m.d) : m.f ? t("info.active") : "—", m.d && m.f ? t("info.after", m.d - m.f) : m.f ? t("todayLc") : null, { cls: m.d ? "" : "text" }),
+        info(t("info.country"), flag || countryName(m.c), flag ? countryName(m.c) : null, { cls: flag ? "flag" : "text" }),
+        info(t("info.models"), num(ids.length), t("info.onWikipedia")),
+        m.p ? info(t("info.wikipedia"), String(m.p), t("info.language", m.p)) : null),
       h("div", { class: "d-body" },
         makerFavButton(m),
         ids.length ? h("section", { class: "d-sec" },
-          secHead("New Models per Year"),
-          h("p", { class: "d-note" }, coarse ? "Tap a bar to see that year on the timeline." : "Click a bar to see that year on the timeline."),
+          secHead(t("sec.perYear")),
+          h("p", { class: "d-note" }, coarse ? t("note.barTouch") : t("note.barMouse")),
           chartBox) : null,
         ownershipSection(ownOfMaker.get(mi)),
-        m.a ? h("section", { class: "d-sec" }, secHead("About"), introBlock(m.a, m.s)) : null,
-        ids.length ? h("section", { class: "d-sec" }, secHead("Models"), list) : null,
-        m.a ? linksList([["Read on Wikipedia", wikiUrl(m.a)], m.i ? ["Image on Wikimedia Commons", commonsPage(m.i)] : null]) : null,
-        m.a ? h("p", { class: "d-source" }, "Text from Wikipedia, “", h("a", { href: wikiUrl(m.a), target: "_blank", rel: "noopener" }, m.a), "” (CC BY-SA 4.0).") : null)
+        m.a ? h("section", { class: "d-sec" }, secHead(t("sec.about")), articleBlock(m.a, m.s)) : null,
+        ids.length ? h("section", { class: "d-sec" }, secHead(t("sec.models")), list) : null,
+        m.a ? linksList([[t("link.read"), wikiLink(m.a)], m.i ? [t("link.image"), commonsPage(m.i)] : null]) : null,
+        m.a ? h("p", { class: "d-source" }, t("src.text")) : null)
     );
     if (ids.length) requestAnimationFrame(() => miniHistogram(chartBox, counts, Math.min(y0, y1), Math.max(y0, y1), col, (y) => focusMaker(mi, y)));
     return page;
@@ -951,29 +1080,29 @@
     const ms = D.milestones[k];
     const prev = D.milestones[k - 1], next = D.milestones[k + 1];
     const era = eraOf(ms.year);
-    const paras = ms.x ? ms.x.split(/\n+/).map((t) => t.trim()).filter((t) => t.length > 1).slice(0, 6) : null;
+    const shownTitle = LANG === "fr" && ms.fr ? ms.fr : ms.title;
     return h("div", { class: "sheet-page", "data-title": ms.label },
       heroImage(ms.i, ms.label),
       h("div", { class: "d-head" },
-        h("p", { class: "d-eyebrow" }, `Milestone · ${ms.year}`),
+        h("p", { class: "d-eyebrow" }, t("ms.eyebrowYear", ms.year)),
         h("h2", { class: "d-title", id: "sheetTitle" }, ms.label),
-        h("p", { class: "d-sub" }, ms.s ? `${ms.title} — ${ms.s}` : ms.title),
+        h("p", { class: "d-sub" }, ms.s ? `${shownTitle} — ${ms.s}` : shownTitle),
         h("div", { class: "d-actions" },
           extLink(ms.title),
-          h("button", { class: "pill-btn gray", type: "button", onclick: () => revealYear(ms.year) }, icon("chart"), `See ${ms.year}`))),
+          h("button", { class: "pill-btn gray", type: "button", onclick: () => revealYear(ms.year) }, icon("chart"), t("see", ms.year)))),
       h("div", { class: "info-strip" },
-        info("Year", String(ms.year), `${D.lastYear - ms.year} years ago`),
-        era ? info("Era", era.short || era.name, eraYears(era), { cls: "text" }) : null,
-        info("Milestone", `${k + 1}`, `of ${D.milestones.length}`)),
+        info(t("info.year"), String(ms.year), t("info.yearsAgo", D.lastYear - ms.year)),
+        era ? info(t("info.era"), era.short || era.name, eraYears(era), { cls: "text" }) : null,
+        info(t("info.milestone"), `${k + 1}`, t("info.of", D.milestones.length))),
       h("div", { class: "d-body" },
-        paras ? textBlock(paras) : introBlock(ms.title, ms.s),
+        articleBlock(ms.title, LANG === "en" && ms.x ? ms.x : ms.s),
         h("div", { class: "pn" },
           prev ? h("button", { class: "pn-card", type: "button", onclick: () => openDetail("milestone", k - 1, { replace: true, dir: "pop" }) },
-            h("small", null, "Previous"), h("b", null, prev.label), h("span", null, String(prev.year))) : h("span"),
+            h("small", null, t("prev")), h("b", null, prev.label), h("span", null, String(prev.year))) : h("span"),
           next ? h("button", { class: "pn-card next", type: "button", onclick: () => openDetail("milestone", k + 1, { replace: true, dir: "push" }) },
-            h("small", null, "Next"), h("b", null, next.label), h("span", null, String(next.year))) : null),
-        linksList([["Read on Wikipedia", wikiUrl(ms.title)], ms.i ? ["Image on Wikimedia Commons", commonsPage(ms.i)] : null]),
-        h("p", { class: "d-source" }, "Text from Wikipedia, “", h("a", { href: wikiUrl(ms.title), target: "_blank", rel: "noopener" }, ms.title), "” (CC BY-SA 4.0)."))
+            h("small", null, t("next")), h("b", null, next.label), h("span", null, String(next.year))) : null),
+        linksList([[t("link.read"), wikiLink(ms.title)], ms.i ? [t("link.image"), commonsPage(ms.i)] : null]),
+        h("p", { class: "d-source" }, t("src.text")))
     );
   }
 
@@ -1022,6 +1151,7 @@
     if (type === "car") return "#/car/" + encodeURIComponent(cars[id].n);
     if (type === "maker") return "#/maker/" + encodeURIComponent(makers[id].n);
     if (type === "company") return "#/company/" + id;
+    if (type === "article") return "#/article/" + encodeURIComponent(id);
     return "#/milestone/" + id;
   }
 
@@ -1037,7 +1167,8 @@
   function showDetail(type, id, dir) {
     hideTip();
     stopPlay();
-    const page = type === "car" ? buildCar(id) : type === "maker" ? buildMaker(id) : type === "company" ? buildCompany(id) : buildMilestone(id);
+    const page = type === "car" ? buildCar(id) : type === "maker" ? buildMaker(id) : type === "company" ? buildCompany(id)
+      : type === "article" ? buildArticle(id) : buildMilestone(id);
     const depth = (history.state && history.state.depth) || 1;
     $("sheetBack").hidden = depth <= 1;
     if (!sheetOpen) {
@@ -1282,7 +1413,7 @@
   function buildMilestones() {
     if (msBuilt) return;
     msBuilt = true;
-    $("msEyebrow").textContent = `${D.milestones.length} moments · ${D.milestones[0].year}–${D.milestones[D.milestones.length - 1].year}`;
+    $("msEyebrow").textContent = t("ms.eyebrow", D.milestones.length, D.milestones[0].year, D.milestones[D.milestones.length - 1].year);
     const nodes = [];
     for (const e of D.eras) {
       const list = D.milestones.map((m, k) => [m, k]).filter(([m]) => m.year >= e.from && m.year <= e.to);
@@ -1316,8 +1447,8 @@
   function makerListRow(m) {
     const meta = [
       makerMode !== "country" ? countryLabel(m.c) : null,
-      m.f ? `${m.f}–${m.d || "today"}` : null,
-      m._count ? `${m._count} model${m._count > 1 ? "s" : ""}` : null,
+      m.f ? `${m.f}–${m.d || t("todayLc")}` : null,
+      m._count ? t("nModels", m._count) : null,
     ].filter(Boolean).join(" · ");
     return h("button", { class: "lrow" + (isFavMaker(m) ? " is-fav" : ""), type: "button", "data-maker": String(m._i), onclick: () => openDetail("maker", m._i) },
       makerTile(m),
@@ -1360,14 +1491,14 @@
     const keys = [...groups.keys()];
     if (makerMode === "country") keys.sort((a, b) => (a === "-1") - (b === "-1") || groups.get(b).length - groups.get(a).length);
     else keys.sort(sortKeys);
-    const label = (k) => makerMode === "country" ? countryLabel(+k) : makerMode === "founded" ? (k === "?" ? "Founding year unknown" : `Founded in the ${k}s`) : k;
+    const label = (k) => makerMode === "country" ? countryLabel(+k) : makerMode === "founded" ? (k === "?" ? t("makers.unknownFounding") : t("makers.foundedIn", k)) : k;
 
-    $("makerCount").textContent = tokens.length ? `${num(list.length)} of ${num(makers.length)} makers` : `${num(makers.length)} makers · ${num(new Set(makers.map((m) => m.c).filter((c) => c >= 0)).size)} countries`;
+    $("makerCount").textContent = tokens.length ? t("makers.countOf", num(list.length), num(makers.length)) : t("makers.count", num(makers.length), num(new Set(makers.map((m) => m.c).filter((c) => c >= 0)).size));
     $("makerList").replaceChildren(...(keys.length
       ? keys.map((k) => h("section", { class: "lsec", id: slug(k) },
           h("h3", { class: "lsec-head" }, label(k), h("span", null, num(groups.get(k).length))),
           h("div", { class: "list" }, groups.get(k).map(makerListRow))))
-      : [h("div", { class: "empty-state" }, h("b", null, "No Results"), `No makers match “${makerQuery.trim()}”.`)]));
+      : [h("div", { class: "empty-state" }, h("b", null, t("noResults")), t("makers.none", makerQuery.trim()))]));
     $("makerIndex").replaceChildren(...(makerMode === "az" ? keys : []).map((k) => h("span", { "data-k": k }, k)));
     $("makerList").classList.toggle("with-index", makerMode === "az" && !tokens.length);
     syncTabbar();
@@ -1409,7 +1540,7 @@
   const firstWord = (t) => norm(t).split(/[\s-]/)[0];
   const isBranch = (c, p) => { const w = firstWord(ownNodes[p].n); return w.length >= 3 && norm(ownNodes[c].n).startsWith(w + " "); };
   const linkActive = (l, y) => l.a <= y && (l.b == null || y < l.b);
-  const spanText = (l) => (l.fl & 1 ? "c. " : "") + (l.b ? `${l.a}–${l.b}` : `since ${l.a}`);
+  const spanText = (l) => (l.b ? (l.fl & 1 ? t("own.about", `${l.a}–${l.b}`) : `${l.a}–${l.b}`) : (l.fl & 1 ? t("own.about", t("own.since", l.a)) : t("own.since", l.a)));
 
   /** The ownership forest in year y: each company's main owner that year, and the groups (trees). */
   function ownForest(y, withBranches) {
@@ -1466,8 +1597,8 @@
     walk(k);
     return h("div", { class: "own-kid" + (l.fl & 1 ? " approx" : "") + (subs.length > 8 ? " wide" : "") },
       h("button", { class: "on-node", type: "button", "data-node": String(k), title: `${n.n} — ${spanText(l)}`, onclick: () => openCompany(k) },
-        ownAvatar(n), h("span", { class: "on-name" }, n.n), h("span", { class: "on-since" }, l.fl & 1 ? `c. ${l.a}` : `since ${l.a}`)),
-      subs.length ? h("div", { class: "own-subs" }, subs.map((x) => h("button", { class: "on-sub", type: "button", "data-node": String(x), title: `${ownNodes[x].n} (owned by ${ownNodes[F.par.get(x).p].n})`, onclick: () => openCompany(x) }, ownAvatar(ownNodes[x], "sm")))) : null);
+        ownAvatar(n), h("span", { class: "on-name" }, n.n), h("span", { class: "on-since" }, l.fl & 1 ? t("own.about", l.a) : t("own.since", l.a))),
+      subs.length ? h("div", { class: "own-subs" }, subs.map((x) => h("button", { class: "on-sub", type: "button", "data-node": String(x), title: t("own.subOf", ownNodes[x].n, ownNodes[F.par.get(x).p].n), onclick: () => openCompany(x) }, ownAvatar(ownNodes[x], "sm")))) : null);
   }
 
   function ownCard(g, F) {
@@ -1489,11 +1620,11 @@
       h("div", { class: "own-head-row" },
         h("button", { class: "own-head", type: "button", onclick: () => openCompany(head) },
           h("span", { "data-node": String(head), class: "own-head-av" }, ownAvatar(r, "lg")),
-          h("span", { class: "own-head-txt" }, h("b", null, r.n), h("span", null, `${size} ${size === 1 ? "company" : "companies"}`)),
+          h("span", { class: "own-head-txt" }, h("b", null, r.n), h("span", null, `${size} ${t("info.company", size)}`)),
           icon("chevronRight", "chev")),
         owner != null ? h("button", { class: "own-chain", type: "button", onclick: () => openCompany(owner), title: chain.map((c) => ownNodes[c].n).join(" → ") },
           h("span", { "data-node": String(owner), class: "own-chain-av" }, ownAvatar(ownNodes[owner], "sm")),
-          h("span", null, `Owned by ${ownNodes[owner].n} ${spanText(F.par.get(head))}`)) : null),
+          h("span", null, t("own.ownedBy", ownNodes[owner].n, spanText(F.par.get(head))))) : null),
       h("div", { class: "own-kids" }, kids.map((k) => ownKid(k, F))));
   }
 
@@ -1544,15 +1675,15 @@
     $("ownSlider").style.setProperty("--p", ((own.year - OWN_FIRST) / (D.lastYear - OWN_FIRST) * 100).toFixed(2) + "%");
     const big = F.groups[0];
     $("ownSummary").textContent = F.groups.length
-      ? `${F.groups.length} ${F.groups.length === 1 ? "group" : "groups"} · ${total} companies owned` + (big ? ` · largest: ${ownNodes[big.root].n}` : "")
-      : "No ownership links recorded for this year";
-    $("makerCount").textContent = `${num(OWN.nodes.length)} companies · ${num(OWN.links.length)} ownership links`;
+      ? t("own.summary", F.groups.length, total, big ? ownNodes[big.root].n : null)
+      : t("own.noneYear");
+    $("makerCount").textContent = t("own.count", num(OWN.nodes.length), num(OWN.links.length));
 
     const before = new Map();
     const doAnim = animate && !reduceMotion.matches && wrap.childElementCount;
     if (doAnim) for (const el of wrap.querySelectorAll("[data-node]")) before.set(el.dataset.node, el.getBoundingClientRect());
     wrap.replaceChildren(...(groups.length ? groups.map((g) => ownCard(g, F))
-      : [h("div", { class: "card empty-state" }, h("b", null, "No Groups Yet"), own.scope === "major" ? "No group owned three or more companies this year. Try “All”." : "No ownership links are recorded for this year.")]));
+      : [h("div", { class: "card empty-state" }, h("b", null, t("own.noGroups")), own.scope === "major" ? t("own.noMajor") : t("own.noLinks"))]));
     const lines = [...wrap.querySelectorAll(".own-card")].map(drawOwnLines);
     requestAnimationFrame(() => { for (const c of wrap.querySelectorAll(".own-card")) drawOwnLines(c); });
     if (own.focus != null) {
@@ -1587,13 +1718,13 @@
     clearInterval(own.timer);
     own.timer = 0;
     $("ownPlay").setAttribute("aria-pressed", "false");
-    $("ownPlay").querySelector("span").textContent = "Play";
+    $("ownPlay").querySelector("span").textContent = t("play");
   }
   $("ownPlay").onclick = () => {
     if (own.timer) { stopOwnPlay(); return; }
     if (own.year >= D.lastYear) own.year = 1900;
     $("ownPlay").setAttribute("aria-pressed", "true");
-    $("ownPlay").querySelector("span").textContent = "Pause";
+    $("ownPlay").querySelector("span").textContent = t("pause");
     own.timer = setInterval(() => {
       if (own.year >= D.lastYear) { stopOwnPlay(); return; }
       setOwnYear(own.year + 1, true);
@@ -1608,7 +1739,7 @@
   $("ownBranches").onchange = () => { own.branches = $("ownBranches").checked; renderOwnership(true); };
   bindSeg("ownScopeSeg", () => own.scope, (v) => { own.scope = v; renderOwnership(true); });
   $("ownTicks").replaceChildren(...[1900, 1925, 1950, 1975, 2000, D.lastYear].map((y) =>
-    h("button", { type: "button", style: { left: ((y - OWN_FIRST) / (D.lastYear - OWN_FIRST) * 100) + "%" }, onclick: () => { stopOwnPlay(); setOwnYear(y, true); } }, y === D.lastYear ? "Today" : String(y))));
+    h("button", { type: "button", style: { left: ((y - OWN_FIRST) / (D.lastYear - OWN_FIRST) * 100) + "%" }, onclick: () => { stopOwnPlay(); setOwnYear(y, true); } }, y === D.lastYear ? t("today") : String(y))));
   new ResizeObserver(debounce(() => { if (makerMode === "groups" && tab === "makers") for (const c of $("ownCards").querySelectorAll(".own-card")) drawOwnLines(c); }, 120)).observe($("ownCards"));
 
   /** Jump to the Groups view in a given year, with one company highlighted. */
@@ -1640,8 +1771,8 @@
     const out = [];
     if (owners.length) {
       out.push(h("section", { class: "d-sec" },
-        secHead("Owners Over Time", "See in Groups", () => showInGroups(i, bestYearFor(i))),
-        h("p", { class: "d-note" }, "Who controlled the company, from Wikidata. “c.” marks an estimated start year."),
+        secHead(t("own.ownersOverTime"), t("own.seeInGroups"), () => showInGroups(i, bestYearFor(i))),
+        h("p", { class: "d-note" }, t("own.ownersNote")),
         spanChart(owners.map((l) => ({ label: ownNodes[l.p].n, from: l.a, to: l.b, approx: l.fl & 1, text: spanText(l), title: `${ownNodes[l.p].n}: ${spanText(l)}`, onclick: () => openCompany(l.p) })), "in-sheet")));
     }
     if (owned.length) {
@@ -1653,11 +1784,11 @@
       const list = h("div", { class: "list models-list owned-cos" }, rows.slice(0, show));
       if (rows.length > show) {
         const more = h("button", { class: "lrow tinted", type: "button", onclick: () => { more.remove(); rows.slice(show).forEach((r) => list.append(r)); } },
-          h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, `Show All ${rows.length}`)));
+          h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, t("showAll", rows.length))));
         list.append(more);
       }
       out.push(h("section", { class: "d-sec" },
-        secHead("Companies It Owned", owners.length ? null : "See in Groups", owners.length ? null : () => showInGroups(i, bestYearFor(i))), list));
+        secHead(t("own.itOwned"), owners.length ? null : t("own.seeInGroups"), owners.length ? null : () => showInGroups(i, bestYearFor(i))), list));
     }
     return out;
   }
@@ -1671,20 +1802,20 @@
           companyTile(n, "xl"),
           h("div", { class: "app-head-txt" },
             h("h2", { class: "d-title", id: "sheetTitle" }, n.n),
-            h("p", { class: "d-sub" }, n.f ? `Company · ${n.f}–${n.d || "today"}` : "Company"),
+            h("p", { class: "d-sub" }, n.f ? t("companyYears", n.f, n.d || t("todayLc")) : t("company")),
             h("div", { class: "d-actions" },
               n.wiki ? extLink(n.wiki) : null,
-              h("button", { class: "pill-btn gray", type: "button", onclick: () => showInGroups(i, bestYearFor(i)) }, icon("chart"), "Groups"))))),
+              h("button", { class: "pill-btn gray", type: "button", onclick: () => showInGroups(i, bestYearFor(i)) }, icon("chart"), t("groupsBtn")))))),
       h("div", { class: "info-strip" },
-        info("Founded", n.f ? String(n.f) : "—", n.f ? `${D.lastYear - n.f} years ago` : null),
-        info(n.d ? "Closed" : "Status", n.d ? String(n.d) : "Active", n.d ? null : "today", { cls: n.d ? "" : "text" }),
-        info("Owned", String(owned.length), owned.length === 1 ? "company" : "companies"),
-        info("Owners", String(owners.length), "over time")),
+        info(t("info.founded"), n.f ? String(n.f) : "—", n.f ? t("info.yearsAgo", D.lastYear - n.f) : null),
+        info(n.d ? t("info.closed") : t("info.status"), n.d ? String(n.d) : t("info.active"), n.d ? null : t("todayLc"), { cls: n.d ? "" : "text" }),
+        info(t("info.owned"), String(owned.length), t("info.company", owned.length)),
+        info(t("info.owners"), String(owners.length), t("info.overTime"))),
       h("div", { class: "d-body" },
         ownershipSection(i),
-        n.wiki ? h("section", { class: "d-sec" }, secHead("About"), introBlock(n.wiki, null)) : null,
-        n.wiki ? linksList([["Read on Wikipedia", wikiUrl(n.wiki)]]) : null,
-        h("p", { class: "d-source" }, "Ownership from Wikidata (CC0)", n.wiki ? "; text from Wikipedia (CC BY-SA 4.0)." : ".")));
+        n.wiki ? h("section", { class: "d-sec" }, secHead(t("sec.about")), articleBlock(n.wiki, null)) : null,
+        n.wiki ? linksList([[t("link.read"), wikiLink(n.wiki)]]) : null,
+        h("p", { class: "d-source" }, t("src.company"))));
   }
 
   /* ------------------------------------------------------------------ recently viewed */
@@ -1709,8 +1840,8 @@
     const f = isFav(c), o = isOwned(c);
     if (!f && !o) return null;
     return h("span", { class: "badges" },
-      o ? h("span", { class: "badge own", title: "In my garage" }, icon("keyFill")) : null,
-      f ? h("span", { class: "badge fav", title: "Favourite" }, icon("heartFill")) : null);
+      o ? h("span", { class: "badge own", title: t("g.inGarageTitle") }, icon("keyFill")) : null,
+      f ? h("span", { class: "badge fav", title: t("g.favourite") }, icon("heartFill")) : null);
   }
   /** Car rows in lists show a small heart / key after the name. */
   function markCarRow(el, c) {
@@ -1756,18 +1887,18 @@
   }
 
   function toggleFav(c) {
-    if (garage.fav.delete(c.n)) toast("Removed from Favourites", "heart");
-    else { garage.fav.set(c.n, { t: Date.now() }); toast("Added to Favourites", "heartFill"); }
+    if (garage.fav.delete(c.n)) toast(t("g.favRemoved"), "heart");
+    else { garage.fav.set(c.n, { t: Date.now() }); toast(t("g.favAdded"), "heartFill"); }
     saveGarage();
   }
   function toggleOwned(c) {
-    if (garage.owned.delete(c.n)) toast("Removed from My Garage", "key");
-    else { garage.owned.set(c.n, { from: null, to: null, note: "", t: Date.now() }); toast("Added to My Garage", "keyFill"); }
+    if (garage.owned.delete(c.n)) toast(t("g.ownRemoved"), "key");
+    else { garage.owned.set(c.n, { from: null, to: null, note: "", t: Date.now() }); toast(t("g.ownAdded"), "keyFill"); }
     saveGarage();
   }
   function toggleFavMaker(m) {
-    if (garage.favMakers.delete(m.n)) toast("Removed from Favourites", "heart");
-    else { garage.favMakers.set(m.n, { t: Date.now() }); toast("Added to Favourites", "heartFill"); }
+    if (garage.favMakers.delete(m.n)) toast(t("g.favRemoved"), "heart");
+    else { garage.favMakers.set(m.n, { t: Date.now() }); toast(t("g.favAdded"), "heartFill"); }
     saveGarage();
   }
 
@@ -1781,9 +1912,9 @@
     function sync() {
       const f = isFav(c), o = isOwned(c);
       favBtn.setAttribute("aria-pressed", String(f));
-      favBtn.replaceChildren(icon(f ? "heartFill" : "heart"), h("span", null, "Favourite"));
+      favBtn.replaceChildren(icon(f ? "heartFill" : "heart"), h("span", null, t("g.favourite")));
       ownBtn.setAttribute("aria-pressed", String(o));
-      ownBtn.replaceChildren(icon(o ? "keyFill" : "key"), h("span", null, o ? "In My Garage" : "I Owned One"));
+      ownBtn.replaceChildren(icon(o ? "keyFill" : "key"), h("span", null, o ? t("g.inGarage") : t("g.ownedOne")));
     }
     sync();
     return h("div", { class: "garage-ctl" }, h("div", { class: "garage-btns" }, favBtn, ownBtn), form);
@@ -1810,15 +1941,15 @@
     box.render = (animate) => {
       const o = garage.owned.get(c.n);
       if (!o) { box.hidden = true; box.replaceChildren(); return; }
-      const note = h("textarea", { rows: "2", maxlength: "2000", placeholder: "A note — e.g. “Our family car, bought new in 1972”" });
+      const note = h("textarea", { rows: "2", maxlength: "2000", placeholder: t("g.notePh") });
       note.value = o.note || "";
       note.addEventListener("input", () => { o.note = note.value; save(); });
       box.replaceChildren(
         h("div", { class: "list form-list" },
-          h("label", { class: "frow" }, h("span", null, "Owned from"), yearField(o.from, "Year", (v) => { o.from = v; save(); })),
-          h("label", { class: "frow" }, h("span", null, "Until"), yearField(o.to, "Still own it", (v) => { o.to = v; save(); })),
-          h("label", { class: "frow note" }, h("span", { class: "sr-only" }, "Note"), note)),
-        h("p", { class: "footnote form-foot" }, "Saved on this device. It appears in the Garage tab and on your timeline."));
+          h("label", { class: "frow" }, h("span", null, t("g.ownedFrom")), yearField(o.from, t("g.yearPh"), (v) => { o.from = v; save(); })),
+          h("label", { class: "frow" }, h("span", null, t("g.until")), yearField(o.to, t("g.stillOwn"), (v) => { o.to = v; save(); })),
+          h("label", { class: "frow note" }, h("span", { class: "sr-only" }, t("g.note")), note)),
+        h("p", { class: "footnote form-foot" }, t("g.formFoot")));
       box.hidden = false;
       if (animate && !reduceMotion.matches && box.animate) box.animate([{ opacity: 0, transform: "translateY(-6px)" }, { opacity: 1, transform: "none" }], { duration: 320, easing: "cubic-bezier(.32,.72,0,1)" });
     };
@@ -1831,14 +1962,14 @@
     function sync() {
       const f = isFavMaker(m);
       btn.setAttribute("aria-pressed", String(f));
-      btn.replaceChildren(icon(f ? "heartFill" : "heart"), h("span", null, f ? "Favourite Maker" : "Favourite"));
+      btn.replaceChildren(icon(f ? "heartFill" : "heart"), h("span", null, f ? t("g.favouriteMaker") : t("g.favourite")));
     }
     sync();
     return h("div", { class: "garage-ctl" }, h("div", { class: "garage-btns one" }, btn));
   }
 
   /* ---- the Garage tab */
-  const ownedYears = (o) => (o.from && o.to ? (o.from === o.to ? String(o.from) : `${o.from}–${o.to}`) : o.from ? `since ${o.from}` : o.to ? `until ${o.to}` : null);
+  const ownedYears = (o) => (o.from && o.to ? (o.from === o.to ? String(o.from) : `${o.from}–${o.to}`) : o.from ? t("g.since", o.from) : o.to ? t("g.until2", o.to) : null);
 
   /** Gantt-style rows of year spans: [{label, from, to (null = still), text, approx, title, onclick}] */
   function spanChart(rows, cls) {
@@ -1866,8 +1997,8 @@
   function ownershipChart(list) {
     const dated = list.filter(([, o]) => o.from || o.to);
     return spanChart(dated.sort(([, x], [, y]) => (x.from || x.to) - (y.from || y.to)).map(([c, o]) => ({
-      label: splitTitle(c.n)[0], from: o.from || o.to, to: o.to, text: ownedYears(o),
-      title: `${c.n}, ${ownedYears(o)}`, onclick: () => openDetail("car", c._i),
+      label: splitTitle(carName(c))[0], from: o.from || o.to, to: o.to, text: ownedYears(o),
+      title: `${carName(c)}, ${ownedYears(o)}`, onclick: () => openDetail("car", c._i),
     })));
   }
 
@@ -1891,8 +2022,8 @@
     return markCarRow(h("button", { class: "lrow", type: "button", onclick: () => openDetail("car", c._i) },
       th,
       h("span", { class: "lrow-main" },
-        h("span", { class: "lrow-title" }, c.n),
-        h("span", { class: "lrow-sub" }, [yrs ? `Owned ${yrs}` : "Years not set", o.note].filter(Boolean).join(" · "))),
+        h("span", { class: "lrow-title" }, carName(c)),
+        h("span", { class: "lrow-sub" }, [yrs ? t("g.owned", yrs) : t("g.yearsNotSet"), o.note].filter(Boolean).join(" · "))),
       icon("chevronRight", "chev")), c);
   }
 
@@ -1920,39 +2051,39 @@
     if (!owned.length && !favCars.length && !favMakers.length) {
       nodes.push(h("div", { class: "card garage-empty" },
         h("span", { class: "ge-icon" }, icon("car")),
-        h("h2", null, "Your Garage Is Empty"),
-        h("p", null, "Open any car and tap ", h("b", null, "I Owned One"), " to build the story of the cars in your life, or ", h("b", null, "Favourite"), " to keep the ones you love."),
+        h("h2", null, t("g.empty")),
+        (() => { const p0 = h("p"); p0.innerHTML = t("g.emptyText"); return p0; })(),
         h("div", { class: "d-actions" },
-          h("button", { class: "pill-btn filled", type: "button", onclick: () => setTab("search", { focus: true }) }, icon("search"), "Find a Car"),
-          h("button", { class: "pill-btn gray", type: "button", onclick: () => setTab("timeline") }, icon("chart"), "Browse the Timeline"))));
+          h("button", { class: "pill-btn filled", type: "button", onclick: () => setTab("search", { focus: true }) }, icon("search"), t("g.findCar")),
+          h("button", { class: "pill-btn gray", type: "button", onclick: () => setTab("timeline") }, icon("chart"), t("g.browse")))));
     }
     if (owned.length) {
       const sorted = owned.slice().sort(([, x], [, y]) => (x.from || x.to || 9999) - (y.from || y.to || 9999) || x.t - y.t);
       nodes.push(h("section", { class: "g-sec" },
-        head("Cars I’ve Owned", `${owned.length} car${owned.length > 1 ? "s" : ""}`, "Show on Timeline", () => showOnTimeline("@owned")),
-        ownershipChart(sorted) || h("p", { class: "footnote g-hint" }, "Add the years you owned each car to see them on a timeline here."),
+        head(t("g.ownedHead"), t("nCars", owned.length), t("g.showOnTimeline"), () => showOnTimeline("@owned")),
+        ownershipChart(sorted) || h("p", { class: "footnote g-hint" }, t("g.hint")),
         h("div", { class: "list owned-list" }, sorted.map(([c, o]) => ownedRow(c, o)))));
     }
     if (favCars.length) {
       nodes.push(h("section", { class: "g-sec" },
-        head("Favourite Cars", `${favCars.length} car${favCars.length > 1 ? "s" : ""}`, "Show on Timeline", () => showOnTimeline("@fav")),
+        head(t("g.favCars"), t("nCars", favCars.length), t("g.showOnTimeline"), () => showOnTimeline("@fav")),
         h("div", { class: "grid" }, favCars.map((c, k) => carTile(c, k)))));
     }
     if (favMakers.length) {
       nodes.push(h("section", { class: "g-sec" },
-        head("Favourite Makers", `${favMakers.length} maker${favMakers.length > 1 ? "s" : ""}`),
+        head(t("g.favMakers"), t("nMakers", favMakers.length)),
         h("div", { class: "list" }, favMakers.map((m) => {
-          const meta = [countryLabel(m.c), m.f ? `${m.f}–${m.d || "today"}` : null, m._count ? `${m._count} model${m._count > 1 ? "s" : ""}` : null].filter(Boolean).join(" · ");
+          const meta = [countryLabel(m.c), m.f ? `${m.f}–${m.d || t("todayLc")}` : null, m._count ? t("nModels", m._count) : null].filter(Boolean).join(" · ");
           return h("button", { class: "lrow is-fav", type: "button", "data-maker": String(m._i), onclick: () => openDetail("maker", m._i) },
             makerTile(m), h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, m.n), h("span", { class: "lrow-sub" }, meta)), icon("chevronRight", "chev"));
         }))));
     }
     nodes.push(h("section", { class: "g-sec" },
-      h("div", { class: "sr-head" }, h("h3", null, "Backup")),
+      h("div", { class: "sr-head" }, h("h3", null, t("g.backup"))),
       h("div", { class: "list backup-list" },
-        h("button", { class: "lrow tinted", type: "button", onclick: exportGarage }, h("span", { class: "row-icon" }, icon("share")), h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, "Export Backup…"))),
-        h("button", { class: "lrow tinted", type: "button", onclick: () => importPicker.click() }, h("span", { class: "row-icon" }, icon("tray")), h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, "Import Backup…")))),
-      h("p", { class: "footnote sr-foot" }, "Your garage is stored only on this device, in this browser. On iPhone and iPad, add Verbiest to your Home Screen so Safari keeps it, and export a backup to move it to another device.")));
+        h("button", { class: "lrow tinted", type: "button", onclick: exportGarage }, h("span", { class: "row-icon" }, icon("share")), h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, t("g.export")))),
+        h("button", { class: "lrow tinted", type: "button", onclick: () => importPicker.click() }, h("span", { class: "row-icon" }, icon("tray")), h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, t("g.import"))))),
+      h("p", { class: "footnote sr-foot" }, t("g.backupNote"))));
     $("garageBody").replaceChildren(...nodes);
   }
 
@@ -1962,7 +2093,7 @@
     let file = null;
     try { file = new File([data], name, { type: "application/json" }); } catch (e) { /* very old browsers */ }
     if (coarse && file && navigator.canShare && navigator.canShare({ files: [file] })) {
-      try { await navigator.share({ files: [file], title: "Verbiest garage backup" }); return; }
+      try { await navigator.share({ files: [file], title: t("g.backupTitle") }); return; }
       catch (e) { if (e && e.name === "AbortError") return; }
     }
     const url = URL.createObjectURL(file || new Blob([data], { type: "application/json" }));
@@ -1971,7 +2102,7 @@
     a.click();
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 4000);
-    toast("Backup saved", "share");
+    toast(t("g.backupSaved"), "share");
   }
   const importPicker = h("input", { type: "file", accept: "application/json,.json", hidden: true });
   document.body.append(importPicker);
@@ -1984,8 +2115,8 @@
       if (!raw || raw.v !== 1 || !(raw.fav || raw.owned || raw.favMakers)) throw new Error("not a backup");
       const n = mergeGarage(raw);
       saveGarage();
-      toast(n ? `Imported ${n} item${n > 1 ? "s" : ""}` : "Already up to date", "tray");
-    } catch (e) { toast("That file isn’t a Verbiest backup"); }
+      toast(n ? t("g.imported", n) : t("g.upToDate"), "tray");
+    } catch (e) { toast(t("g.badFile")); }
   });
 
   /* ------------------------------------------------------------------ Search tab */
@@ -1993,7 +2124,7 @@
   (function search() {
     const input = $("searchInput"), out = $("searchResults");
     let items = [], active = -1;
-    const SUGGEST = ["Ford Model T", "Citroën DS", "Volkswagen Beetle", "Ferrari", "1955", "Electric", "Rolls-Royce", "Mini"];
+    const SUGGEST = t("s.suggest");
 
     function score(nameNorm, q, tokens, pop) {
       if (!tokens.every((t) => nameNorm.includes(t))) return -1;
@@ -2045,12 +2176,12 @@
       const nodes = [];
       const recent = loadRecent();
       if (recent.length) {
-        const clear = h("button", { type: "button", onclick: () => { try { localStorage.removeItem(RECENT_KEY); } catch (e) {} renderEmpty(); } }, "Clear");
+        const clear = h("button", { type: "button", onclick: () => { try { localStorage.removeItem(RECENT_KEY); } catch (e) {} renderEmpty(); } }, t("clear"));
         nodes.push(h("section", { class: "sr-sec" },
-          h("div", { class: "sr-head" }, h("h3", null, "Recently Viewed"), clear),
+          h("div", { class: "sr-head" }, h("h3", null, t("s.recent")), clear),
           h("div", { class: "recent-shelf" }, recent.map((r, k) => (r.t === "car" ? carTile(cars[r.id], k) : recentMaker(makers[r.id]))))));
       }
-      nodes.push(section("Suggestions", "plain", SUGGEST.map((q) => {
+      nodes.push(section(t("s.suggestions"), "plain", SUGGEST.map((q) => {
         const el = h("button", { class: "lrow tinted", type: "button", onclick: () => { input.value = q; run(); input.focus(); } },
           h("span", { class: "row-icon", style: { background: "none", color: "var(--tint)" } }, icon("search")),
           h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, q)));
@@ -2076,23 +2207,26 @@
       for (const m of makers) { const sc = score(m._n, q, tokens, m.p * 4 + m._count); if (sc >= 0) mk.push([sc, m]); }
       mk.sort((a, b) => b[0] - a[0]);
       const cs = [];
-      for (const c of cars) { const sc = score(c._n, q, tokens, c.p * 3); if (sc >= 0) cs.push([sc, c]); }
+      for (const c of cars) {
+        const sc = Math.max(score(c._n, q, tokens, c.p * 3), c._nf ? score(c._nf, q, tokens, c.p * 3) : -1);
+        if (sc >= 0) cs.push([sc, c]);
+      }
       cs.sort((a, b) => b[0] - a[0]);
       items = [];
       const nodes = [];
       const yr = /^\d{4}$/.test(q) ? +q : null;
       if (yr && yr >= START_YEAR && yr <= D.lastYear) {
         const n = cars.filter((c) => c.y === yr).length;
-        nodes.push(section("Year", "icons", [row(iconLead("calendar"), `Go to ${yr}`, n ? `${num(n)} car${n > 1 ? "s" : ""} introduced that year` : "Show this year on the timeline", () => revealYear(yr))]));
+        nodes.push(section(t("s.year"), "icons", [row(iconLead("calendar"), t("s.goTo", yr), n ? t("s.carsThatYear", num(n)) : t("s.showYear"), () => revealYear(yr))]));
       }
-      if (mk.length) nodes.push(section("Makers", "icons", mk.slice(0, 6).map(([, m]) => row(makerTile(m), m.n, [countryLabel(m.c), m.f ? `since ${m.f}` : null, `${m._count} models`].filter(Boolean).join(" · "), () => openDetail("maker", m._i), tokens))));
+      if (mk.length) nodes.push(section(t("s.makers"), "icons", mk.slice(0, 6).map(([, m]) => row(makerTile(m), m.n, [countryLabel(m.c), m.f ? t("s.sinceY", m.f) : null, t("nModels", m._count)].filter(Boolean).join(" · "), () => openDetail("maker", m._i), tokens))));
       if (cs.length) {
         const shown = cs.slice(0, 25);
-        const sec = section("Cars", "", shown.map(([, c]) => markCarRow(row(carThumb(c), c.n, [yearsLabel(c), c.m >= 0 ? makers[c.m].n : null].filter(Boolean).join(" · "), () => openDetail("car", c._i), tokens), c)));
-        if (cs.length > shown.length) sec.append(h("p", { class: "footnote sr-foot" }, `Showing the 25 most famous of ${num(cs.length)} matches.`));
+        const sec = section(t("s.cars"), "", shown.map(([, c]) => markCarRow(row(carThumb(c), carName(c), [yearsLabel(c), c.m >= 0 ? makers[c.m].n : null].filter(Boolean).join(" · "), () => openDetail("car", c._i), tokens), c)));
+        if (cs.length > shown.length) sec.append(h("p", { class: "footnote sr-foot" }, t("s.showing", num(cs.length))));
         nodes.push(sec);
       }
-      if (!nodes.length) nodes.push(h("div", { class: "empty-state" }, h("b", null, "No Results"), `Check the spelling or try a new search.`));
+      if (!nodes.length) nodes.push(h("div", { class: "empty-state" }, h("b", null, t("noResults")), t("s.noResults")));
       out.replaceChildren(...nodes);
       active = items.length ? 0 : -1;
       mark(false);
@@ -2154,23 +2288,21 @@
   /* ------------------------------------------------------------------ intro */
   function renderIntro() {
     const nCountries = new Set(cars.map((c) => c.c).filter((c) => c >= 0)).size;
-    $("introText").textContent =
-      `${num(cars.length)} car models and ${num(makers.length)} makers from Wikipedia, year by year — from Ferdinand Verbiest’s steam trolley of 1672 to today’s electric cars. ` +
-      (coarse ? "Tap a bar to see that year’s cars." : "Hover a bar to peek, click it to see that year’s cars.");
+    $("introText").textContent = t("intro", num(cars.length), num(makers.length)) + (coarse ? t("intro.touch") : t("intro.mouse"));
     const stat = (v, l) => h("div", { class: "stat" }, h("b", null, v), h("span", null, l));
     $("stats").replaceChildren(
-      stat(num(cars.length), "Car models"),
-      stat(num(makers.length), "Makers"),
-      stat(num(nCountries), "Countries"),
-      stat(`${D.lastYear - 1672}`, "Years"));
-    $("generated").textContent = `Snapshot taken ${D.generated}.`;
+      stat(num(cars.length), t("stat.cars")),
+      stat(num(makers.length), t("stat.makers")),
+      stat(num(nCountries), t("stat.countries")),
+      stat(`${D.lastYear - 1672}`, t("stat.years")));
+    $("generated").textContent = t("footer.snapshot", I18N.dateFmt(D.generated));
   }
 
   /* ------------------------------------------------------------------ routing */
   function parseRoute() {
     const t = /^#\/(milestones|makers|garage|search)$/.exec(location.hash);
     if (t) return { type: "tab", id: t[1] };
-    const m = /^#\/(car|maker|milestone|year|company)\/(.+)$/.exec(location.hash);
+    const m = /^#\/(car|maker|milestone|year|company|article)\/(.+)$/.exec(location.hash);
     if (!m) return null;
     const val = decodeURIComponent(m[2]);
     if (m[1] === "car") return carByTitle.has(val) ? { type: "car", id: carByTitle.get(val) } : null;
@@ -2178,6 +2310,7 @@
     if (m[1] === "milestone") return D.milestones[+val] ? { type: "milestone", id: +val } : null;
     if (m[1] === "year") return { type: "year", id: +val };
     if (m[1] === "company") return OWN.nodes[+val] ? { type: "company", id: +val } : null;
+    if (m[1] === "article") return { type: "article", id: val };
     return null;
   }
   addEventListener("popstate", () => {
@@ -2191,6 +2324,31 @@
     }
     hideSheet();
   });
+
+  /* ------------------------------------------------------------------ language menu */
+  (function languageMenu() {
+    const btn = $("langBtn"), menu = $("langMenu");
+    $("langCode").textContent = LANG.toUpperCase();
+    menu.replaceChildren(...I18N.langs.map(([code, label]) => h("button", {
+      class: "menu-item", type: "button", role: "menuitemradio", "aria-checked": String(code === LANG), lang: code,
+      onclick: () => { close(); if (code !== LANG) I18N.setLang(code); },
+    }, h("span", null, label), code === LANG ? icon("checkmark") : null)));
+    function open() {
+      menu.hidden = false;
+      btn.setAttribute("aria-expanded", "true");
+      requestAnimationFrame(() => menu.classList.add("show"));
+      const cur = menu.querySelector('[aria-checked="true"]');
+      if (cur) cur.focus({ preventScroll: true });
+    }
+    function close() {
+      menu.classList.remove("show");
+      btn.setAttribute("aria-expanded", "false");
+      setTimeout(() => { if (!menu.classList.contains("show")) menu.hidden = true; }, 220);
+    }
+    btn.addEventListener("click", (ev) => { ev.stopPropagation(); if (menu.hidden) open(); else close(); });
+    document.addEventListener("pointerdown", (ev) => { if (!menu.hidden && !ev.target.closest(".lang-wrap")) close(); });
+    document.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && !menu.hidden) { close(); btn.focus(); } });
+  })();
 
   window.VERBIEST_APP = { chart, overview, state, setTab }; // handy for debugging in the console
 

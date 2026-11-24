@@ -212,12 +212,12 @@ img { display: block; max-width: 100%; }
 .tab {
   position: relative; z-index: 1; flex: 1 1 0; min-width: 0;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
-  border: 0; background: none; border-radius: 27px; cursor: pointer;
+  padding: 0 2px; border: 0; background: none; border-radius: 27px; cursor: pointer;
   color: var(--label); font: 600 10px/1.2 var(--font); letter-spacing: -.01em;
   transition: color .2s linear, transform .4s var(--spring-bounce);
 }
 .tab svg { width: 25px; height: 25px; }
-.tab span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tab span { max-width: 100%; padding: 0 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; letter-spacing: -.03em; }
 .tab:active { transform: scale(.92); transition-duration: .1s; }
 .tab[aria-selected="true"] { color: var(--tint); }
 .tab-lens {
@@ -247,7 +247,7 @@ img { display: block; max-width: 100%; }
 
 .chart-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
 .readout { min-width: 0; }
-.ro-cap { font: 600 13px var(--font); text-transform: uppercase; letter-spacing: .01em; color: var(--label-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ro-cap { font: 600 13px var(--font); text-transform: uppercase; letter-spacing: .01em; color: var(--label-2); }
 .ro-val { font: 700 34px/1.12 var(--font-rounded); letter-spacing: 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .ro-unit { font: 600 17px var(--font); color: var(--label-2); letter-spacing: -.01em; }
 .ro-sub { font: 600 15px var(--font); color: var(--label-2); letter-spacing: -.01em; font-variant-numeric: tabular-nums; min-height: 21px; }
@@ -820,6 +820,39 @@ button.info:active { opacity: .6; }
 .pn-card b { font: 600 15px/1.3 var(--font); letter-spacing: -.01em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 .pn-card span { font: 500 13px var(--font-rounded); color: var(--label-2); }
 
+/* ---------- language menu ------------------------------------------------- */
+.lang-wrap { position: relative; }
+.lang-btn span { font: 700 12.5px var(--font-rounded); letter-spacing: .02em; }
+.menu {
+  position: absolute; z-index: 70; right: 0; top: calc(100% + 8px); min-width: 190px; padding: 6px; border-radius: 16px;
+  background: var(--glass-strong); opacity: 0; transform: scale(.88) translateY(-8px); transform-origin: top right;
+  transition: opacity .18s linear, transform .4s var(--spring-bounce);
+}
+.menu.show { opacity: 1; transform: none; }
+.menu-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%;
+  padding: 10px 12px; border: 0; border-radius: 10px; background: none; cursor: pointer;
+  font: 400 17px var(--font); letter-spacing: -.02em; color: var(--label); text-align: left;
+}
+.menu-item:hover, .menu-item:focus-visible { background: var(--fill-3); outline: none; }
+.menu-item svg { width: 17px; height: 17px; color: var(--tint); flex: none; }
+.sht { display: none; }
+
+/* ---------- Wikipedia text & reading view ----------------------------------- */
+.lang-note {
+  display: flex; align-items: flex-start; gap: 8px; margin: 18px 0 0; padding: 10px 12px; border-radius: 12px;
+  background: var(--tint-wash); color: var(--label); font: 500 13px/1.4 var(--font); letter-spacing: -.005em;
+}
+.lang-note svg { width: 17px; height: 17px; flex: none; margin-top: 0; color: var(--tint); }
+.art-list { margin-top: 14px; }
+.art-list .lrow { --sep-inset: 58px; min-height: 58px; }
+.reader .d-head { padding-top: 76px; }
+.reader-body .lang-note { margin-top: 4px; }
+.reader-text { margin-top: 18px; font: 400 19px/1.62 ui-serif, "New York", "Iowan Old Style", "Palatino", Georgia, serif; letter-spacing: 0; }
+.reader-text p { margin: 0 0 16px; }
+.reader-text h3 { margin: 30px 0 8px; font: 700 22px/1.25 var(--font-display); letter-spacing: -.01em; }
+.reader-text h4 { margin: 22px 0 6px; font: 600 18px/1.3 var(--font); letter-spacing: -.015em; }
+
 /* ---------- my garage ----------------------------------------------------- */
 .badges { position: absolute; z-index: 1; right: 8px; top: 8px; display: flex; gap: 4px; }
 .badge {
@@ -1048,6 +1081,7 @@ button.info:active { opacity: .6; }
 @media (max-width: 767px) {
   .app { padding-bottom: calc(var(--tabbar-space) + 20px); }
   .lng { display: none; }
+  .sht { display: inline; }
   .chart-card { padding: 16px 14px 12px; border-radius: 20px; }
   .scope { margin-left: -14px; margin-right: -14px; padding-left: 14px; padding-right: 14px; }
   .chart { height: 270px; }

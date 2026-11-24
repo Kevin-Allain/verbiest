@@ -15,7 +15,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/icon-180.png">
-  <link rel="stylesheet" href="css/style.css?v=25">
+  <link rel="stylesheet" href="css/style.css?v=29">
   <script>
     // pick the saved / system theme before first paint
     (function () {
@@ -31,13 +31,17 @@
   <!-- ======================= navigation bar ======================= -->
   <header class="navbar" id="navbar">
     <div class="nav-inner">
-      <a class="nav-brand" href="#/" id="navBrand" aria-label="Verbiest, back to the timeline">
+      <a class="nav-brand" href="#/" id="navBrand" aria-label="Verbiest, back to the timeline" data-i18n-attr="aria-label:nav.home">
         <img src="assets/icon.svg" alt="" width="28" height="28">
         <span>Verbiest</span>
       </a>
-      <div class="nav-title" id="navTitle" aria-hidden="true">Timeline</div>
+      <div class="nav-title" id="navTitle" aria-hidden="true" data-i18n="title.timeline">Timeline</div>
       <div class="nav-actions">
-        <button class="glass-btn" id="themeBtn" type="button" aria-label="Switch between light and dark appearance" title="Appearance">
+        <div class="lang-wrap">
+          <button class="glass-btn lang-btn" id="langBtn" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Language" title="Language" data-i18n-attr="aria-label:lang.label;title:lang.label"><span id="langCode">EN</span></button>
+          <div class="menu glass" id="langMenu" role="menu" hidden></div>
+        </div>
+        <button class="glass-btn" id="themeBtn" type="button" aria-label="Switch between light and dark appearance" title="Appearance" data-i18n-attr="aria-label:theme.label;title:theme.title">
           <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></g></svg>
           <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.6A8.6 8.6 0 0 1 9.4 3.8a8.6 8.6 0 1 0 10.8 10.8Z" fill="currentColor"/></svg>
         </button>
@@ -46,38 +50,38 @@
   </header>
 
   <!-- ======================= tab bar ======================= -->
-  <nav class="tabbar" id="tabbar" aria-label="Sections">
+  <nav class="tabbar" id="tabbar" aria-label="Sections" data-i18n-attr="aria-label:tabs.label">
     <div class="tabs glass" id="tabs" role="tablist">
       <span class="tab-lens" id="tabLens" aria-hidden="true"></span>
       <button class="tab" type="button" role="tab" data-tab="timeline" aria-selected="true" aria-controls="view-timeline">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12.5" width="4.6" height="8" rx="1.6" fill="currentColor"/><rect x="9.7" y="7.5" width="4.6" height="13" rx="1.6" fill="currentColor"/><rect x="16.4" y="3.5" width="4.6" height="17" rx="1.6" fill="currentColor"/></svg>
-        <span>Timeline</span>
+        <span data-i18n="tab.timeline">Timeline</span>
       </button>
       <button class="tab" type="button" role="tab" data-tab="milestones" aria-selected="false" aria-controls="view-milestones">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.6 21V3.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M5.6 4.3c2.5-1.5 5-1.3 7.2 0 2.2 1.2 4.4 1.4 6.7.3v9.1c-2.3 1.1-4.5.9-6.7-.3-2.2-1.3-4.7-1.5-7.2 0Z" fill="currentColor"/></svg>
-        <span>Milestones</span>
+        <span data-i18n="tab.milestones">Milestones</span>
       </button>
       <button class="tab" type="button" role="tab" data-tab="makers" aria-selected="false" aria-controls="view-makers">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.8 20.6v-9.2c0-.6.6-.9 1.1-.6l4.9 2.9v-2.3c0-.6.6-.9 1.1-.6l4.9 2.9V4.2c0-.4.3-.7.7-.7h3.7c.4 0 .7.3.7.7v16.4Z" fill="currentColor"/></svg>
-        <span>Makers</span>
+        <span data-i18n="tab.makers">Makers</span>
       </button>
       <button class="tab" type="button" role="tab" data-tab="garage" aria-selected="false" aria-controls="view-garage">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" fill="currentColor" d="M4 11.4 5.6 6.6A2.6 2.6 0 0 1 8 4.8h8a2.6 2.6 0 0 1 2.4 1.8l1.6 4.8c.9.5 1.5 1.5 1.5 2.6v4.6c0 .6-.4 1-1 1h-1.7c-.6 0-1-.4-1-1v-1.3H6.2v1.3c0 .6-.4 1-1 1H3.5c-.6 0-1-.4-1-1V14c0-1.1.6-2.1 1.5-2.6ZM6.5 10.9h11l-1.2-3.5a1 1 0 0 0-.9-.7H8.6a1 1 0 0 0-.9.7ZM5.6 14.7a1.4 1.4 0 1 0 2.8 0 1.4 1.4 0 1 0-2.8 0ZM15.6 14.7a1.4 1.4 0 1 0 2.8 0 1.4 1.4 0 1 0-2.8 0Z"/></svg>
-        <span>Garage</span>
+        <span data-i18n="tab.garage">Garage</span>
       </button>
     </div>
-    <button class="tab-search glass" type="button" role="tab" data-tab="search" aria-selected="false" aria-controls="view-search" aria-label="Search" title="Search (/)">
+    <button class="tab-search glass" type="button" role="tab" data-tab="search" aria-selected="false" aria-controls="view-search" aria-label="Search" title="Search (/)" data-i18n-attr="aria-label:tab.search;title:tab.search.title">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15.6 15.6 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
     </button>
   </nav>
 
   <main class="app" id="app">
     <!-- ======================= Timeline ======================= -->
-    <section class="view" id="view-timeline" data-title="Timeline" role="tabpanel" aria-label="Timeline">
+    <section class="view" id="view-timeline" data-title="Timeline" role="tabpanel" aria-label="Timeline" data-i18n-attr="data-title:title.timeline;aria-label:title.timeline">
       <header class="page-head">
-        <p class="eyebrow">A visual history of the automobile</p>
-        <h1 class="large-title">Timeline</h1>
-        <p class="lede" id="introText">Loading the archive…</p>
+        <p class="eyebrow" data-i18n="timeline.eyebrow">A visual history of the automobile</p>
+        <h1 class="large-title" data-i18n="title.timeline">Timeline</h1>
+        <p class="lede" id="introText" data-i18n="loading">Loading the archive…</p>
         <div class="stat-row" id="stats"></div>
       </header>
 
@@ -88,44 +92,44 @@
             <div class="ro-val"><span id="roNum">0</span> <span class="ro-unit" id="roUnit">models</span></div>
             <div class="ro-sub" id="roSub"></div>
           </div>
-          <div class="seg" id="metricSeg" role="radiogroup" aria-label="What to count">
+          <div class="seg" id="metricSeg" role="radiogroup" aria-label="What to count" data-i18n-attr="aria-label:aria.metric">
             <span class="seg-thumb" aria-hidden="true"></span>
-            <button type="button" data-v="models" role="radio" aria-checked="true">Models</button>
-            <button type="button" data-v="makers" role="radio" aria-checked="false">Makers</button>
+            <button type="button" data-v="models" role="radio" aria-checked="true" data-i18n="seg.models">Models</button>
+            <button type="button" data-v="makers" role="radio" aria-checked="false" data-i18n="seg.makers">Makers</button>
           </div>
         </div>
 
         <div class="chart-controls">
-          <div class="seg seg-sm" id="colorSeg" role="radiogroup" aria-label="Colour the bars by">
+          <div class="seg seg-sm" id="colorSeg" role="radiogroup" aria-label="Colour the bars by" data-i18n-attr="aria-label:aria.colour">
             <span class="seg-thumb" aria-hidden="true"></span>
-            <button type="button" data-v="country" role="radio" aria-checked="true"><span class="lng">By </span>Country</button>
-            <button type="button" data-v="body" role="radio" aria-checked="false"><span class="lng">By </span>Body<span class="lng"> Style</span></button>
+            <button type="button" data-v="country" role="radio" aria-checked="true"><span class="lng" data-i18n="seg.byCountry">By Country</span><span class="sht" data-i18n="seg.country">Country</span></button>
+            <button type="button" data-v="body" role="radio" aria-checked="false"><span class="lng" data-i18n="seg.byBody">By Body Style</span><span class="sht" data-i18n="seg.body">Body</span></button>
           </div>
-          <div class="chips" id="typePills" role="radiogroup" aria-label="Kind of car"></div>
+          <div class="chips" id="typePills" role="radiogroup" aria-label="Kind of car" data-i18n-attr="aria-label:aria.kind"></div>
         </div>
 
-        <div class="scope" id="eraChips" aria-label="Jump to an era"></div>
+        <div class="scope" id="eraChips" aria-label="Jump to an era" data-i18n-attr="aria-label:aria.eras"></div>
 
-        <div class="chart" id="chart" tabindex="0" aria-label="Histogram of cars per year. Use the arrow keys to move between years."></div>
-        <div class="overview" id="overview" aria-label="Zoom window: drag it, or drag its handles"></div>
+        <div class="chart" id="chart" tabindex="0" aria-label="Histogram of cars per year. Use the arrow keys to move between years." data-i18n-attr="aria-label:aria.chart"></div>
+        <div class="overview" id="overview" aria-label="Zoom window: drag it, or drag its handles" data-i18n-attr="aria-label:aria.overview"></div>
         <div class="legend" id="legend"></div>
 
         <div class="chart-toolbar">
-          <div class="stepper" role="group" aria-label="Zoom">
-            <button id="zoomOut" type="button" aria-label="Zoom out"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 12h13" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+          <div class="stepper" role="group" aria-label="Zoom" data-i18n-attr="aria-label:aria.zoom">
+            <button id="zoomOut" type="button" aria-label="Zoom out" data-i18n-attr="aria-label:aria.zoomOut"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 12h13" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
             <i aria-hidden="true"></i>
-            <button id="zoomIn" type="button" aria-label="Zoom in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.5v13M5.5 12h13" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+            <button id="zoomIn" type="button" aria-label="Zoom in" data-i18n-attr="aria-label:aria.zoomIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.5v13M5.5 12h13" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
           </div>
           <span class="toolbar-spacer"></span>
-          <button class="pill-btn tinted" id="playBtn" type="button" aria-pressed="false" title="Step through the years">
+          <button class="pill-btn tinted" id="playBtn" type="button" aria-pressed="false" title="Step through the years" data-i18n-attr="title:play.title">
             <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5.2v13.6c0 .8.9 1.3 1.6.9l10.6-6.8c.6-.4.6-1.4 0-1.8L9.1 4.3c-.7-.4-1.6.1-1.6.9Z" fill="currentColor"/></svg>
             <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4.5" width="4.4" height="15" rx="1.4" fill="currentColor"/><rect x="13.6" y="4.5" width="4.4" height="15" rx="1.4" fill="currentColor"/></svg>
-            <span>Play</span>
+            <span data-i18n="play">Play</span>
           </button>
         </div>
         <p class="footnote hint" id="hint"></p>
         <details class="table-view" id="tableView">
-          <summary>Show Data Table</summary>
+          <summary data-i18n="table.show">Show Data Table</summary>
           <div class="table-wrap" id="tableWrap"></div>
         </details>
       </section>
@@ -136,12 +140,12 @@
             <h2 class="title2" id="resultsTitle"></h2>
             <p class="footnote" id="resultsSub"></p>
           </div>
-          <label class="popup-btn" title="Sort order">
-            <span class="sr-only">Sort</span>
+          <label class="popup-btn" title="Sort order" data-i18n-attr="title:sort.title">
+            <span class="sr-only" data-i18n="sort">Sort</span>
             <select id="sortSel">
-              <option value="fame">Most Famous</option>
-              <option value="year">Oldest First</option>
-              <option value="name">Name</option>
+              <option value="fame" data-i18n="sort.fame">Most Famous</option>
+              <option value="year" data-i18n="sort.year">Oldest First</option>
+              <option value="name" data-i18n="sort.name">Name</option>
             </select>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7.5 9.5 4.5-4.5 4.5 4.5M7.5 14.5l4.5 4.5 4.5-4.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </label>
@@ -149,107 +153,107 @@
         <div class="tokens" id="activeFilters"></div>
         <div class="era-note card" id="eraNote" hidden></div>
         <div class="grid" id="grid"></div>
-        <div class="more"><button class="pill-btn gray" id="moreBtn" type="button" hidden>Show More</button></div>
+        <div class="more"><button class="pill-btn gray" id="moreBtn" type="button" hidden data-i18n="more">Show More</button></div>
       </section>
     </section>
 
     <!-- ======================= Milestones ======================= -->
-    <section class="view" id="view-milestones" data-title="Milestones" role="tabpanel" aria-label="Milestones" hidden>
+    <section class="view" id="view-milestones" data-title="Milestones" role="tabpanel" aria-label="Milestones" hidden data-i18n-attr="data-title:title.milestones;aria-label:title.milestones">
       <header class="page-head">
         <p class="eyebrow" id="msEyebrow">From 1672 to today</p>
-        <h1 class="large-title">Milestones</h1>
-        <p class="lede">The moments that shaped the automobile, era by era. Open one to read its story.</p>
+        <h1 class="large-title" data-i18n="title.milestones">Milestones</h1>
+        <p class="lede" data-i18n="ms.lede">The moments that shaped the automobile, era by era. Open one to read its story.</p>
       </header>
       <div id="msList"></div>
     </section>
 
     <!-- ======================= Makers ======================= -->
-    <section class="view" id="view-makers" data-title="Makers" role="tabpanel" aria-label="Makers" hidden>
+    <section class="view" id="view-makers" data-title="Makers" role="tabpanel" aria-label="Makers" hidden data-i18n-attr="data-title:title.makers;aria-label:title.makers">
       <header class="page-head">
         <p class="eyebrow" id="makerCount"></p>
-        <h1 class="large-title">Makers</h1>
+        <h1 class="large-title" data-i18n="title.makers">Makers</h1>
         <div class="searchfield">
           <svg class="mag" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15.6 15.6 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-          <input id="makerFilter" type="search" placeholder="Search Makers" autocomplete="off" spellcheck="false" aria-label="Search makers">
-          <button class="clear" id="makerClear" type="button" aria-label="Clear" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="m8.6 8.6 6.8 6.8m0-6.8-6.8 6.8" stroke="var(--bg-2)" stroke-width="2" stroke-linecap="round"/></svg></button>
+          <input id="makerFilter" type="search" placeholder="Search Makers" autocomplete="off" spellcheck="false" aria-label="Search makers" data-i18n-attr="placeholder:makers.search;aria-label:makers.searchLabel">
+          <button class="clear" id="makerClear" type="button" aria-label="Clear" hidden data-i18n-attr="aria-label:clear"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="m8.6 8.6 6.8 6.8m0-6.8-6.8 6.8" stroke="var(--bg-2)" stroke-width="2" stroke-linecap="round"/></svg></button>
         </div>
-        <div class="seg seg-wide" id="makerSortSeg" role="radiogroup" aria-label="Group makers">
+        <div class="seg seg-wide" id="makerSortSeg" role="radiogroup" aria-label="Group makers" data-i18n-attr="aria-label:makers.group">
           <span class="seg-thumb" aria-hidden="true"></span>
-          <button type="button" data-v="az" role="radio" aria-checked="true">A–Z</button>
-          <button type="button" data-v="country" role="radio" aria-checked="false">Country</button>
-          <button type="button" data-v="founded" role="radio" aria-checked="false">Founded</button>
-          <button type="button" data-v="groups" role="radio" aria-checked="false">Groups</button>
+          <button type="button" data-v="az" role="radio" aria-checked="true" data-i18n="makers.az">A–Z</button>
+          <button type="button" data-v="country" role="radio" aria-checked="false" data-i18n="makers.country">Country</button>
+          <button type="button" data-v="founded" role="radio" aria-checked="false" data-i18n="makers.founded">Founded</button>
+          <button type="button" data-v="groups" role="radio" aria-checked="false" data-i18n="makers.groups">Groups</button>
         </div>
       </header>
       <div id="makerList"></div>
 
       <!-- who owns whom, year by year -->
       <div id="ownView" hidden>
-        <section class="card own-controls" aria-label="Choose a year">
+        <section class="card own-controls" aria-label="Choose a year" data-i18n-attr="aria-label:own.year">
           <div class="own-top">
             <div>
-              <div class="ro-cap">Who owns whom in</div>
+              <div class="ro-cap" data-i18n="own.cap">Who owns whom in</div>
               <div class="own-year" id="ownYear">2026</div>
               <div class="ro-sub" id="ownSummary"></div>
             </div>
-            <div class="seg seg-sm" id="ownScopeSeg" role="radiogroup" aria-label="Which groups to show">
+            <div class="seg seg-sm" id="ownScopeSeg" role="radiogroup" aria-label="Which groups to show" data-i18n-attr="aria-label:own.scope">
               <span class="seg-thumb" aria-hidden="true"></span>
-              <button type="button" data-v="major" role="radio" aria-checked="true">Major</button>
-              <button type="button" data-v="all" role="radio" aria-checked="false">All</button>
+              <button type="button" data-v="major" role="radio" aria-checked="true" data-i18n="own.major">Major</button>
+              <button type="button" data-v="all" role="radio" aria-checked="false" data-i18n="own.all">All</button>
             </div>
           </div>
-          <input class="year-slider" id="ownSlider" type="range" min="1890" max="2026" step="1" value="2026" aria-label="Year">
+          <input class="year-slider" id="ownSlider" type="range" min="1890" max="2026" step="1" value="2026" aria-label="Year" data-i18n-attr="aria-label:own.year">
           <div class="own-ticks" id="ownTicks" aria-hidden="true"></div>
           <div class="chart-toolbar">
-            <div class="stepper" role="group" aria-label="Step one year">
-              <button id="ownPrev" type="button" aria-label="One year earlier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 12h13" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+            <div class="stepper" role="group" aria-label="Step one year" data-i18n-attr="aria-label:own.step">
+              <button id="ownPrev" type="button" aria-label="One year earlier" data-i18n-attr="aria-label:own.prev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 12h13" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
               <i aria-hidden="true"></i>
-              <button id="ownNext" type="button" aria-label="One year later"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.5v13M5.5 12h13" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
+              <button id="ownNext" type="button" aria-label="One year later" data-i18n-attr="aria-label:own.next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.5v13M5.5 12h13" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button>
             </div>
-            <label class="own-branches"><input type="checkbox" id="ownBranches"> <span>Regional branches</span></label>
+            <label class="own-branches"><input type="checkbox" id="ownBranches"> <span data-i18n="own.branches">Regional branches</span></label>
             <span class="toolbar-spacer"></span>
-            <button class="pill-btn tinted" id="ownPlay" type="button" aria-pressed="false" title="Play through the years">
+            <button class="pill-btn tinted" id="ownPlay" type="button" aria-pressed="false" title="Play through the years" data-i18n-attr="title:own.play.title">
               <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5.2v13.6c0 .8.9 1.3 1.6.9l10.6-6.8c.6-.4.6-1.4 0-1.8L9.1 4.3c-.7-.4-1.6.1-1.6.9Z" fill="currentColor"/></svg>
               <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4.5" width="4.4" height="15" rx="1.4" fill="currentColor"/><rect x="13.6" y="4.5" width="4.4" height="15" rx="1.4" fill="currentColor"/></svg>
-              <span>Play</span>
+              <span data-i18n="play">Play</span>
             </button>
           </div>
         </section>
         <div class="own-cards" id="ownCards" aria-live="polite"></div>
-        <p class="footnote own-note">From Wikidata’s “owned by”, “parent organisation” and “subsidiary” statements (majority owners only; governments left out), plus a short list of well-known acquisitions. Dashed lines: the start year is not recorded, so it is estimated. Tap any company for its story.</p>
+        <p class="footnote own-note" data-i18n="own.note">From Wikidata’s “owned by”, “parent organisation” and “subsidiary” statements (majority owners only; governments left out), plus a short list of well-known acquisitions. Dashed lines: the start year is not recorded, so it is estimated. Tap any company for its story.</p>
       </div>
     </section>
 
     <!-- ======================= My Garage ======================= -->
-    <section class="view" id="view-garage" data-title="My Garage" role="tabpanel" aria-label="My Garage" hidden>
+    <section class="view" id="view-garage" data-title="My Garage" role="tabpanel" aria-label="My Garage" hidden data-i18n-attr="data-title:title.garage;aria-label:title.garage">
       <header class="page-head">
-        <p class="eyebrow">Saved on this device</p>
-        <h1 class="large-title">My Garage</h1>
-        <p class="lede">The cars you have owned and the ones you love. Open any car and tap <b>Favourite</b> or <b>I Owned One</b>.</p>
+        <p class="eyebrow" data-i18n="garage.eyebrow">Saved on this device</p>
+        <h1 class="large-title" data-i18n="title.garage">My Garage</h1>
+        <p class="lede" data-i18n-html="garage.lede">The cars you have owned and the ones you love. Open any car and tap <b>Favourite</b> or <b>I Owned One</b>.</p>
       </header>
       <div id="garageBody"></div>
     </section>
 
     <!-- ======================= Search ======================= -->
-    <section class="view" id="view-search" data-title="Search" role="tabpanel" aria-label="Search" hidden>
+    <section class="view" id="view-search" data-title="Search" role="tabpanel" aria-label="Search" hidden data-i18n-attr="data-title:title.search;aria-label:title.search">
       <header class="page-head">
-        <h1 class="large-title">Search</h1>
+        <h1 class="large-title" data-i18n="title.search">Search</h1>
         <div class="searchfield" id="search">
           <svg class="mag" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15.6 15.6 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
-          <input id="searchInput" type="search" placeholder="Cars, Makers and Years" autocomplete="off" spellcheck="false" enterkeyhint="search"
+          <input id="searchInput" type="search" placeholder="Cars, Makers and Years" data-i18n-attr="placeholder:search.placeholder;aria-label:search.label" autocomplete="off" spellcheck="false" enterkeyhint="search"
                  role="combobox" aria-expanded="false" aria-controls="searchResults" aria-label="Search cars, makers and years">
-          <button class="clear" id="searchClear" type="button" aria-label="Clear" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="m8.6 8.6 6.8 6.8m0-6.8-6.8 6.8" stroke="var(--bg-2)" stroke-width="2" stroke-linecap="round"/></svg></button>
+          <button class="clear" id="searchClear" type="button" aria-label="Clear" hidden data-i18n-attr="aria-label:clear"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="m8.6 8.6 6.8 6.8m0-6.8-6.8 6.8" stroke="var(--bg-2)" stroke-width="2" stroke-linecap="round"/></svg></button>
         </div>
       </header>
-      <div id="searchResults" role="listbox" aria-label="Search results"></div>
+      <div id="searchResults" role="listbox" aria-label="Search results" data-i18n-attr="aria-label:search.results"></div>
     </section>
 
     <footer class="footer">
-      <p>Data from <a href="https://en.wikipedia.org/" target="_blank" rel="noopener">Wikipedia</a> and
+      <p><span data-i18n-html="footer.data">Data from <a href="https://en.wikipedia.org/" target="_blank" rel="noopener">Wikipedia</a> and
         <a href="https://www.wikidata.org/" target="_blank" rel="noopener">Wikidata</a>.
-        Text CC BY-SA 4.0; images from Wikimedia Commons under their own licences.
+        Text CC BY-SA 4.0; images from Wikimedia Commons under their own licences.</span>
         <span id="generated"></span></p>
-      <p class="footer-dedication">Named after Ferdinand Verbiest (1623–1688), the Flemish Jesuit who built a small steam-powered trolley around 1672, possibly the first self-propelled vehicle.</p>
+      <p class="footer-dedication" data-i18n="footer.dedication">Named after Ferdinand Verbiest (1623–1688), the Flemish Jesuit who built a small steam-powered trolley around 1672, possibly the first self-propelled vehicle.</p>
     </footer>
   </main>
 
@@ -260,11 +264,11 @@
   <section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" aria-hidden="true" tabindex="-1" inert>
     <div class="sheet-grab" id="sheetGrab" aria-hidden="true"><span></span></div>
     <div class="sheet-nav" id="sheetNav">
-      <button class="glass-btn" id="sheetBack" type="button" aria-label="Back" hidden>
+      <button class="glass-btn" id="sheetBack" type="button" aria-label="Back" hidden data-i18n-attr="aria-label:back">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.8 4.8 7.6 12l7.2 7.2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="sheet-nav-title" id="sheetNavTitle" aria-hidden="true"></div>
-      <button class="glass-btn" id="sheetClose" type="button" aria-label="Close">
+      <button class="glass-btn" id="sheetClose" type="button" aria-label="Close" data-i18n-attr="aria-label:close">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.8 6.8 10.4 10.4m0-10.4L6.8 17.2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
       </button>
     </div>
@@ -274,9 +278,10 @@
   <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="data/verbiest-data.js?v=25"></script>
-  <script src="js/util.js?v=25"></script>
-  <script src="js/chart.js?v=25"></script>
-  <script src="js/app.js?v=25"></script>
+  <script src="data/verbiest-data.js?v=29"></script>
+  <script src="js/i18n.js?v=29"></script>
+  <script src="js/util.js?v=29"></script>
+  <script src="js/chart.js?v=29"></script>
+  <script src="js/app.js?v=29"></script>
 </body>
 </html>

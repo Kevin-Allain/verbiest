@@ -111,8 +111,14 @@ def _label(ent):
     return ((ent or {}).get("labels") or {}).get("en", {}).get("value")
 
 
+_ENTS = None
+
+
 def load_cached_entities():
-    """Every Wikidata entity (with claims) found in the API cache."""
+    """Every Wikidata entity (with claims) found in the API cache (read once per run)."""
+    global _ENTS
+    if _ENTS is not None:
+        return dict(_ENTS)
     ents = {}
     for path in glob.glob(os.path.join(CACHE, "*.json")):
         try:
@@ -124,7 +130,8 @@ def load_cached_entities():
             for q, e in d["entities"].items():
                 if isinstance(e, dict) and "claims" in e:
                     ents[q] = e
-    return ents
+    _ENTS = ents
+    return dict(ents)
 
 
 def _statements(ent, q):

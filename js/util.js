@@ -46,7 +46,7 @@
     }
   }
 
-  const fmt = new Intl.NumberFormat("en-US");
+  const fmt = new Intl.NumberFormat(document.documentElement.lang === "fr" ? "fr-FR" : "en-US");
   const num = (n) => fmt.format(Math.round(n));
 
   /** Accent-insensitive, lower-case form used for searching. */
@@ -147,6 +147,8 @@
     car: '<svg viewBox="0 0 24 24"><path fill-rule="evenodd" fill="currentColor" d="M4 11.4 5.6 6.6A2.6 2.6 0 0 1 8 4.8h8a2.6 2.6 0 0 1 2.4 1.8l1.6 4.8c.9.5 1.5 1.5 1.5 2.6v4.6c0 .6-.4 1-1 1h-1.7c-.6 0-1-.4-1-1v-1.3H6.2v1.3c0 .6-.4 1-1 1H3.5c-.6 0-1-.4-1-1V14c0-1.1.6-2.1 1.5-2.6ZM6.5 10.9h11l-1.2-3.5a1 1 0 0 0-.9-.7H8.6a1 1 0 0 0-.9.7ZM5.6 14.7a1.4 1.4 0 1 0 2.8 0 1.4 1.4 0 1 0-2.8 0ZM15.6 14.7a1.4 1.4 0 1 0 2.8 0 1.4 1.4 0 1 0-2.8 0Z"/></svg>',
     share: '<svg viewBox="0 0 24 24"><path d="M12 14.5V3.6M8.2 7.2 12 3.4l3.8 3.8" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.6 10.2H7.2a2 2 0 0 0-2 2v6.4a2 2 0 0 0 2 2h9.6a2 2 0 0 0 2-2v-6.4a2 2 0 0 0-2-2h-1.4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>',
     tray: '<svg viewBox="0 0 24 24"><path d="M12 3.6v10.9M8.2 10.7l3.8 3.8 3.8-3.8" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.6 14.2v4.4a2 2 0 0 0 2 2h10.8a2 2 0 0 0 2-2v-4.4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>',
+    info: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v5.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.3" fill="currentColor"/></svg>',
+    book: '<svg viewBox="0 0 24 24"><path d="M12 6.4C10.3 5 8 4.4 4.6 4.5c-.6 0-1.1.5-1.1 1.1v11.6c0 .6.5 1.1 1.1 1.1 3.2-.1 5.4.5 7.4 1.9 2-1.4 4.2-2 7.4-1.9.6 0 1.1-.5 1.1-1.1V5.6c0-.6-.5-1.1-1.1-1.1C16 4.4 13.7 5 12 6.4Zm0 0v12.2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>',
     checkmark: '<svg viewBox="0 0 24 24"><path d="m5.5 12.5 4.3 4.3 8.7-9.6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     flag: '<svg viewBox="0 0 24 24"><path d="M5.6 21V3.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M5.6 4.3c2.5-1.5 5-1.3 7.2 0 2.2 1.2 4.4 1.4 6.7.3v9.1c-2.3 1.1-4.5.9-6.7-.3-2.2-1.3-4.7-1.5-7.2 0Z" fill="currentColor"/></svg>',
   };

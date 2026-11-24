@@ -358,7 +358,7 @@
         axisNodes.push(s("path", { class: "c-break", d: `M${xb - 6},${base + 4} l4,-8 M${xb + 2},${base + 4} l4,-8` }));
         const xp0 = clipX(this.xOf(Warp.y0, d));
         if (xb - xp0 > 90) {
-          axisNodes.push(s("text", { class: "c-prelude-note", x: (xp0 + xb) / 2, y: base - 8, "text-anchor": "middle" }, "compressed scale"));
+          axisNodes.push(s("text", { class: "c-prelude-note", x: (xp0 + xb) / 2, y: base - 8, "text-anchor": "middle" }, window.I18N ? I18N.t("compressed") : "compressed scale"));
         }
       }
       // selected year as a tinted pill on the axis
