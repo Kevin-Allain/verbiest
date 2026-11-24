@@ -59,19 +59,42 @@
   function histReplace(st, url) { try { history.replaceState(st, "", url); } catch (e) { /* ignore */ } }
 
   /* ------------------------------------------------------------------ my garage: storage
-     Favourite cars and makers, and the cars you have owned (with years and a note),
-     kept on this device only (localStorage). Keyed by Wikipedia title, so they survive
-     data refreshes. A backup can be exported and imported from the Garage tab. */
+     Favourite cars and makers, and the cars you have owned, kept on this device only
+     (localStorage). The same model can have been owned several times: each ownership
+     has a purchase date and price and, if the car was sold, a sale date and price.
+     Cars are keyed by Wikipedia title, so they survive data refreshes. A backup can be
+     exported and imported from the Garage tab. */
   const GARAGE_KEY = "verbiest-garage";
   const CURRENT_YEAR = new Date().getFullYear();
-  const garage = { fav: new Map(), favMakers: new Map(), owned: new Map() };
+  const garage = { fav: new Map(), favMakers: new Map(), owned: new Map() }; // owned: id -> ownership
   const toYear = (v) => { const n = parseInt(v, 10); return n >= 1600 && n <= CURRENT_YEAR + 1 ? n : null; };
+  const toMonth = (v) => { const n = parseInt(v, 10); return n >= 1 && n <= 12 ? n : null; };
+  const toAmount = (v) => {
+    if (v == null || v === "") return null;
+    const n = typeof v === "number" ? v : parseFloat(String(v).replace(/[\s\u00a0\u202f']/g, "").replace(",", "."));
+    return Number.isFinite(n) && n >= 0 ? n : null;
+  };
+  const CURRENCIES = ["EUR", "FRF", "AF", "BEF", "CHF", "GBP", "USD"];
+  const toCur = (v) => (CURRENCIES.includes(v) ? v : null);
+  const newId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+
+  /** A clean ownership record: {id, n, buyY, buyM, buyPrice, buyCur, sold, sellY, sellM, sellPrice, sellCur, note, t}. */
+  function cleanOwnership(o, fallbackT) {
+    return {
+      id: typeof o.id === "string" && o.id ? o.id.slice(0, 60) : newId(),
+      n: o.n,
+      buyY: toYear(o.buyY), buyM: toMonth(o.buyM), buyPrice: toAmount(o.buyPrice), buyCur: toCur(o.buyCur),
+      sold: !!o.sold, sellY: toYear(o.sellY), sellM: toMonth(o.sellM), sellPrice: toAmount(o.sellPrice), sellCur: toCur(o.sellCur),
+      note: typeof o.note === "string" ? o.note.slice(0, 2000) : "",
+      t: Number.isFinite(+o.t) && +o.t > 0 ? +o.t : fallbackT,
+    };
+  }
 
   /** Merge a stored/imported garage into memory. Returns how many new items were added. */
   function mergeGarage(raw) {
     let added = 0;
     if (!raw || typeof raw !== "object") return 0;
-    const stamp = (t) => (Number.isFinite(+t) && +t > 0 ? +t : Date.now());
+    const stamp = (x) => (Number.isFinite(+x) && +x > 0 ? +x : Date.now());
     for (const [key, map] of [["fav", garage.fav], ["favMakers", garage.favMakers]]) {
       for (const f of Array.isArray(raw[key]) ? raw[key] : []) {
         if (!f || typeof f.n !== "string" || map.has(f.n)) continue;
@@ -81,25 +104,29 @@
     }
     for (const o of Array.isArray(raw.owned) ? raw.owned : []) {
       if (!o || typeof o.n !== "string") continue;
-      const cur = garage.owned.get(o.n);
-      if (!cur) added++;
-      garage.owned.set(o.n, {
-        from: toYear(o.from) ?? (cur ? cur.from : null),
-        to: toYear(o.to) ?? (cur ? cur.to : null),
-        note: typeof o.note === "string" && o.note ? o.note.slice(0, 2000) : (cur ? cur.note : ""),
-        t: cur ? cur.t : stamp(o.t),
-      });
+      // first version: one ownership per car, with years only
+      const src = !("buyY" in o) && ("from" in o || "to" in o)
+        ? { id: "v1-" + o.n, n: o.n, buyY: o.from, sold: !!o.to, sellY: o.to, note: o.note, t: o.t }
+        : o;
+      const rec = cleanOwnership(src, Date.now());
+      if (!garage.owned.has(rec.id)) added++;
+      garage.owned.set(rec.id, rec);
     }
+    syncOwnedTitles();
     return added;
   }
   function serializeGarage() {
     const ser = (map) => [...map].map(([n, v]) => Object.assign({ n }, v));
-    return { app: "Verbiest", v: 1, saved: new Date().toISOString(), fav: ser(garage.fav), favMakers: ser(garage.favMakers), owned: ser(garage.owned) };
+    return { app: "Verbiest", v: 2, saved: new Date().toISOString(), fav: ser(garage.fav), favMakers: ser(garage.favMakers), owned: [...garage.owned.values()] };
   }
+
+  let ownedTitles = new Set();
+  function syncOwnedTitles() { ownedTitles = new Set([...garage.owned.values()].map((o) => o.n)); }
   try { mergeGarage(JSON.parse(localStorage.getItem(GARAGE_KEY) || "null")); } catch (e) { /* storage unavailable */ }
 
   let persistAsked = false;
   function saveGarage() {
+    syncOwnedTitles();
     try { localStorage.setItem(GARAGE_KEY, JSON.stringify(serializeGarage())); }
     catch (e) { toast(t("g.saveFail")); }
     // ask the browser to keep this site's storage (no prompt in Safari / Chrome)
@@ -107,8 +134,40 @@
     garageChanged();
   }
   const isFav = (c) => garage.fav.has(c.n);
-  const isOwned = (c) => garage.owned.has(c.n);
+  const isOwned = (c) => ownedTitles.has(c.n);
   const isFavMaker = (m) => garage.favMakers.has(m.n);
+  const byPurchase = (x, y) => (x.buyY || 9999) - (y.buyY || 9999) || (x.buyM || 0) - (y.buyM || 0) || x.t - y.t;
+  const ownershipsOf = (c) => [...garage.owned.values()].filter((o) => o.n === c.n).sort(byPurchase);
+
+  /* money: amounts as written, plus the euro value for currencies with a fixed legal rate */
+  const LOCALE = LANG === "fr" ? "fr-FR" : "en-GB";
+  const EURO_RATE = { FRF: 6.55957, AF: 655.957, BEF: 40.3399 };   // per euro (1999 conversion rates; 100 old francs = 1 franc)
+  const CUR_SIGN = { EUR: "€", FRF: "F", AF: "AF", BEF: "FB", CHF: "CHF", GBP: "£", USD: "$" };
+  const money0 = new Intl.NumberFormat(LOCALE, { maximumFractionDigits: 0 });
+  function money(amount, cur) {
+    const sign = CUR_SIGN[cur] || cur;
+    return cur === "GBP" || cur === "USD" ? sign + money0.format(amount) : `${money0.format(amount)} ${sign}`;
+  }
+  const inEuros = (amount, cur) => (EURO_RATE[cur] ? amount / EURO_RATE[cur] : null);
+  function moneyText(amount, cur) {
+    if (amount == null) return null;
+    const e = inEuros(amount, cur);
+    return e != null ? `${money(amount, cur)} (≈ ${money(Math.round(e), "EUR")})` : money(amount, cur);
+  }
+  /** Currency offered for a purchase in a given year (French interface: francs before 2002, old francs before 1960). */
+  const defaultCur = (y) => (LANG === "fr" && y && y < 2002 ? (y < 1960 ? "AF" : "FRF") : "EUR");
+  const monthFmt = new Intl.DateTimeFormat(LOCALE, { month: "long" });
+  const monthName = (m) => monthFmt.format(new Date(2000, m - 1, 1));
+  const dateText = (y, m) => (y ? (m ? `${monthName(m)} ${y}` : String(y)) : null);
+  /** Length of an ownership, in years (or months when shorter than a year). */
+  function ownedFor(o) {
+    if (!o.buyY) return null;
+    const endY = o.sold ? o.sellY : CURRENT_YEAR, endM = o.sold ? o.sellM : new Date().getMonth() + 1;
+    if (!endY) return null;
+    const months = (endY - o.buyY) * 12 + ((endM || 6) - (o.buyM || 6));
+    if (months < 12) return t("dur.months", Math.max(1, months));
+    return t("dur.years", Math.round(months / 12));
+  }
 
   /* ------------------------------------------------------------------ flags */
   // Flag emoji for modern countries (Apple platforms draw them beautifully; Windows has none).
@@ -150,7 +209,7 @@
     if (state.maker != null && c.m !== state.maker) return false;
     if (state.kind) {
       if (state.kind === "@fav") { if (!garage.fav.has(c.n)) return false; }
-      else if (state.kind === "@owned") { if (!garage.owned.has(c.n)) return false; }
+      else if (state.kind === "@owned") { if (!ownedTitles.has(c.n)) return false; }
       else if (!(c.k & KIND[state.kind])) return false;
     }
     if (ignoreDim !== "country" && state.off.country.size && state.off.country.has(carGroup(c, "country"))) return false;
@@ -1009,9 +1068,25 @@
         sameYear.length ? h("section", { class: "d-sec" },
           secHead(t("sec.alsoNew", c.y), t("seeAll"), () => revealYear(c.y)),
           shelf(sameYear)) : null,
+        saleLinks(c),
         linksList([[t("link.read"), wikiLink(c.n)], c.i ? [t("link.photo"), commonsPage(c.i)] : null]),
         h("p", { class: "d-source" }, t("src.car")))
     );
+  }
+
+  /** "Find one for sale": the sites' own search pages (nothing is copied into the app). */
+  function saleLinks(c) {
+    const name = splitTitle(c.fr || c.n)[0];          // French ads use the French name ("Volkswagen Coccinelle")
+    const row = (href, title, sub, ic) => h("a", { class: "lrow tinted", href, target: "_blank", rel: "noopener" },
+      h("span", { class: "row-icon" }, icon(ic)),
+      h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, title), h("span", { class: "lrow-sub" }, sub)),
+      icon("arrowUpRight", "ext"));
+    return h("section", { class: "d-sec" },
+      secHead(t("sale.head")),
+      h("p", { class: "d-note" }, t("sale.note")),
+      h("div", { class: "list d-list sale-list" },
+        row("https://www.leboncoin.fr/recherche?category=2&text=" + encodeURIComponent(name), t("sale.lbc"), t("sale.lbcSub"), "tag"),
+        row("https://www.google.com/search?q=" + encodeURIComponent(t("sale.query", name)), t("sale.web"), t("sale.webSub"), "search")));
   }
 
   function modelRow(id) {
@@ -1891,10 +1966,12 @@
     else { garage.fav.set(c.n, { t: Date.now() }); toast(t("g.favAdded"), "heartFill"); }
     saveGarage();
   }
-  function toggleOwned(c) {
-    if (garage.owned.delete(c.n)) toast(t("g.ownRemoved"), "key");
-    else { garage.owned.set(c.n, { from: null, to: null, note: "", t: Date.now() }); toast(t("g.ownAdded"), "keyFill"); }
+  function addOwnership(c) {
+    const o = cleanOwnership({ n: c.n }, Date.now());
+    garage.owned.set(o.id, o);
+    toast(t("g.ownAdded"), "keyFill");
     saveGarage();
+    return o;
   }
   function toggleFavMaker(m) {
     if (garage.favMakers.delete(m.n)) toast(t("g.favRemoved"), "heart");
@@ -1904,24 +1981,30 @@
 
   function bigButton(kind, onclick) { return h("button", { class: "big-btn", type: "button", "data-kind": kind, onclick }); }
 
-  /** Favourite / "I Owned One" buttons on a car page, plus the ownership form. */
+  /** Favourite / "I Owned One" buttons on a car page, plus a form for each time the car was owned. */
   function garageControls(c) {
     const favBtn = bigButton("fav", () => { toggleFav(c); sync(); });
-    const ownBtn = bigButton("own", () => { toggleOwned(c); sync(); form.render(true); });
-    const form = ownForm(c);
+    const ownBtn = bigButton("own", () => {
+      if (!isOwned(c)) addOwnership(c);
+      forms.render(true);
+      sync();
+      const first = forms.querySelector(".own-entry");
+      if (first) first.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "nearest" });
+    });
+    const forms = ownForms(c, () => sync());
     function sync() {
-      const f = isFav(c), o = isOwned(c);
+      const f = isFav(c), n = ownershipsOf(c).length;
       favBtn.setAttribute("aria-pressed", String(f));
       favBtn.replaceChildren(icon(f ? "heartFill" : "heart"), h("span", null, t("g.favourite")));
-      ownBtn.setAttribute("aria-pressed", String(o));
-      ownBtn.replaceChildren(icon(o ? "keyFill" : "key"), h("span", null, o ? t("g.inGarage") : t("g.ownedOne")));
+      ownBtn.setAttribute("aria-pressed", String(n > 0));
+      ownBtn.replaceChildren(icon(n ? "keyFill" : "key"), h("span", null, n > 1 ? t("g.inGarageN", n) : n ? t("g.inGarage") : t("g.ownedOne")));
     }
     sync();
-    return h("div", { class: "garage-ctl" }, h("div", { class: "garage-btns" }, favBtn, ownBtn), form);
+    return h("div", { class: "garage-ctl" }, h("div", { class: "garage-btns" }, favBtn, ownBtn), forms);
   }
 
   function yearField(value, placeholder, onChange) {
-    const inp = h("input", { type: "text", inputmode: "numeric", pattern: "[0-9]*", maxlength: "4", placeholder, autocomplete: "off", enterkeyhint: "done" });
+    const inp = h("input", { type: "text", inputmode: "numeric", pattern: "[0-9]*", maxlength: "4", placeholder, autocomplete: "off", enterkeyhint: "done", "aria-label": placeholder });
     inp.value = value != null ? String(value) : "";
     const commit = () => {
       const v = inp.value.trim() ? toYear(inp.value) : null;
@@ -1934,27 +2017,102 @@
     inp.addEventListener("keydown", (ev) => { if (ev.key === "Enter") inp.blur(); });
     return inp;
   }
+  function monthField(value, onChange) {
+    const sel = h("select", { class: "fsel", "aria-label": t("g.month") },
+      h("option", { value: "" }, t("g.monthAny")),
+      Array.from({ length: 12 }, (_, i) => h("option", { value: String(i + 1) }, monthName(i + 1))));
+    sel.value = value ? String(value) : "";
+    sel.addEventListener("change", () => onChange(toMonth(sel.value)));
+    return sel;
+  }
+  function amountField(value, onChange) {
+    const inp = h("input", { type: "text", inputmode: "decimal", placeholder: t("g.amountPh"), autocomplete: "off", enterkeyhint: "done", "aria-label": t("g.amountPh") });
+    inp.value = value != null ? money0.format(value) : "";
+    const commit = () => {
+      const v = toAmount(inp.value);
+      inp.classList.toggle("invalid", !!inp.value.trim() && v == null);
+      if (!inp.value.trim() || v != null) onChange(v);
+    };
+    inp.addEventListener("input", debounce(commit, 400));
+    inp.addEventListener("change", () => { commit(); const v = toAmount(inp.value); if (v != null) inp.value = money0.format(v); });
+    inp.addEventListener("keydown", (ev) => { if (ev.key === "Enter") inp.blur(); });
+    return inp;
+  }
+  function currencyField(value, onChange) {
+    const sel = h("select", { class: "fsel cur", "aria-label": t("g.currency") },
+      CURRENCIES.map((k) => h("option", { value: k }, t("cur." + k))));
+    sel.value = value;
+    sel.addEventListener("change", () => onChange(sel.value));
+    return sel;
+  }
 
-  function ownForm(c) {
+  /** The forms for every time this car was owned, and "I Owned Another One". */
+  function ownForms(c, onChange) {
     const box = h("div", { class: "own-form" });
-    const save = debounce(() => saveGarage(), 250);
     box.render = (animate) => {
-      const o = garage.owned.get(c.n);
-      if (!o) { box.hidden = true; box.replaceChildren(); return; }
-      const note = h("textarea", { rows: "2", maxlength: "2000", placeholder: t("g.notePh") });
-      note.value = o.note || "";
-      note.addEventListener("input", () => { o.note = note.value; save(); });
+      const list = ownershipsOf(c);
+      if (!list.length) { box.hidden = true; box.replaceChildren(); return; }
       box.replaceChildren(
-        h("div", { class: "list form-list" },
-          h("label", { class: "frow" }, h("span", null, t("g.ownedFrom")), yearField(o.from, t("g.yearPh"), (v) => { o.from = v; save(); })),
-          h("label", { class: "frow" }, h("span", null, t("g.until")), yearField(o.to, t("g.stillOwn"), (v) => { o.to = v; save(); })),
-          h("label", { class: "frow note" }, h("span", { class: "sr-only" }, t("g.note")), note)),
+        ...list.map((o, k) => ownEntry(c, o, k, list.length, () => { box.render(false); onChange(); })),
+        h("button", { class: "pill-btn gray add-own", type: "button", onclick: () => { addOwnership(c); box.render(true); onChange(); } }, icon("plus"), t("g.addAnother")),
         h("p", { class: "footnote form-foot" }, t("g.formFoot")));
       box.hidden = false;
       if (animate && !reduceMotion.matches && box.animate) box.animate([{ opacity: 0, transform: "translateY(-6px)" }, { opacity: 1, transform: "none" }], { duration: 320, easing: "cubic-bezier(.32,.72,0,1)" });
     };
     box.render(false);
     return box;
+  }
+
+  function ownEntry(c, o, k, count, rerender) {
+    const save = debounce(() => saveGarage(), 300);
+    const euroNote = (amount, cur) => {
+      const e = amount != null ? inEuros(amount, cur) : null;
+      return e != null ? t("g.euros", money(Math.round(e), "EUR")) : "";
+    };
+    // purchase
+    const buyEuro = h("span", { class: "frow-note" });
+    const buyCur = currencyField(o.buyCur || defaultCur(o.buyY), (v) => { o.buyCur = v; buyEuro.textContent = euroNote(o.buyPrice, v); save(); });
+    const buyYear = yearField(o.buyY, t("g.yearPh"), (v) => {
+      o.buyY = v;
+      if (!o.buyCur) { buyCur.value = defaultCur(v); buyEuro.textContent = euroNote(o.buyPrice, buyCur.value); }
+      save();
+    });
+    const buyPrice = amountField(o.buyPrice, (v) => { o.buyPrice = v; if (!o.buyCur && v != null) o.buyCur = buyCur.value; buyEuro.textContent = euroNote(v, buyCur.value); save(); });
+    buyEuro.textContent = euroNote(o.buyPrice, buyCur.value);
+    // sale
+    const sellEuro = h("span", { class: "frow-note" });
+    const sellCur = currencyField(o.sellCur || o.buyCur || defaultCur(o.sellY || o.buyY), (v) => { o.sellCur = v; sellEuro.textContent = euroNote(o.sellPrice, v); save(); });
+    const sellPrice = amountField(o.sellPrice, (v) => { o.sellPrice = v; if (!o.sellCur && v != null) o.sellCur = sellCur.value; sellEuro.textContent = euroNote(v, sellCur.value); save(); });
+    sellEuro.textContent = euroNote(o.sellPrice, sellCur.value);
+    const sellRows = h("div", { class: "sell-rows" },
+      h("div", { class: "frow" }, h("span", null, t("g.soldIn")), h("span", { class: "fdate" }, monthField(o.sellM, (v) => { o.sellM = v; save(); }),
+        yearField(o.sellY, t("g.yearPh"), (v) => { o.sellY = v; if (!o.sellCur) sellCur.value = o.buyCur || defaultCur(v || o.buyY); save(); }))),
+      h("div", { class: "frow price" }, h("span", null, t("g.salePrice")), h("span", { class: "fprice" }, sellPrice, sellCur)),
+      h("div", { class: "frow-sub" }, sellEuro));
+    sellRows.hidden = !o.sold;
+    const soldSwitch = h("input", { type: "checkbox", class: "switch", role: "switch", "aria-label": t("g.soldQ") });
+    soldSwitch.checked = o.sold;
+    soldSwitch.addEventListener("change", () => { o.sold = soldSwitch.checked; sellRows.hidden = !o.sold; save(); });
+    const note = h("textarea", { rows: "2", maxlength: "2000", placeholder: t("g.notePh"), "aria-label": t("g.note") });
+    note.value = o.note || "";
+    note.addEventListener("input", () => { o.note = note.value; save(); });
+
+    return h("div", { class: "own-entry" },
+      count > 1 ? h("p", { class: "own-entry-head" }, dateText(o.buyY, o.buyM) ? t("g.boughtOn", dateText(o.buyY, o.buyM)) : t("g.ownership", k + 1)) : null,
+      h("div", { class: "list form-list" },
+        h("div", { class: "frow" }, h("span", null, t("g.boughtIn")), h("span", { class: "fdate" }, monthField(o.buyM, (v) => { o.buyM = v; save(); }), buyYear)),
+        h("div", { class: "frow price" }, h("span", null, t("g.pricePaid")), h("span", { class: "fprice" }, buyPrice, buyCur)),
+        h("div", { class: "frow-sub" }, buyEuro),
+        h("label", { class: "frow" }, h("span", null, t("g.soldQ")), soldSwitch),
+        sellRows,
+        h("label", { class: "frow note" }, note),
+        h("button", { class: "frow danger", type: "button", onclick: () => {
+          if (!confirm(t("g.deleteConfirm", carName(c)))) return;
+          garage.owned.delete(o.id);
+          toast(t("g.ownRemoved"), "key");
+          saveGarage();
+          rerender();
+        } }, t("g.delete"))));
   }
 
   function makerFavButton(m) {
@@ -1969,13 +2127,14 @@
   }
 
   /* ---- the Garage tab */
-  const ownedYears = (o) => (o.from && o.to ? (o.from === o.to ? String(o.from) : `${o.from}–${o.to}`) : o.from ? t("g.since", o.from) : o.to ? t("g.until2", o.to) : null);
-
-  /** Gantt-style rows of year spans: [{label, from, to (null = still), text, approx, title, onclick}] */
+  /** Gantt-style rows of year spans: [{label, from, to (null = still), text, approx, title, onclick}].
+      Rows may also give exact positions in fractional years: x0 (start) and x1 (end), and open (still running). */
   function spanChart(rows, cls) {
     if (!rows.length) return null;
+    const start = (r) => (r.x0 != null ? r.x0 : r.from);
+    const end = (r) => (r.x1 != null ? r.x1 : (r.to || CURRENT_YEAR) + 1);
     let a = Infinity, b = -Infinity;
-    for (const r of rows) { a = Math.min(a, r.from); b = Math.max(b, r.to || CURRENT_YEAR); }
+    for (const r of rows) { a = Math.min(a, start(r)); b = Math.max(b, end(r) - 1); }
     a = Math.floor((a - 1) / 5) * 5; b = Math.ceil((b + 1) / 5) * 5;
     const span = Math.max(1, b - a);
     const pos = (y) => ((y - a) / span) * 100;
@@ -1985,21 +2144,79 @@
     return h("div", { class: "card own-chart" + (cls ? " " + cls : "") },
       h("div", { class: "oc-grid" }, ticks.map((y) => h("span", { class: "oc-tick", style: { left: pos(y) + "%" } }, h("i"), h("b", null, String(y))))),
       rows.map((r) => {
-        const to = r.to || CURRENT_YEAR;
+        const x0 = pos(start(r)), x1 = pos(end(r));
+        const open = r.open != null ? r.open : !r.to;
         return h("button", { class: "oc-row", type: "button", onclick: r.onclick, title: r.title || null },
           h("span", { class: "oc-name" }, r.label),
           h("span", { class: "oc-track" },
-            h("span", { class: "oc-bar" + (r.to ? "" : " open") + (r.approx ? " approx" : ""), style: { left: pos(r.from) + "%", width: Math.max(1.6, pos(to + 1) - pos(r.from)) + "%" } }),
-            ocLabel(r.text, pos(r.from), pos(to + 1))));
+            h("span", { class: "oc-bar" + (open ? " open" : "") + (r.approx ? " approx" : ""), style: { left: x0 + "%", width: Math.max(1.6, x1 - x0) + "%" } }),
+            ocLabel(r.text, x0, x1)));
       }));
   }
 
+  /** Short "mars 1972 – juin 1979" / "depuis 2012" text for an ownership. */
+  function ownedSpan(o) {
+    const a = dateText(o.buyY, o.buyM);
+    if (!o.sold) return t("g.since", a);
+    const b = dateText(o.sellY, o.sellM);
+    return b ? `${a} – ${b}` : `${a} – ?`;
+  }
+
+  /** Bars from purchase to sale (month precision when known). */
   function ownershipChart(list) {
-    const dated = list.filter(([, o]) => o.from || o.to);
-    return spanChart(dated.sort(([, x], [, y]) => (x.from || x.to) - (y.from || y.to)).map(([c, o]) => ({
-      label: splitTitle(carName(c))[0], from: o.from || o.to, to: o.to, text: ownedYears(o),
-      title: `${carName(c)}, ${ownedYears(o)}`, onclick: () => openDetail("car", c._i),
-    })));
+    const now = CURRENT_YEAR + new Date().getMonth() / 12;
+    return spanChart(list.map(({ c, o }) => {
+      const x0 = o.buyY + ((o.buyM || 1) - 1) / 12;
+      const endKnown = o.sold && o.sellY;
+      const x1 = endKnown ? o.sellY + (o.sellM ? o.sellM / 12 : 1) : o.sold ? x0 + 1 : now;
+      return {
+        label: splitTitle(carName(c))[0], x0, x1: Math.max(x1, x0 + 0.08), open: !o.sold, approx: o.sold && !o.sellY,
+        text: o.sold ? (o.sellY ? (o.sellY === o.buyY ? String(o.buyY) : `${o.buyY}–${o.sellY}`) : `${o.buyY}–?`) : t("g.since", o.buyY),
+        title: `${carName(c)} · ${ownedSpan(o)}`, onclick: () => openDetail("car", c._i),
+      };
+    }));
+  }
+
+  /** Purchases and sales, year by year, like a diary; cars still owned are listed under "Today". */
+  function ownershipJournal(list) {
+    const events = [];
+    for (const it of list) {
+      events.push({ y: it.o.buyY, m: it.o.buyM || 0, sell: false, ...it });
+      if (it.o.sold && it.o.sellY) events.push({ y: it.o.sellY, m: it.o.sellM || 0, sell: true, ...it });
+    }
+    // same month: the sale comes first (a car traded in for the next one)
+    events.sort((x, y) => x.y - y.y || x.m - y.m || (y.sell - x.sell) || x.o.t - y.o.t);
+    const years = new Map();
+    for (const ev of events) { if (!years.has(ev.y)) years.set(ev.y, []); years.get(ev.y).push(ev); }
+    const row = (ev) => {
+      const { c, o } = ev;
+      const th = h("span", { class: "row-thumb" });
+      if (c.i) th.append(wikiImg(c.i, 120, "")); else th.append(placeholder());
+      const when = ev.m ? capFirst(monthName(ev.m)) : null;
+      const price = ev.sell ? moneyText(o.sellPrice, o.sellCur || o.buyCur || "EUR") : moneyText(o.buyPrice, o.buyCur || defaultCur(o.buyY));
+      const dur = ev.sell ? ownedFor(o) : null;
+      return h("button", { class: "j-row" + (ev.sell ? " sell" : ""), type: "button", onclick: () => openDetail("car", c._i) },
+        h("span", { class: "j-dot" }, icon(ev.sell ? "tag" : "keyFill")),
+        th,
+        h("span", { class: "lrow-main" },
+          h("span", { class: "j-kind" }, [ev.sell ? t("g.jSold") : t("g.jBought"), when].filter(Boolean).join(" · ")),
+          h("span", { class: "lrow-title" }, carName(c)),
+          h("span", { class: "lrow-sub" }, [price, dur ? t("g.after", dur) : null, ev.sell ? null : o.note || null].filter(Boolean).join(" · "))),
+        icon("chevronRight", "chev"));
+    };
+    const still = list.filter(({ o }) => !o.sold);
+    return h("div", { class: "journal" },
+      [...years].map(([y, evs]) => h("section", { class: "j-year" }, h("h3", { class: "j-year-head" }, String(y)), h("div", { class: "j-events" }, evs.map(row)))),
+      still.length ? h("section", { class: "j-year now" }, h("h3", { class: "j-year-head" }, t("today")),
+        h("div", { class: "j-events" }, still.map(({ c, o }) => {
+          const th = h("span", { class: "row-thumb" });
+          if (c.i) th.append(wikiImg(c.i, 120, "")); else th.append(placeholder());
+          return h("button", { class: "j-row still", type: "button", onclick: () => openDetail("car", c._i) },
+            h("span", { class: "j-dot" }, icon("car")), th,
+            h("span", { class: "lrow-main" }, h("span", { class: "j-kind" }, t("g.jStill")), h("span", { class: "lrow-title" }, carName(c)),
+              h("span", { class: "lrow-sub" }, [t("g.since", dateText(o.buyY, o.buyM)), ownedFor(o)].filter(Boolean).join(" · "))),
+            icon("chevronRight", "chev"));
+        }))) : null);
   }
 
   /** Year label next to an ownership bar: after it, before it, or inside it — wherever it fits. */
@@ -2015,16 +2232,12 @@
     return put(after >= before ? "after" : "before");
   }
 
-  function ownedRow(c, o) {
+  function undatedRow(c) {
     const th = h("span", { class: "row-thumb" });
     if (c.i) th.append(wikiImg(c.i, 120, "")); else th.append(placeholder());
-    const yrs = ownedYears(o);
-    return markCarRow(h("button", { class: "lrow", type: "button", onclick: () => openDetail("car", c._i) },
-      th,
-      h("span", { class: "lrow-main" },
-        h("span", { class: "lrow-title" }, carName(c)),
-        h("span", { class: "lrow-sub" }, [yrs ? t("g.owned", yrs) : t("g.yearsNotSet"), o.note].filter(Boolean).join(" · "))),
-      icon("chevronRight", "chev")), c);
+    return h("button", { class: "lrow", type: "button", onclick: () => openDetail("car", c._i) },
+      th, h("span", { class: "lrow-main" }, h("span", { class: "lrow-title" }, carName(c)), h("span", { class: "lrow-sub" }, t("g.yearsNotSet"))),
+      icon("chevronRight", "chev"));
   }
 
   function showOnTimeline(kind) {
@@ -2040,7 +2253,7 @@
   }
 
   function renderGarage() {
-    const owned = [...garage.owned].filter(([n]) => carByTitle.has(n)).map(([n, o]) => [cars[carByTitle.get(n)], o]);
+    const owned = [...garage.owned.values()].filter((o) => carByTitle.has(o.n)).map((o) => ({ o, c: cars[carByTitle.get(o.n)] }));
     const favCars = [...garage.fav].filter(([n]) => carByTitle.has(n)).sort(([, x], [, y]) => y.t - x.t).map(([n]) => cars[carByTitle.get(n)]);
     const favMakers = [...garage.favMakers].filter(([n]) => makerByName.has(n)).sort(([, x], [, y]) => y.t - x.t).map(([n]) => makers[makerByName.get(n)]);
     const nodes = [];
@@ -2058,11 +2271,17 @@
           h("button", { class: "pill-btn gray", type: "button", onclick: () => setTab("timeline") }, icon("chart"), t("g.browse")))));
     }
     if (owned.length) {
-      const sorted = owned.slice().sort(([, x], [, y]) => (x.from || x.to || 9999) - (y.from || y.to || 9999) || x.t - y.t);
+      const dated = owned.filter(({ o }) => o.buyY).sort((x, y) => byPurchase(x.o, y.o));
+      const undated = owned.filter(({ o }) => !o.buyY);
+      const first = dated.length ? dated[0].o.buyY : null;
       nodes.push(h("section", { class: "g-sec" },
-        head(t("g.ownedHead"), t("nCars", owned.length), t("g.showOnTimeline"), () => showOnTimeline("@owned")),
-        ownershipChart(sorted) || h("p", { class: "footnote g-hint" }, t("g.hint")),
-        h("div", { class: "list owned-list" }, sorted.map(([c, o]) => ownedRow(c, o)))));
+        head(t("g.storyHead"), t("g.storySummary", owned.length, first), t("g.showOnTimeline"), () => showOnTimeline("@owned")),
+        dated.length ? ownershipChart(dated) : h("p", { class: "footnote g-hint" }, t("g.hint")),
+        dated.length ? ownershipJournal(dated) : null,
+        undated.length ? h("div", { class: "g-undated" },
+          h("div", { class: "sr-head" }, h("h3", null, t("g.toComplete"))),
+          h("div", { class: "list owned-list" }, undated.map(({ c }) => undatedRow(c))),
+          h("p", { class: "footnote sr-foot" }, t("g.toCompleteNote"))) : null));
     }
     if (favCars.length) {
       nodes.push(h("section", { class: "g-sec" },
@@ -2112,7 +2331,7 @@
     if (!f) return;
     try {
       const raw = JSON.parse(await f.text());
-      if (!raw || raw.v !== 1 || !(raw.fav || raw.owned || raw.favMakers)) throw new Error("not a backup");
+      if (!raw || !(raw.v === 1 || raw.v === 2) || !(raw.fav || raw.owned || raw.favMakers)) throw new Error("not a backup");
       const n = mergeGarage(raw);
       saveGarage();
       toast(n ? t("g.imported", n) : t("g.upToDate"), "tray");

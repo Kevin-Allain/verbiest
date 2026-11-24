@@ -3,3 +3,4 @@ scripts/*.log
 __pycache__/
 .DS_Store
 .claude/
+scripts/.venv/

@@ -58,19 +58,26 @@ Five tabs:
   companies (Porsche SE, Groupe PSA…) get their own page.
 - **Search** (or press `/`, or ⌘K): cars, makers and years, with your recently viewed
   cars and makers.
-- **Garage**: your own cars. Open any car and tap **Favourite** or **I Owned One**
-  (with the years you owned it and a note); makers can be favourites too. The Garage
-  shows an ownership timeline, your favourites, and **Export / Import Backup**. The
-  chart's **Favourites** and **My Cars** chips show them on the timeline. Everything is
-  stored on the device only (browser storage), so it also works offline. On an iPhone
-  or iPad, add the site to the Home Screen so Safari keeps the data.
+- **Garage**: your own cars. Open any car and tap **Favourite** or **I Owned One**. Each
+  time you owned a car (the same model can be added several times) records the month and
+  year you bought it and the **price paid**, then, with the **Sold** switch, when you sold
+  it and for how much, plus a note. Prices can be in euros, francs, old francs (before
+  1960), Belgian or Swiss francs, pounds or dollars; francs are also shown in euros at the
+  official conversion rate. The Garage tab tells **your car story**: a timeline of bars
+  from purchase to sale, then purchases and sales year by year. Makers can be favourites
+  too. **Export / Import Backup** moves the garage between devices, and the chart's
+  **Favourites** and **My Cars** chips show your cars on the timeline. Everything is stored
+  on the device only (browser storage), so it also works offline. On an iPhone or iPad,
+  add the site to the Home Screen so Safari keeps the data.
 
 Every car, maker and milestone opens in a **sheet**, laid out like an App Store page:
 photo, key facts in a row (year, maker, country, body style…), the Wikipedia
 introduction (loaded live, with "more") and **Read the Full Article**, a reading view of
 the whole Wikipedia article (references and tables left out), the other generations of
 the same model, the car's place in its maker's history, and "More from this maker" and
-"Also new that year" shelves. In French, the French Wikipedia article is shown when one
+"Also new that year" shelves, and **Find One for Sale**: links that open Leboncoin's own
+search for that model, and a web search (the ads and prices stay on those sites; nothing
+is copied into the app). In French, the French Wikipedia article is shown when one
 exists; otherwise the English one, with a note saying the page only exists in English. Tapping a car inside a sheet
 slides the next page in, with a back button; drag the sheet down (phone) or press Esc
 to close it.
