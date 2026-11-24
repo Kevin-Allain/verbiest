@@ -37,7 +37,7 @@
     "more": "Show More", "moreN": (n) => `Show More (${n})`,
     "ms.lede": "The moments that shaped the automobile, era by era. Open one to read its story.",
     "ms.eyebrow": (n, a, b) => `${n} moments · ${a}–${b}`,
-    "makers.search": "Search Makers", "makers.searchLabel": "Search makers", "clear": "Clear",
+    "makers.search": "Search Makers or Countries", "makers.searchLabel": "Search makers or countries", "clear": "Clear",
     "makers.group": "Group makers", "makers.az": "A–Z", "makers.country": "Country", "makers.founded": "Founded", "makers.groups": "Groups",
     "own.cap": "Who owns whom in", "own.major": "Major", "own.all": "All", "own.scope": "Which groups to show",
     "own.year": "Year", "own.prev": "One year earlier", "own.next": "One year later", "own.step": "Step one year",
@@ -45,7 +45,7 @@
     "own.note": "From Wikidata’s “owned by”, “parent organisation” and “subsidiary” statements (majority owners only; governments left out), plus a short list of well-known acquisitions. Dashed lines: the start year is not recorded, so it is estimated. Tap any company for its story.",
     "garage.eyebrow": "Saved on this device",
     "garage.lede": "The cars you have owned and the ones you love. Open any car and tap <b>Favourite</b> or <b>I Owned One</b>.",
-    "search.placeholder": "Cars, Makers and Years", "search.label": "Search cars, makers and years", "search.results": "Search results",
+    "search.placeholder": "Cars, Makers, Countries, Years", "search.label": "Search cars, makers, countries and years", "search.results": "Search results",
     "footer.data": "Data from <a href=\"https://en.wikipedia.org/\" target=\"_blank\" rel=\"noopener\">Wikipedia</a> and <a href=\"https://www.wikidata.org/\" target=\"_blank\" rel=\"noopener\">Wikidata</a>. Text CC BY-SA 4.0; images from Wikimedia Commons under their own licences.",
     "footer.dedication": "Named after Ferdinand Verbiest (1623–1688), the Flemish Jesuit who built a small steam-powered trolley around 1672, possibly the first self-propelled vehicle.",
     "footer.snapshot": (d) => `Snapshot taken ${d}.`,
@@ -183,7 +183,7 @@
     // search
     "s.recent": "Recently Viewed", "s.suggestions": "Suggestions",
     "s.suggest": ["Ford Model T", "Citroën DS", "Volkswagen Beetle", "Ferrari", "1955", "Electric", "Rolls-Royce", "Mini"],
-    "s.year": "Year", "s.makers": "Makers", "s.cars": "Cars", "s.goTo": (y) => `Go to ${y}`,
+    "s.year": "Year", "s.countries": "Countries", "s.makers": "Makers", "s.cars": "Cars", "s.goTo": (y) => `Go to ${y}`,
     "s.carsThatYear": (n) => `${n} ${plEn(+String(n).replace(/\D/g, ""), "car", "cars")} introduced that year`, "s.showYear": "Show this year on the timeline",
     "s.sinceY": (y) => `since ${y}`, "s.showing": (n) => `Showing the 25 most famous of ${n} matches.`,
     "s.noResults": "Check the spelling or try a new search.",
@@ -213,7 +213,7 @@
     "more": "Afficher plus", "moreN": (n) => `Afficher plus (${n})`,
     "ms.lede": "Les moments qui ont façonné l’automobile, époque par époque. Ouvrez-en un pour lire son histoire.",
     "ms.eyebrow": (n, a, b) => `${n} moments · ${a}-${b}`,
-    "makers.search": "Rechercher une marque", "makers.searchLabel": "Rechercher une marque", "clear": "Effacer",
+    "makers.search": "Marque ou pays", "makers.searchLabel": "Rechercher une marque ou un pays", "clear": "Effacer",
     "makers.group": "Classer les marques", "makers.az": "A–Z", "makers.country": "Pays", "makers.founded": "Fondation", "makers.groups": "Groupes",
     "own.cap": "Qui possède qui en", "own.major": "Principaux", "own.all": "Tous", "own.scope": "Groupes affichés",
     "own.year": "Année", "own.prev": "Un an plus tôt", "own.next": "Un an plus tard", "own.step": "Changer d’année",
@@ -221,7 +221,7 @@
     "own.note": "D’après les déclarations « détenu par », « organisation mère » et « filiale » de Wikidata (actionnaires majoritaires uniquement, États exclus), complétées par une courte liste d’acquisitions connues. Traits pointillés : l’année de début n’est pas renseignée et a été estimée. Touchez une entreprise pour lire son histoire.",
     "garage.eyebrow": "Enregistré sur cet appareil",
     "garage.lede": "Les voitures que vous avez possédées et celles que vous aimez. Ouvrez une voiture et touchez <b>Favori</b> ou <b>Je l’ai eue</b>.",
-    "search.placeholder": "Voitures, marques et années", "search.label": "Rechercher des voitures, des marques et des années", "search.results": "Résultats de recherche",
+    "search.placeholder": "Voitures, marques, pays, années", "search.label": "Rechercher des voitures, des marques, des pays et des années", "search.results": "Résultats de recherche",
     "footer.data": "Données de <a href=\"https://fr.wikipedia.org/\" target=\"_blank\" rel=\"noopener\">Wikipédia</a> et de <a href=\"https://www.wikidata.org/\" target=\"_blank\" rel=\"noopener\">Wikidata</a>. Textes sous licence CC BY-SA 4.0 ; images de Wikimedia Commons sous leurs propres licences.",
     "footer.dedication": "Nommé d’après Ferdinand Verbiest (1623-1688), jésuite flamand qui construisit vers 1672 un petit chariot à vapeur, peut-être le premier véhicule automobile.",
     "footer.snapshot": (d) => `Données du ${d}.`,
@@ -351,7 +351,7 @@
 
     "s.recent": "Consultés récemment", "s.suggestions": "Suggestions",
     "s.suggest": ["Ford T", "Citroën DS", "Volkswagen Coccinelle", "Ferrari", "1955", "Renault 4", "Peugeot 205", "Mini"],
-    "s.year": "Année", "s.makers": "Marques", "s.cars": "Voitures", "s.goTo": (y) => `Aller en ${y}`,
+    "s.year": "Année", "s.countries": "Pays", "s.makers": "Marques", "s.cars": "Voitures", "s.goTo": (y) => `Aller en ${y}`,
     "s.carsThatYear": (n) => `${n} ${pl(+String(n).replace(/\D/g, ""), "voiture lancée", "voitures lancées")} cette année-là`, "s.showYear": "Voir cette année dans la chronologie",
     "s.sinceY": (y) => `depuis ${y}`, "s.showing": (n) => `Les 25 plus célèbres sur ${n} résultats.`,
     "s.noResults": "Vérifiez l’orthographe ou essayez une autre recherche.",
@@ -493,5 +493,5 @@
     catch (e) { return iso; }
   };
 
-  window.I18N = { lang, t, applyStatic, localizeData, setLang, dateFmt, langs: [["en", "English"], ["fr", "Français"]] };
+  window.I18N = { lang, t, applyStatic, localizeData, setLang, dateFmt, countryFr: COUNTRIES, langs: [["en", "English"], ["fr", "Français"]] };
 })();

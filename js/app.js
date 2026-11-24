@@ -190,6 +190,53 @@
   const countryName = (ci) => (ci >= 0 ? countries[ci].n : t("unknownCountry"));
   const countryLabel = (ci) => { const f = flagOf(ci); return f ? `${f} ${countryName(ci)}` : countryName(ci); };
 
+  /* ------------------------------------------------------------------ countries in search
+     A country is found by its English and French names, whatever the interface language,
+     and by common other names and adjectives ("Czech Republic", "USA", "Italian"...).
+     A search word matches a country when one of these words starts with it. */
+  const COUNTRY_ALIASES = {
+    "United States": "USA US America American United States of America Amerique Americain Etats-Unis",
+    "United Kingdom": "UK Britain Great Britain British England English Scotland Wales Grande-Bretagne Britannique Angleterre Anglais",
+    "Czechia": "Czech Republic Bohemia Republique tcheque Boheme",
+    "Czechoslovakia": "Czech Tcheque",
+    "Germany": "German Deutschland Allemand",
+    "German Reich": "Germany German Allemagne Allemand",
+    "East Germany": "GDR DDR RDA Germany German Allemagne Allemand",
+    "France": "French Francais",
+    "Italy": "Italian Italia Italien",
+    "Japan": "Japanese Japonais",
+    "China": "Chinese Chinois",
+    "South Korea": "Korea Korean Coree Coreen",
+    "Sweden": "Swedish Suedois",
+    "Spain": "Spanish Espagnol",
+    "Russia": "Russian Russe",
+    "Soviet Union": "USSR URSS Soviet Russia Russie Sovietique",
+    "Netherlands": "Holland Dutch Hollande Neerlandais",
+    "Switzerland": "Swiss Suisse",
+    "Austria": "Austrian Autrichien",
+    "Belgium": "Belgian Belge",
+    "India": "Indian Indien",
+    "Australia": "Australian Australien",
+    "Brazil": "Brazilian Brasil Bresilien",
+    "Poland": "Polish Polonais",
+    "United Arab Emirates": "UAE EAU Emirates",
+  };
+  const countryWords = countries.map((c) => {
+    const en = c.en || c.n;
+    const text = [en, c.n, I18N.countryFr[en] || "", COUNTRY_ALIASES[en] || ""].join(" ");
+    return [...new Set(norm(text).split(/[^a-z0-9]+/).filter(Boolean))];
+  });
+  const wordParts = (w) => w.split(/[^a-z0-9]+/).filter(Boolean); // "etats-unis" → etats, unis
+  const countryHas = (ci, word) => {
+    const parts = wordParts(word);
+    return ci >= 0 && parts.length > 0 && parts.every((p) => countryWords[ci].some((w) => w.startsWith(p)));
+  };
+  const countryMatches = (ci, words) => words.length > 0 && words.every((w) => countryHas(ci, w));
+  const countryExact = (ci, words) => words.every((w) => wordParts(w).every((p) => countryWords[ci].includes(p)));
+  const countryMakers = countries.map(() => 0), countryCars = countries.map(() => 0);
+  for (const m of makers) if (m.c >= 0) countryMakers[m.c]++;
+  for (const c of cars) if (c.c >= 0) countryCars[c.c]++;
+
   /* ------------------------------------------------------------------ colours */
   const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
   let COLORS = {};
@@ -1545,7 +1592,7 @@
     }
     stopOwnPlay();
     const tokens = norm(makerQuery.trim()).split(/\s+/).filter(Boolean);
-    const list = makers.filter((m) => !tokens.length || tokens.every((t) => m._n.includes(t)));
+    const list = makers.filter((m) => !tokens.length || tokens.every((w) => m._n.includes(w) || countryHas(m.c, w)));
     let keyOf, sortRows, sortKeys;
     if (makerMode === "az") {
       keyOf = (m) => { const ch = (m._n.replace(/^[^a-z0-9]+/, "")[0] || "#"); return /[a-z]/.test(ch) ? ch.toUpperCase() : "#"; };
@@ -1580,6 +1627,16 @@
   }
   bindSeg("makerSortSeg", () => makerMode, (v) => { makerMode = v; renderMakers(); scrollTo(0, 0); });
   function setMakerMode(v) { makerMode = v; setSegValue("makerSortSeg", v); renderMakers(); }
+  /** The Makers tab, grouped by country and filtered to one country (from Search). */
+  function showCountry(ci) {
+    makerQuery = countryName(ci);
+    $("makerFilter").value = makerQuery;
+    $("makerClear").hidden = false;
+    makersBuilt = true;
+    setMakerMode("country");
+    setTab("makers");
+    scrollTo(0, 0);
+  }
   $("makerFilter").addEventListener("input", debounce(() => {
     makerQuery = $("makerFilter").value;
     $("makerClear").hidden = !makerQuery;
@@ -2345,9 +2402,16 @@
     let items = [], active = -1;
     const SUGGEST = t("s.suggest");
 
-    function score(nameNorm, q, tokens, pop) {
-      if (!tokens.every((t) => nameNorm.includes(t))) return -1;
+    /** -1 if no match. Every word must be in the name or name the country; name matches rank higher. */
+    function score(nameNorm, q, tokens, pop, ci) {
+      let viaCountry = false;
+      for (const w of tokens) {
+        if (nameNorm.includes(w)) continue;
+        if (!countryHas(ci, w)) return -1;
+        viaCountry = true;
+      }
       let sc = pop;
+      if (viaCountry) return sc;
       if (nameNorm === q) sc += 2000;
       else if (nameNorm.startsWith(q)) sc += 600;
       else if (nameNorm.includes(" " + tokens[0])) sc += 150;
@@ -2383,6 +2447,7 @@
     }
     const carThumb = (c) => { const th = h("span", { class: "row-thumb" }); if (c.i) th.append(wikiImg(c.i, 120, "")); else th.append(placeholder()); return th; };
     const iconLead = (name) => h("span", { class: "row-icon" }, icon(name));
+    const countryLead = (ci) => { const f = flagOf(ci); return f ? h("span", { class: "row-icon flag-lead", "aria-hidden": "true" }, f) : iconLead("flag"); };
 
     function section(title, listCls, rows, extra) {
       return h("section", { class: "sr-sec" },
@@ -2423,12 +2488,21 @@
       if (!q) { renderEmpty(); return; }
       const tokens = q.split(/\s+/);
       const mk = [];
-      for (const m of makers) { const sc = score(m._n, q, tokens, m.p * 4 + m._count); if (sc >= 0) mk.push([sc, m]); }
+      for (const m of makers) { const sc = score(m._n, q, tokens, m.p * 4 + m._count, m.c); if (sc >= 0) mk.push([sc, m]); }
       mk.sort((a, b) => b[0] - a[0]);
       const cs = [];
       for (const c of cars) {
-        const sc = Math.max(score(c._n, q, tokens, c.p * 3), c._nf ? score(c._nf, q, tokens, c.p * 3) : -1);
+        const sc = Math.max(score(c._n, q, tokens, c.p * 3, c.c), c._nf ? score(c._nf, q, tokens, c.p * 3, c.c) : -1);
         if (sc >= 0) cs.push([sc, c]);
+      }
+      const cn = []; // countries, exact names first
+      if (q.length >= 2) {
+        countries.forEach((_, ci) => {
+          if (!countryMakers[ci] || !countryMatches(ci, tokens)) return;
+          const exact = countryExact(ci, tokens);
+          cn.push([(exact ? 100000 : 0) + countryCars[ci], ci, exact]);
+        });
+        cn.sort((a, b) => b[0] - a[0]);
       }
       cs.sort((a, b) => b[0] - a[0]);
       items = [];
@@ -2438,7 +2512,12 @@
         const n = cars.filter((c) => c.y === yr).length;
         nodes.push(section(t("s.year"), "icons", [row(iconLead("calendar"), t("s.goTo", yr), n ? t("s.carsThatYear", num(n)) : t("s.showYear"), () => revealYear(yr))]));
       }
+      const countrySec = () => section(t("s.countries"), "icons", cn.slice(0, 3).map(([, ci]) =>
+        row(countryLead(ci), countryName(ci), [t("nMakers", num(countryMakers[ci])), t("nModels", num(countryCars[ci]))].join(" · "), () => showCountry(ci), tokens)));
+      const countriesFirst = cn.length && cn[0][2];
+      if (countriesFirst) nodes.push(countrySec());
       if (mk.length) nodes.push(section(t("s.makers"), "icons", mk.slice(0, 6).map(([, m]) => row(makerTile(m), m.n, [countryLabel(m.c), m.f ? t("s.sinceY", m.f) : null, t("nModels", m._count)].filter(Boolean).join(" · "), () => openDetail("maker", m._i), tokens))));
+      if (cn.length && !countriesFirst) nodes.push(countrySec());
       if (cs.length) {
         const shown = cs.slice(0, 25);
         const sec = section(t("s.cars"), "", shown.map(([, c]) => markCarRow(row(carThumb(c), carName(c), [yearsLabel(c), c.m >= 0 ? makers[c.m].n : null].filter(Boolean).join(" · "), () => openDetail("car", c._i), tokens), c)));

@@ -531,6 +531,7 @@ img { display: block; max-width: 100%; }
 .row-thumb .ph svg { width: 70%; }
 .row-icon { width: 30px; height: 30px; border-radius: 8px; flex: none; display: grid; place-items: center; background: var(--tint); color: #fff; }
 .row-icon svg { width: 18px; height: 18px; }
+.row-icon.flag-lead { background: var(--fill-3); font-size: 20px; line-height: 1; }
 
 /* "app icon" tiles for makers */
 .icon-tile {
