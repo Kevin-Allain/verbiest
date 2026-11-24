@@ -1,0 +1,91 @@
+[
+ {
+  "n": "Lamborghini Murciélago",
+  "y": 2001,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 175000,
+    "amount_text": "£175,000",
+    "currency": "GBP",
+    "year": null,
+    "market": "United Kingdom",
+    "version": "Coupé (first version)",
+    "kind": "list",
+    "source": "web",
+    "site": "pistonheads.com",
+    "url": "https://www.pistonheads.com/news/ph-buying-guides/lamborghini-murcielago-ph-pocket-buying-guide/34484",
+    "confidence": "medium",
+    "quote": "Price new: £175,000/£192,000/£260,937*",
+    "note": "First of three UK prices given (later versions cost more).",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Mini",
+  "y": 1959,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 496.96,
+    "amount_text": "£496 19s. 2d.",
+    "currency": "GBP",
+    "year": 1959,
+    "market": "United Kingdom",
+    "version": "Austin Se7en / Morris Mini-Minor, basic",
+    "kind": "launch",
+    "source": "web",
+    "site": "motorsportmagazine.com (Motor Sport, September 1959)",
+    "url": "https://www.motorsportmagazine.com/archive/article/september-1959/28/revolutionary-new-british-small-cars/",
+    "confidence": "high",
+    "quote": "The basic price is £350, which purchase tax inflates to £496 19s. 2d.",
+    "note": "£350 before purchase tax; £537 with the de luxe equipment.",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 4850,
+    "amount_text": "4.850 DM",
+    "currency": "DEM",
+    "year": 1967,
+    "market": "Germany",
+    "version": "Austin Mini Standard",
+    "kind": "list",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Preis (Austin Mini, 1967) (→ Wert inflationsbereinigt) 4.850 DM (Standard)",
+    "url": "https://de.wikipedia.org/wiki/Mini_(Auto)",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Tesla Model 3",
+  "y": 2016,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 35000,
+    "amount_text": "$35,000",
+    "currency": "USD",
+    "year": 2019,
+    "market": "United States",
+    "version": "Standard Range",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "the highly anticipated Standard Range trim priced at $35,000",
+    "note": "The price promised at the 2016 unveiling; this version went on sale in February 2019 (the first cars, from 2017, cost more).",
+    "url": "https://en.wikipedia.org/wiki/Tesla_Model_3",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

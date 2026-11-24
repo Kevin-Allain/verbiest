@@ -1,0 +1,1804 @@
+{
+"212 T01": [
+{
+"a": 139900,
+"c": "CNY",
+"y": 2024,
+"k": "n",
+"m": "China",
+"v": "Base (Mechanic)",
+"u": "https://www.marklines.com/en/news/313392",
+"s": "marklines.com",
+"main": 1,
+"vf": "de base (Mechanic)"
+}
+],
+"Audi A1": [
+{
+"a": 15800,
+"c": "EUR",
+"y": 2010,
+"k": "n",
+"m": "Germany",
+"v": "1.2 TFSI (base)",
+"u": "https://www.autobild.de/artikel/audi-a1-preis-1173251.html",
+"s": "autobild.de",
+"main": 1,
+"vf": "1.2 TFSI (de base)"
+}
+],
+"Audi A2": [
+{
+"a": 129900,
+"c": "FRF",
+"y": 2000,
+"k": "n",
+"m": "France",
+"v": "Base",
+"u": "https://fr.wikipedia.org/wiki/Audi_A2",
+"s": "w:fr",
+"main": 1,
+"vf": "de base"
+}
+],
+"Audi A3": [
+{
+"a": 23020,
+"c": "EUR",
+"y": 2004,
+"k": "n",
+"m": "France",
+"v": "A3 Sportback Attraction (petrol)",
+"u": "https://fr.wikipedia.org/wiki/Audi_A3",
+"s": "w:fr",
+"vf": "A3 Sportback Attraction (essence)"
+}
+],
+"Audi A4": [
+{
+"a": 21892,
+"c": "EUR",
+"y": 1995,
+"k": "l",
+"m": "France",
+"v": "A4 1.6 100 ch, automatic",
+"u": "https://www.largus.fr/fiche-technique/Audi/A4/I+B5/1995/Berline+4+Portes/16+100ch+BVA-708498.html",
+"s": "largus.fr",
+"main": 1,
+"vf": "A4 1.6 100 ch, boîte automatique"
+},
+{
+"a": 34900,
+"c": "USD",
+"y": 2017,
+"k": "l",
+"m": "United States",
+"v": "2017 A4 Ultra FWD Premium",
+"u": "https://en.wikipedia.org/wiki/Audi_A4",
+"s": "w:en",
+"vf": "A4 Ultra FWD Premium 2017"
+}
+],
+"Audi A5": [
+{
+"a": 33000,
+"c": "EUR",
+"y": 2007,
+"k": "n",
+"m": "Germany",
+"v": "1.8 TFSI coupé",
+"u": "https://www.autobild.de/artikel/audi-a5_s5-59811.html",
+"s": "autobild.de",
+"main": 1,
+"x": "~"
+}
+],
+"Audi A6": [
+{
+"a": 39900,
+"c": "EUR",
+"y": 2011,
+"k": "n",
+"m": "France",
+"v": "Fourth generation (C7), four-cylinder diesel Ambiente",
+"u": "https://fr.wikipedia.org/wiki/Audi_A6",
+"s": "w:fr",
+"vf": "quatrième génération (C7), diesel quatre cylindres Ambiente"
+}
+],
+"Audi Q5": [
+{
+"a": 39100,
+"c": "EUR",
+"k": "l",
+"m": "France",
+"v": "First generation, first engine listed",
+"u": "https://fr.wikipedia.org/wiki/Audi_Q5",
+"s": "w:fr",
+"main": 1,
+"vf": "première génération, premier moteur du tableau"
+}
+],
+"Audi Q7": [
+{
+"a": 48900,
+"c": "EUR",
+"y": 2006,
+"k": "n",
+"m": "Germany",
+"v": "3.0 TDI",
+"u": "https://www.autobild.de/artikel/verkaufsstart-audi-q7-54831.html",
+"s": "autobild.de",
+"main": 1
+},
+{
+"a": 50900,
+"c": "USD",
+"y": 2009,
+"k": "n",
+"m": "United States",
+"v": "Q7 TDI Premium",
+"u": "https://en.wikipedia.org/wiki/Audi_Q7",
+"s": "w:en"
+}
+],
+"Audi Quattro": [
+{
+"a": 49900,
+"c": "DEM",
+"y": 1980,
+"k": "n",
+"m": "Germany",
+"v": "quattro coupé",
+"u": "https://www.auto-motor-und-sport.de/oldtimer/audi-quattro-1980-1991-1/",
+"s": "auto-motor-und-sport.de",
+"main": 1
+}
+],
+"BMW 5 Series": [
+{
+"a": 14490,
+"c": "DEM",
+"y": 1972,
+"k": "n",
+"m": "Germany",
+"v": "BMW 520 (E12), the first 5 Series",
+"u": "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-145-1.bmw-520-e12-four-cylinder.html",
+"s": "bmwgroup-classic.com",
+"main": 1,
+"vf": "BMW 520 (E12), la première Série 5"
+}
+],
+"BMW M3": [
+{
+"a": 59800,
+"c": "DEM",
+"y": 1986,
+"k": "n",
+"m": "Germany",
+"v": "E30 M3 (road version, with catalytic converter)",
+"u": "https://www.autobild.de/artikel/25-jahre-bmw-m3_1041963.html",
+"s": "autobild.de",
+"main": 1,
+"vf": "M3 E30 (version route, avec catalyseur)"
+}
+],
+"BMW X3": [
+{
+"a": 33800,
+"c": "EUR",
+"y": 2004,
+"k": "n",
+"m": "Germany",
+"v": "X3 2.0d",
+"u": "https://www.press.bmwgroup.com/deutschland/article/attachment/T0006702DE/24273",
+"s": "press.bmwgroup.com",
+"main": 1
+}
+],
+"BMW X5": [
+{
+"a": 111000,
+"c": "DEM",
+"k": "l",
+"m": "Germany",
+"v": "X5 4.4i (E53)",
+"u": "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-915-1.bmw-x5-4-4i-e53.html",
+"s": "bmwgroup-classic.com",
+"main": 1
+}
+],
+"BMW X6": [
+{
+"a": 57800,
+"c": "EUR",
+"y": 2008,
+"k": "n",
+"m": "Germany",
+"v": "xDrive35i",
+"u": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/x6/e71/212535/",
+"s": "adac.de",
+"main": 1
+},
+{
+"a": 89765,
+"c": "USD",
+"y": 2009,
+"k": "n",
+"m": "United States",
+"v": "ActiveHybrid X6",
+"u": "https://en.wikipedia.org/wiki/BMW_X6",
+"s": "w:en"
+}
+],
+"BMW i3 (hatchback)": [
+{
+"a": 34950,
+"c": "EUR",
+"y": 2013,
+"k": "n",
+"m": "Germany",
+"v": "i3 (base)",
+"u": "https://de.wikipedia.org/wiki/BMW_I01",
+"s": "w:de",
+"main": 1,
+"vf": "i3 (de base)"
+}
+],
+"BMW i8": [
+{
+"a": 145950,
+"c": "EUR",
+"y": 2014,
+"k": "n",
+"m": "France",
+"v": "i8",
+"u": "https://fr.wikipedia.org/wiki/BMW_i8",
+"s": "w:fr",
+"main": 1
+},
+{
+"a": 99845,
+"c": "GBP",
+"y": 2014,
+"k": "n",
+"m": "United Kingdom",
+"v": "i8",
+"u": "https://en.wikipedia.org/wiki/BMW_i8",
+"s": "w:en"
+}
+],
+"Benz Patent-Motorwagen": [
+{
+"a": 3000,
+"c": "MK",
+"y": 1888,
+"k": "n",
+"m": "Germany",
+"v": "Model 3, the first series-produced car",
+"u": "https://en.wikipedia.org/wiki/Benz_Patent-Motorwagen",
+"s": "w:en",
+"main": 1,
+"vf": "Modèle 3, la première voiture de série"
+}
+],
+"Bugatti Veyron": [
+{
+"a": 1225000,
+"c": "EUR",
+"k": "l",
+"m": "France",
+"v": "Veyron 16.4 coupé",
+"u": "https://fr.wikipedia.org/wiki/Bugatti_Veyron_16.4",
+"s": "w:fr",
+"main": 1
+},
+{
+"a": 1309000,
+"c": "EUR",
+"k": "l",
+"v": "Veyron 16.4",
+"u": "https://de.wikipedia.org/wiki/Bugatti_Veyron_16.4",
+"s": "w:de",
+"x": "~"
+}
+],
+"Chevrolet Corvette": [
+{
+"a": 3498,
+"c": "USD",
+"y": 1953,
+"k": "n",
+"m": "United States",
+"v": "1953 roadster",
+"u": "https://www.gm.com/heritage/collection/chevrolet/1953-chevrolet-corvette",
+"s": "gm.com",
+"main": 1,
+"vf": "roadster 1953"
+},
+{
+"a": 60000,
+"c": "USD",
+"y": 2019,
+"k": "n",
+"m": "United States",
+"v": "Eighth generation (C8)",
+"u": "https://fr.wikipedia.org/wiki/Chevrolet_Corvette",
+"s": "w:fr",
+"vf": "huitième génération (C8)"
+}
+],
+"Chevrolet Impala": [
+{
+"a": 2693,
+"c": "USD",
+"y": 1958,
+"k": "n",
+"m": "United States",
+"v": "1958 coupé",
+"u": "https://de.wikipedia.org/wiki/Chevrolet_Impala",
+"s": "w:de",
+"main": 1,
+"vf": "coupé 1958"
+}
+],
+"Citroën 2CV": [
+{
+"a": 228000,
+"c": "AF",
+"y": 1949,
+"k": "n",
+"m": "France",
+"v": "2CV Type A",
+"u": "https://www.lalibre.be/lifestyle/mode/2011/07/20/2-cv-la-voiture-que-les-francais-attendaient-2MYGCK22B5CCNAXKSIYOMUKASA/",
+"s": "lalibre.be",
+"main": 1
+}
+],
+"Citroën C1": [
+{
+"a": 8390,
+"c": "EUR",
+"y": 2005,
+"k": "n",
+"m": "Germany",
+"v": "Three-door (base)",
+"u": "https://www.autobild.de/artikel/8390-euro-fuer-den-citroen-c1-50324.html",
+"s": "autobild.de",
+"main": 1,
+"vf": "trois portes (de base)"
+},
+{
+"a": 9450,
+"c": "EUR",
+"y": 2012,
+"k": "n",
+"m": "Germany",
+"v": "Facelift",
+"u": "https://de.wikipedia.org/wiki/Citro%C3%ABn_C1",
+"s": "w:de",
+"vf": "restylage"
+}
+],
+"Citroën C4": [
+{
+"a": 15500,
+"c": "EUR",
+"y": 2004,
+"k": "l",
+"m": "France",
+"v": "First generation, cheapest version",
+"u": "https://www.largus.fr/Citroen_C4_I.html",
+"s": "largus.fr",
+"main": 1,
+"vf": "première génération, version la moins chère"
+}
+],
+"Citroën DS": [
+{
+"a": 930000,
+"c": "AF",
+"y": 1955,
+"k": "n",
+"m": "France",
+"v": "DS 19",
+"u": "https://www.citromuseum.com/en/2025/01/28/ds-19-1955-chassis-n32/",
+"s": "citromuseum.com",
+"main": 1
+},
+{
+"a": 2833,
+"c": "USD",
+"y": 1959,
+"k": "l",
+"m": "United States",
+"v": "ID19",
+"u": "https://en.wikipedia.org/wiki/Citro%C3%ABn_DS",
+"s": "w:en"
+}
+],
+"DMC DeLorean": [
+{
+"a": 25000,
+"c": "USD",
+"y": 1981,
+"k": "n",
+"m": "United States",
+"v": "DMC-12",
+"u": "https://en.wikipedia.org/wiki/DMC_DeLorean",
+"s": "w:en",
+"main": 1
+}
+],
+"Dacia Logan": [
+{
+"a": 5900,
+"c": "EUR",
+"y": 2004,
+"k": "n",
+"m": "Romania",
+"v": "Cheapest version",
+"u": "https://en.wikipedia.org/wiki/Dacia_Logan",
+"s": "w:en",
+"main": 1,
+"vf": "version la moins chère"
+},
+{
+"a": 7200,
+"c": "EUR",
+"y": 2005,
+"k": "n",
+"m": "Germany",
+"v": "With two airbags and ABS",
+"u": "https://de.wikipedia.org/wiki/Dacia_Logan",
+"s": "w:de",
+"x": "~",
+"vf": "avec deux airbags et ABS"
+}
+],
+"Dacia Sandero": [
+{
+"a": 7800,
+"c": "EUR",
+"y": 2008,
+"k": "l",
+"m": "France",
+"v": "First generation, cheapest version",
+"u": "https://www.largus.fr/Dacia_Sandero_I-B90.html",
+"s": "largus.fr",
+"main": 1,
+"vf": "première génération, version la moins chère"
+},
+{
+"a": 10900,
+"c": "EUR",
+"y": 2008,
+"k": "n",
+"m": "France",
+"v": "1.6 MPI 90 Prestige",
+"u": "https://www.largus.fr/fiche-technique/Dacia/Sandero/I+B90/2010/Berline/16+MPI+90ch+Prestige-965615.html",
+"s": "largus.fr"
+},
+{
+"a": 8490,
+"c": "EUR",
+"y": 2021,
+"k": "l",
+"m": "Germany",
+"v": "Third generation",
+"u": "https://de.wikipedia.org/wiki/Dacia_Sandero",
+"s": "w:de",
+"vf": "troisième génération"
+}
+],
+"Dodge Mirada": [
+{
+"a": 6360,
+"c": "USD",
+"y": 1980,
+"k": "n",
+"m": "United States",
+"v": "Range across versions ($6,360 to $6,650)",
+"u": "https://www.conceptcarz.com/vehicle/z16337/dodge-mirada.aspx",
+"s": "conceptcarz.com",
+"main": 1,
+"vf": "selon les versions (de 6 360 $ à 6 650 $)"
+}
+],
+"Ferrari Enzo": [
+{
+"a": 665000,
+"c": "EUR",
+"y": 2002,
+"k": "n",
+"m": "Italy",
+"v": "Enzo",
+"u": "https://it.wikipedia.org/wiki/Ferrari_Enzo",
+"s": "w:it",
+"main": 1
+},
+{
+"a": 662000,
+"c": "EUR",
+"k": "l",
+"m": "Germany",
+"v": "Enzo",
+"u": "https://de.wikipedia.org/wiki/Ferrari_Enzo_Ferrari",
+"s": "w:de",
+"x": "~"
+}
+],
+"Ferrari F40": [
+{
+"a": 400000,
+"c": "USD",
+"y": 1987,
+"k": "n",
+"v": "F40",
+"u": "https://en.wikipedia.org/wiki/Ferrari_F40",
+"s": "w:en",
+"main": 1,
+"x": "~"
+},
+{
+"a": 444000,
+"c": "DEM",
+"y": 1989,
+"k": "l",
+"m": "Germany",
+"v": "F40",
+"u": "https://de.wikipedia.org/wiki/Ferrari_F40",
+"s": "w:de"
+}
+],
+"Ford Escort (Europe)": [
+{
+"a": 11000,
+"c": "DEM",
+"y": 1980,
+"k": "n",
+"m": "Germany",
+"v": "Third generation (range 11,000 to 17,000 DM)",
+"u": "https://de.wikipedia.org/wiki/Ford_Escort",
+"s": "w:de",
+"vf": "troisième génération (de 11 000 à 17 000 DM)"
+}
+],
+"Ford Escort (North America)": [
+{
+"a": 5158,
+"c": "USD",
+"y": 1981,
+"k": "n",
+"m": "United States",
+"v": "Base three-door",
+"u": "https://eightiescars.com/2018/06/17/1981-ford-escort-hatchback-coupe/",
+"s": "eightiescars.com",
+"main": 1,
+"vf": "trois portes de base"
+},
+{
+"a": 5494,
+"c": "USD",
+"y": 1981,
+"k": "n",
+"m": "United States",
+"v": "L liftback",
+"u": "https://thetruthaboutcars.com/2019/07/junkyard-find-1981-ford-escort-l-liftback-coupe/",
+"s": "thetruthaboutcars.com"
+},
+{
+"a": 5518,
+"c": "USD",
+"y": 1982,
+"k": "l",
+"m": "United States",
+"v": "Base three-door",
+"u": "https://fr.wikipedia.org/wiki/Ford_Escort_(Am%C3%A9rique_du_Nord)",
+"s": "w:fr",
+"vf": "trois portes de base"
+}
+],
+"Ford Fiesta": [
+{
+"a": 2114,
+"c": "GBP",
+"y": 1977,
+"k": "n",
+"m": "United Kingdom",
+"v": "Base Fiesta",
+"u": "https://www.retrowow.co.uk/transport/70s/ford_fiesta_1970s.php",
+"s": "retrowow.co.uk",
+"main": 1,
+"vf": "Fiesta de base"
+}
+],
+"Ford Maverick (1970–1977)": [
+{
+"a": 1995,
+"c": "USD",
+"y": 1970,
+"k": "n",
+"m": "United States",
+"v": "Base two-door",
+"u": "https://en.wikipedia.org/wiki/Ford_Maverick_(1970%E2%80%931977)",
+"s": "w:en",
+"main": 1,
+"vf": "deux portes de base"
+},
+{
+"a": 1995,
+"c": "USD",
+"y": 1970,
+"k": "n",
+"m": "United States",
+"v": "Base",
+"u": "https://fr.wikipedia.org/wiki/Ford_Maverick_(Am%C3%A9rique)",
+"s": "w:fr",
+"vf": "de base"
+}
+],
+"Ford Model T": [
+{
+"a": 850,
+"c": "USD",
+"y": 1908,
+"k": "n",
+"m": "United States",
+"v": "Touring car",
+"u": "https://fr.wikipedia.org/wiki/Ford_T",
+"s": "w:fr",
+"main": 1,
+"vf": "Touring"
+},
+{
+"a": 825,
+"c": "USD",
+"y": 1909,
+"k": "l",
+"m": "United States",
+"v": "Runabout",
+"u": "https://en.wikipedia.org/wiki/Ford_Model_T",
+"s": "w:en"
+}
+],
+"Ford Mustang": [
+{
+"a": 2368,
+"c": "USD",
+"y": 1964,
+"k": "n",
+"m": "United States",
+"v": "Base hardtop",
+"u": "https://en.wikipedia.org/wiki/Ford_Mustang",
+"s": "w:en",
+"main": 1,
+"vf": "hardtop de base"
+}
+],
+"Geely Galaxy Starship 7": [
+{
+"a": 99800,
+"c": "CNY",
+"y": 2024,
+"k": "n",
+"m": "China",
+"v": "55 km Sailing Edition (plug-in hybrid)",
+"u": "https://carnewschina.com/2024/12/06/geely-galaxy-starship-7-phev-with-1420-km-range-launched-price-starts-at-13700-usd/",
+"s": "carnewschina.com",
+"main": 1,
+"vf": "55 km Sailing Edition (hybride rechargeable)"
+}
+],
+"HSV GTS": [
+{
+"a": 35995,
+"c": "NZD",
+"y": 1990,
+"k": "n",
+"m": "New Zealand",
+"v": "VN GTS V6, manual",
+"u": "https://hsvdatabase.com.au/hsv-vn-gts-v6",
+"s": "hsvdatabase.com.au",
+"main": 1,
+"vf": "VN GTS V6, boîte manuelle"
+}
+],
+"Honda Civic": [
+{
+"a": 425000,
+"c": "JPY",
+"y": 1972,
+"k": "n",
+"m": "Japan",
+"v": "Civic 1200 two-door Standard",
+"u": "https://www.honda.co.jp/factbook/auto/CIVIC/19920700/cv20-006.html",
+"s": "honda.co.jp",
+"main": 1,
+"vf": "Civic 1200 deux portes Standard"
+}
+],
+"Hummer": [
+{
+"a": 40000,
+"c": "USD",
+"y": 1992,
+"k": "n",
+"m": "United States",
+"v": "Hummer H1, basic version",
+"u": "https://hagerty.com/media/?p=158872",
+"s": "hagerty.com",
+"main": 1,
+"x": ">",
+"vf": "Hummer H1, version de base"
+}
+],
+"LaFerrari": [
+{
+"a": 1250000,
+"c": "EUR",
+"y": 2013,
+"k": "n",
+"v": "LaFerrari (499 cars)",
+"u": "https://fr.wikipedia.org/wiki/Ferrari_LaFerrari",
+"s": "w:fr",
+"main": 1,
+"vf": "LaFerrari (499 exemplaires)"
+}
+],
+"Lada Niva": [
+{
+"a": 14490,
+"c": "DEM",
+"y": 1988,
+"k": "l",
+"m": "West Germany",
+"v": "WAS-2121",
+"u": "https://de.wikipedia.org/wiki/WAS-2121_Niwa",
+"s": "w:de",
+"main": 1
+},
+{
+"a": 37090,
+"c": "DDM",
+"y": 1988,
+"k": "l",
+"m": "East Germany",
+"v": "WAS-2121",
+"u": "https://de.wikipedia.org/wiki/WAS-2121_Niwa",
+"s": "w:de"
+}
+],
+"Lamborghini Aventador": [
+{
+"a": 321500,
+"c": "EUR",
+"k": "l",
+"m": "Germany",
+"v": "LP 700-4 coupé (2011–2017)",
+"u": "https://de.wikipedia.org/wiki/Lamborghini_Aventador",
+"s": "w:de",
+"main": 1
+}
+],
+"Lamborghini Diablo": [
+{
+"a": 240000,
+"c": "USD",
+"y": 1990,
+"k": "n",
+"v": "Diablo",
+"u": "https://it.wikipedia.org/wiki/Lamborghini_Diablo",
+"s": "w:it",
+"main": 1
+}
+],
+"Lamborghini Gallardo": [
+{
+"a": 160000,
+"c": "EUR",
+"k": "l",
+"m": "Germany",
+"v": "Gallardo (first version)",
+"u": "https://de.wikipedia.org/wiki/Lamborghini_Gallardo",
+"s": "w:de",
+"main": 1,
+"x": "~",
+"vf": "Gallardo (première version)"
+},
+{
+"a": 198000,
+"c": "USD",
+"y": 2008,
+"k": "n",
+"m": "United States",
+"v": "LP 560-4",
+"u": "https://en.wikipedia.org/wiki/Lamborghini_Gallardo",
+"s": "w:en"
+}
+],
+"Lamborghini Huracán": [
+{
+"a": 169500,
+"c": "EUR",
+"y": 2014,
+"k": "n",
+"m": "Europe",
+"v": "LP 610-4",
+"u": "https://openers.jp/en/car/car_news/22404",
+"s": "openers.jp",
+"main": 1
+},
+{
+"a": 201100,
+"c": "USD",
+"y": 2016,
+"k": "n",
+"m": "United States",
+"v": "LP 580-2",
+"u": "https://en.wikipedia.org/wiki/Lamborghini_Hurac%C3%A1n",
+"s": "w:en"
+}
+],
+"Lamborghini Murciélago": [
+{
+"a": 175000,
+"c": "GBP",
+"k": "l",
+"m": "United Kingdom",
+"v": "Coupé (first version)",
+"u": "https://www.pistonheads.com/news/ph-buying-guides/lamborghini-murcielago-ph-pocket-buying-guide/34484",
+"s": "pistonheads.com",
+"main": 1,
+"vf": "coupé (première version)"
+}
+],
+"Lamborghini Urus": [
+{
+"a": 205715,
+"c": "EUR",
+"y": 2018,
+"k": "n",
+"m": "France",
+"v": "Urus",
+"u": "https://fr.wikipedia.org/wiki/Lamborghini_Urus",
+"s": "w:fr",
+"main": 1
+}
+],
+"Mercedes-Benz A-Class": [
+{
+"a": 30360,
+"c": "DEM",
+"y": 1997,
+"k": "n",
+"m": "Germany",
+"v": "A 140 (1.4 litre, 82 PS)",
+"u": "https://www.aerzteblatt.de/archiv/mercedes-a-klasse-ein-zwerg-mit-dem-zeug-zum-riesen-a52e4ddf-efb3-42ff-8fbb-56eeaab2c26f",
+"s": "aerzteblatt.de",
+"main": 1,
+"vf": "A 140 (1,4 litre, 82 ch)"
+}
+],
+"Mercedes-Benz E-Class": [
+{
+"a": 9950,
+"c": "DEM",
+"y": 1953,
+"k": "n",
+"m": "Germany",
+"v": "Mercedes-Benz 180 (W 120)",
+"u": "https://mercedes-benz-publicarchive.com/marsClassic/en/instance/ko/180--W-120-B-I-1953---1957.xhtml?oid=5139",
+"s": "mercedes-benz-publicarchive.com",
+"main": 1
+}
+],
+"Mercedes-Benz G-Class": [
+{
+"a": 29736,
+"c": "DEM",
+"y": 1979,
+"k": "n",
+"m": "Germany",
+"v": "230 G open-top (cheapest)",
+"u": "https://mercedes-benz-publicarchive.com/marsClassic/en/instance/ko/460-series-cross-country-vehicles-1979---1992.xhtml?oid=4740",
+"s": "mercedes-benz-publicarchive.com",
+"main": 1,
+"vf": "230 G découvrable (la moins chère)"
+},
+{
+"a": 107040,
+"c": "EUR",
+"y": 2018,
+"k": "n",
+"m": "Germany",
+"v": "G 500 (second generation)",
+"u": "https://de.wikipedia.org/wiki/Mercedes-Benz_G-Klasse",
+"s": "w:de",
+"vf": "G 500 (deuxième génération)"
+}
+],
+"Mercedes-Benz S-Class": [
+{
+"a": 23800,
+"c": "DEM",
+"y": 1972,
+"k": "n",
+"m": "Germany",
+"v": "W 116 (first S-Class), cheapest version",
+"u": "https://de.wikipedia.org/wiki/Mercedes-Benz_S-Klasse",
+"s": "w:de",
+"main": 1,
+"x": "~",
+"vf": "W 116 (première Classe S), version la moins chère"
+},
+{
+"a": 13000,
+"c": "USD",
+"y": 1972,
+"k": "l",
+"m": "United States",
+"v": "1973 450SE",
+"u": "https://en.wikipedia.org/wiki/Mercedes-Benz_S-Class",
+"s": "w:en",
+"vf": "450SE 1973"
+}
+],
+"Mercedes-Benz SLR McLaren": [
+{
+"a": 435000,
+"c": "EUR",
+"y": 2004,
+"k": "n",
+"m": "Germany",
+"v": "SLR McLaren coupé",
+"u": "https://www.auto-motor-und-sport.de/fahrbericht/75-jahre-ams-historischer-fahrbericht-des-mercedes-slr-mclaren/",
+"s": "auto-motor-und-sport.de",
+"main": 1
+}
+],
+"Mini": [
+{
+"a": 496.96,
+"c": "GBP",
+"y": 1959,
+"k": "n",
+"m": "United Kingdom",
+"v": "Austin Se7en / Morris Mini-Minor, basic",
+"u": "https://www.motorsportmagazine.com/archive/article/september-1959/28/revolutionary-new-british-small-cars/",
+"s": "motorsportmagazine.com",
+"main": 1,
+"vf": "Austin Se7en / Morris Mini-Minor, de base"
+},
+{
+"a": 4850,
+"c": "DEM",
+"y": 1967,
+"k": "l",
+"m": "Germany",
+"v": "Austin Mini Standard",
+"u": "https://de.wikipedia.org/wiki/Mini_(Auto)",
+"s": "w:de"
+}
+],
+"Nissan Leaf": [
+{
+"a": 3760000,
+"c": "JPY",
+"y": 2010,
+"k": "n",
+"m": "Japan",
+"v": "First generation",
+"u": "https://car.watch.impress.co.jp/docs/news/357939.html",
+"s": "car.watch.impress.co.jp",
+"main": 1,
+"vf": "première génération"
+},
+{
+"a": 23790,
+"c": "EUR",
+"y": 2013,
+"k": "l",
+"m": "Germany",
+"v": "With rented battery",
+"u": "https://de.wikipedia.org/wiki/Nissan_Leaf",
+"s": "w:de",
+"vf": "batterie en location"
+}
+],
+"Opel Calibra": [
+{
+"a": 36900,
+"c": "DEM",
+"y": 1989,
+"k": "n",
+"m": "Germany",
+"v": "Base",
+"u": "https://de.wikipedia.org/wiki/Opel_Calibra",
+"s": "w:de",
+"main": 1,
+"vf": "de base"
+}
+],
+"Opel Corsa": [
+{
+"a": 13695,
+"c": "DEM",
+"y": 1983,
+"k": "n",
+"m": "Germany",
+"v": "Base (45 PS)",
+"u": "https://www.autobild.de/artikel/opel-corsa-e-corsa-40-jahre-und-opel-corsa-gt-1987-e-auto-sondermodell-geburtstag-reichweite-preis-21847925.html",
+"s": "autobild.de",
+"main": 1,
+"vf": "de base (45 ch)"
+}
+],
+"Peugeot 205": [
+{
+"a": 45000,
+"c": "FRF",
+"y": 1983,
+"k": "n",
+"m": "France",
+"v": "Cheapest version",
+"u": "https://www.largus.fr/actualite-automobile/de-la-peugeot-205-a-la-208-40-ans-d-evolution-30025205.html",
+"s": "largus.fr",
+"main": 1,
+"x": "~",
+"vf": "version la moins chère"
+},
+{
+"a": 46450,
+"c": "FRF",
+"k": "l",
+"m": "France",
+"v": "Junior three-door",
+"u": "https://fr.wikipedia.org/wiki/Peugeot_205",
+"s": "w:fr",
+"vf": "Junior trois portes"
+}
+],
+"Peugeot 206": [
+{
+"a": 8370,
+"c": "GBP",
+"k": "l",
+"m": "United Kingdom",
+"v": "1.1 L three-door",
+"u": "https://www.parkers.co.uk/peugeot/206/hatchback-1998/11-l-3d/specs",
+"s": "parkers.co.uk",
+"main": 1,
+"vf": "1.1 L trois portes"
+}
+],
+"Peugeot 308": [
+{
+"a": 17350,
+"c": "EUR",
+"y": 2008,
+"k": "l",
+"m": "France",
+"v": "Five-door, small engines",
+"u": "https://www.largus.fr/actualite-automobile/la-deferlante-308-137382.html",
+"s": "largus.fr",
+"main": 1,
+"vf": "cinq portes, petits moteurs"
+}
+],
+"Peugeot Hoggar (coupé utility)": [
+{
+"a": 31400,
+"c": "BRL",
+"y": 2010,
+"k": "n",
+"m": "Brazil",
+"v": "X-Line 1.4",
+"u": "https://verificarauto.com.br/peugeot-hoggar-usada-fipe/",
+"s": "verificarauto.com.br",
+"main": 1
+},
+{
+"a": 43500,
+"c": "BRL",
+"y": 2010,
+"k": "n",
+"m": "Brazil",
+"v": "Escapade 1.6",
+"u": "https://verificarauto.com.br/peugeot-hoggar-usada-fipe/",
+"s": "verificarauto.com.br"
+}
+],
+"Porsche 911": [
+{
+"a": 21900,
+"c": "DEM",
+"y": 1964,
+"k": "n",
+"m": "Germany",
+"v": "911 coupé",
+"u": "https://newsroom.porsche.com/en/press-kits/60-Years-Porsche-911/1.-Generation-Porsche-911-(Ur-Elfer),-1963-1973.html",
+"s": "newsroom.porsche.com",
+"main": 1
+}
+],
+"Porsche 918 Spyder": [
+{
+"a": 781000,
+"c": "EUR",
+"y": 2013,
+"k": "n",
+"m": "Europe",
+"v": "918 Spyder",
+"u": "https://en.wikipedia.org/wiki/Porsche_918_Spyder",
+"s": "w:en",
+"main": 1
+},
+{
+"a": 768026,
+"c": "EUR",
+"y": 2013,
+"k": "n",
+"m": "Germany",
+"v": "918 Spyder",
+"u": "https://de.wikipedia.org/wiki/Porsche_918",
+"s": "w:de"
+}
+],
+"Porsche Cayenne": [
+{
+"a": 60204,
+"c": "EUR",
+"y": 2002,
+"k": "n",
+"m": "Germany",
+"v": "Cayenne S (the first, cheapest version)",
+"u": "https://www.autobild.de/artikel/porsche-gelaendewagen-37897.html",
+"s": "autobild.de",
+"main": 1,
+"vf": "Cayenne S (la première et la moins chère)"
+}
+],
+"Porsche Panamera": [
+{
+"a": 85967,
+"c": "EUR",
+"k": "n",
+"m": "France",
+"v": "First generation, Panamera (base)",
+"u": "https://fr.wikipedia.org/wiki/Porsche_Panamera",
+"s": "w:fr",
+"main": 1,
+"vf": "première génération, Panamera (de base)"
+},
+{
+"a": 107553,
+"c": "EUR",
+"y": 2016,
+"k": "n",
+"m": "Germany",
+"v": "Second generation",
+"u": "https://de.wikipedia.org/wiki/Porsche_Panamera",
+"s": "w:de",
+"vf": "deuxième génération"
+}
+],
+"Range Rover": [
+{
+"a": 1998,
+"c": "GBP",
+"y": 1970,
+"k": "n",
+"m": "United Kingdom",
+"v": "Two-door",
+"u": "https://allisons.org/ll/4/LandRover/Range-Rover/",
+"s": "allisons.org",
+"main": 1,
+"vf": "deux portes"
+}
+],
+"Renault 4": [
+{
+"a": 4800,
+"c": "FRF",
+"y": 1961,
+"k": "n",
+"m": "France",
+"v": "Renault 3, the cheapest twin of the R4",
+"u": "https://fr.wikipedia.org/wiki/Renault_4",
+"s": "w:fr",
+"main": 1,
+"vf": "Renault 3, la jumelle la moins chère de la R4"
+},
+{
+"a": 3830,
+"c": "DEM",
+"y": 1961,
+"k": "n",
+"m": "Germany",
+"v": "Renault 4",
+"u": "https://fr.wikipedia.org/wiki/Renault_4",
+"s": "w:fr"
+}
+],
+"Renault Clio": [
+{
+"a": 53100,
+"c": "FRF",
+"y": 1990,
+"k": "n",
+"m": "France",
+"v": "Cheapest version",
+"u": "https://www.largus.fr/actualite-automobile/renault-clio-elle-fete-deja-ses-30-ans-10238403.html",
+"s": "largus.fr",
+"main": 1,
+"vf": "version la moins chère"
+}
+],
+"Renault Mégane": [
+{
+"a": 53450,
+"c": "EUR",
+"y": 2023,
+"k": "n",
+"m": "France",
+"v": "Mégane RS Ultime (limited edition)",
+"u": "https://en.wikipedia.org/wiki/Renault_M%C3%A9gane",
+"s": "w:en",
+"vf": "Mégane RS Ultime (série limitée)"
+}
+],
+"SEAT Ibiza": [
+{
+"a": 825000,
+"c": "ESP",
+"y": 1984,
+"k": "n",
+"m": "Spain",
+"v": "First generation (021A)",
+"u": "https://www.km77.com/revista/engendro-mecanico/reportaje-30-anos-del-lanzamiento-del-seat-ibiza/?amp=1",
+"s": "km77.com",
+"main": 1,
+"x": "~",
+"vf": "première génération (021A)"
+},
+{
+"a": 12600,
+"c": "EUR",
+"y": 2008,
+"k": "n",
+"m": "France",
+"v": "Fourth generation, 1.2 12V 70 ch Reference",
+"u": "https://fr.wikipedia.org/wiki/Seat_Ibiza",
+"s": "w:fr",
+"vf": "quatrième génération, 1.2 12V 70 ch Reference"
+}
+],
+"Tata Ace Zip": [
+{
+"a": 200000,
+"c": "INR",
+"y": 2010,
+"k": "n",
+"m": "India",
+"u": "https://en.wikipedia.org/wiki/Tata_Ace_Zip",
+"s": "w:en",
+"main": 1,
+"x": "<"
+}
+],
+"Tata Nano": [
+{
+"a": 100000,
+"c": "INR",
+"y": 2008,
+"k": "n",
+"m": "India",
+"v": "Standard",
+"u": "https://en.wikipedia.org/wiki/Tata_Nano",
+"s": "w:en",
+"main": 1
+}
+],
+"Tesla Cybertruck": [
+{
+"a": 60990,
+"c": "USD",
+"y": 2023,
+"k": "n",
+"m": "United States",
+"v": "Rear-wheel drive (base)",
+"u": "https://en.wikipedia.org/wiki/Tesla_Cybertruck",
+"s": "w:en",
+"main": 1,
+"vf": "propulsion (de base)"
+},
+{
+"a": 39900,
+"c": "USD",
+"y": 2019,
+"k": "n",
+"m": "United States",
+"v": "Single motor (announced)",
+"u": "https://en.wikipedia.org/wiki/Tesla_Cybertruck",
+"s": "w:en",
+"vf": "un moteur (annoncée)"
+}
+],
+"Tesla Model 3": [
+{
+"a": 35000,
+"c": "USD",
+"y": 2019,
+"k": "n",
+"m": "United States",
+"v": "Standard Range",
+"u": "https://en.wikipedia.org/wiki/Tesla_Model_3",
+"s": "w:en",
+"main": 1
+}
+],
+"Tesla Model S": [
+{
+"a": 57400,
+"c": "USD",
+"y": 2012,
+"k": "n",
+"m": "United States",
+"v": "40 kWh (base)",
+"u": "https://www.foxbusiness.com/lifestyle/tesla-model-s-where-first-one",
+"s": "foxbusiness.com",
+"main": 1,
+"vf": "40 kWh (de base)"
+},
+{
+"a": 78000,
+"c": "EUR",
+"y": 2014,
+"k": "l",
+"m": "Germany",
+"v": "Base model",
+"u": "https://de.wikipedia.org/wiki/Tesla_Model_S",
+"s": "w:de",
+"vf": "modèle de base"
+}
+],
+"Tesla Model X": [
+{
+"a": 132000,
+"c": "USD",
+"y": 2015,
+"k": "n",
+"m": "United States",
+"v": "Signature (the first cars, limited edition)",
+"u": "https://en.wikipedia.org/wiki/Tesla_Model_X",
+"s": "w:en",
+"main": 1,
+"vf": "Signature (les premières, série limitée)"
+},
+{
+"a": 85000,
+"c": "USD",
+"y": 2016,
+"k": "l",
+"m": "United States",
+"v": "Base version",
+"u": "https://en.wikipedia.org/wiki/Tesla_Model_X",
+"s": "w:en",
+"vf": "version de base"
+}
+],
+"Tesla Roadster (first generation)": [
+{
+"a": 98950,
+"c": "USD",
+"y": 2008,
+"k": "n",
+"m": "United States",
+"v": "Roadster (base)",
+"u": "https://en.wikipedia.org/wiki/Tesla_Roadster_(first_generation)",
+"s": "w:en",
+"main": 1,
+"vf": "Roadster (de base)"
+},
+{
+"a": 84000,
+"c": "EUR",
+"y": 2008,
+"k": "n",
+"m": "Europe",
+"v": "Roadster",
+"u": "https://fr.wikipedia.org/wiki/Tesla_Roadster_(premi%C3%A8re_g%C3%A9n%C3%A9ration)",
+"s": "w:fr",
+"x": "~"
+},
+{
+"a": 86950,
+"c": "GBP",
+"y": 2010,
+"k": "n",
+"m": "United Kingdom",
+"v": "Right-hand drive",
+"u": "https://en.wikipedia.org/wiki/Tesla_Roadster_(first_generation)",
+"s": "w:en",
+"vf": "conduite à droite"
+}
+],
+"Think City": [
+{
+"a": 199000,
+"c": "NOK",
+"y": 2000,
+"k": "l",
+"m": "Norway",
+"v": "Ford-era Think City",
+"u": "https://www.tu.no/artikler/trost-for-skuffet-think/270787",
+"s": "tu.no",
+"main": 1,
+"vf": "Think City de l'époque Ford"
+},
+{
+"a": 244000,
+"c": "NOK",
+"k": "l",
+"m": "Norway",
+"v": "2008 model",
+"u": "https://en.wikipedia.org/wiki/Think_City",
+"s": "w:en",
+"vf": "modèle 2008"
+},
+{
+"a": 25259,
+"c": "EUR",
+"k": "l",
+"m": "France",
+"v": "2008 model, two seats, lithium-ion battery",
+"u": "https://fr.wikipedia.org/wiki/Th!nk_City",
+"s": "w:fr",
+"vf": "modèle 2008, deux places, batterie lithium-ion"
+},
+{
+"a": 36495,
+"c": "USD",
+"y": 2010,
+"k": "l",
+"m": "United States",
+"v": "2008 model",
+"u": "https://en.wikipedia.org/wiki/Think_City",
+"s": "w:en",
+"vf": "modèle 2008"
+}
+],
+"Toyota Aygo": [
+{
+"a": 8950,
+"c": "EUR",
+"y": 2005,
+"k": "n",
+"m": "Germany",
+"v": "Base",
+"u": "https://de.wikipedia.org/wiki/Toyota_Aygo",
+"s": "w:de",
+"main": 1,
+"vf": "de base"
+},
+{
+"a": 9950,
+"c": "EUR",
+"y": 2014,
+"k": "n",
+"m": "Germany",
+"v": "Second generation, cheapest",
+"u": "https://de.wikipedia.org/wiki/Toyota_Aygo",
+"s": "w:de",
+"vf": "deuxième génération, la moins chère"
+}
+],
+"Toyota Celica": [
+{
+"a": 1680000,
+"c": "JPY",
+"y": 1999,
+"k": "n",
+"m": "Japan",
+"v": "Seventh generation, SS-I",
+"u": "https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A8%E3%82%BF%E3%83%BB%E3%82%BB%E3%83%AA%E3%82%AB",
+"s": "w:ja",
+"vf": "septième génération, SS-I"
+}
+],
+"Toyota Corolla": [
+{
+"a": 495000,
+"c": "JPY",
+"k": "l",
+"m": "Japan",
+"v": "First generation (E10)",
+"u": "https://de.wikipedia.org/wiki/Toyota_Corolla",
+"s": "w:de",
+"main": 1,
+"vf": "première génération (E10)"
+},
+{
+"a": 1668,
+"c": "USD",
+"y": 1968,
+"k": "n",
+"m": "United States",
+"v": "First generation (E10)",
+"u": "https://de.wikipedia.org/wiki/Toyota_Corolla",
+"s": "w:de",
+"vf": "première génération (E10)"
+}
+],
+"Toyota Hilux": [
+{
+"a": 8308,
+"c": "USD",
+"k": "l",
+"m": "United States",
+"v": "Third generation, special edition",
+"u": "https://en.wikipedia.org/wiki/Toyota_Hilux",
+"s": "w:en",
+"vf": "troisième génération, série spéciale"
+}
+],
+"Toyota Land Cruiser": [
+{
+"a": 14000,
+"c": "CAD",
+"y": 1984,
+"k": "l",
+"m": "Canada",
+"v": "BJ42",
+"u": "https://en.wikipedia.org/wiki/Toyota_Land_Cruiser",
+"s": "w:en",
+"x": "~"
+}
+],
+"Toyota Prius": [
+{
+"a": 2150000,
+"c": "JPY",
+"y": 1997,
+"k": "n",
+"m": "Japan",
+"v": "First generation (NHW10)",
+"u": "https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A8%E3%82%BF%E3%83%BB%E3%83%97%E3%83%AA%E3%82%A6%E3%82%B9",
+"s": "w:ja",
+"main": 1,
+"vf": "première génération (NHW10)"
+},
+{
+"a": 19995,
+"c": "USD",
+"y": 2000,
+"k": "n",
+"m": "United States",
+"v": "NHW11",
+"u": "https://en.wikipedia.org/wiki/Toyota_Prius",
+"s": "w:en"
+}
+],
+"Toyota Supra": [
+{
+"a": 1576000,
+"c": "JPY",
+"y": 1978,
+"k": "n",
+"m": "Japan",
+"v": "Celica XX 2.0 L, standard grade",
+"u": "https://motor-fan.jp/article/1486563/",
+"s": "motor-fan.jp",
+"main": 1,
+"vf": "Celica XX 2.0 L, finition standard"
+},
+{
+"a": 110000,
+"c": "DEM",
+"y": 1993,
+"k": "n",
+"m": "Germany",
+"v": "Fourth generation (A80)",
+"u": "https://de.wikipedia.org/wiki/Toyota_Supra",
+"s": "w:de",
+"x": "~",
+"vf": "quatrième génération (A80)"
+}
+],
+"Toyota Yaris": [
+{
+"a": 830000,
+"c": "JPY",
+"y": 1999,
+"k": "n",
+"m": "Japan",
+"v": "Vitz 3-door B Business Package, manual",
+"u": "https://global.toyota/jp/detail/11662965",
+"s": "global.toyota",
+"main": 1,
+"vf": "Vitz 3 portes B Business Package, boîte manuelle"
+}
+],
+"Toyota bB": [
+{
+"a": 1298000,
+"c": "JPY",
+"y": 2000,
+"k": "n",
+"m": "Japan",
+"v": "1.3S, 2WD, automatic",
+"u": "https://global.toyota/jp/detail/12085259",
+"s": "global.toyota",
+"main": 1,
+"vf": "1.3S, deux roues motrices, automatique"
+}
+],
+"Trabant 1.1": [
+{
+"a": 18900,
+"c": "DDM",
+"y": 1989,
+"k": "n",
+"m": "East Germany",
+"v": "Saloon",
+"u": "https://de.wikipedia.org/wiki/Trabant_1.1",
+"s": "w:de",
+"main": 1,
+"vf": "berline"
+},
+{
+"a": 10887,
+"c": "DEM",
+"y": 1990,
+"k": "l",
+"m": "Germany",
+"v": "Saloon",
+"u": "https://en.wikipedia.org/wiki/Trabant_1.1",
+"s": "w:en",
+"vf": "berline"
+}
+],
+"VAZ-2101": [
+{
+"a": 11800,
+"c": "FRF",
+"y": 1973,
+"k": "n",
+"m": "France",
+"v": "Lada 1200",
+"u": "https://fr.wikipedia.org/wiki/Lada_2101%2F2102",
+"s": "w:fr",
+"main": 1
+},
+{
+"a": 4000,
+"c": "SUR",
+"y": 1970,
+"k": "n",
+"m": "Soviet Union",
+"u": "https://fr.wikipedia.org/wiki/Lada_2101%2F2102",
+"s": "w:fr",
+"a2": 5000.0
+},
+{
+"a": 979,
+"c": "GBP",
+"y": 1974,
+"k": "n",
+"m": "United Kingdom",
+"v": "Lada 1200",
+"u": "https://en.wikipedia.org/wiki/VAZ-2101",
+"s": "w:en"
+},
+{
+"a": 19922,
+"c": "DDM",
+"k": "l",
+"m": "East Germany",
+"u": "https://de.wikipedia.org/wiki/WAS-2101",
+"s": "w:de"
+},
+{
+"a": 7700,
+"c": "DEM",
+"y": 1977,
+"k": "l",
+"m": "West Germany",
+"u": "https://de.wikipedia.org/wiki/WAS-2101",
+"s": "w:de"
+}
+],
+"Volkswagen Beetle": [
+{
+"a": 5000,
+"c": "RM",
+"y": 1946,
+"k": "n",
+"m": "Germany",
+"v": "Saloon",
+"u": "https://de.wikipedia.org/wiki/VW_K%C3%A4fer",
+"s": "w:de",
+"main": 1,
+"vf": "berline"
+}
+],
+"Volkswagen Golf": [
+{
+"a": 7995,
+"c": "DEM",
+"k": "l",
+"m": "Germany",
+"v": "Golf I, cheapest version",
+"u": "https://de.wikipedia.org/wiki/VW_Golf",
+"s": "w:de",
+"main": 1,
+"vf": "Golf I, version la moins chère"
+}
+],
+"Volkswagen Polo": [
+{
+"a": 7500,
+"c": "DEM",
+"y": 1975,
+"k": "n",
+"m": "Germany",
+"v": "Polo N (base)",
+"u": "https://www.volkswagen.at/service-zubehoer/ueber-dein-auto/vorgaengermodelle/polo/polo-1-1975",
+"s": "volkswagen.at",
+"main": 1,
+"vf": "Polo N (de base)"
+}
+],
+"Volkswagen Touareg": [
+{
+"a": 39300,
+"c": "EUR",
+"y": 2002,
+"k": "n",
+"m": "Germany",
+"v": "3.2 V6, manual",
+"u": "https://www.autobild.de/artikel/vw-touareg-38837.html",
+"s": "autobild.de",
+"main": 1,
+"vf": "3.2 V6, boîte manuelle"
+}
+],
+"Škoda Fabia": [
+{
+"a": 249000,
+"c": "CZK",
+"y": 1999,
+"k": "n",
+"m": "Czechia",
+"v": "1.0 litre, 37 kW",
+"u": "https://cs.wikipedia.org/wiki/%C5%A0koda_Fabia",
+"s": "w:cs",
+"main": 1,
+"vf": "1,0 litre, 37 kW"
+},
+{
+"a": 279900,
+"c": "CZK",
+"k": "n",
+"m": "Czechia",
+"v": "Third generation hatchback",
+"u": "https://cs.wikipedia.org/wiki/%C5%A0koda_Fabia",
+"s": "w:cs",
+"vf": "troisième génération, berline"
+}
+],
+"Škoda Octavia": [
+{
+"a": 334900,
+"c": "CZK",
+"y": 2013,
+"k": "n",
+"m": "Czechia",
+"v": "Third generation, 1.2 TSI 63 kW",
+"u": "https://cs.wikipedia.org/wiki/%C5%A0koda_Octavia",
+"s": "w:cs",
+"vf": "troisième génération, 1.2 TSI 63 kW"
+}
+]
+}

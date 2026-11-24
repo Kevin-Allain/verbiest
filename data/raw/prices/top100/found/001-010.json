@@ -1,0 +1,251 @@
+[
+ {
+  "n": "Bugatti Veyron",
+  "y": 2005,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 1225000,
+    "amount_text": "1 225 000 €",
+    "currency": "EUR",
+    "year": null,
+    "market": "France",
+    "version": "Veyron 16.4 coupé",
+    "kind": "list",
+    "source": "wikipedia:fr",
+    "confidence": "medium",
+    "quote": "Prix de base 1 225 000 €",
+    "note": "Base price in the French article's table (first column, the 16.4 coupé).",
+    "url": "https://fr.wikipedia.org/wiki/Bugatti_Veyron_16.4",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 1309000,
+    "amount_text": "1,309 Mio. Euro",
+    "currency": "EUR",
+    "year": null,
+    "market": null,
+    "version": "Veyron 16.4",
+    "kind": "list",
+    "source": "wikipedia:de",
+    "confidence": "medium",
+    "quote": "Der Stückpreis lag bei rund 1,309 Mio. Euro",
+    "approx": "about",
+    "url": "https://de.wikipedia.org/wiki/Bugatti_Veyron_16.4",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Ford Model T",
+  "y": 1908,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 850,
+    "amount_text": "850 US$",
+    "currency": "USD",
+    "year": 1908,
+    "market": "United States",
+    "version": "Touring car",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "high",
+    "quote": "La voiture fut initialement proposée à un prix de 850 US$",
+    "url": "https://fr.wikipedia.org/wiki/Ford_T",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 825,
+    "amount_text": "$825",
+    "currency": "USD",
+    "year": 1909,
+    "market": "United States",
+    "version": "Runabout",
+    "kind": "list",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "In 1909, the cost of the Runabout started at $825",
+    "url": "https://en.wikipedia.org/wiki/Ford_Model_T",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Volkswagen Beetle",
+  "y": 1938,
+  "status": "found",
+  "note": "The pre-war KdF-Wagen was promised for under 1,000 Reichsmark but never delivered to the savers.",
+  "prices": [
+   {
+    "main": true,
+    "amount": 5000,
+    "amount_text": "5000 Reichsmark",
+    "currency": "RM",
+    "year": 1946,
+    "market": "Germany",
+    "version": "Saloon",
+    "kind": "launch",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Ab 1946 konnte der VW zum Preis von 5000 Reichsmark auch privat gekauft werden",
+    "note": "First sales to private buyers, with a purchase permit.",
+    "url": "https://de.wikipedia.org/wiki/VW_K%C3%A4fer",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Toyota Corolla",
+  "y": 1966,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 495000,
+    "amount_text": "495.000 Yen",
+    "currency": "JPY",
+    "year": null,
+    "market": "Japan",
+    "version": "First generation (E10)",
+    "kind": "list",
+    "source": "wikipedia:de",
+    "confidence": "medium",
+    "quote": "In Japan betrug der Neupreis 495.000 Yen",
+    "url": "https://de.wikipedia.org/wiki/Toyota_Corolla",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 1668,
+    "amount_text": "1668 USD",
+    "currency": "USD",
+    "year": 1968,
+    "market": "United States",
+    "version": "First generation (E10)",
+    "kind": "launch",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Der Corolla-Export in die USA, wo Toyota seit 1958 aktiv war, begann zu Preisen ab 1668 USD im Sommer 1968",
+    "url": "https://de.wikipedia.org/wiki/Toyota_Corolla",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Volkswagen Golf",
+  "y": 1974,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 7995,
+    "amount_text": "07.995 DM",
+    "currency": "DEM",
+    "year": null,
+    "market": "Germany",
+    "version": "Golf I, cheapest version",
+    "kind": "list",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "VW Golf I 07.995 DM",
+    "url": "https://de.wikipedia.org/wiki/VW_Golf",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Tata Nano",
+  "y": 2008,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 100000,
+    "amount_text": "₹100,000",
+    "currency": "INR",
+    "year": 2008,
+    "market": "India",
+    "version": "Standard",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "with a launch price of ₹100,000 (US$2,500) on 10 January 2008",
+    "note": "Only the first 100,000 buyers got this price.",
+    "url": "https://en.wikipedia.org/wiki/Tata_Nano",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Ford Mustang",
+  "y": 1964,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 2368,
+    "amount_text": "US$2,368",
+    "currency": "USD",
+    "year": 1964,
+    "market": "United States",
+    "version": "Base hardtop",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "an advertised list price of US$2,368",
+    "url": "https://en.wikipedia.org/wiki/Ford_Mustang",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Toyota Prius",
+  "y": 1997,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 2150000,
+    "amount_text": "215万円",
+    "currency": "JPY",
+    "year": 1997,
+    "market": "Japan",
+    "version": "First generation (NHW10)",
+    "kind": "launch",
+    "source": "wikipedia:ja",
+    "confidence": "high",
+    "quote": "販売価格は215万円と",
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A8%E3%82%BF%E3%83%BB%E3%83%97%E3%83%AA%E3%82%A6%E3%82%B9",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 19995,
+    "amount_text": "US$19,995",
+    "currency": "USD",
+    "year": 2000,
+    "market": "United States",
+    "version": "NHW11",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "with a published retail price of US$19,995",
+    "url": "https://en.wikipedia.org/wiki/Toyota_Prius",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

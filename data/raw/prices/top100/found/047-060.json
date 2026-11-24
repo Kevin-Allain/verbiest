@@ -1,0 +1,347 @@
+[
+ {
+  "n": "Honda Accord",
+  "y": 1976,
+  "status": "none",
+  "note": "No 1976 price found on Wikipedia or the web (Honda's factbook pages found were for later years).",
+  "prices": []
+ },
+ {
+  "n": "Lamborghini Diablo",
+  "y": 1990,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 240000,
+    "amount_text": "240 000 dollari",
+    "currency": "USD",
+    "year": 1990,
+    "market": null,
+    "version": "Diablo",
+    "kind": "launch",
+    "source": "wikipedia:it",
+    "confidence": "high",
+    "quote": "la commercializzazione dei primi esemplari parte nel gennaio del 1990, al prezzo base di 240 000 dollari",
+    "url": "https://it.wikipedia.org/wiki/Lamborghini_Diablo",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Lamborghini Huracán",
+  "y": 2014,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 169500,
+    "amount_text": "169,500 Euros",
+    "currency": "EUR",
+    "year": 2014,
+    "market": "Europe",
+    "version": "LP 610-4",
+    "kind": "launch",
+    "source": "web",
+    "site": "openers.jp (Lamborghini press release)",
+    "url": "https://openers.jp/en/car/car_news/22404",
+    "confidence": "medium",
+    "quote": "The selling price is 169,500 Euros",
+    "note": "Before taxes.",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 201100,
+    "amount_text": "US$201,100",
+    "currency": "USD",
+    "year": 2016,
+    "market": "United States",
+    "version": "LP 580-2",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "The base level LP 580-2 costs US$201,100",
+    "url": "https://en.wikipedia.org/wiki/Lamborghini_Hurac%C3%A1n",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Mercedes-Benz SLR McLaren",
+  "y": 2003,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 435000,
+    "amount_text": "435.000 Euro",
+    "currency": "EUR",
+    "year": 2004,
+    "market": "Germany",
+    "version": "SLR McLaren coupé",
+    "kind": "launch",
+    "source": "web",
+    "site": "auto-motor-und-sport.de",
+    "url": "https://www.auto-motor-und-sport.de/fahrbericht/75-jahre-ams-historischer-fahrbericht-des-mercedes-slr-mclaren/",
+    "confidence": "high",
+    "quote": "435.000 Euro exklusive 19-Zoll-Räder",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Peugeot 205",
+  "y": 1983,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 45000,
+    "amount_text": "45 000 F",
+    "approx": "about",
+    "currency": "FRF",
+    "year": 1983,
+    "market": "France",
+    "version": "Cheapest version",
+    "kind": "launch",
+    "source": "web",
+    "site": "largus.fr (L'argus)",
+    "url": "https://www.largus.fr/actualite-automobile/de-la-peugeot-205-a-la-208-40-ans-d-evolution-30025205.html",
+    "confidence": "medium",
+    "quote": "la gamme de la Peugeot 205 débutait autour de 45 000 F en son temps",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 46450,
+    "amount_text": "46 450 F",
+    "currency": "FRF",
+    "year": null,
+    "market": "France",
+    "version": "Junior three-door",
+    "kind": "list",
+    "source": "wikipedia:fr",
+    "confidence": "high",
+    "quote": "Le prix de la 3 portes : 46 450 F.",
+    "url": "https://fr.wikipedia.org/wiki/Peugeot_205",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Audi Q7",
+  "y": 2005,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 48900,
+    "amount_text": "48.900 Euro",
+    "currency": "EUR",
+    "year": 2006,
+    "market": "Germany",
+    "version": "3.0 TDI",
+    "kind": "launch",
+    "source": "web",
+    "site": "autobild.de",
+    "url": "https://www.autobild.de/artikel/verkaufsstart-audi-q7-54831.html",
+    "confidence": "high",
+    "quote": "Los gehts bei 48.900 Euro für den 3.0 TDI.",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 50900,
+    "amount_text": "$50,900",
+    "currency": "USD",
+    "year": 2009,
+    "market": "United States",
+    "version": "Q7 TDI Premium",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "with a base MSRP of $50,900",
+    "url": "https://en.wikipedia.org/wiki/Audi_Q7",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "BMW M3",
+  "y": 1986,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 59800,
+    "amount_text": "59.800 DM",
+    "currency": "DEM",
+    "year": 1986,
+    "market": "Germany",
+    "version": "E30 M3 (road version, with catalytic converter)",
+    "kind": "launch",
+    "source": "web",
+    "site": "autobild.de",
+    "url": "https://www.autobild.de/artikel/25-jahre-bmw-m3_1041963.html",
+    "confidence": "high",
+    "quote": "Stolze 59.800 DM verlangt BMW beim Marktstart 1986 für die Straßenversion des M3 (inklusive Kat)",
+    "note": "BMW Group Classic gives the same price.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Ferrari F40",
+  "y": 1987,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 400000,
+    "amount_text": "US$400,000",
+    "approx": "about",
+    "currency": "USD",
+    "year": 1987,
+    "market": null,
+    "version": "F40",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "a factory suggested retail price of approximately US$400,000",
+    "url": "https://en.wikipedia.org/wiki/Ferrari_F40",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 444000,
+    "amount_text": "444.000 DM",
+    "currency": "DEM",
+    "year": 1989,
+    "market": "Germany",
+    "version": "F40",
+    "kind": "list",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Der F40 wurde für 444.000 DM (heute ca. 490.000 Euro) ausschließlich an ausgewählte Interessenten verkauft.",
+    "url": "https://de.wikipedia.org/wiki/Ferrari_F40",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Lamborghini Urus",
+  "y": 2017,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 205715,
+    "amount_text": "205 715 €",
+    "currency": "EUR",
+    "year": 2018,
+    "market": "France",
+    "version": "Urus",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "high",
+    "quote": "Il est commercialisé à partir du mois d'avril 2018 au tarif de 205 715 €.",
+    "url": "https://fr.wikipedia.org/wiki/Lamborghini_Urus",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Mercedes-Benz C-Class",
+  "y": 1993,
+  "status": "none",
+  "note": "No checkable 1993 price found (one used-car site quotes about 45,000 DM for a basic C 180).",
+  "prices": []
+ },
+ {
+  "n": "Porsche Cayenne",
+  "y": 2002,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 60204,
+    "amount_text": "60.204 Euro",
+    "currency": "EUR",
+    "year": 2002,
+    "market": "Germany",
+    "version": "Cayenne S (the first, cheapest version)",
+    "kind": "launch",
+    "source": "web",
+    "site": "autobild.de",
+    "url": "https://www.autobild.de/artikel/porsche-gelaendewagen-37897.html",
+    "confidence": "high",
+    "quote": "Die Basisversion Cayenne S mit 340 PS kostet in Deutschland 60.204 Euro inklusive Mehrwertsteuer",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Toyota Hilux",
+  "y": 1968,
+  "status": "partial",
+  "note": "No 1968 price found.",
+  "prices": [
+   {
+    "amount": 8308,
+    "amount_text": "US$8,308",
+    "currency": "USD",
+    "year": null,
+    "market": "United States",
+    "version": "Third generation, special edition",
+    "kind": "list",
+    "source": "wikipedia:en",
+    "confidence": "medium",
+    "quote": "With a list price of US$8,308",
+    "url": "https://en.wikipedia.org/wiki/Toyota_Hilux",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Volkswagen Touareg",
+  "y": 2002,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 39300,
+    "amount_text": "39.300 Euro",
+    "currency": "EUR",
+    "year": 2002,
+    "market": "Germany",
+    "version": "3.2 V6, manual",
+    "kind": "launch",
+    "source": "web",
+    "site": "autobild.de",
+    "url": "https://www.autobild.de/artikel/vw-touareg-38837.html",
+    "confidence": "high",
+    "quote": "Die Basisversion mit dem 220 PS starken 3,2-Liter-V6 kostet mit Schaltgetriebe 39.300 Euro.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Audi A8",
+  "y": 1994,
+  "status": "none",
+  "note": "No 1994 price found (only modern euro conversions).",
+  "prices": []
+ }
+]

@@ -1,0 +1,119 @@
+[
+ {
+  "n": "Hummer",
+  "y": 1992,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 40000,
+    "amount_text": "$40,000",
+    "approx": "more than",
+    "currency": "USD",
+    "year": 1992,
+    "market": "United States",
+    "version": "Hummer H1, basic version",
+    "kind": "launch",
+    "source": "web",
+    "site": "hagerty.com",
+    "url": "https://hagerty.com/media/?p=158872",
+    "confidence": "medium",
+    "quote": "The entry price for a bare-bones H1 was more than $40,000 in 1992",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Tesla Model S",
+  "y": 2012,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 57400,
+    "amount_text": "$57,400",
+    "currency": "USD",
+    "year": 2012,
+    "market": "United States",
+    "version": "40 kWh (base)",
+    "kind": "launch",
+    "source": "web",
+    "site": "foxbusiness.com",
+    "url": "https://www.foxbusiness.com/lifestyle/tesla-model-s-where-first-one",
+    "confidence": "medium",
+    "quote": "a base Model S with a 40 kWh battery pack rated for 160 miles of range for $57,400",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 78000,
+    "amount_text": "78.000 €",
+    "currency": "EUR",
+    "year": 2014,
+    "market": "Germany",
+    "version": "Base model",
+    "kind": "list",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "aufgrund seines Preises ab 78.000 € in die Oberklasse ein",
+    "url": "https://de.wikipedia.org/wiki/Tesla_Model_S",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Toyota Camry",
+  "y": 1982,
+  "status": "none",
+  "note": "No 1982 price on Wikipedia (en, fr, de, ja); the web search found no source for the first-generation price.",
+  "prices": []
+ },
+ {
+  "n": "Volkswagen Passat",
+  "y": 1973,
+  "status": "none",
+  "note": "No 1973 price on Wikipedia (en, fr, de); Volkswagen's own history pages give none either.",
+  "prices": []
+ },
+ {
+  "n": "Citroën DS",
+  "y": 1955,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 930000,
+    "amount_text": "930,000 old Francs",
+    "currency": "AF",
+    "year": 1955,
+    "market": "France",
+    "version": "DS 19",
+    "kind": "launch",
+    "source": "web",
+    "site": "citromuseum.com (Citroën museum)",
+    "url": "https://www.citromuseum.com/en/2025/01/28/ds-19-1955-chassis-n32/",
+    "confidence": "medium",
+    "quote": "Price at the time: 930,000 old Francs",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 2833,
+    "amount_text": "US$2,833",
+    "currency": "USD",
+    "year": 1959,
+    "market": "United States",
+    "version": "ID19",
+    "kind": "list",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "The original list price for a 1959 ID19 was US$2,833",
+    "url": "https://en.wikipedia.org/wiki/Citro%C3%ABn_DS",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

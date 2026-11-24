@@ -1,0 +1,50 @@
+[
+ {
+  "n": "Volkswagen Polo",
+  "y": 1975,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 7500,
+    "amount_text": "7.500 DM",
+    "currency": "DEM",
+    "year": 1975,
+    "market": "Germany",
+    "version": "Polo N (base)",
+    "kind": "launch",
+    "source": "web",
+    "site": "volkswagen.at (Volkswagen Austria)",
+    "url": "https://www.volkswagen.at/service-zubehoer/ueber-dein-auto/vorgaengermodelle/polo/polo-1-1975",
+    "confidence": "high",
+    "quote": "Die Basisversion Polo N ist damals bereits ab 7.500 DM zu haben",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Benz Patent-Motorwagen",
+  "y": 1886,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 3000,
+    "amount_text": "3000 Marks",
+    "currency": "MK",
+    "year": 1888,
+    "market": "Germany",
+    "version": "Model 3, the first series-produced car",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "price at the time 3000 Marks",
+    "note": "Carl Benz's own description; marks of the German Empire.",
+    "url": "https://en.wikipedia.org/wiki/Benz_Patent-Motorwagen",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

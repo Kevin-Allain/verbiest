@@ -1,0 +1,81 @@
+[
+ {
+  "n": "Lamborghini Gallardo",
+  "y": 2003,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 160000,
+    "amount_text": "160.000 Euro",
+    "approx": "about",
+    "currency": "EUR",
+    "year": null,
+    "market": "Germany",
+    "version": "Gallardo (first version)",
+    "kind": "list",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Der Kaufpreis betrug nur etwa 160.000 Euro",
+    "url": "https://de.wikipedia.org/wiki/Lamborghini_Gallardo",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 198000,
+    "amount_text": "$198,000",
+    "currency": "USD",
+    "year": 2008,
+    "market": "United States",
+    "version": "LP 560-4",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "The MSRP base price was $198,000 in the US",
+    "url": "https://en.wikipedia.org/wiki/Lamborghini_Gallardo",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Nissan Leaf",
+  "y": 2010,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 3760000,
+    "amount_text": "376万円",
+    "currency": "JPY",
+    "year": 2010,
+    "market": "Japan",
+    "version": "First generation",
+    "kind": "launch",
+    "source": "web",
+    "site": "car.watch.impress.co.jp (Car Watch)",
+    "url": "https://car.watch.impress.co.jp/docs/news/357939.html",
+    "confidence": "high",
+    "quote": "あわせて価格を376万円と発表した。",
+    "note": "Announced in March 2010 for sales from December 2010; before the government electric-car subsidy.",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 23790,
+    "amount_text": "23.790 €",
+    "currency": "EUR",
+    "year": 2013,
+    "market": "Germany",
+    "version": "With rented battery",
+    "kind": "list",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Fahrzeugpreis ab 23.790 €",
+    "url": "https://de.wikipedia.org/wiki/Nissan_Leaf",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

@@ -201,6 +201,21 @@ def from_desc(desc, rules):
     return [key for rx, key in rules if re.search(rx, d)]
 
 
+# Hand corrections, keyed by English Wikipedia title. L'Obéissante (1873) has no English
+# article of its own: Wikipedia files it under its builder's biography, so without this the
+# app would call the car "Amédée Bollée". "l" is the name shown in the app; the title stays
+# the key (and the English article shown); "fr" is the car's own French article.
+CAR_FIXES = {
+    "Amédée Bollée": {
+        "l": "L'Obéissante",
+        "fr": "L'Obéissante",
+        "s": "Steam carriage built by Amédée Bollée in 1873",
+        "sf": "Véhicule conçu par Amédée Bollée en 1873",
+        "img": "Obeissante.jpg",   # the car itself (Commons, public domain), not its builder's portrait
+        "kinds": ["steam"], "tags": ["Steam"],
+    },
+}
+
 BODY_GROUPS = [  # slot order = colour order
     ("sedan", "Sedan"),
     ("hatch", "Hatchback"),
@@ -422,6 +437,16 @@ def main():
             "fr": fr_title([c.get("qid")]) if c.get("qid") else None, "sf": fr_desc([c.get("qid")]) if c.get("qid") else None,
         })
     print(f"  {len(cars)} cars")
+    for c in cars:
+        fix = CAR_FIXES.get(c["n"])
+        if fix:
+            for key in ("l", "fr", "s", "sf"):
+                if key in fix:
+                    c[key] = fix[key]
+            if fix.get("img"):
+                c["i"] = img_code(fix["img"])
+            c["kinds"] = sorted(set(c["kinds"]) | set(fix.get("kinds", [])))
+            c["tags"] = sorted(set(c["tags"]) | set(fix.get("tags", [])))
 
     # ---------------------------------------------------------- maker records
     used_makers = collections.Counter(c["mk"] for c in cars if c["mk"])
@@ -503,9 +528,15 @@ def main():
     kinds = [k for k in KINDS if kind_counts[k[0]] >= 10]
     kind_bit = {k[0]: 1 << i for i, k in enumerate(kinds)}
 
+    # prices when new, checked against their sources by scripts/launch_prices.py (export)
+    prices_path = os.path.join(ROOT, "data", "prices.json")
+    launch_prices = json.load(open(prices_path, encoding="utf-8")) if os.path.exists(prices_path) else {}
+
     out_cars = []
     for c in sorted(cars, key=lambda c: (c["y"], c["n"])):
         rec = {"n": c["n"], "y": c["y"]}
+        if c.get("l"):
+            rec["l"] = c["l"]
         if c["e"]:
             rec["e"] = c["e"]
         rec["m"] = maker_index.get(c["mk"], -1) if c["mk"] else -1
@@ -527,6 +558,8 @@ def main():
         if c["sf"]:
             rec["sf"] = c["sf"]
         rec["p"] = c["p"]
+        if c["n"] in launch_prices:
+            rec["pr"] = launch_prices[c["n"]]
         out_cars.append(rec)
     for c in out_cars:
         c.setdefault("k", 0)

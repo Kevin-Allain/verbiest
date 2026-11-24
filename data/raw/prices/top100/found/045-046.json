@@ -1,0 +1,64 @@
+[
+ {
+  "n": "Škoda Octavia",
+  "y": 1996,
+  "status": "partial",
+  "note": "No checkable 1996 price found (only a reader comment quoting about 327,000 Kč).",
+  "prices": [
+   {
+    "amount": 334900,
+    "amount_text": "334 900 Kč",
+    "currency": "CZK",
+    "year": 2013,
+    "market": "Czechia",
+    "version": "Third generation, 1.2 TSI 63 kW",
+    "kind": "launch",
+    "source": "wikipedia:cs",
+    "confidence": "high",
+    "quote": "Ceny začínaly od 334 900 Kč za vozidlo s motorem 1,2 TSI 63 kW",
+    "url": "https://cs.wikipedia.org/wiki/%C5%A0koda_Octavia",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Chevrolet Corvette",
+  "y": 1953,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 3498,
+    "amount_text": "$3,498.00",
+    "currency": "USD",
+    "year": 1953,
+    "market": "United States",
+    "version": "1953 roadster",
+    "kind": "launch",
+    "source": "web",
+    "site": "gm.com (GM Heritage Collection)",
+    "url": "https://www.gm.com/heritage/collection/chevrolet/1953-chevrolet-corvette",
+    "confidence": "high",
+    "quote": "BASE PRICE: $3,498.00",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 60000,
+    "amount_text": "60 000 $",
+    "currency": "USD",
+    "year": 2019,
+    "market": "United States",
+    "version": "Eighth generation (C8)",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "high",
+    "quote": "commercialisée au tarif de 60 000 $",
+    "url": "https://fr.wikipedia.org/wiki/Chevrolet_Corvette",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

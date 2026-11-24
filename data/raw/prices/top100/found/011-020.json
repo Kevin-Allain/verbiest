@@ -1,0 +1,190 @@
+[
+ {
+  "n": "Tesla Cybertruck",
+  "y": 2019,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 60990,
+    "amount_text": "US$60,990",
+    "currency": "USD",
+    "year": 2023,
+    "market": "United States",
+    "version": "Rear-wheel drive (base)",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "with an updated base price of US$60,990",
+    "note": "Price when sales opened in late 2023.",
+    "url": "https://en.wikipedia.org/wiki/Tesla_Cybertruck",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 39900,
+    "amount_text": "$39,900",
+    "currency": "USD",
+    "year": 2019,
+    "market": "United States",
+    "version": "Single motor (announced)",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "with a starting price of $39,900",
+    "note": "Price announced at the 2019 unveiling; never sold at that price.",
+    "url": "https://en.wikipedia.org/wiki/Tesla_Cybertruck",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Audi A4",
+  "y": 1994,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 21892,
+    "amount_text": "21 892 €",
+    "currency": "EUR",
+    "year": 1995,
+    "market": "France",
+    "version": "A4 1.6 100 ch, automatic",
+    "kind": "list",
+    "source": "web",
+    "site": "largus.fr (L'argus)",
+    "url": "https://www.largus.fr/fiche-technique/Audi/A4/I+B5/1995/Berline+4+Portes/16+100ch+BVA-708498.html",
+    "confidence": "medium",
+    "quote": "Prix du véhicule neuf au 01/02/1995 : 21 892 € TTC",
+    "note": "L'argus gives the 1995 French price converted to euros.",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 34900,
+    "amount_text": "$34,900",
+    "currency": "USD",
+    "year": 2017,
+    "market": "United States",
+    "version": "2017 A4 Ultra FWD Premium",
+    "kind": "list",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "A4 Ultra FWD Premium $34,900",
+    "url": "https://en.wikipedia.org/wiki/Audi_A4",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Lamborghini Aventador",
+  "y": 2011,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 321500,
+    "amount_text": "321.500 €",
+    "currency": "EUR",
+    "year": null,
+    "market": "Germany",
+    "version": "LP 700-4 coupé (2011–2017)",
+    "kind": "list",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Grundpreis 321.500 €",
+    "url": "https://de.wikipedia.org/wiki/Lamborghini_Aventador",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "VAZ-2101",
+  "y": 1970,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 11800,
+    "amount_text": "11 800 F",
+    "currency": "FRF",
+    "year": 1973,
+    "market": "France",
+    "version": "Lada 1200",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "high",
+    "quote": "La 2101, ou plutôt 1200, est proposée au prix de 11 800 F",
+    "note": "Price when it went on sale in France.",
+    "url": "https://fr.wikipedia.org/wiki/Lada_2101%2F2102",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 4000,
+    "amount_text": "4000",
+    "approx": "between 4,000 and 5,000",
+    "currency": "SUR",
+    "year": 1970,
+    "market": "Soviet Union",
+    "version": null,
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "medium",
+    "quote": "il faut débourser entre 4000 et 5 000 roubles",
+    "url": "https://fr.wikipedia.org/wiki/Lada_2101%2F2102",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 979,
+    "amount_text": "£979",
+    "currency": "GBP",
+    "year": 1974,
+    "market": "United Kingdom",
+    "version": "Lada 1200",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "In May 1974, it went on sale in Britain, priced at £979.",
+    "url": "https://en.wikipedia.org/wiki/VAZ-2101",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 19922,
+    "amount_text": "19.922 Mark",
+    "currency": "DDM",
+    "year": null,
+    "market": "East Germany",
+    "version": null,
+    "kind": "list",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "In der DDR kostete der WAS-2101 mit 19.922 Mark",
+    "url": "https://de.wikipedia.org/wiki/WAS-2101",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 7700,
+    "amount_text": "7700 DM",
+    "currency": "DEM",
+    "year": 1977,
+    "market": "West Germany",
+    "version": null,
+    "kind": "list",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "In Westdeutschland kostete der WAS-2101 im Jahr 1977 7700 DM",
+    "url": "https://de.wikipedia.org/wiki/WAS-2101",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

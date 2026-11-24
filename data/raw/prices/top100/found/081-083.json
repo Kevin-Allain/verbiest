@@ -1,0 +1,103 @@
+[
+ {
+  "n": "Renault Mégane",
+  "y": 1995,
+  "status": "partial",
+  "note": "No 1995 price found.",
+  "prices": [
+   {
+    "amount": 53450,
+    "amount_text": "€53,450",
+    "currency": "EUR",
+    "year": 2023,
+    "market": "France",
+    "version": "Mégane RS Ultime (limited edition)",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "Orders opened in March 2023 with a starting price of €53,450",
+    "url": "https://en.wikipedia.org/wiki/Renault_M%C3%A9gane",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "SEAT Ibiza",
+  "y": 1984,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 825000,
+    "amount_text": "825 000 pesetas",
+    "approx": "about",
+    "currency": "ESP",
+    "year": 1984,
+    "market": "Spain",
+    "version": "First generation (021A)",
+    "kind": "launch",
+    "source": "web",
+    "site": "km77.com",
+    "url": "https://www.km77.com/revista/engendro-mecanico/reportaje-30-anos-del-lanzamiento-del-seat-ibiza/?amp=1",
+    "confidence": "medium",
+    "quote": "El Ibiza (modelo 021A) tenía un precio aproximado de venta —en el año 1984— de 825 000 pesetas",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 12600,
+    "amount_text": "12 600 €",
+    "currency": "EUR",
+    "year": 2008,
+    "market": "France",
+    "version": "Fourth generation, 1.2 12V 70 ch Reference",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "high",
+    "quote": "Les prix de la nouvelle SEAT Ibiza sont entre 12 600 €",
+    "url": "https://fr.wikipedia.org/wiki/Seat_Ibiza",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Toyota Aygo",
+  "y": 2005,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 8950,
+    "amount_text": "8950 Euro",
+    "currency": "EUR",
+    "year": 2005,
+    "market": "Germany",
+    "version": "Base",
+    "kind": "launch",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Der Grundpreis für den Kleinwagen lag bei 8950 Euro (Stand: April 2005).",
+    "url": "https://de.wikipedia.org/wiki/Toyota_Aygo",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 9950,
+    "amount_text": "9.950 €",
+    "currency": "EUR",
+    "year": 2014,
+    "market": "Germany",
+    "version": "Second generation, cheapest",
+    "kind": "launch",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Der Preis für das günstigste Modell lag bei 9.950 €",
+    "url": "https://de.wikipedia.org/wiki/Toyota_Aygo",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

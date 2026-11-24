@@ -1,0 +1,465 @@
+[
+ {
+  "n": "Toyota Celica",
+  "y": 1970,
+  "status": "partial",
+  "note": "The 1970 price (875,000 yen for the 1600GT) is quoted online, but no page stating it could be checked.",
+  "prices": [
+   {
+    "amount": 1680000,
+    "amount_text": "168万円",
+    "currency": "JPY",
+    "year": 1999,
+    "market": "Japan",
+    "version": "Seventh generation, SS-I",
+    "kind": "launch",
+    "source": "wikipedia:ja",
+    "confidence": "high",
+    "quote": "SS-Iは発売当初で標準価格は168万円となった。",
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A8%E3%82%BF%E3%83%BB%E3%82%BB%E3%83%AA%E3%82%AB",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Audi A1",
+  "y": 2010,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 15800,
+    "amount_text": "15.800 Euro",
+    "currency": "EUR",
+    "year": 2010,
+    "market": "Germany",
+    "version": "1.2 TFSI (base)",
+    "kind": "launch",
+    "source": "web",
+    "site": "autobild.de",
+    "url": "https://www.autobild.de/artikel/audi-a1-preis-1173251.html",
+    "confidence": "high",
+    "quote": "Mindestens 15.800 Euro muss der geneigte Kunde bezahlen, wenn er Audis kleinsten Spross fahren will.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "BMW X5",
+  "y": 1999,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 111000,
+    "amount_text": "DM 111.000",
+    "currency": "DEM",
+    "year": null,
+    "market": "Germany",
+    "version": "X5 4.4i (E53)",
+    "kind": "list",
+    "source": "web",
+    "site": "bmwgroup-classic.com (BMW Group Classic)",
+    "url": "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-915-1.bmw-x5-4-4i-e53.html",
+    "confidence": "high",
+    "quote": "Price DM 111.000",
+    "note": "The V8 version; German sales began in 2000.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "BMW X6",
+  "y": 2007,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 57800,
+    "amount_text": "57.800 €",
+    "currency": "EUR",
+    "year": 2008,
+    "market": "Germany",
+    "version": "xDrive35i",
+    "kind": "launch",
+    "source": "web",
+    "site": "adac.de (ADAC car catalogue)",
+    "url": "https://www.adac.de/rund-ums-fahrzeug/autokatalog/marken-modelle/bmw/x6/e71/212535/",
+    "confidence": "medium",
+    "quote": "Grundpreis 57.800 €",
+    "note": "Base price for cars built from May 2008.",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 89765,
+    "amount_text": "US$89,765",
+    "currency": "USD",
+    "year": 2009,
+    "market": "United States",
+    "version": "ActiveHybrid X6",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "with a base price of US$89,765",
+    "url": "https://en.wikipedia.org/wiki/BMW_X6",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Citroën C1",
+  "y": 2005,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 8390,
+    "amount_text": "8390 Euro",
+    "currency": "EUR",
+    "year": 2005,
+    "market": "Germany",
+    "version": "Three-door (base)",
+    "kind": "launch",
+    "source": "web",
+    "site": "autobild.de",
+    "url": "https://www.autobild.de/artikel/8390-euro-fuer-den-citroen-c1-50324.html",
+    "confidence": "high",
+    "quote": "8390 Euro kostet der C1",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 9450,
+    "amount_text": "9450 Euro",
+    "currency": "EUR",
+    "year": 2012,
+    "market": "Germany",
+    "version": "Facelift",
+    "kind": "launch",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Der modifizierte C1 kam zu einem Einstiegspreis von 9450 Euro im März 2012 auf den deutschen Markt.",
+    "url": "https://de.wikipedia.org/wiki/Citro%C3%ABn_C1",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "DMC DeLorean",
+  "y": 1981,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 25000,
+    "amount_text": "$25,000",
+    "currency": "USD",
+    "year": 1981,
+    "market": "United States",
+    "version": "DMC-12",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "Upon release in 1981, a DeLorean had a base MSRP of $25,000",
+    "url": "https://en.wikipedia.org/wiki/DMC_DeLorean",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Ford Escort (Europe)",
+  "y": 1967,
+  "status": "partial",
+  "note": "The 1968 British price (£635 for the de luxe) is in a newspaper archive that could not be read automatically.",
+  "prices": [
+   {
+    "amount": 11000,
+    "amount_text": "11.000",
+    "currency": "DEM",
+    "year": 1980,
+    "market": "Germany",
+    "version": "Third generation (range 11,000 to 17,000 DM)",
+    "kind": "launch",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "September 1980 in Deutschland zu Preisen zwischen 11.000 und 17.000 DM erhältlich war",
+    "url": "https://de.wikipedia.org/wiki/Ford_Escort",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Lada Niva",
+  "y": 1977,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 14490,
+    "amount_text": "14 490 DM",
+    "currency": "DEM",
+    "year": 1988,
+    "market": "West Germany",
+    "version": "WAS-2121",
+    "kind": "list",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "In Westdeutschland war der Niwa seinerzeit für 14 490 DM (1988) erhältlich.",
+    "url": "https://de.wikipedia.org/wiki/WAS-2121_Niwa",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 37090,
+    "amount_text": "37 090 Mark",
+    "currency": "DDM",
+    "year": 1988,
+    "market": "East Germany",
+    "version": "WAS-2121",
+    "kind": "list",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Mit 37 090 Mark (1988) war er seinerzeit in der DDR wesentlich teurer als alle anderen Lada-Modelle.",
+    "url": "https://de.wikipedia.org/wiki/WAS-2121_Niwa",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Opel Calibra",
+  "y": 1989,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 36900,
+    "amount_text": "36.900,00 DM",
+    "currency": "DEM",
+    "year": 1989,
+    "market": "Germany",
+    "version": "Base",
+    "kind": "launch",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Der Grundpreis betrug anfangs 36.900,00 DM.",
+    "url": "https://de.wikipedia.org/wiki/Opel_Calibra",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Opel Corsa",
+  "y": 1982,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 13695,
+    "amount_text": "13.695 DM",
+    "currency": "DEM",
+    "year": 1983,
+    "market": "Germany",
+    "version": "Base (45 PS)",
+    "kind": "launch",
+    "source": "web",
+    "site": "autobild.de",
+    "url": "https://www.autobild.de/artikel/opel-corsa-e-corsa-40-jahre-und-opel-corsa-gt-1987-e-auto-sondermodell-geburtstag-reichweite-preis-21847925.html",
+    "confidence": "medium",
+    "quote": "in der Basis ab 13.695 DM hatte der Corsa magere 45 PS",
+    "note": "On sale in Germany from March 1983.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Peugeot 307",
+  "y": 2001,
+  "status": "none",
+  "note": "No 2001 price found.",
+  "prices": []
+ },
+ {
+  "n": "Porsche 918 Spyder",
+  "y": 2013,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 781000,
+    "amount_text": "€781,000",
+    "currency": "EUR",
+    "year": 2013,
+    "market": "Europe",
+    "version": "918 Spyder",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "Pricing for the 918 Spyder started at €781,000 in Europe and US$845,000 in the U.S.",
+    "url": "https://en.wikipedia.org/wiki/Porsche_918_Spyder",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 768026,
+    "amount_text": "768.026 Euro",
+    "currency": "EUR",
+    "year": 2013,
+    "market": "Germany",
+    "version": "918 Spyder",
+    "kind": "launch",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Der Grundpreis lag bei 768.026 Euro",
+    "url": "https://de.wikipedia.org/wiki/Porsche_918",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Audi A2",
+  "y": 1999,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 129900,
+    "amount_text": "129 900 francs",
+    "currency": "FRF",
+    "year": 2000,
+    "market": "France",
+    "version": "Base",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "high",
+    "quote": "Son prix de base à sa sortie en France en juillet 2000, 129 900 francs",
+    "url": "https://fr.wikipedia.org/wiki/Audi_A2",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Audi A5",
+  "y": 2007,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 33000,
+    "amount_text": "33.000 Euro",
+    "approx": "about",
+    "currency": "EUR",
+    "year": 2007,
+    "market": "Germany",
+    "version": "1.8 TFSI coupé",
+    "kind": "launch",
+    "source": "web",
+    "site": "autobild.de",
+    "url": "https://www.autobild.de/artikel/audi-a5_s5-59811.html",
+    "confidence": "medium",
+    "quote": "Etwa 33.000 Euro werden für den 170 PS starken 1.8 TFSI (ab Herbst 2007) fällig.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Audi Quattro",
+  "y": 1980,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 49900,
+    "amount_text": "49.900 Mark",
+    "currency": "DEM",
+    "year": 1980,
+    "market": "Germany",
+    "version": "quattro coupé",
+    "kind": "launch",
+    "source": "web",
+    "site": "auto-motor-und-sport.de",
+    "url": "https://www.auto-motor-und-sport.de/oldtimer/audi-quattro-1980-1991-1/",
+    "confidence": "high",
+    "quote": "Bei der Einführung 1980 kostete der Quattro so viel wie ein Porsche 911 in der Basis-Version: 49.900 Mark.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "BMW X3",
+  "y": 2003,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 33800,
+    "amount_text": "33.800 Euro",
+    "currency": "EUR",
+    "year": 2004,
+    "market": "Germany",
+    "version": "X3 2.0d",
+    "kind": "launch",
+    "source": "web",
+    "site": "press.bmwgroup.com (BMW press release)",
+    "url": "https://www.press.bmwgroup.com/deutschland/article/attachment/T0006702DE/24273",
+    "confidence": "high",
+    "quote": "wird in Deutschland ab Mitte September zum Preis von 33.800 Euro",
+    "note": "The diesel 2.0d, from September 2004 (petrol versions came first, early 2004).",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "BMW i8",
+  "y": 2014,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 145950,
+    "amount_text": "145 950 €",
+    "currency": "EUR",
+    "year": 2014,
+    "market": "France",
+    "version": "i8",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "high",
+    "quote": "au prix de 145 950 €",
+    "url": "https://fr.wikipedia.org/wiki/BMW_i8",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 99845,
+    "amount_text": "£99,845",
+    "currency": "GBP",
+    "year": 2014,
+    "market": "United Kingdom",
+    "version": "i8",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "Deliveries started in the UK in July 2014, with pricing starting at £99,845.",
+    "url": "https://en.wikipedia.org/wiki/BMW_i8",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

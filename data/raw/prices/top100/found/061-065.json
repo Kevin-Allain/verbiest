@@ -1,0 +1,71 @@
+[
+ {
+  "n": "Audi Q5",
+  "y": 2008,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 39100,
+    "amount_text": "39 100 €",
+    "currency": "EUR",
+    "year": null,
+    "market": "France",
+    "version": "First generation, first engine listed",
+    "kind": "list",
+    "source": "wikipedia:fr",
+    "confidence": "medium",
+    "quote": "Prix de base 39 100 €",
+    "note": "From the French article's engine table; the columns are engine versions.",
+    "url": "https://fr.wikipedia.org/wiki/Audi_Q5",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Audi TT",
+  "y": 1998,
+  "status": "none",
+  "note": "No checkable 1998 price found (only modern euro conversions).",
+  "prices": []
+ },
+ {
+  "n": "BMW 5 Series",
+  "y": 1972,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 14490,
+    "amount_text": "DM 14.490",
+    "currency": "DEM",
+    "year": 1972,
+    "market": "Germany",
+    "version": "BMW 520 (E12), the first 5 Series",
+    "kind": "launch",
+    "source": "web",
+    "site": "bmwgroup-classic.com (BMW Group Classic)",
+    "url": "https://www.bmwgroup-classic.com/en/models/bmw-classics/product-description-page.ad-145-1.bmw-520-e12-four-cylinder.html",
+    "confidence": "high",
+    "quote": "Price DM 14.490",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Chevrolet Camaro",
+  "y": 1967,
+  "status": "none",
+  "note": "$2,466 for the 1967 six-cylinder coupé is widely quoted, but no page that states it could be read and checked.",
+  "prices": []
+ },
+ {
+  "n": "Ferrari F430",
+  "y": 2004,
+  "status": "none",
+  "note": "No checkable launch price found.",
+  "prices": []
+ }
+]

@@ -531,6 +531,10 @@ img { display: block; max-width: 100%; }
 .row-thumb .ph svg { width: 70%; }
 .row-icon { width: 30px; height: 30px; border-radius: 8px; flex: none; display: grid; place-items: center; background: var(--tint); color: #fff; }
 .row-icon svg { width: 18px; height: 18px; }
+.price-row .lrow-sub + .lrow-sub { margin-top: 1px; }
+.price-row .price-amt { font-variant-numeric: tabular-nums; }
+.price-row.main .price-amt { font-size: 24px; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
+.price-src { display: block; margin-top: 3px; font: 400 12px/1.3 var(--font); color: var(--label-3); }
 .row-icon.flag-lead { background: var(--fill-3); font-size: 20px; line-height: 1; }
 
 /* "app icon" tiles for makers */

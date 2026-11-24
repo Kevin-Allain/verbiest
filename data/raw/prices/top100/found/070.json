@@ -1,0 +1,40 @@
+[
+ {
+  "n": "Škoda Fabia",
+  "y": 1999,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 249000,
+    "amount_text": "249 000 Kč",
+    "currency": "CZK",
+    "year": 1999,
+    "market": "Czechia",
+    "version": "1.0 litre, 37 kW",
+    "kind": "launch",
+    "source": "wikipedia:cs",
+    "confidence": "high",
+    "quote": "Prodej byl na českém trhu zahájen 4. prosince 1999 s cenou od 249 000 Kč za vůz s motorem o objemu 1,0 litru o výkonu 37 kW.",
+    "url": "https://cs.wikipedia.org/wiki/%C5%A0koda_Fabia",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 279900,
+    "amount_text": "279 900 Kč",
+    "currency": "CZK",
+    "year": null,
+    "market": "Czechia",
+    "version": "Third generation hatchback",
+    "kind": "launch",
+    "source": "wikipedia:cs",
+    "confidence": "high",
+    "quote": "Cena Fabie III hatchback startovala na 279 900 Kč",
+    "url": "https://cs.wikipedia.org/wiki/%C5%A0koda_Fabia",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

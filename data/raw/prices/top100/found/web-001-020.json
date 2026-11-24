@@ -1,0 +1,125 @@
+[
+ {
+  "n": "Citroën 2CV",
+  "y": 1948,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 228000,
+    "amount_text": "228000 francs",
+    "currency": "AF",
+    "year": 1949,
+    "market": "France",
+    "version": "2CV Type A",
+    "kind": "launch",
+    "source": "web",
+    "site": "lalibre.be",
+    "url": "https://www.lalibre.be/lifestyle/mode/2011/07/20/2-cv-la-voiture-que-les-francais-attendaient-2MYGCK22B5CCNAXKSIYOMUKASA/",
+    "confidence": "medium",
+    "quote": "Les 200 premiers possesseurs de 2 CV, qui ont déboursé 228000 francs",
+    "note": "Paid by the first 200 owners in 1949 (old francs).",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Porsche 911",
+  "y": 1964,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 21900,
+    "amount_text": "21,900",
+    "currency": "DEM",
+    "year": 1964,
+    "market": "Germany",
+    "version": "911 coupé",
+    "kind": "launch",
+    "source": "web",
+    "site": "newsroom.porsche.com (Porsche press kit)",
+    "url": "https://newsroom.porsche.com/en/press-kits/60-Years-Porsche-911/1.-Generation-Porsche-911-(Ur-Elfer),-1963-1973.html",
+    "confidence": "high",
+    "quote": "The base price for the new Porsche was set at 21,900 Deutschmarks.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Mercedes-Benz E-Class",
+  "y": 1953,
+  "status": "found",
+  "note": "The E-Class line starts here with the 1953 Mercedes-Benz 180 (W 120, 'Ponton').",
+  "prices": [
+   {
+    "main": true,
+    "amount": 9950,
+    "amount_text": "DM 9950.00",
+    "currency": "DEM",
+    "year": 1953,
+    "market": "Germany",
+    "version": "Mercedes-Benz 180 (W 120)",
+    "kind": "launch",
+    "source": "web",
+    "site": "mercedes-benz-publicarchive.com (Mercedes-Benz archive)",
+    "url": "https://mercedes-benz-publicarchive.com/marsClassic/en/instance/ko/180--W-120-B-I-1953---1957.xhtml?oid=5139",
+    "confidence": "high",
+    "quote": "09.1953: DM 9950.00",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Ford Fiesta",
+  "y": 1976,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 2114,
+    "amount_text": "£2,114",
+    "currency": "GBP",
+    "year": 1977,
+    "market": "United Kingdom",
+    "version": "Base Fiesta",
+    "kind": "launch",
+    "source": "web",
+    "site": "retrowow.co.uk",
+    "url": "https://www.retrowow.co.uk/transport/70s/ford_fiesta_1970s.php",
+    "confidence": "medium",
+    "quote": "The basic Ford Fiesta cost £2,114 when it first went on sale in 1977.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Honda Civic",
+  "y": 1972,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 425000,
+    "amount_text": "425",
+    "currency": "JPY",
+    "year": 1972,
+    "market": "Japan",
+    "version": "Civic 1200 two-door Standard",
+    "kind": "launch",
+    "source": "web",
+    "site": "honda.co.jp (Honda factbook)",
+    "url": "https://www.honda.co.jp/factbook/auto/CIVIC/19920700/cv20-006.html",
+    "confidence": "high",
+    "quote": "シビック1200 スタンダード 425",
+    "note": "Tokyo price in thousands of yen; on sale 12 July 1972.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

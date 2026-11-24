@@ -75,7 +75,9 @@ photo, key facts in a row (year, maker, country, body style…), the Wikipedia
 introduction (loaded live, with "more") and **Read the Full Article**, a reading view of
 the whole Wikipedia article (references and tables left out), the other generations of
 the same model, the car's place in its maker's history, and "More from this maker" and
-"Also new that year" shelves, and **Find One for Sale**: links that open Leboncoin's own
+"Also new that year" shelves, **Price When New** (for about a hundred cars so far: the
+price at launch or the list price, in the money of the day, each linked to the page it
+comes from), and **Find One for Sale**: links that open Leboncoin's own
 search for that model, and a web search (the ads and prices stay on those sites; nothing
 is copied into the app). In French, the French Wikipedia article is shown when one
 exists; otherwise the English one, with a note saying the page only exists in English. Tapping a car inside a sheet
@@ -124,8 +126,24 @@ facts) is in `data/verbiest-data.js` and works offline.
 | Eras | Era names and dates follow Wikipedia's *History of the automobile* |
 | Who owns whom | Wikidata *owned by* P127, *parent organization* P749, *subsidiary* P355, *owner of* P1830, with start/end years (P580/P582); majority owners only, governments left out; plus a short hand-checked list of well-known acquisitions in `scripts/ownership.py` |
 
+| Price when new | Wikipedia articles in English, French, German and the car's home language, then the web (manufacturer press releases and archives first, then the motoring press); see below |
+| Hand corrections | `CAR_FIXES` in `scripts/build_data.py`, e.g. L'Obéissante (1873), which English Wikipedia files under its builder's name |
+
 Text is © Wikipedia contributors (CC BY-SA 4.0). Images come from Wikimedia Commons
 under their own licences; each detail panel links to the image page.
+
+### How prices when new are found
+
+`scripts/launch_prices.py` works in batches (`data/raw/prices/<batch>/`), without any paid
+service: `gather` downloads, for each car, the English, French and German Wikipedia
+articles plus the one of its home country and keeps the sentences that mention money
+(launch and list prices first); these are read in a Claude Code session, and cars with no
+price there are searched on the web. Each price is written to `found/*.json` with the exact
+sentence it comes from, and `verify` re-reads every source page to check the sentence and
+the amount are really there. `export` then writes `data/prices.json` (checked prices only),
+which `build_data.py` puts into the app (`apply` does it without a full rebuild). So far:
+the 100 most famous cars (77 with a price at launch or when new, 8 more with a later
+generation's price) and a first test of 12 random cars.
 
 ## Refreshing the data
 

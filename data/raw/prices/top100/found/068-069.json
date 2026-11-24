@@ -1,0 +1,78 @@
+[
+ {
+  "n": "Porsche Panamera",
+  "y": 2009,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 85967,
+    "amount_text": "85 967 €",
+    "currency": "EUR",
+    "year": null,
+    "market": "France",
+    "version": "First generation, Panamera (base)",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "high",
+    "quote": "Le prix de base de la version Panamera est fixé à 85 967 € TTC.",
+    "url": "https://fr.wikipedia.org/wiki/Porsche_Panamera",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 107553,
+    "amount_text": "107.553 €",
+    "currency": "EUR",
+    "year": 2016,
+    "market": "Germany",
+    "version": "Second generation",
+    "kind": "launch",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Ab November 2016 stand der neue Panamera zu Preisen ab 107.553 € bei den Händlern.",
+    "url": "https://de.wikipedia.org/wiki/Porsche_Panamera",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Tesla Model X",
+  "y": 2015,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 132000,
+    "amount_text": "US$132,000",
+    "currency": "USD",
+    "year": 2015,
+    "market": "United States",
+    "version": "Signature (the first cars, limited edition)",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "Pricing for the limited edition Signature version of the Model X varies between US$132,000 and US$144,000",
+    "url": "https://en.wikipedia.org/wiki/Tesla_Model_X",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 85000,
+    "amount_text": "$85,000",
+    "currency": "USD",
+    "year": 2016,
+    "market": "United States",
+    "version": "Base version",
+    "kind": "list",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "increasing the base price to $85,000",
+    "url": "https://en.wikipedia.org/wiki/Tesla_Model_X",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

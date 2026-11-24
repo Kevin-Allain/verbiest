@@ -1,0 +1,3350 @@
+[
+ {
+  "n": "Bugatti Veyron",
+  "y": 2005,
+  "maker": "Bugatti",
+  "country": "Germany",
+  "qid": "Q172610",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Bugatti Veyron",
+    "revid": 1384125519,
+    "url": "https://en.wikipedia.org/wiki/Bugatti_Veyron",
+    "chars": 30456,
+    "passages": 22
+   },
+   "fr": {
+    "title": "Bugatti Veyron 16.4",
+    "revid": 240886420,
+    "url": "https://fr.wikipedia.org/wiki/Bugatti_Veyron_16.4",
+    "chars": 48164,
+    "passages": 5
+   },
+   "de": {
+    "title": "Bugatti Veyron 16.4",
+    "revid": 272183106,
+    "url": "https://de.wikipedia.org/wiki/Bugatti_Veyron_16.4",
+    "chars": 32205,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "Ford Model T",
+  "y": 1908,
+  "maker": "Ford",
+  "country": "United States",
+  "qid": "Q182323",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Ford Model T",
+    "revid": 1387278146,
+    "url": "https://en.wikipedia.org/wiki/Ford_Model_T",
+    "chars": 44049,
+    "passages": 51
+   },
+   "fr": {
+    "title": "Ford T",
+    "revid": 241479255,
+    "url": "https://fr.wikipedia.org/wiki/Ford_T",
+    "chars": 32099,
+    "passages": 4
+   },
+   "de": {
+    "title": "Ford Modell T",
+    "revid": 271131905,
+    "url": "https://de.wikipedia.org/wiki/Ford_Modell_T",
+    "chars": 23149,
+    "passages": 1
+   }
+  }
+ },
+ {
+  "n": "Volkswagen Beetle",
+  "y": 1938,
+  "maker": "Volkswagen",
+  "country": "Germany",
+  "qid": "Q152946",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Volkswagen Beetle",
+    "revid": 1386161832,
+    "url": "https://en.wikipedia.org/wiki/Volkswagen_Beetle",
+    "chars": 56015,
+    "passages": 3
+   },
+   "fr": {
+    "title": "Volkswagen Coccinelle",
+    "revid": 240428807,
+    "url": "https://fr.wikipedia.org/wiki/Volkswagen_Coccinelle",
+    "chars": 43753,
+    "passages": 3
+   },
+   "de": {
+    "title": "VW Käfer",
+    "revid": 271179822,
+    "url": "https://de.wikipedia.org/wiki/VW_K%C3%A4fer",
+    "chars": 139137,
+    "passages": 44
+   }
+  }
+ },
+ {
+  "n": "Toyota Corolla",
+  "y": 1966,
+  "maker": "Toyota",
+  "country": "Japan",
+  "qid": "Q243543",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Toyota Corolla",
+    "revid": 1387014014,
+    "url": "https://en.wikipedia.org/wiki/Toyota_Corolla",
+    "chars": 26900,
+    "passages": 0
+   },
+   "fr": {
+    "title": "Toyota Corolla",
+    "revid": 241373946,
+    "url": "https://fr.wikipedia.org/wiki/Toyota_Corolla",
+    "chars": 3380,
+    "passages": 0
+   },
+   "de": {
+    "title": "Toyota Corolla",
+    "revid": 272360570,
+    "url": "https://de.wikipedia.org/wiki/Toyota_Corolla",
+    "chars": 59793,
+    "passages": 11
+   },
+   "ja": {
+    "title": "トヨタ・カローラ",
+    "revid": 111689914,
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A8%E3%82%BF%E3%83%BB%E3%82%AB%E3%83%AD%E3%83%BC%E3%83%A9",
+    "chars": 47776,
+    "passages": 5
+   }
+  }
+ },
+ {
+  "n": "Citroën 2CV",
+  "y": 1948,
+  "maker": "Citroën",
+  "country": "France",
+  "qid": "Q326015",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Citroën 2CV",
+    "revid": 1387504823,
+    "url": "https://en.wikipedia.org/wiki/Citro%C3%ABn_2CV",
+    "chars": 73398,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Citroën 2 CV",
+    "revid": 241224184,
+    "url": "https://fr.wikipedia.org/wiki/Citro%C3%ABn_2_CV",
+    "chars": 80064,
+    "passages": 1
+   },
+   "de": {
+    "title": "Citroën 2CV",
+    "revid": 271479916,
+    "url": "https://de.wikipedia.org/wiki/Citro%C3%ABn_2CV",
+    "chars": 53421,
+    "passages": 3
+   }
+  }
+ },
+ {
+  "n": "Porsche 911",
+  "y": 1964,
+  "maker": "Porsche",
+  "country": "Germany",
+  "qid": "Q219357",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Porsche 911",
+    "revid": 1384238400,
+    "url": "https://en.wikipedia.org/wiki/Porsche_911",
+    "chars": 81323,
+    "passages": 3
+   },
+   "fr": {
+    "title": "Porsche 911",
+    "revid": 241630912,
+    "url": "https://fr.wikipedia.org/wiki/Porsche_911",
+    "chars": 68881,
+    "passages": 6
+   },
+   "de": {
+    "title": "Porsche 911",
+    "revid": 272417657,
+    "url": "https://de.wikipedia.org/wiki/Porsche_911",
+    "chars": 53080,
+    "passages": 3
+   }
+  }
+ },
+ {
+  "n": "Volkswagen Golf",
+  "y": 1974,
+  "maker": "Volkswagen",
+  "country": "Germany",
+  "qid": "Q247",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Volkswagen Golf",
+    "revid": 1386574573,
+    "url": "https://en.wikipedia.org/wiki/Volkswagen_Golf",
+    "chars": 31967,
+    "passages": 5
+   },
+   "fr": {
+    "title": "Volkswagen Golf",
+    "revid": 240808545,
+    "url": "https://fr.wikipedia.org/wiki/Volkswagen_Golf",
+    "chars": 7241,
+    "passages": 4
+   },
+   "de": {
+    "title": "VW Golf",
+    "revid": 271721855,
+    "url": "https://de.wikipedia.org/wiki/VW_Golf",
+    "chars": 47651,
+    "passages": 19
+   }
+  }
+ },
+ {
+  "n": "Tata Nano",
+  "y": 2008,
+  "maker": "Tata Motors Limited",
+  "country": "India",
+  "qid": "Q152238",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Tata Nano",
+    "revid": 1387417302,
+    "url": "https://en.wikipedia.org/wiki/Tata_Nano",
+    "chars": 16652,
+    "passages": 9
+   },
+   "fr": {
+    "title": "Tata Nano",
+    "revid": 240704008,
+    "url": "https://fr.wikipedia.org/wiki/Tata_Nano",
+    "chars": 10898,
+    "passages": 5
+   },
+   "de": {
+    "title": "Tata Nano",
+    "revid": 272021160,
+    "url": "https://de.wikipedia.org/wiki/Tata_Nano",
+    "chars": 8030,
+    "passages": 3
+   }
+  }
+ },
+ {
+  "n": "Ford Mustang",
+  "y": 1964,
+  "maker": "Ford",
+  "country": "United States",
+  "qid": "Q183476",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Ford Mustang",
+    "revid": 1381959353,
+    "url": "https://en.wikipedia.org/wiki/Ford_Mustang",
+    "chars": 46002,
+    "passages": 9
+   },
+   "fr": {
+    "title": "Ford Mustang",
+    "revid": 241374582,
+    "url": "https://fr.wikipedia.org/wiki/Ford_Mustang",
+    "chars": 81945,
+    "passages": 16
+   },
+   "de": {
+    "title": "Ford Mustang",
+    "revid": 272182445,
+    "url": "https://de.wikipedia.org/wiki/Ford_Mustang",
+    "chars": 76306,
+    "passages": 8
+   }
+  }
+ },
+ {
+  "n": "Toyota Prius",
+  "y": 1997,
+  "maker": "Toyota",
+  "country": "Japan",
+  "qid": "Q213115",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Toyota Prius",
+    "revid": 1387494048,
+    "url": "https://en.wikipedia.org/wiki/Toyota_Prius",
+    "chars": 48096,
+    "passages": 13
+   },
+   "fr": {
+    "title": "Toyota Prius",
+    "revid": 238616069,
+    "url": "https://fr.wikipedia.org/wiki/Toyota_Prius",
+    "chars": 22529,
+    "passages": 6
+   },
+   "de": {
+    "title": "Toyota Prius",
+    "revid": 272363509,
+    "url": "https://de.wikipedia.org/wiki/Toyota_Prius",
+    "chars": 50577,
+    "passages": 5
+   },
+   "ja": {
+    "title": "トヨタ・プリウス",
+    "revid": 111762950,
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A8%E3%82%BF%E3%83%BB%E3%83%97%E3%83%AA%E3%82%A6%E3%82%B9",
+    "chars": 43396,
+    "passages": 8
+   }
+  }
+ },
+ {
+  "n": "Mercedes-Benz E-Class",
+  "y": 1953,
+  "maker": "Mercedes-Benz",
+  "country": "Germany",
+  "qid": "Q324127",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Mercedes-Benz E-Class",
+    "revid": 1379778430,
+    "url": "https://en.wikipedia.org/wiki/Mercedes-Benz_E-Class",
+    "chars": 26501,
+    "passages": 2
+   },
+   "fr": {
+    "title": "Mercedes-Benz Classe E",
+    "revid": 235490435,
+    "url": "https://fr.wikipedia.org/wiki/Mercedes-Benz_Classe_E",
+    "chars": 12624,
+    "passages": 0
+   },
+   "de": {
+    "title": "Mercedes-Benz E-Klasse",
+    "revid": 262190913,
+    "url": "https://de.wikipedia.org/wiki/Mercedes-Benz_E-Klasse",
+    "chars": 14150,
+    "passages": 1
+   }
+  }
+ },
+ {
+  "n": "Tesla Cybertruck",
+  "y": 2019,
+  "maker": "Tesla",
+  "country": "United States",
+  "qid": "Q66311587",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Tesla Cybertruck",
+    "revid": 1386734979,
+    "url": "https://en.wikipedia.org/wiki/Tesla_Cybertruck",
+    "chars": 26048,
+    "passages": 14
+   },
+   "fr": {
+    "title": "Tesla Cybertruck",
+    "revid": 241270105,
+    "url": "https://fr.wikipedia.org/wiki/Tesla_Cybertruck",
+    "chars": 11361,
+    "passages": 5
+   },
+   "de": {
+    "title": "Tesla Cybertruck",
+    "revid": 272431968,
+    "url": "https://de.wikipedia.org/wiki/Tesla_Cybertruck",
+    "chars": 10231,
+    "passages": 1
+   }
+  }
+ },
+ {
+  "n": "Audi A4",
+  "y": 1994,
+  "maker": "Audi",
+  "country": "Germany",
+  "qid": "Q758729",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Audi A4",
+    "revid": 1371883197,
+    "url": "https://en.wikipedia.org/wiki/Audi_A4",
+    "chars": 55865,
+    "passages": 14
+   },
+   "fr": {
+    "title": "Audi A4",
+    "revid": 241123010,
+    "url": "https://fr.wikipedia.org/wiki/Audi_A4",
+    "chars": 28786,
+    "passages": 3
+   },
+   "de": {
+    "title": "Audi 80/A4",
+    "revid": 268730026,
+    "url": "https://de.wikipedia.org/wiki/Audi_80%2FA4",
+    "chars": 4634,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Ford Fiesta",
+  "y": 1976,
+  "maker": "Ford",
+  "country": "United States",
+  "qid": "Q3077171",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Ford Fiesta",
+    "revid": 1386569986,
+    "url": "https://en.wikipedia.org/wiki/Ford_Fiesta",
+    "chars": 31982,
+    "passages": 7
+   },
+   "fr": {
+    "title": "Ford Fiesta",
+    "revid": 240880666,
+    "url": "https://fr.wikipedia.org/wiki/Ford_Fiesta",
+    "chars": 48354,
+    "passages": 0
+   },
+   "de": {
+    "title": "Ford Fiesta",
+    "revid": 271670886,
+    "url": "https://de.wikipedia.org/wiki/Ford_Fiesta",
+    "chars": 40507,
+    "passages": 3
+   }
+  }
+ },
+ {
+  "n": "Lamborghini Aventador",
+  "y": 2011,
+  "maker": "Lamborghini",
+  "country": "Italy",
+  "qid": "Q318094",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Lamborghini Aventador",
+    "revid": 1386571432,
+    "url": "https://en.wikipedia.org/wiki/Lamborghini_Aventador",
+    "chars": 25165,
+    "passages": 6
+   },
+   "fr": {
+    "title": "Lamborghini Aventador",
+    "revid": 241403775,
+    "url": "https://fr.wikipedia.org/wiki/Lamborghini_Aventador",
+    "chars": 14844,
+    "passages": 5
+   },
+   "de": {
+    "title": "Lamborghini Aventador",
+    "revid": 269859031,
+    "url": "https://de.wikipedia.org/wiki/Lamborghini_Aventador",
+    "chars": 13621,
+    "passages": 4
+   },
+   "it": {
+    "title": "Lamborghini Aventador",
+    "revid": 152197599,
+    "url": "https://it.wikipedia.org/wiki/Lamborghini_Aventador",
+    "chars": 19066,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "VAZ-2101",
+  "y": 1970,
+  "maker": "Zhiguli",
+  "country": "Russia",
+  "qid": "Q837297",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "VAZ-2101",
+    "revid": 1383718611,
+    "url": "https://en.wikipedia.org/wiki/VAZ-2101",
+    "chars": 15856,
+    "passages": 4
+   },
+   "fr": {
+    "title": "Lada 2101/2102",
+    "revid": 238392643,
+    "url": "https://fr.wikipedia.org/wiki/Lada_2101%2F2102",
+    "chars": 6985,
+    "passages": 2
+   },
+   "de": {
+    "title": "WAS-2101",
+    "revid": 261846886,
+    "url": "https://de.wikipedia.org/wiki/WAS-2101",
+    "chars": 20429,
+    "passages": 3
+   },
+   "ru": {
+    "title": "ВАЗ-2101",
+    "revid": 156209182,
+    "url": "https://ru.wikipedia.org/wiki/%D0%92%D0%90%D0%97-2101",
+    "chars": 16983,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Honda Civic",
+  "y": 1972,
+  "maker": "Honda",
+  "country": "Japan",
+  "qid": "Q216747",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Honda Civic",
+    "revid": 1386940415,
+    "url": "https://en.wikipedia.org/wiki/Honda_Civic",
+    "chars": 40600,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Honda Civic",
+    "revid": 241374053,
+    "url": "https://fr.wikipedia.org/wiki/Honda_Civic",
+    "chars": 45832,
+    "passages": 3
+   },
+   "de": {
+    "title": "Honda Civic",
+    "revid": 255946344,
+    "url": "https://de.wikipedia.org/wiki/Honda_Civic",
+    "chars": 6051,
+    "passages": 0
+   },
+   "ja": {
+    "title": "ホンダ・シビック",
+    "revid": 111335866,
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%9B%E3%83%B3%E3%83%80%E3%83%BB%E3%82%B7%E3%83%93%E3%83%83%E3%82%AF",
+    "chars": 39056,
+    "passages": 3
+   }
+  }
+ },
+ {
+  "n": "Hummer",
+  "y": 1992,
+  "maker": null,
+  "country": "United States",
+  "qid": "Q213487",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Hummer",
+    "revid": 1385529308,
+    "url": "https://en.wikipedia.org/wiki/Hummer",
+    "chars": 15207,
+    "passages": 2
+   },
+   "fr": {
+    "title": "Hummer",
+    "revid": 241638551,
+    "url": "https://fr.wikipedia.org/wiki/Hummer",
+    "chars": 5237,
+    "passages": 0
+   },
+   "de": {
+    "title": "Hummer (Automarke)",
+    "revid": 264084368,
+    "url": "https://de.wikipedia.org/wiki/Hummer_(Automarke)",
+    "chars": 11432,
+    "passages": 1
+   }
+  }
+ },
+ {
+  "n": "Tesla Model S",
+  "y": 2012,
+  "maker": "Tesla",
+  "country": "United States",
+  "qid": "Q1463050",
+  "wikidata_prices": [
+   {
+    "amount": "+78001",
+    "unit": "Q4916",
+    "year": null
+   }
+  ],
+  "pages": {
+   "en": {
+    "title": "Tesla Model S",
+    "revid": 1387336749,
+    "url": "https://en.wikipedia.org/wiki/Tesla_Model_S",
+    "chars": 45983,
+    "passages": 7
+   },
+   "fr": {
+    "title": "Tesla Model S",
+    "revid": 241585432,
+    "url": "https://fr.wikipedia.org/wiki/Tesla_Model_S",
+    "chars": 39952,
+    "passages": 3
+   },
+   "de": {
+    "title": "Tesla Model S",
+    "revid": 272227459,
+    "url": "https://de.wikipedia.org/wiki/Tesla_Model_S",
+    "chars": 38199,
+    "passages": 4
+   }
+  }
+ },
+ {
+  "n": "Toyota Camry",
+  "y": 1982,
+  "maker": "Toyota",
+  "country": "Japan",
+  "qid": "Q500035",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Toyota Camry",
+    "revid": 1385420577,
+    "url": "https://en.wikipedia.org/wiki/Toyota_Camry",
+    "chars": 69148,
+    "passages": 4
+   },
+   "fr": {
+    "title": "Toyota Camry",
+    "revid": 239067433,
+    "url": "https://fr.wikipedia.org/wiki/Toyota_Camry",
+    "chars": 27610,
+    "passages": 2
+   },
+   "de": {
+    "title": "Toyota Camry",
+    "revid": 270976845,
+    "url": "https://de.wikipedia.org/wiki/Toyota_Camry",
+    "chars": 29490,
+    "passages": 0
+   },
+   "ja": {
+    "title": "トヨタ・カムリ",
+    "revid": 111783824,
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A8%E3%82%BF%E3%83%BB%E3%82%AB%E3%83%A0%E3%83%AA",
+    "chars": 30719,
+    "passages": 1
+   }
+  }
+ },
+ {
+  "n": "Volkswagen Passat",
+  "y": 1973,
+  "maker": "Volkswagen",
+  "country": "Germany",
+  "qid": "Q216754",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Volkswagen Passat",
+    "revid": 1380100872,
+    "url": "https://en.wikipedia.org/wiki/Volkswagen_Passat",
+    "chars": 25663,
+    "passages": 0
+   },
+   "fr": {
+    "title": "Volkswagen Passat",
+    "revid": 237651338,
+    "url": "https://fr.wikipedia.org/wiki/Volkswagen_Passat",
+    "chars": 3408,
+    "passages": 0
+   },
+   "de": {
+    "title": "VW Passat",
+    "revid": 272174993,
+    "url": "https://de.wikipedia.org/wiki/VW_Passat",
+    "chars": 9736,
+    "passages": 1
+   }
+  }
+ },
+ {
+  "n": "Citroën DS",
+  "y": 1955,
+  "maker": "Citroën",
+  "country": "France",
+  "qid": "Q465966",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Citroën DS",
+    "revid": 1381613862,
+    "url": "https://en.wikipedia.org/wiki/Citro%C3%ABn_DS",
+    "chars": 44590,
+    "passages": 6
+   },
+   "fr": {
+    "title": "Citroën DS",
+    "revid": 241417041,
+    "url": "https://fr.wikipedia.org/wiki/Citro%C3%ABn_DS",
+    "chars": 55510,
+    "passages": 3
+   },
+   "de": {
+    "title": "Citroën DS",
+    "revid": 271970444,
+    "url": "https://de.wikipedia.org/wiki/Citro%C3%ABn_DS",
+    "chars": 45840,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "Dacia Sandero",
+  "y": 2007,
+  "maker": "Dacia",
+  "country": "Romania",
+  "qid": "Q926562",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Dacia Sandero",
+    "revid": 1383233309,
+    "url": "https://en.wikipedia.org/wiki/Dacia_Sandero",
+    "chars": 25070,
+    "passages": 8
+   },
+   "fr": {
+    "title": "Dacia Sandero",
+    "revid": 233904880,
+    "url": "https://fr.wikipedia.org/wiki/Dacia_Sandero",
+    "chars": 754,
+    "passages": 0
+   },
+   "de": {
+    "title": "Dacia Sandero",
+    "revid": 271281456,
+    "url": "https://de.wikipedia.org/wiki/Dacia_Sandero",
+    "chars": 18815,
+    "passages": 1
+   },
+   "ro": {
+    "title": "Dacia Sandero",
+    "revid": 17977800,
+    "url": "https://ro.wikipedia.org/wiki/Dacia_Sandero",
+    "chars": 3463,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Mercedes-Benz G-Class",
+  "y": 1979,
+  "maker": "Mercedes-Benz",
+  "country": "Germany",
+  "qid": "Q659251",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Mercedes-Benz G-Class",
+    "revid": 1387402489,
+    "url": "https://en.wikipedia.org/wiki/Mercedes-Benz_G-Class",
+    "chars": 103822,
+    "passages": 10
+   },
+   "fr": {
+    "title": "Mercedes-Benz Classe G",
+    "revid": 241274884,
+    "url": "https://fr.wikipedia.org/wiki/Mercedes-Benz_Classe_G",
+    "chars": 8621,
+    "passages": 0
+   },
+   "de": {
+    "title": "Mercedes-Benz G-Klasse",
+    "revid": 272068415,
+    "url": "https://de.wikipedia.org/wiki/Mercedes-Benz_G-Klasse",
+    "chars": 47778,
+    "passages": 3
+   }
+  }
+ },
+ {
+  "n": "Audi A3",
+  "y": 1996,
+  "maker": "Audi",
+  "country": "Germany",
+  "qid": "Q161880",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Audi A3",
+    "revid": 1386567591,
+    "url": "https://en.wikipedia.org/wiki/Audi_A3",
+    "chars": 49383,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Audi A3",
+    "revid": 240253841,
+    "url": "https://fr.wikipedia.org/wiki/Audi_A3",
+    "chars": 35247,
+    "passages": 5
+   },
+   "de": {
+    "title": "Audi A3",
+    "revid": 272189390,
+    "url": "https://de.wikipedia.org/wiki/Audi_A3",
+    "chars": 3966,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Audi A6",
+  "y": 1994,
+  "maker": "Audi",
+  "country": "Germany",
+  "qid": "Q758718",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Audi A6",
+    "revid": 1386799815,
+    "url": "https://en.wikipedia.org/wiki/Audi_A6",
+    "chars": 73175,
+    "passages": 3
+   },
+   "fr": {
+    "title": "Audi A6",
+    "revid": 241405242,
+    "url": "https://fr.wikipedia.org/wiki/Audi_A6",
+    "chars": 23012,
+    "passages": 3
+   },
+   "de": {
+    "title": "Audi A6",
+    "revid": 269034056,
+    "url": "https://de.wikipedia.org/wiki/Audi_A6",
+    "chars": 6358,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Lamborghini Murciélago",
+  "y": 2001,
+  "maker": "Lamborghini",
+  "country": "Italy",
+  "qid": "Q216757",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Lamborghini Murciélago",
+    "revid": 1387394097,
+    "url": "https://en.wikipedia.org/wiki/Lamborghini_Murci%C3%A9lago",
+    "chars": 20512,
+    "passages": 0
+   },
+   "fr": {
+    "title": "Lamborghini Murciélago",
+    "revid": 239697914,
+    "url": "https://fr.wikipedia.org/wiki/Lamborghini_Murci%C3%A9lago",
+    "chars": 8687,
+    "passages": 2
+   },
+   "de": {
+    "title": "Lamborghini Murciélago",
+    "revid": 271082223,
+    "url": "https://de.wikipedia.org/wiki/Lamborghini_Murci%C3%A9lago",
+    "chars": 12488,
+    "passages": 4
+   },
+   "it": {
+    "title": "Lamborghini Murciélago",
+    "revid": 150485059,
+    "url": "https://it.wikipedia.org/wiki/Lamborghini_Murci%C3%A9lago",
+    "chars": 11753,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Mini",
+  "y": 1959,
+  "maker": "Mini",
+  "country": "United Kingdom",
+  "qid": "Q36024",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Mini",
+    "revid": 1384389536,
+    "url": "https://en.wikipedia.org/wiki/Mini",
+    "chars": 77024,
+    "passages": 10
+   },
+   "fr": {
+    "title": "Mini (1959-2000)",
+    "revid": 240919771,
+    "url": "https://fr.wikipedia.org/wiki/Mini_(1959-2000)",
+    "chars": 37179,
+    "passages": 0
+   },
+   "de": {
+    "title": "Mini (Auto)",
+    "revid": 268034528,
+    "url": "https://de.wikipedia.org/wiki/Mini_(Auto)",
+    "chars": 26386,
+    "passages": 9
+   }
+  }
+ },
+ {
+  "n": "Tesla Model 3",
+  "y": 2016,
+  "maker": "Tesla",
+  "country": "United States",
+  "qid": "Q7705507",
+  "wikidata_prices": [
+   {
+    "amount": "+44130",
+    "unit": "Q4917",
+    "year": null
+   },
+   {
+    "amount": "+48440",
+    "unit": "Q4917",
+    "year": null
+   }
+  ],
+  "pages": {
+   "en": {
+    "title": "Tesla Model 3",
+    "revid": 1387120576,
+    "url": "https://en.wikipedia.org/wiki/Tesla_Model_3",
+    "chars": 46037,
+    "passages": 14
+   },
+   "fr": {
+    "title": "Tesla Model 3",
+    "revid": 239432868,
+    "url": "https://fr.wikipedia.org/wiki/Tesla_Model_3",
+    "chars": 33708,
+    "passages": 9
+   },
+   "de": {
+    "title": "Tesla Model 3",
+    "revid": 272241740,
+    "url": "https://de.wikipedia.org/wiki/Tesla_Model_3",
+    "chars": 26336,
+    "passages": 3
+   }
+  }
+ },
+ {
+  "n": "Toyota Land Cruiser",
+  "y": 1951,
+  "maker": "Toyota",
+  "country": "Japan",
+  "qid": "Q914069",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Toyota Land Cruiser",
+    "revid": 1387513721,
+    "url": "https://en.wikipedia.org/wiki/Toyota_Land_Cruiser",
+    "chars": 63618,
+    "passages": 31
+   },
+   "fr": {
+    "title": "Toyota Land Cruiser",
+    "revid": 239592341,
+    "url": "https://fr.wikipedia.org/wiki/Toyota_Land_Cruiser",
+    "chars": 48790,
+    "passages": 4
+   },
+   "de": {
+    "title": "Toyota Land Cruiser",
+    "revid": 271572584,
+    "url": "https://de.wikipedia.org/wiki/Toyota_Land_Cruiser",
+    "chars": 34654,
+    "passages": 2
+   },
+   "ja": {
+    "title": "トヨタ・ランドクルーザー",
+    "revid": 111612918,
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A8%E3%82%BF%E3%83%BB%E3%83%A9%E3%83%B3%E3%83%89%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%B6%E3%83%BC",
+    "chars": 45355,
+    "passages": 15
+   }
+  }
+ },
+ {
+  "n": "Toyota Yaris",
+  "y": 1999,
+  "maker": "Toyota",
+  "country": "Japan",
+  "qid": "Q6902966",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Toyota Yaris",
+    "revid": 1386391492,
+    "url": "https://en.wikipedia.org/wiki/Toyota_Yaris",
+    "chars": 12132,
+    "passages": 0
+   },
+   "fr": {
+    "title": "Toyota Yaris",
+    "revid": 241374067,
+    "url": "https://fr.wikipedia.org/wiki/Toyota_Yaris",
+    "chars": 26796,
+    "passages": 1
+   },
+   "de": {
+    "title": "Toyota Yaris",
+    "revid": 272433159,
+    "url": "https://de.wikipedia.org/wiki/Toyota_Yaris",
+    "chars": 9407,
+    "passages": 0
+   },
+   "ja": {
+    "title": "トヨタ・ヤリス",
+    "revid": 111827031,
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A8%E3%82%BF%E3%83%BB%E3%83%A4%E3%83%AA%E3%82%B9",
+    "chars": 14503,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Volkswagen Polo",
+  "y": 1975,
+  "maker": "Volkswagen",
+  "country": "Germany",
+  "qid": "Q247819",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Volkswagen Polo",
+    "revid": 1379706839,
+    "url": "https://en.wikipedia.org/wiki/Volkswagen_Polo",
+    "chars": 30858,
+    "passages": 16
+   },
+   "fr": {
+    "title": "Volkswagen Polo",
+    "revid": 230979695,
+    "url": "https://fr.wikipedia.org/wiki/Volkswagen_Polo",
+    "chars": 1662,
+    "passages": 2
+   },
+   "de": {
+    "title": "VW Polo",
+    "revid": 270303176,
+    "url": "https://de.wikipedia.org/wiki/VW_Polo",
+    "chars": 7092,
+    "passages": 1
+   }
+  }
+ },
+ {
+  "n": "Benz Patent-Motorwagen",
+  "y": 1886,
+  "maker": "Benz & Cie.",
+  "country": "Germany",
+  "qid": "Q326248",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Benz Patent-Motorwagen",
+    "revid": 1386004205,
+    "url": "https://en.wikipedia.org/wiki/Benz_Patent-Motorwagen",
+    "chars": 85022,
+    "passages": 5
+   },
+   "fr": {
+    "title": "Benz Patent Motorwagen",
+    "revid": 240354624,
+    "url": "https://fr.wikipedia.org/wiki/Benz_Patent_Motorwagen",
+    "chars": 8274,
+    "passages": 0
+   },
+   "de": {
+    "title": "Benz Patent-Motorwagen Nummer 1",
+    "revid": 268557741,
+    "url": "https://de.wikipedia.org/wiki/Benz_Patent-Motorwagen_Nummer_1",
+    "chars": 12853,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Lamborghini Gallardo",
+  "y": 2003,
+  "maker": "Lamborghini",
+  "country": "Italy",
+  "qid": "Q152917",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Lamborghini Gallardo",
+    "revid": 1382106160,
+    "url": "https://en.wikipedia.org/wiki/Lamborghini_Gallardo",
+    "chars": 42691,
+    "passages": 11
+   },
+   "fr": {
+    "title": "Lamborghini Gallardo",
+    "revid": 241226060,
+    "url": "https://fr.wikipedia.org/wiki/Lamborghini_Gallardo",
+    "chars": 22581,
+    "passages": 0
+   },
+   "de": {
+    "title": "Lamborghini Gallardo",
+    "revid": 271085512,
+    "url": "https://de.wikipedia.org/wiki/Lamborghini_Gallardo",
+    "chars": 32195,
+    "passages": 5
+   },
+   "it": {
+    "title": "Lamborghini Gallardo",
+    "revid": 148463314,
+    "url": "https://it.wikipedia.org/wiki/Lamborghini_Gallardo",
+    "chars": 19836,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "Nissan Leaf",
+  "y": 2010,
+  "maker": "Nissan",
+  "country": "Japan",
+  "qid": "Q911323",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Nissan Leaf",
+    "revid": 1386984812,
+    "url": "https://en.wikipedia.org/wiki/Nissan_Leaf",
+    "chars": 18171,
+    "passages": 3
+   },
+   "fr": {
+    "title": "Nissan Leaf",
+    "revid": 241404010,
+    "url": "https://fr.wikipedia.org/wiki/Nissan_Leaf",
+    "chars": 12848,
+    "passages": 0
+   },
+   "de": {
+    "title": "Nissan Leaf",
+    "revid": 272274899,
+    "url": "https://de.wikipedia.org/wiki/Nissan_Leaf",
+    "chars": 30016,
+    "passages": 3
+   },
+   "ja": {
+    "title": "日産・リーフ",
+    "revid": 111645649,
+    "url": "https://ja.wikipedia.org/wiki/%E6%97%A5%E7%94%A3%E3%83%BB%E3%83%AA%E3%83%BC%E3%83%95",
+    "chars": 15467,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "Opel Astra",
+  "y": 1991,
+  "maker": "Opel",
+  "country": "Germany",
+  "qid": "Q1350",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Opel Astra",
+    "revid": 1387047920,
+    "url": "https://en.wikipedia.org/wiki/Opel_Astra",
+    "chars": 62721,
+    "passages": 3
+   },
+   "fr": {
+    "title": "Opel Astra",
+    "revid": 240509158,
+    "url": "https://fr.wikipedia.org/wiki/Opel_Astra",
+    "chars": 12423,
+    "passages": 12
+   },
+   "de": {
+    "title": "Opel Astra",
+    "revid": 266144496,
+    "url": "https://de.wikipedia.org/wiki/Opel_Astra",
+    "chars": 12955,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Range Rover",
+  "y": 1970,
+  "maker": "Land Rover",
+  "country": "United Kingdom",
+  "qid": "Q1134042",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Range Rover",
+    "revid": 1387219768,
+    "url": "https://en.wikipedia.org/wiki/Range_Rover",
+    "chars": 19519,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Range Rover",
+    "revid": 238132227,
+    "url": "https://fr.wikipedia.org/wiki/Range_Rover",
+    "chars": 11322,
+    "passages": 0
+   },
+   "de": {
+    "title": "Range Rover",
+    "revid": 272193385,
+    "url": "https://de.wikipedia.org/wiki/Range_Rover",
+    "chars": 32562,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Renault Clio",
+  "y": 1990,
+  "maker": "Renault",
+  "country": "France",
+  "qid": "Q309258",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Renault Clio",
+    "revid": 1385077297,
+    "url": "https://en.wikipedia.org/wiki/Renault_Clio",
+    "chars": 64121,
+    "passages": 18
+   },
+   "fr": {
+    "title": "Renault Clio",
+    "revid": 238036494,
+    "url": "https://fr.wikipedia.org/wiki/Renault_Clio",
+    "chars": 9551,
+    "passages": 0
+   },
+   "de": {
+    "title": "Renault Clio",
+    "revid": 272344151,
+    "url": "https://de.wikipedia.org/wiki/Renault_Clio",
+    "chars": 11759,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Tesla Roadster (first generation)",
+  "y": 2007,
+  "maker": "Tesla",
+  "country": "United States",
+  "qid": "Q210893",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Tesla Roadster (first generation)",
+    "revid": 1386184944,
+    "url": "https://en.wikipedia.org/wiki/Tesla_Roadster_(first_generation)",
+    "chars": 50912,
+    "passages": 19
+   },
+   "fr": {
+    "title": "Tesla Roadster (première génération)",
+    "revid": 241599170,
+    "url": "https://fr.wikipedia.org/wiki/Tesla_Roadster_(premi%C3%A8re_g%C3%A9n%C3%A9ration)",
+    "chars": 5301,
+    "passages": 2
+   },
+   "de": {
+    "title": "Tesla Roadster (2008)",
+    "revid": 271552472,
+    "url": "https://de.wikipedia.org/wiki/Tesla_Roadster_(2008)",
+    "chars": 12992,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "Toyota RAV4",
+  "y": 1994,
+  "maker": "Toyota",
+  "country": "Japan",
+  "qid": "Q819982",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Toyota RAV4",
+    "revid": 1387026315,
+    "url": "https://en.wikipedia.org/wiki/Toyota_RAV4",
+    "chars": 62756,
+    "passages": 3
+   },
+   "fr": {
+    "title": "Toyota RAV4",
+    "revid": 240927044,
+    "url": "https://fr.wikipedia.org/wiki/Toyota_RAV4",
+    "chars": 14509,
+    "passages": 8
+   },
+   "de": {
+    "title": "Toyota RAV4",
+    "revid": 272382060,
+    "url": "https://de.wikipedia.org/wiki/Toyota_RAV4",
+    "chars": 29484,
+    "passages": 0
+   },
+   "ja": {
+    "title": "トヨタ・RAV4",
+    "revid": 111612060,
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A8%E3%82%BF%E3%83%BBRAV4",
+    "chars": 21919,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Toyota Supra",
+  "y": 1978,
+  "maker": "Toyota",
+  "country": "Japan",
+  "qid": "Q647404",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Toyota Supra",
+    "revid": 1385361885,
+    "url": "https://en.wikipedia.org/wiki/Toyota_Supra",
+    "chars": 63378,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Toyota Supra",
+    "revid": 240219743,
+    "url": "https://fr.wikipedia.org/wiki/Toyota_Supra",
+    "chars": 16858,
+    "passages": 2
+   },
+   "de": {
+    "title": "Toyota Supra",
+    "revid": 271771123,
+    "url": "https://de.wikipedia.org/wiki/Toyota_Supra",
+    "chars": 44399,
+    "passages": 2
+   },
+   "ja": {
+    "title": "トヨタ・スープラ",
+    "revid": 111784026,
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A8%E3%82%BF%E3%83%BB%E3%82%B9%E3%83%BC%E3%83%97%E3%83%A9",
+    "chars": 24912,
+    "passages": 3
+   }
+  }
+ },
+ {
+  "n": "Ferrari Enzo",
+  "y": 2002,
+  "maker": "Ferrari",
+  "country": "Italy",
+  "qid": "Q269880",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Ferrari Enzo",
+    "revid": 1379197775,
+    "url": "https://en.wikipedia.org/wiki/Ferrari_Enzo",
+    "chars": 15273,
+    "passages": 4
+   },
+   "fr": {
+    "title": "Ferrari Enzo Ferrari",
+    "revid": 236765869,
+    "url": "https://fr.wikipedia.org/wiki/Ferrari_Enzo_Ferrari",
+    "chars": 10079,
+    "passages": 2
+   },
+   "de": {
+    "title": "Ferrari Enzo Ferrari",
+    "revid": 271898907,
+    "url": "https://de.wikipedia.org/wiki/Ferrari_Enzo_Ferrari",
+    "chars": 8895,
+    "passages": 3
+   },
+   "it": {
+    "title": "Ferrari Enzo",
+    "revid": 152997106,
+    "url": "https://it.wikipedia.org/wiki/Ferrari_Enzo",
+    "chars": 7764,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "Mercedes-Benz S-Class",
+  "y": 1972,
+  "maker": "Mercedes-Benz",
+  "country": "Germany",
+  "qid": "Q461469",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Mercedes-Benz S-Class",
+    "revid": 1384212236,
+    "url": "https://en.wikipedia.org/wiki/Mercedes-Benz_S-Class",
+    "chars": 54339,
+    "passages": 3
+   },
+   "fr": {
+    "title": "Mercedes-Benz Classe S",
+    "revid": 241374071,
+    "url": "https://fr.wikipedia.org/wiki/Mercedes-Benz_Classe_S",
+    "chars": 12565,
+    "passages": 0
+   },
+   "de": {
+    "title": "Mercedes-Benz S-Klasse",
+    "revid": 271258743,
+    "url": "https://de.wikipedia.org/wiki/Mercedes-Benz_S-Klasse",
+    "chars": 17156,
+    "passages": 14
+   }
+  }
+ },
+ {
+  "n": "Peugeot 206",
+  "y": 1998,
+  "maker": "Peugeot",
+  "country": "France",
+  "qid": "Q207976",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Peugeot 206",
+    "revid": 1385570822,
+    "url": "https://en.wikipedia.org/wiki/Peugeot_206",
+    "chars": 27092,
+    "passages": 3
+   },
+   "fr": {
+    "title": "Peugeot 206",
+    "revid": 240512453,
+    "url": "https://fr.wikipedia.org/wiki/Peugeot_206",
+    "chars": 39979,
+    "passages": 6
+   },
+   "de": {
+    "title": "Peugeot 206",
+    "revid": 270836245,
+    "url": "https://de.wikipedia.org/wiki/Peugeot_206",
+    "chars": 21496,
+    "passages": 3
+   }
+  }
+ },
+ {
+  "n": "Škoda Octavia",
+  "y": 1996,
+  "maker": "Škoda",
+  "country": "Czechia",
+  "qid": "Q223696",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Škoda Octavia",
+    "revid": 1379946492,
+    "url": "https://en.wikipedia.org/wiki/%C5%A0koda_Octavia",
+    "chars": 42720,
+    "passages": 0
+   },
+   "fr": {
+    "title": "Škoda Octavia",
+    "revid": 241536601,
+    "url": "https://fr.wikipedia.org/wiki/%C5%A0koda_Octavia",
+    "chars": 13908,
+    "passages": 0
+   },
+   "de": {
+    "title": "Škoda Octavia",
+    "revid": 269552116,
+    "url": "https://de.wikipedia.org/wiki/%C5%A0koda_Octavia",
+    "chars": 6002,
+    "passages": 0
+   },
+   "cs": {
+    "title": "Škoda Octavia",
+    "revid": 26388865,
+    "url": "https://cs.wikipedia.org/wiki/%C5%A0koda_Octavia",
+    "chars": 30832,
+    "passages": 1
+   }
+  }
+ },
+ {
+  "n": "Chevrolet Corvette",
+  "y": 1953,
+  "maker": "Chevrolet",
+  "country": "United States",
+  "qid": "Q56166",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Chevrolet Corvette",
+    "revid": 1387297796,
+    "url": "https://en.wikipedia.org/wiki/Chevrolet_Corvette",
+    "chars": 72864,
+    "passages": 13
+   },
+   "fr": {
+    "title": "Chevrolet Corvette",
+    "revid": 241228249,
+    "url": "https://fr.wikipedia.org/wiki/Chevrolet_Corvette",
+    "chars": 30159,
+    "passages": 2
+   },
+   "de": {
+    "title": "Chevrolet Corvette",
+    "revid": 271005343,
+    "url": "https://de.wikipedia.org/wiki/Chevrolet_Corvette",
+    "chars": 24746,
+    "passages": 1
+   }
+  }
+ },
+ {
+  "n": "Honda Accord",
+  "y": 1976,
+  "maker": "Honda",
+  "country": "Japan",
+  "qid": "Q463632",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Honda Accord",
+    "revid": 1387524658,
+    "url": "https://en.wikipedia.org/wiki/Honda_Accord",
+    "chars": 87836,
+    "passages": 4
+   },
+   "fr": {
+    "title": "Honda Accord",
+    "revid": 241287379,
+    "url": "https://fr.wikipedia.org/wiki/Honda_Accord",
+    "chars": 35327,
+    "passages": 1
+   },
+   "de": {
+    "title": "Honda Accord",
+    "revid": 265515551,
+    "url": "https://de.wikipedia.org/wiki/Honda_Accord",
+    "chars": 3797,
+    "passages": 0
+   },
+   "ja": {
+    "title": "ホンダ・アコード",
+    "revid": 111173763,
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%9B%E3%83%B3%E3%83%80%E3%83%BB%E3%82%A2%E3%82%B3%E3%83%BC%E3%83%89",
+    "chars": 26292,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Lamborghini Diablo",
+  "y": 1990,
+  "maker": "Lamborghini",
+  "country": "Italy",
+  "qid": "Q462223",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Lamborghini Diablo",
+    "revid": 1385950800,
+    "url": "https://en.wikipedia.org/wiki/Lamborghini_Diablo",
+    "chars": 43956,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Lamborghini Diablo",
+    "revid": 241579877,
+    "url": "https://fr.wikipedia.org/wiki/Lamborghini_Diablo",
+    "chars": 28083,
+    "passages": 0
+   },
+   "de": {
+    "title": "Lamborghini Diablo",
+    "revid": 271787066,
+    "url": "https://de.wikipedia.org/wiki/Lamborghini_Diablo",
+    "chars": 14609,
+    "passages": 0
+   },
+   "it": {
+    "title": "Lamborghini Diablo",
+    "revid": 149777110,
+    "url": "https://it.wikipedia.org/wiki/Lamborghini_Diablo",
+    "chars": 22290,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "Lamborghini Huracán",
+  "y": 2014,
+  "maker": "Lamborghini",
+  "country": "Italy",
+  "qid": "Q15396270",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Lamborghini Huracán",
+    "revid": 1384218612,
+    "url": "https://en.wikipedia.org/wiki/Lamborghini_Hurac%C3%A1n",
+    "chars": 35351,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Lamborghini Huracán",
+    "revid": 238610061,
+    "url": "https://fr.wikipedia.org/wiki/Lamborghini_Hurac%C3%A1n",
+    "chars": 16602,
+    "passages": 0
+   },
+   "de": {
+    "title": "Lamborghini Huracán",
+    "revid": 270931060,
+    "url": "https://de.wikipedia.org/wiki/Lamborghini_Hurac%C3%A1n",
+    "chars": 10095,
+    "passages": 1
+   },
+   "it": {
+    "title": "Lamborghini Huracán",
+    "revid": 153322390,
+    "url": "https://it.wikipedia.org/wiki/Lamborghini_Hurac%C3%A1n",
+    "chars": 26165,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Mercedes-Benz SLR McLaren",
+  "y": 2003,
+  "maker": "Mercedes-Benz",
+  "country": "Germany",
+  "qid": "Q207624",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Mercedes-Benz SLR McLaren",
+    "revid": 1381788326,
+    "url": "https://en.wikipedia.org/wiki/Mercedes-Benz_SLR_McLaren",
+    "chars": 19164,
+    "passages": 4
+   },
+   "fr": {
+    "title": "Mercedes-Benz SLR McLaren",
+    "revid": 241317075,
+    "url": "https://fr.wikipedia.org/wiki/Mercedes-Benz_SLR_McLaren",
+    "chars": 12600,
+    "passages": 0
+   },
+   "de": {
+    "title": "Mercedes-Benz SLR McLaren",
+    "revid": 264472411,
+    "url": "https://de.wikipedia.org/wiki/Mercedes-Benz_SLR_McLaren",
+    "chars": 18205,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "Peugeot 205",
+  "y": 1983,
+  "maker": "Peugeot",
+  "country": "France",
+  "qid": "Q215218",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Peugeot 205",
+    "revid": 1387392613,
+    "url": "https://en.wikipedia.org/wiki/Peugeot_205",
+    "chars": 34453,
+    "passages": 2
+   },
+   "fr": {
+    "title": "Peugeot 205",
+    "revid": 241267951,
+    "url": "https://fr.wikipedia.org/wiki/Peugeot_205",
+    "chars": 44389,
+    "passages": 11
+   },
+   "de": {
+    "title": "Peugeot 205",
+    "revid": 269734388,
+    "url": "https://de.wikipedia.org/wiki/Peugeot_205",
+    "chars": 25951,
+    "passages": 3
+   }
+  }
+ },
+ {
+  "n": "Audi Q7",
+  "y": 2005,
+  "maker": "Audi",
+  "country": "Germany",
+  "qid": "Q118840",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Audi Q7",
+    "revid": 1387323711,
+    "url": "https://en.wikipedia.org/wiki/Audi_Q7",
+    "chars": 29464,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Audi Q7",
+    "revid": 240837079,
+    "url": "https://fr.wikipedia.org/wiki/Audi_Q7",
+    "chars": 8543,
+    "passages": 0
+   },
+   "de": {
+    "title": "Audi Q7",
+    "revid": 271690922,
+    "url": "https://de.wikipedia.org/wiki/Audi_Q7",
+    "chars": 3016,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "BMW M3",
+  "y": 1986,
+  "maker": "BMW",
+  "country": "Germany",
+  "qid": "Q796579",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "BMW M3",
+    "revid": 1386574878,
+    "url": "https://en.wikipedia.org/wiki/BMW_M3",
+    "chars": 57166,
+    "passages": 5
+   },
+   "fr": {
+    "title": "BMW M3",
+    "revid": 241542507,
+    "url": "https://fr.wikipedia.org/wiki/BMW_M3",
+    "chars": 37138,
+    "passages": 1
+   },
+   "de": {
+    "title": "BMW M3",
+    "revid": 271805789,
+    "url": "https://de.wikipedia.org/wiki/BMW_M3",
+    "chars": 19588,
+    "passages": 1
+   }
+  }
+ },
+ {
+  "n": "Ferrari F40",
+  "y": 1987,
+  "maker": "Ferrari",
+  "country": "Italy",
+  "qid": "Q463627",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Ferrari F40",
+    "revid": 1381977102,
+    "url": "https://en.wikipedia.org/wiki/Ferrari_F40",
+    "chars": 20699,
+    "passages": 3
+   },
+   "fr": {
+    "title": "Ferrari F40",
+    "revid": 241592267,
+    "url": "https://fr.wikipedia.org/wiki/Ferrari_F40",
+    "chars": 16071,
+    "passages": 6
+   },
+   "de": {
+    "title": "Ferrari F40",
+    "revid": 272376738,
+    "url": "https://de.wikipedia.org/wiki/Ferrari_F40",
+    "chars": 10272,
+    "passages": 2
+   },
+   "it": {
+    "title": "Ferrari F40",
+    "revid": 152298887,
+    "url": "https://it.wikipedia.org/wiki/Ferrari_F40",
+    "chars": 20059,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Lamborghini Urus",
+  "y": 2017,
+  "maker": "Lamborghini",
+  "country": "Italy",
+  "qid": "Q3077088",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Lamborghini Urus",
+    "revid": 1386571454,
+    "url": "https://en.wikipedia.org/wiki/Lamborghini_Urus",
+    "chars": 12451,
+    "passages": 0
+   },
+   "fr": {
+    "title": "Lamborghini Urus",
+    "revid": 241536832,
+    "url": "https://fr.wikipedia.org/wiki/Lamborghini_Urus",
+    "chars": 9369,
+    "passages": 1
+   },
+   "de": {
+    "title": "Lamborghini Urus",
+    "revid": 271087514,
+    "url": "https://de.wikipedia.org/wiki/Lamborghini_Urus",
+    "chars": 5767,
+    "passages": 0
+   },
+   "it": {
+    "title": "Lamborghini Urus",
+    "revid": 152950437,
+    "url": "https://it.wikipedia.org/wiki/Lamborghini_Urus",
+    "chars": 7244,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Mercedes-Benz C-Class",
+  "y": 1993,
+  "maker": "Mercedes-Benz",
+  "country": "Germany",
+  "qid": "Q331694",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Mercedes-Benz C-Class",
+    "revid": 1377635930,
+    "url": "https://en.wikipedia.org/wiki/Mercedes-Benz_C-Class",
+    "chars": 15853,
+    "passages": 0
+   },
+   "fr": {
+    "title": "Mercedes-Benz Classe C",
+    "revid": 239022909,
+    "url": "https://fr.wikipedia.org/wiki/Mercedes-Benz_Classe_C",
+    "chars": 10135,
+    "passages": 0
+   },
+   "de": {
+    "title": "Mercedes-Benz C-Klasse",
+    "revid": 270459237,
+    "url": "https://de.wikipedia.org/wiki/Mercedes-Benz_C-Klasse",
+    "chars": 12024,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Porsche Cayenne",
+  "y": 2002,
+  "maker": "Porsche",
+  "country": "Germany",
+  "qid": "Q337148",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Porsche Cayenne",
+    "revid": 1386573042,
+    "url": "https://en.wikipedia.org/wiki/Porsche_Cayenne",
+    "chars": 39597,
+    "passages": 0
+   },
+   "fr": {
+    "title": "Porsche Cayenne",
+    "revid": 241374210,
+    "url": "https://fr.wikipedia.org/wiki/Porsche_Cayenne",
+    "chars": 32952,
+    "passages": 1
+   },
+   "de": {
+    "title": "Porsche Cayenne",
+    "revid": 271254073,
+    "url": "https://de.wikipedia.org/wiki/Porsche_Cayenne",
+    "chars": 4907,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Toyota Hilux",
+  "y": 1968,
+  "maker": "Toyota",
+  "country": "Japan",
+  "qid": "Q848607",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Toyota Hilux",
+    "revid": 1387549229,
+    "url": "https://en.wikipedia.org/wiki/Toyota_Hilux",
+    "chars": 98178,
+    "passages": 17
+   },
+   "fr": {
+    "title": "Toyota Hilux",
+    "revid": 241322658,
+    "url": "https://fr.wikipedia.org/wiki/Toyota_Hilux",
+    "chars": 22402,
+    "passages": 1
+   },
+   "de": {
+    "title": "Toyota Hilux",
+    "revid": 272157645,
+    "url": "https://de.wikipedia.org/wiki/Toyota_Hilux",
+    "chars": 31059,
+    "passages": 1
+   },
+   "ja": {
+    "title": "トヨタ・ハイラックス",
+    "revid": 111889786,
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A8%E3%82%BF%E3%83%BB%E3%83%8F%E3%82%A4%E3%83%A9%E3%83%83%E3%82%AF%E3%82%B9",
+    "chars": 22208,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Volkswagen Touareg",
+  "y": 2002,
+  "maker": "Volkswagen",
+  "country": "Germany",
+  "qid": "Q208553",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Volkswagen Touareg",
+    "revid": 1385902601,
+    "url": "https://en.wikipedia.org/wiki/Volkswagen_Touareg",
+    "chars": 22643,
+    "passages": 0
+   },
+   "fr": {
+    "title": "Volkswagen Touareg",
+    "revid": 241374086,
+    "url": "https://fr.wikipedia.org/wiki/Volkswagen_Touareg",
+    "chars": 14436,
+    "passages": 0
+   },
+   "de": {
+    "title": "VW Touareg",
+    "revid": 269250696,
+    "url": "https://de.wikipedia.org/wiki/VW_Touareg",
+    "chars": 5515,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Audi A8",
+  "y": 1994,
+  "maker": "Audi",
+  "country": "Germany",
+  "qid": "Q207341",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Audi A8",
+    "revid": 1385480098,
+    "url": "https://en.wikipedia.org/wiki/Audi_A8",
+    "chars": 66970,
+    "passages": 9
+   },
+   "fr": {
+    "title": "Audi A8",
+    "revid": 241573582,
+    "url": "https://fr.wikipedia.org/wiki/Audi_A8",
+    "chars": 17687,
+    "passages": 3
+   },
+   "de": {
+    "title": "Audi A8",
+    "revid": 270301400,
+    "url": "https://de.wikipedia.org/wiki/Audi_A8",
+    "chars": 4432,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Audi Q5",
+  "y": 2008,
+  "maker": "Audi",
+  "country": "Germany",
+  "qid": "Q758769",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Audi Q5",
+    "revid": 1385528743,
+    "url": "https://en.wikipedia.org/wiki/Audi_Q5",
+    "chars": 33695,
+    "passages": 4
+   },
+   "fr": {
+    "title": "Audi Q5",
+    "revid": 241374194,
+    "url": "https://fr.wikipedia.org/wiki/Audi_Q5",
+    "chars": 19927,
+    "passages": 9
+   },
+   "de": {
+    "title": "Audi Q5",
+    "revid": 269250854,
+    "url": "https://de.wikipedia.org/wiki/Audi_Q5",
+    "chars": 3793,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Audi TT",
+  "y": 1998,
+  "maker": "Audi",
+  "country": "Germany",
+  "qid": "Q531690",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Audi TT",
+    "revid": 1386567640,
+    "url": "https://en.wikipedia.org/wiki/Audi_TT",
+    "chars": 39911,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Audi TT",
+    "revid": 240997010,
+    "url": "https://fr.wikipedia.org/wiki/Audi_TT",
+    "chars": 17804,
+    "passages": 0
+   },
+   "de": {
+    "title": "Audi TT",
+    "revid": 261992032,
+    "url": "https://de.wikipedia.org/wiki/Audi_TT",
+    "chars": 2458,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "BMW 5 Series",
+  "y": 1972,
+  "maker": "BMW",
+  "country": "Germany",
+  "qid": "Q501613",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "BMW 5 Series",
+    "revid": 1386567847,
+    "url": "https://en.wikipedia.org/wiki/BMW_5_Series",
+    "chars": 11563,
+    "passages": 0
+   },
+   "fr": {
+    "title": "BMW Série 5",
+    "revid": 241374057,
+    "url": "https://fr.wikipedia.org/wiki/BMW_S%C3%A9rie_5",
+    "chars": 34083,
+    "passages": 1
+   },
+   "de": {
+    "title": "BMW 5er",
+    "revid": 252862946,
+    "url": "https://de.wikipedia.org/wiki/BMW_5er",
+    "chars": 9691,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Chevrolet Camaro",
+  "y": 1967,
+  "maker": "Chevrolet",
+  "country": "United States",
+  "qid": "Q332448",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Chevrolet Camaro",
+    "revid": 1387108043,
+    "url": "https://en.wikipedia.org/wiki/Chevrolet_Camaro",
+    "chars": 24278,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Chevrolet Camaro",
+    "revid": 239779087,
+    "url": "https://fr.wikipedia.org/wiki/Chevrolet_Camaro",
+    "chars": 31069,
+    "passages": 7
+   },
+   "de": {
+    "title": "Chevrolet Camaro",
+    "revid": 270098044,
+    "url": "https://de.wikipedia.org/wiki/Chevrolet_Camaro",
+    "chars": 8314,
+    "passages": 1
+   }
+  }
+ },
+ {
+  "n": "Ferrari F430",
+  "y": 2004,
+  "maker": "Ferrari",
+  "country": "Italy",
+  "qid": "Q239793",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Ferrari F430",
+    "revid": 1386093405,
+    "url": "https://en.wikipedia.org/wiki/Ferrari_F430",
+    "chars": 20725,
+    "passages": 3
+   },
+   "fr": {
+    "title": "Ferrari F430",
+    "revid": 238498218,
+    "url": "https://fr.wikipedia.org/wiki/Ferrari_F430",
+    "chars": 13865,
+    "passages": 0
+   },
+   "de": {
+    "title": "Ferrari F430",
+    "revid": 271204509,
+    "url": "https://de.wikipedia.org/wiki/Ferrari_F430",
+    "chars": 8801,
+    "passages": 1
+   },
+   "it": {
+    "title": "Ferrari F430",
+    "revid": 150900525,
+    "url": "https://it.wikipedia.org/wiki/Ferrari_F430",
+    "chars": 17313,
+    "passages": 4
+   }
+  }
+ },
+ {
+  "n": "Fiat Punto",
+  "y": 1993,
+  "maker": "Fiat",
+  "country": "Italy",
+  "qid": "Q223864",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Fiat Punto",
+    "revid": 1386603250,
+    "url": "https://en.wikipedia.org/wiki/Fiat_Punto",
+    "chars": 32409,
+    "passages": 2
+   },
+   "fr": {
+    "title": "Fiat Punto I",
+    "revid": 241042145,
+    "url": "https://fr.wikipedia.org/wiki/Fiat_Punto_I",
+    "chars": 5133,
+    "passages": 1
+   },
+   "de": {
+    "title": "Fiat Punto",
+    "revid": 253635884,
+    "url": "https://de.wikipedia.org/wiki/Fiat_Punto",
+    "chars": 4711,
+    "passages": 0
+   },
+   "it": {
+    "title": "Fiat Punto",
+    "revid": 151813694,
+    "url": "https://it.wikipedia.org/wiki/Fiat_Punto",
+    "chars": 7987,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Hyundai Accent",
+  "y": 1994,
+  "maker": "Hyundai",
+  "country": "South Korea",
+  "qid": "Q482410",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Hyundai Accent",
+    "revid": 1386537982,
+    "url": "https://en.wikipedia.org/wiki/Hyundai_Accent",
+    "chars": 48151,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Hyundai Accent",
+    "revid": 241026799,
+    "url": "https://fr.wikipedia.org/wiki/Hyundai_Accent",
+    "chars": 12531,
+    "passages": 2
+   },
+   "de": {
+    "title": "Hyundai Accent",
+    "revid": 269201155,
+    "url": "https://de.wikipedia.org/wiki/Hyundai_Accent",
+    "chars": 22780,
+    "passages": 1
+   },
+   "ko": {
+    "title": "현대 엑센트",
+    "revid": 42210556,
+    "url": "https://ko.wikipedia.org/wiki/%ED%98%84%EB%8C%80_%EC%97%91%EC%84%BC%ED%8A%B8",
+    "chars": 10762,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Porsche Panamera",
+  "y": 2009,
+  "maker": "Porsche",
+  "country": "Germany",
+  "qid": "Q501349",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Porsche Panamera",
+    "revid": 1386573074,
+    "url": "https://en.wikipedia.org/wiki/Porsche_Panamera",
+    "chars": 32820,
+    "passages": 16
+   },
+   "fr": {
+    "title": "Porsche Panamera",
+    "revid": 241374217,
+    "url": "https://fr.wikipedia.org/wiki/Porsche_Panamera",
+    "chars": 35171,
+    "passages": 10
+   },
+   "de": {
+    "title": "Porsche Panamera",
+    "revid": 268173148,
+    "url": "https://de.wikipedia.org/wiki/Porsche_Panamera",
+    "chars": 33040,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "Tesla Model X",
+  "y": 2015,
+  "maker": "Tesla",
+  "country": "United States",
+  "qid": "Q1634161",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Tesla Model X",
+    "revid": 1384606336,
+    "url": "https://en.wikipedia.org/wiki/Tesla_Model_X",
+    "chars": 29481,
+    "passages": 11
+   },
+   "fr": {
+    "title": "Tesla Model X",
+    "revid": 241404310,
+    "url": "https://fr.wikipedia.org/wiki/Tesla_Model_X",
+    "chars": 16276,
+    "passages": 0
+   },
+   "de": {
+    "title": "Tesla Model X",
+    "revid": 270333372,
+    "url": "https://de.wikipedia.org/wiki/Tesla_Model_X",
+    "chars": 8571,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Škoda Fabia",
+  "y": 1999,
+  "maker": "Škoda",
+  "country": "Czechia",
+  "qid": "Q163053",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Škoda Fabia",
+    "revid": 1381766516,
+    "url": "https://en.wikipedia.org/wiki/%C5%A0koda_Fabia",
+    "chars": 39305,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Škoda Fabia",
+    "revid": 235771677,
+    "url": "https://fr.wikipedia.org/wiki/%C5%A0koda_Fabia",
+    "chars": 22897,
+    "passages": 1
+   },
+   "de": {
+    "title": "Škoda Fabia",
+    "revid": 269513707,
+    "url": "https://de.wikipedia.org/wiki/%C5%A0koda_Fabia",
+    "chars": 6091,
+    "passages": 0
+   },
+   "cs": {
+    "title": "Škoda Fabia",
+    "revid": 26215791,
+    "url": "https://cs.wikipedia.org/wiki/%C5%A0koda_Fabia",
+    "chars": 44087,
+    "passages": 7
+   }
+  }
+ },
+ {
+  "n": "BMW i3 (hatchback)",
+  "y": 2013,
+  "maker": "BMW",
+  "country": "Germany",
+  "qid": "Q796785",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "BMW i3 (hatchback)",
+    "revid": 1380956321,
+    "url": "https://en.wikipedia.org/wiki/BMW_i3_(hatchback)",
+    "chars": 37795,
+    "passages": 17
+   },
+   "fr": {
+    "title": "BMW i3 (2013)",
+    "revid": 238299052,
+    "url": "https://fr.wikipedia.org/wiki/BMW_i3_(2013)",
+    "chars": 9537,
+    "passages": 3
+   },
+   "de": {
+    "title": "BMW I01",
+    "revid": 271513879,
+    "url": "https://de.wikipedia.org/wiki/BMW_I01",
+    "chars": 38028,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "Chevrolet Impala",
+  "y": 1958,
+  "maker": "Chevrolet",
+  "country": "United States",
+  "qid": "Q226062",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Chevrolet Impala",
+    "revid": 1384187290,
+    "url": "https://en.wikipedia.org/wiki/Chevrolet_Impala",
+    "chars": 83857,
+    "passages": 5
+   },
+   "fr": {
+    "title": "Chevrolet Impala",
+    "revid": 240062653,
+    "url": "https://fr.wikipedia.org/wiki/Chevrolet_Impala",
+    "chars": 93170,
+    "passages": 10
+   },
+   "de": {
+    "title": "Chevrolet Impala",
+    "revid": 270462215,
+    "url": "https://de.wikipedia.org/wiki/Chevrolet_Impala",
+    "chars": 42727,
+    "passages": 5
+   }
+  }
+ },
+ {
+  "n": "Citroën C4",
+  "y": 2004,
+  "maker": "Citroën",
+  "country": "France",
+  "qid": "Q643966",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Citroën C4",
+    "revid": 1383949146,
+    "url": "https://en.wikipedia.org/wiki/Citro%C3%ABn_C4",
+    "chars": 32257,
+    "passages": 2
+   },
+   "fr": {
+    "title": "Citroën C4",
+    "revid": 240541400,
+    "url": "https://fr.wikipedia.org/wiki/Citro%C3%ABn_C4",
+    "chars": 2017,
+    "passages": 0
+   },
+   "de": {
+    "title": "Citroën C4",
+    "revid": 269050110,
+    "url": "https://de.wikipedia.org/wiki/Citro%C3%ABn_C4",
+    "chars": 26508,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "Dacia Logan",
+  "y": 2004,
+  "maker": "Dacia",
+  "country": "Romania",
+  "qid": "Q668565",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Dacia Logan",
+    "revid": 1386568862,
+    "url": "https://en.wikipedia.org/wiki/Dacia_Logan",
+    "chars": 39752,
+    "passages": 14
+   },
+   "fr": {
+    "title": "Dacia Logan",
+    "revid": 208761679,
+    "url": "https://fr.wikipedia.org/wiki/Dacia_Logan",
+    "chars": 567,
+    "passages": 0
+   },
+   "de": {
+    "title": "Dacia Logan",
+    "revid": 269932507,
+    "url": "https://de.wikipedia.org/wiki/Dacia_Logan",
+    "chars": 21429,
+    "passages": 5
+   },
+   "ro": {
+    "title": "Dacia Logan",
+    "revid": 17912133,
+    "url": "https://ro.wikipedia.org/wiki/Dacia_Logan",
+    "chars": 3443,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Hyundai Tucson",
+  "y": 2004,
+  "maker": "Hyundai",
+  "country": "South Korea",
+  "qid": "Q482430",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Hyundai Tucson",
+    "revid": 1385035559,
+    "url": "https://en.wikipedia.org/wiki/Hyundai_Tucson",
+    "chars": 52541,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Hyundai Tucson",
+    "revid": 240756643,
+    "url": "https://fr.wikipedia.org/wiki/Hyundai_Tucson",
+    "chars": 11921,
+    "passages": 0
+   },
+   "de": {
+    "title": "Hyundai Tucson",
+    "revid": 272272532,
+    "url": "https://de.wikipedia.org/wiki/Hyundai_Tucson",
+    "chars": 17594,
+    "passages": 0
+   },
+   "ko": {
+    "title": "현대 투싼",
+    "revid": 42746995,
+    "url": "https://ko.wikipedia.org/wiki/%ED%98%84%EB%8C%80_%ED%88%AC%EC%8B%BC",
+    "chars": 17254,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "LaFerrari",
+  "y": 2013,
+  "maker": "Ferrari",
+  "country": "Italy",
+  "qid": "Q3069684",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "LaFerrari",
+    "revid": 1386571425,
+    "url": "https://en.wikipedia.org/wiki/LaFerrari",
+    "chars": 11496,
+    "passages": 3
+   },
+   "fr": {
+    "title": "Ferrari LaFerrari",
+    "revid": 240599673,
+    "url": "https://fr.wikipedia.org/wiki/Ferrari_LaFerrari",
+    "chars": 6066,
+    "passages": 1
+   },
+   "de": {
+    "title": "Ferrari LaFerrari",
+    "revid": 271052879,
+    "url": "https://de.wikipedia.org/wiki/Ferrari_LaFerrari",
+    "chars": 7883,
+    "passages": 0
+   },
+   "it": {
+    "title": "Ferrari LaFerrari",
+    "revid": 152434496,
+    "url": "https://it.wikipedia.org/wiki/Ferrari_LaFerrari",
+    "chars": 8657,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Lamborghini Countach",
+  "y": 1974,
+  "maker": "Lamborghini",
+  "country": "Italy",
+  "qid": "Q863812",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Lamborghini Countach",
+    "revid": 1386571440,
+    "url": "https://en.wikipedia.org/wiki/Lamborghini_Countach",
+    "chars": 46593,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Lamborghini Countach",
+    "revid": 241075734,
+    "url": "https://fr.wikipedia.org/wiki/Lamborghini_Countach",
+    "chars": 15160,
+    "passages": 1
+   },
+   "de": {
+    "title": "Lamborghini Countach",
+    "revid": 270626704,
+    "url": "https://de.wikipedia.org/wiki/Lamborghini_Countach",
+    "chars": 24509,
+    "passages": 0
+   },
+   "it": {
+    "title": "Lamborghini Countach",
+    "revid": 153380102,
+    "url": "https://it.wikipedia.org/wiki/Lamborghini_Countach",
+    "chars": 14538,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Mercedes-Benz A-Class",
+  "y": 1997,
+  "maker": "Mercedes-Benz",
+  "country": "Germany",
+  "qid": "Q49384",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Mercedes-Benz A-Class",
+    "revid": 1386572078,
+    "url": "https://en.wikipedia.org/wiki/Mercedes-Benz_A-Class",
+    "chars": 27636,
+    "passages": 3
+   },
+   "fr": {
+    "title": "Mercedes-Benz Classe A",
+    "revid": 238484253,
+    "url": "https://fr.wikipedia.org/wiki/Mercedes-Benz_Classe_A",
+    "chars": 10565,
+    "passages": 0
+   },
+   "de": {
+    "title": "Mercedes-Benz A-Klasse",
+    "revid": 267921473,
+    "url": "https://de.wikipedia.org/wiki/Mercedes-Benz_A-Klasse",
+    "chars": 20773,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Peugeot 308",
+  "y": 2007,
+  "maker": "Peugeot",
+  "country": "France",
+  "qid": "Q497858",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Peugeot 308",
+    "revid": 1386231531,
+    "url": "https://en.wikipedia.org/wiki/Peugeot_308",
+    "chars": 17948,
+    "passages": 2
+   },
+   "fr": {
+    "title": "Peugeot 308",
+    "revid": 235786250,
+    "url": "https://fr.wikipedia.org/wiki/Peugeot_308",
+    "chars": 913,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Renault 4",
+  "y": 1961,
+  "maker": "Renault",
+  "country": "France",
+  "qid": "Q247716",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Renault 4",
+    "revid": 1370360496,
+    "url": "https://en.wikipedia.org/wiki/Renault_4",
+    "chars": 29699,
+    "passages": 5
+   },
+   "fr": {
+    "title": "Renault 4",
+    "revid": 240027220,
+    "url": "https://fr.wikipedia.org/wiki/Renault_4",
+    "chars": 87338,
+    "passages": 27
+   },
+   "de": {
+    "title": "Renault 4",
+    "revid": 272431540,
+    "url": "https://de.wikipedia.org/wiki/Renault_4",
+    "chars": 21548,
+    "passages": 1
+   }
+  }
+ },
+ {
+  "n": "Renault Mégane",
+  "y": 1995,
+  "maker": "Renault",
+  "country": "France",
+  "qid": "Q222764",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Renault Mégane",
+    "revid": 1385060563,
+    "url": "https://en.wikipedia.org/wiki/Renault_M%C3%A9gane",
+    "chars": 38971,
+    "passages": 6
+   },
+   "fr": {
+    "title": "Renault Mégane",
+    "revid": 239032565,
+    "url": "https://fr.wikipedia.org/wiki/Renault_M%C3%A9gane",
+    "chars": 1814,
+    "passages": 0
+   },
+   "de": {
+    "title": "Renault Mégane",
+    "revid": 261772184,
+    "url": "https://de.wikipedia.org/wiki/Renault_M%C3%A9gane",
+    "chars": 4598,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "SEAT Ibiza",
+  "y": 1984,
+  "maker": "SEAT",
+  "country": "Spain",
+  "qid": "Q459982",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "SEAT Ibiza",
+    "revid": 1386588838,
+    "url": "https://en.wikipedia.org/wiki/SEAT_Ibiza",
+    "chars": 39105,
+    "passages": 4
+   },
+   "fr": {
+    "title": "Seat Ibiza",
+    "revid": 239927980,
+    "url": "https://fr.wikipedia.org/wiki/Seat_Ibiza",
+    "chars": 22904,
+    "passages": 2
+   },
+   "de": {
+    "title": "Seat Ibiza",
+    "revid": 272279137,
+    "url": "https://de.wikipedia.org/wiki/Seat_Ibiza",
+    "chars": 1741,
+    "passages": 3
+   },
+   "es": {
+    "title": "SEAT Ibiza",
+    "revid": 168616795,
+    "url": "https://es.wikipedia.org/wiki/SEAT_Ibiza",
+    "chars": 5806,
+    "passages": 5
+   }
+  }
+ },
+ {
+  "n": "Toyota Aygo",
+  "y": 2005,
+  "maker": "Toyota",
+  "country": "Japan",
+  "qid": "Q825358",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Toyota Aygo",
+    "revid": 1381912445,
+    "url": "https://en.wikipedia.org/wiki/Toyota_Aygo",
+    "chars": 11613,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Toyota Aygo",
+    "revid": 238234313,
+    "url": "https://fr.wikipedia.org/wiki/Toyota_Aygo",
+    "chars": 12000,
+    "passages": 1
+   },
+   "de": {
+    "title": "Toyota Aygo",
+    "revid": 270156485,
+    "url": "https://de.wikipedia.org/wiki/Toyota_Aygo",
+    "chars": 22310,
+    "passages": 7
+   },
+   "ja": {
+    "title": "トヨタ・アイゴ",
+    "revid": 110012741,
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A8%E3%82%BF%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B4",
+    "chars": 4195,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Toyota Celica",
+  "y": 1970,
+  "maker": "Toyota",
+  "country": "Japan",
+  "qid": "Q334040",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Toyota Celica",
+    "revid": 1384754710,
+    "url": "https://en.wikipedia.org/wiki/Toyota_Celica",
+    "chars": 90719,
+    "passages": 18
+   },
+   "fr": {
+    "title": "Toyota Celica",
+    "revid": 241010811,
+    "url": "https://fr.wikipedia.org/wiki/Toyota_Celica",
+    "chars": 17961,
+    "passages": 0
+   },
+   "de": {
+    "title": "Toyota Celica",
+    "revid": 270768852,
+    "url": "https://de.wikipedia.org/wiki/Toyota_Celica",
+    "chars": 19714,
+    "passages": 0
+   },
+   "ja": {
+    "title": "トヨタ・セリカ",
+    "revid": 111812893,
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A8%E3%82%BF%E3%83%BB%E3%82%BB%E3%83%AA%E3%82%AB",
+    "chars": 21778,
+    "passages": 4
+   }
+  }
+ },
+ {
+  "n": "Audi A1",
+  "y": 2010,
+  "maker": "Audi",
+  "country": "Germany",
+  "qid": "Q758735",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Audi A1",
+    "revid": 1377099630,
+    "url": "https://en.wikipedia.org/wiki/Audi_A1",
+    "chars": 36278,
+    "passages": 1
+   },
+   "fr": {
+    "title": "Audi A1 I",
+    "revid": 238770292,
+    "url": "https://fr.wikipedia.org/wiki/Audi_A1_I",
+    "chars": 23427,
+    "passages": 1
+   },
+   "de": {
+    "title": "Audi A1",
+    "revid": 269030857,
+    "url": "https://de.wikipedia.org/wiki/Audi_A1",
+    "chars": 3129,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "BMW X5",
+  "y": 1999,
+  "maker": "BMW",
+  "country": "Germany",
+  "qid": "Q796778",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "BMW X5",
+    "revid": 1385009523,
+    "url": "https://en.wikipedia.org/wiki/BMW_X5",
+    "chars": 8295,
+    "passages": 0
+   },
+   "fr": {
+    "title": "BMW X5",
+    "revid": 241374105,
+    "url": "https://fr.wikipedia.org/wiki/BMW_X5",
+    "chars": 20125,
+    "passages": 0
+   },
+   "de": {
+    "title": "BMW X5",
+    "revid": 272027868,
+    "url": "https://de.wikipedia.org/wiki/BMW_X5",
+    "chars": 6628,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "BMW X6",
+  "y": 2007,
+  "maker": "BMW",
+  "country": "Germany",
+  "qid": "Q796781",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "BMW X6",
+    "revid": 1387168025,
+    "url": "https://en.wikipedia.org/wiki/BMW_X6",
+    "chars": 20913,
+    "passages": 2
+   },
+   "fr": {
+    "title": "BMW X6",
+    "revid": 241374266,
+    "url": "https://fr.wikipedia.org/wiki/BMW_X6",
+    "chars": 11508,
+    "passages": 0
+   },
+   "de": {
+    "title": "BMW X6",
+    "revid": 269049439,
+    "url": "https://de.wikipedia.org/wiki/BMW_X6",
+    "chars": 6259,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Citroën C1",
+  "y": 2005,
+  "maker": "Citroën",
+  "country": "France",
+  "qid": "Q728076",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Citroën C1",
+    "revid": 1386060436,
+    "url": "https://en.wikipedia.org/wiki/Citro%C3%ABn_C1",
+    "chars": 11802,
+    "passages": 0
+   },
+   "fr": {
+    "title": "Citroën C1",
+    "revid": 241060820,
+    "url": "https://fr.wikipedia.org/wiki/Citro%C3%ABn_C1",
+    "chars": 3577,
+    "passages": 0
+   },
+   "de": {
+    "title": "Citroën C1",
+    "revid": 269813042,
+    "url": "https://de.wikipedia.org/wiki/Citro%C3%ABn_C1",
+    "chars": 9023,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "DMC DeLorean",
+  "y": 1981,
+  "maker": "Delorean",
+  "country": "United States",
+  "qid": "Q370524",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "DMC DeLorean",
+    "revid": 1385026713,
+    "url": "https://en.wikipedia.org/wiki/DMC_DeLorean",
+    "chars": 36506,
+    "passages": 12
+   },
+   "fr": {
+    "title": "DeLorean DMC-12",
+    "revid": 237543264,
+    "url": "https://fr.wikipedia.org/wiki/DeLorean_DMC-12",
+    "chars": 52508,
+    "passages": 9
+   },
+   "de": {
+    "title": "DeLorean DMC-12",
+    "revid": 272056035,
+    "url": "https://de.wikipedia.org/wiki/DeLorean_DMC-12",
+    "chars": 30066,
+    "passages": 5
+   }
+  }
+ },
+ {
+  "n": "Ford Escort (Europe)",
+  "y": 1967,
+  "maker": "Ford",
+  "country": "United Kingdom",
+  "qid": "Q504644",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Ford Escort (Europe)",
+    "revid": 1384579911,
+    "url": "https://en.wikipedia.org/wiki/Ford_Escort_(Europe)",
+    "chars": 74400,
+    "passages": 7
+   },
+   "fr": {
+    "title": "Ford Escort",
+    "revid": 241175048,
+    "url": "https://fr.wikipedia.org/wiki/Ford_Escort",
+    "chars": 106287,
+    "passages": 16
+   },
+   "de": {
+    "title": "Ford Escort",
+    "revid": 271488498,
+    "url": "https://de.wikipedia.org/wiki/Ford_Escort",
+    "chars": 61125,
+    "passages": 4
+   }
+  }
+ },
+ {
+  "n": "Lada Niva",
+  "y": 1977,
+  "maker": "Lada",
+  "country": "Russia",
+  "qid": "Q650591",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Lada Niva",
+    "revid": 1385458807,
+    "url": "https://en.wikipedia.org/wiki/Lada_Niva",
+    "chars": 36358,
+    "passages": 4
+   },
+   "fr": {
+    "title": "Lada Niva",
+    "revid": 241314964,
+    "url": "https://fr.wikipedia.org/wiki/Lada_Niva",
+    "chars": 16316,
+    "passages": 1
+   },
+   "de": {
+    "title": "WAS-2121 Niwa",
+    "revid": 272334741,
+    "url": "https://de.wikipedia.org/wiki/WAS-2121_Niwa",
+    "chars": 21636,
+    "passages": 2
+   },
+   "ru": {
+    "title": "Нива (автомобиль)",
+    "revid": 156101508,
+    "url": "https://ru.wikipedia.org/wiki/%D0%9D%D0%B8%D0%B2%D0%B0_(%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C)",
+    "chars": 50313,
+    "passages": 1
+   }
+  }
+ },
+ {
+  "n": "Opel Calibra",
+  "y": 1989,
+  "maker": "Opel",
+  "country": "Germany",
+  "qid": "Q466506",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Opel Calibra",
+    "revid": 1380356907,
+    "url": "https://en.wikipedia.org/wiki/Opel_Calibra",
+    "chars": 24405,
+    "passages": 0
+   },
+   "fr": {
+    "title": "Opel Calibra",
+    "revid": 241289645,
+    "url": "https://fr.wikipedia.org/wiki/Opel_Calibra",
+    "chars": 10242,
+    "passages": 0
+   },
+   "de": {
+    "title": "Opel Calibra",
+    "revid": 263550907,
+    "url": "https://de.wikipedia.org/wiki/Opel_Calibra",
+    "chars": 24096,
+    "passages": 7
+   }
+  }
+ },
+ {
+  "n": "Opel Corsa",
+  "y": 1982,
+  "maker": "Opel",
+  "country": "Germany",
+  "qid": "Q376916",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Opel Corsa",
+    "revid": 1384591408,
+    "url": "https://en.wikipedia.org/wiki/Opel_Corsa",
+    "chars": 62655,
+    "passages": 3
+   },
+   "fr": {
+    "title": "Opel Corsa",
+    "revid": 241518561,
+    "url": "https://fr.wikipedia.org/wiki/Opel_Corsa",
+    "chars": 13843,
+    "passages": 0
+   },
+   "de": {
+    "title": "Opel Corsa",
+    "revid": 265203866,
+    "url": "https://de.wikipedia.org/wiki/Opel_Corsa",
+    "chars": 13227,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Peugeot 307",
+  "y": 2001,
+  "maker": "Peugeot",
+  "country": "France",
+  "qid": "Q215227",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Peugeot 307",
+    "revid": 1380622488,
+    "url": "https://en.wikipedia.org/wiki/Peugeot_307",
+    "chars": 12109,
+    "passages": 0
+   },
+   "fr": {
+    "title": "Peugeot 307",
+    "revid": 241177543,
+    "url": "https://fr.wikipedia.org/wiki/Peugeot_307",
+    "chars": 16205,
+    "passages": 0
+   },
+   "de": {
+    "title": "Peugeot 307",
+    "revid": 271082996,
+    "url": "https://de.wikipedia.org/wiki/Peugeot_307",
+    "chars": 17154,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Porsche 918 Spyder",
+  "y": 2013,
+  "maker": "Porsche",
+  "country": "Germany",
+  "qid": "Q962317",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Porsche 918 Spyder",
+    "revid": 1386573012,
+    "url": "https://en.wikipedia.org/wiki/Porsche_918_Spyder",
+    "chars": 10363,
+    "passages": 4
+   },
+   "fr": {
+    "title": "Porsche 918",
+    "revid": 241404113,
+    "url": "https://fr.wikipedia.org/wiki/Porsche_918",
+    "chars": 18494,
+    "passages": 1
+   },
+   "de": {
+    "title": "Porsche 918",
+    "revid": 266614433,
+    "url": "https://de.wikipedia.org/wiki/Porsche_918",
+    "chars": 10658,
+    "passages": 6
+   }
+  }
+ },
+ {
+  "n": "Audi A2",
+  "y": 1999,
+  "maker": "Audi",
+  "country": "Germany",
+  "qid": "Q741656",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Audi A2",
+    "revid": 1385971298,
+    "url": "https://en.wikipedia.org/wiki/Audi_A2",
+    "chars": 17030,
+    "passages": 4
+   },
+   "fr": {
+    "title": "Audi A2",
+    "revid": 241607449,
+    "url": "https://fr.wikipedia.org/wiki/Audi_A2",
+    "chars": 17465,
+    "passages": 9
+   },
+   "de": {
+    "title": "Audi A2",
+    "revid": 270439893,
+    "url": "https://de.wikipedia.org/wiki/Audi_A2",
+    "chars": 288,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "Audi A5",
+  "y": 2007,
+  "maker": "Audi",
+  "country": "Germany",
+  "qid": "Q758752",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Audi A5",
+    "revid": 1386567602,
+    "url": "https://en.wikipedia.org/wiki/Audi_A5",
+    "chars": 42243,
+    "passages": 2
+   },
+   "fr": {
+    "title": "Audi A5",
+    "revid": 241123022,
+    "url": "https://fr.wikipedia.org/wiki/Audi_A5",
+    "chars": 11600,
+    "passages": 2
+   },
+   "de": {
+    "title": "Audi A5",
+    "revid": 269054454,
+    "url": "https://de.wikipedia.org/wiki/Audi_A5",
+    "chars": 5953,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "Audi Quattro",
+  "y": 1980,
+  "maker": "Audi",
+  "country": "Germany",
+  "qid": "Q679103",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "Audi Quattro",
+    "revid": 1386567629,
+    "url": "https://en.wikipedia.org/wiki/Audi_Quattro",
+    "chars": 29818,
+    "passages": 2
+   },
+   "fr": {
+    "title": "Audi Quattro",
+    "revid": 241207710,
+    "url": "https://fr.wikipedia.org/wiki/Audi_Quattro",
+    "chars": 16593,
+    "passages": 1
+   },
+   "de": {
+    "title": "Audi quattro",
+    "revid": 272196249,
+    "url": "https://de.wikipedia.org/wiki/Audi_quattro",
+    "chars": 20044,
+    "passages": 2
+   }
+  }
+ },
+ {
+  "n": "BMW X3",
+  "y": 2003,
+  "maker": "BMW",
+  "country": "Germany",
+  "qid": "Q796780",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "BMW X3",
+    "revid": 1385529531,
+    "url": "https://en.wikipedia.org/wiki/BMW_X3",
+    "chars": 29790,
+    "passages": 0
+   },
+   "fr": {
+    "title": "BMW X3",
+    "revid": 235986402,
+    "url": "https://fr.wikipedia.org/wiki/BMW_X3",
+    "chars": 21012,
+    "passages": 8
+   },
+   "de": {
+    "title": "BMW X3",
+    "revid": 269048798,
+    "url": "https://de.wikipedia.org/wiki/BMW_X3",
+    "chars": 7264,
+    "passages": 0
+   }
+  }
+ },
+ {
+  "n": "BMW i8",
+  "y": 2014,
+  "maker": "BMW",
+  "country": "Germany",
+  "qid": "Q796799",
+  "wikidata_prices": [],
+  "pages": {
+   "en": {
+    "title": "BMW i8",
+    "revid": 1372261669,
+    "url": "https://en.wikipedia.org/wiki/BMW_i8",
+    "chars": 23575,
+    "passages": 11
+   },
+   "fr": {
+    "title": "BMW i8",
+    "revid": 240419599,
+    "url": "https://fr.wikipedia.org/wiki/BMW_i8",
+    "chars": 6117,
+    "passages": 1
+   },
+   "de": {
+    "title": "BMW i8",
+    "revid": 271200342,
+    "url": "https://de.wikipedia.org/wiki/BMW_i8",
+    "chars": 16803,
+    "passages": 2
+   }
+  }
+ }
+]

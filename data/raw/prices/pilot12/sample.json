@@ -1,0 +1,89 @@
+{
+ "how": "pilot",
+ "cars": [
+  {
+   "n": "Dodge D series",
+   "y": 1960,
+   "maker": "Dodge",
+   "country": "United States",
+   "s": "Motor vehicle"
+  },
+  {
+   "n": "Ford Maverick (1970–1977)",
+   "y": 1970,
+   "maker": "Ford",
+   "country": "United States",
+   "s": "Motor vehicle"
+  },
+  {
+   "n": "Ford Escort (North America)",
+   "y": 1980,
+   "maker": "Ford",
+   "country": "United States",
+   "s": "Car model"
+  },
+  {
+   "n": "Dodge Mirada",
+   "y": 1980,
+   "maker": "Dodge",
+   "country": "United States",
+   "s": "Motor vehicle"
+  },
+  {
+   "n": "HSV GTS",
+   "y": 1990,
+   "maker": "General Motors",
+   "country": "Australia",
+   "s": "Australian performance car"
+  },
+  {
+   "n": "Trabant 1.1",
+   "y": 1990,
+   "maker": "Trabant",
+   "country": "East Germany",
+   "s": "Final production series model produced by Trabant (1990–1991)"
+  },
+  {
+   "n": "Think City",
+   "y": 2000,
+   "maker": "Think Global",
+   "country": "Norway",
+   "s": "Compact electric hatchback"
+  },
+  {
+   "n": "Toyota bB",
+   "y": 2000,
+   "maker": "Toyota",
+   "country": "Japan",
+   "s": "Motor vehicle"
+  },
+  {
+   "n": "Tata Ace Zip",
+   "y": 2010,
+   "maker": "Tata Motors Limited",
+   "country": "India",
+   "s": "Motor vehicle"
+  },
+  {
+   "n": "Peugeot Hoggar (coupé utility)",
+   "y": 2010,
+   "maker": "Peugeot",
+   "country": "France",
+   "s": "Pickup truck"
+  },
+  {
+   "n": "Geely Galaxy Starship 7",
+   "y": 2024,
+   "maker": "Geely Auto",
+   "country": "Hong Kong",
+   "s": "Compact crossover SUV"
+  },
+  {
+   "n": "212 T01",
+   "y": 2024,
+   "maker": "212",
+   "country": "China",
+   "s": "SUV, pickup truck and van"
+  }
+ ]
+}

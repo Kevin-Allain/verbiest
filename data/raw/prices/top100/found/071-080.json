@@ -1,0 +1,237 @@
+[
+ {
+  "n": "BMW i3 (hatchback)",
+  "y": 2013,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 34950,
+    "amount_text": "34.950 Euro",
+    "currency": "EUR",
+    "year": 2013,
+    "market": "Germany",
+    "version": "i3 (base)",
+    "kind": "launch",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "BMW brachte den elektrischen Kleinwagen in Deutschland ab 34.950 Euro",
+    "url": "https://de.wikipedia.org/wiki/BMW_I01",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Chevrolet Impala",
+  "y": 1958,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 2693,
+    "amount_text": "2693 USD",
+    "currency": "USD",
+    "year": 1958,
+    "market": "United States",
+    "version": "1958 coupé",
+    "kind": "launch",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Vom 1958er Modell wurden 125.480 Coupés zu einem Einstiegspreis von 2693 USD verkauft",
+    "url": "https://de.wikipedia.org/wiki/Chevrolet_Impala",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Citroën C4",
+  "y": 2004,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 15500,
+    "amount_text": "15 500€",
+    "currency": "EUR",
+    "year": 2004,
+    "market": "France",
+    "version": "First generation, cheapest version",
+    "kind": "list",
+    "source": "web",
+    "site": "largus.fr (L'argus)",
+    "url": "https://www.largus.fr/Citroen_C4_I.html",
+    "confidence": "medium",
+    "quote": "entre 15 500€ et 27 450€",
+    "note": "Range of new prices in France for the first generation.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Dacia Logan",
+  "y": 2004,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 5900,
+    "amount_text": "€5,900",
+    "currency": "EUR",
+    "year": 2004,
+    "market": "Romania",
+    "version": "Cheapest version",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "The cheapest version of the car is €5,900",
+    "url": "https://en.wikipedia.org/wiki/Dacia_Logan",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 7200,
+    "amount_text": "7200 Euro",
+    "approx": "about",
+    "currency": "EUR",
+    "year": 2005,
+    "market": "Germany",
+    "version": "With two airbags and ABS",
+    "kind": "launch",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "In Deutschland gelangte er ab Mitte 2005 mit angepasster Sicherheitsausstattung (zwei Airbags und ABS) ab etwa 7200 Euro in den Handel.",
+    "url": "https://de.wikipedia.org/wiki/Dacia_Logan",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Hyundai Tucson",
+  "y": 2004,
+  "status": "none",
+  "note": "No 2004 price found.",
+  "prices": []
+ },
+ {
+  "n": "LaFerrari",
+  "y": 2013,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 1250000,
+    "amount_text": "1 250 000 euros",
+    "currency": "EUR",
+    "year": 2013,
+    "market": null,
+    "version": "LaFerrari (499 cars)",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "high",
+    "quote": "vendus au prix unitaire de 1 250 000 euros",
+    "url": "https://fr.wikipedia.org/wiki/Ferrari_LaFerrari",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Lamborghini Countach",
+  "y": 1974,
+  "status": "none",
+  "note": "No 1974 price found (only modern-money equivalents).",
+  "prices": []
+ },
+ {
+  "n": "Mercedes-Benz A-Class",
+  "y": 1997,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 30360,
+    "amount_text": "30 360 DM",
+    "currency": "DEM",
+    "year": 1997,
+    "market": "Germany",
+    "version": "A 140 (1.4 litre, 82 PS)",
+    "kind": "launch",
+    "source": "web",
+    "site": "aerzteblatt.de (Deutsches Ärzteblatt)",
+    "url": "https://www.aerzteblatt.de/archiv/mercedes-a-klasse-ein-zwerg-mit-dem-zeug-zum-riesen-a52e4ddf-efb3-42ff-8fbb-56eeaab2c26f",
+    "confidence": "high",
+    "quote": "In der einfachsten Version kostet die neue A-Klasse 30 360 DM (1,4 Liter, 60 kW/82 PS).",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Peugeot 308",
+  "y": 2007,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 17350,
+    "amount_text": "17 350 €",
+    "currency": "EUR",
+    "year": 2008,
+    "market": "France",
+    "version": "Five-door, small engines",
+    "kind": "list",
+    "source": "web",
+    "site": "largus.fr (L'argus)",
+    "url": "https://www.largus.fr/actualite-automobile/la-deferlante-308-137382.html",
+    "confidence": "medium",
+    "quote": "à partir de 17 350 € en cinq-portes",
+    "note": "Early 2008, after smaller engines lowered the starting price.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Renault 4",
+  "y": 1961,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 4800,
+    "amount_text": "4 800 F",
+    "currency": "FRF",
+    "year": 1961,
+    "market": "France",
+    "version": "Renault 3, the cheapest twin of the R4",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "high",
+    "quote": "Elle coute 4 800 F en 1961",
+    "note": "New francs.",
+    "url": "https://fr.wikipedia.org/wiki/Renault_4",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 3830,
+    "amount_text": "3 830 marks",
+    "currency": "DEM",
+    "year": 1961,
+    "market": "Germany",
+    "version": "Renault 4",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "high",
+    "quote": "Le prix au lancement du marché est de 3 830 marks.",
+    "url": "https://fr.wikipedia.org/wiki/Renault_4",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

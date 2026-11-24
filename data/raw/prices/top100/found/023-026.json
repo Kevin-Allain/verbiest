@@ -1,0 +1,143 @@
+[
+ {
+  "n": "Dacia Sandero",
+  "y": 2007,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 7800,
+    "amount_text": "7 800€",
+    "currency": "EUR",
+    "year": 2008,
+    "market": "France",
+    "version": "First generation, cheapest version",
+    "kind": "list",
+    "source": "web",
+    "site": "largus.fr (L'argus)",
+    "url": "https://www.largus.fr/Dacia_Sandero_I-B90.html",
+    "confidence": "medium",
+    "quote": "entre 7 800€ et 13 200€",
+    "note": "Range of new prices in France while it was sold (2008–2012).",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 10900,
+    "amount_text": "10 900 €",
+    "currency": "EUR",
+    "year": 2008,
+    "market": "France",
+    "version": "1.6 MPI 90 Prestige",
+    "kind": "launch",
+    "source": "web",
+    "site": "largus.fr (L'argus)",
+    "url": "https://www.largus.fr/fiche-technique/Dacia/Sandero/I+B90/2010/Berline/16+MPI+90ch+Prestige-965615.html",
+    "confidence": "high",
+    "quote": "Prix du véhicule neuf au 01/06/2008 : 10 900 € TTC",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 8490,
+    "amount_text": "8.490 Euro",
+    "currency": "EUR",
+    "year": 2021,
+    "market": "Germany",
+    "version": "Third generation",
+    "kind": "list",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Der Basispreis stieg in Deutschland auf 8.490 Euro.",
+    "url": "https://de.wikipedia.org/wiki/Dacia_Sandero",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Mercedes-Benz G-Class",
+  "y": 1979,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 29736,
+    "amount_text": "DM 29,736",
+    "currency": "DEM",
+    "year": 1979,
+    "market": "Germany",
+    "version": "230 G open-top (cheapest)",
+    "kind": "launch",
+    "source": "web",
+    "site": "mercedes-benz-publicarchive.com (Mercedes-Benz archive)",
+    "url": "https://mercedes-benz-publicarchive.com/marsClassic/en/instance/ko/460-series-cross-country-vehicles-1979---1992.xhtml?oid=4740",
+    "confidence": "high",
+    "quote": "the open-top 230 G, cost DM 29,736",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 107040,
+    "amount_text": "107.040 Euro",
+    "currency": "EUR",
+    "year": 2018,
+    "market": "Germany",
+    "version": "G 500 (second generation)",
+    "kind": "launch",
+    "source": "wikipedia:de",
+    "confidence": "high",
+    "quote": "Zu den Händlern kam die G-Klasse zunächst als G 500 im Mai 2018 zu Preisen ab 107.040 Euro.",
+    "url": "https://de.wikipedia.org/wiki/Mercedes-Benz_G-Klasse",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Audi A3",
+  "y": 1996,
+  "status": "partial",
+  "note": "The 1996 launch price (about 33,000 Mark) is quoted by German car magazines, but no page could be checked.",
+  "prices": [
+   {
+    "amount": 23020,
+    "amount_text": "23 020 €",
+    "currency": "EUR",
+    "year": 2004,
+    "market": "France",
+    "version": "A3 Sportback Attraction (petrol)",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "high",
+    "quote": "son prix de base est de 23 020 €",
+    "url": "https://fr.wikipedia.org/wiki/Audi_A3",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Audi A6",
+  "y": 1994,
+  "status": "partial",
+  "note": "No 1994 price found; the A6 was a renamed Audi 100.",
+  "prices": [
+   {
+    "amount": 39900,
+    "amount_text": "39 900 €",
+    "currency": "EUR",
+    "year": 2011,
+    "market": "France",
+    "version": "Fourth generation (C7), four-cylinder diesel Ambiente",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "high",
+    "quote": "Le prix de départ de cette nouvelle génération est, pour la France, de 39 900 €",
+    "url": "https://fr.wikipedia.org/wiki/Audi_A6",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

@@ -1,0 +1,52 @@
+[
+ {
+  "n": "Toyota Land Cruiser",
+  "y": 1951,
+  "status": "partial",
+  "note": "The first one (Toyota Jeep BJ, 1951) went on sale to civilians in 1953; no price for it was found.",
+  "prices": [
+   {
+    "amount": 14000,
+    "amount_text": "CA$14,000",
+    "approx": "around",
+    "currency": "CAD",
+    "year": 1984,
+    "market": "Canada",
+    "version": "BJ42",
+    "kind": "list",
+    "source": "wikipedia:en",
+    "confidence": "medium",
+    "quote": "The original cost was around CA$14,000.",
+    "url": "https://en.wikipedia.org/wiki/Toyota_Land_Cruiser",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Toyota Yaris",
+  "y": 1999,
+  "status": "found",
+  "note": "Sold as the Vitz in Japan.",
+  "prices": [
+   {
+    "main": true,
+    "amount": 830000,
+    "amount_text": "830",
+    "currency": "JPY",
+    "year": 1999,
+    "market": "Japan",
+    "version": "Vitz 3-door B Business Package, manual",
+    "kind": "launch",
+    "source": "web",
+    "site": "global.toyota (Toyota press release)",
+    "url": "https://global.toyota/jp/detail/11662965",
+    "confidence": "high",
+    "quote": "ビジネスパッケージ 1SZ-FE ［直列4気筒1.0リットルガソリン］ 5速マニュアル＊2 830",
+    "note": "Manufacturer's suggested retail price in thousands of yen, before consumption tax; on sale 13 January 1999.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

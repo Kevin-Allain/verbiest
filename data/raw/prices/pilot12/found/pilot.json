@@ -1,0 +1,403 @@
+[
+ {
+  "n": "Dodge D series",
+  "y": 1960,
+  "status": "none",
+  "note": "First generation sold from late 1960 as 1961 models. No 1961 price on Wikipedia (en, fr, de) or Wikidata; the web only gave 1963 list prices and a vague 1959 range.",
+  "prices": []
+ },
+ {
+  "n": "Ford Maverick (1970–1977)",
+  "y": 1970,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 1995,
+    "amount_text": "$1,995",
+    "currency": "USD",
+    "year": 1970,
+    "market": "United States",
+    "version": "Base two-door",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "url": "https://en.wikipedia.org/wiki/Ford_Maverick_(1970%E2%80%931977)",
+    "confidence": "high",
+    "quote": "the final $1,995 ($16,540 in 2025 dollars) price",
+    "note": "1970 model year, on sale from April 1969.",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 1995,
+    "amount_text": "1995 $",
+    "currency": "USD",
+    "year": 1970,
+    "market": "United States",
+    "version": "Base",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "url": "https://fr.wikipedia.org/wiki/Ford_Maverick_(Am%C3%A9rique)",
+    "confidence": "high",
+    "quote": "Les publicités et la réclame comparaient la Maverick, à 1995 $",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Ford Escort (North America)",
+  "y": 1980,
+  "status": "found",
+  "note": "Replaces the Tatra 623, which was never sold to the public. Launched 3 October 1980 as a 1981 model.",
+  "prices": [
+   {
+    "main": true,
+    "amount": 5158,
+    "amount_text": "$5,158",
+    "currency": "USD",
+    "year": 1981,
+    "market": "United States",
+    "version": "Base three-door",
+    "kind": "launch",
+    "source": "web",
+    "site": "eightiescars.com",
+    "url": "https://eightiescars.com/2018/06/17/1981-ford-escort-hatchback-coupe/",
+    "confidence": "medium",
+    "quote": "the $5,158 base Escort",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 5494,
+    "amount_text": "$5,494",
+    "currency": "USD",
+    "year": 1981,
+    "market": "United States",
+    "version": "L liftback",
+    "kind": "launch",
+    "source": "web",
+    "site": "thetruthaboutcars.com",
+    "url": "https://thetruthaboutcars.com/2019/07/junkyard-find-1981-ford-escort-l-liftback-coupe/",
+    "confidence": "medium",
+    "quote": "Base price came to $5,494, or about $16,175 in 2019 dollars.",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 5518,
+    "amount_text": "5 518 $",
+    "currency": "USD",
+    "year": 1982,
+    "market": "United States",
+    "version": "Base three-door",
+    "kind": "list",
+    "source": "wikipedia:fr",
+    "url": "https://fr.wikipedia.org/wiki/Ford_Escort_(Am%C3%A9rique_du_Nord)",
+    "confidence": "high",
+    "quote": "Pour les modèles de 1982, le prix de base de l'Escort trois portes était de 5 518 $.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Dodge Mirada",
+  "y": 1980,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 6360,
+    "amount_text": "$6,360",
+    "currency": "USD",
+    "year": 1980,
+    "market": "United States",
+    "version": "Range across versions ($6,360 to $6,650)",
+    "kind": "launch",
+    "source": "web",
+    "site": "conceptcarz.com",
+    "url": "https://www.conceptcarz.com/vehicle/z16337/dodge-mirada.aspx",
+    "confidence": "low",
+    "quote": "1980 Dodge Mirada Price Range: $6,360 - $6,650",
+    "note": "A price range from a car database that does not cite its source.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "HSV GTS",
+  "y": 1990,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 35995,
+    "amount_text": "$35,995",
+    "currency": "NZD",
+    "year": 1990,
+    "market": "New Zealand",
+    "version": "VN GTS V6, manual",
+    "kind": "launch",
+    "source": "web",
+    "site": "hsvdatabase.com.au",
+    "url": "https://hsvdatabase.com.au/hsv-vn-gts-v6",
+    "confidence": "medium",
+    "quote": "Suggested retail was $35,995 GTS",
+    "note": "The 1990 GTS was a run of 510 cars built for New Zealand.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Trabant 1.1",
+  "y": 1990,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 18900,
+    "amount_text": "18.900 Mark",
+    "currency": "DDM",
+    "year": 1989,
+    "market": "East Germany",
+    "version": "Saloon",
+    "kind": "launch",
+    "source": "wikipedia:de",
+    "url": "https://de.wikipedia.org/wiki/Trabant_1.1",
+    "confidence": "high",
+    "quote": "Das neue Modell wurde im Herbst 1989 vorgestellt und sollte 18.900 Mark kosten.",
+    "note": "Price announced at the presentation, in East German marks.",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 10887,
+    "amount_text": "DM 10,887",
+    "currency": "DEM",
+    "year": 1990,
+    "market": "Germany",
+    "version": "Saloon",
+    "kind": "list",
+    "source": "wikipedia:en",
+    "url": "https://en.wikipedia.org/wiki/Trabant_1.1",
+    "confidence": "high",
+    "quote": "in 1990, the 1.1 saloon was offered at a price of DM 10,887",
+    "note": "After the currency union of July 1990.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Think City",
+  "y": 2000,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 199000,
+    "amount_text": "199.000 kroner",
+    "currency": "NOK",
+    "year": 2000,
+    "market": "Norway",
+    "version": "Ford-era Think City",
+    "kind": "list",
+    "source": "web",
+    "site": "tu.no",
+    "url": "https://www.tu.no/artikler/trost-for-skuffet-think/270787",
+    "confidence": "medium",
+    "quote": "Da kan prisen reduseres fre 199.000 kroner til 162.000 kroner",
+    "note": "Price in December 2000, VAT included.",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 244000,
+    "amount_text": "244,000 kr",
+    "currency": "NOK",
+    "year": null,
+    "market": "Norway",
+    "version": "2008 model",
+    "kind": "list",
+    "source": "wikipedia:en",
+    "url": "https://en.wikipedia.org/wiki/Think_City",
+    "confidence": "high",
+    "quote": "The list price for the car in Norway was 244,000 kr before optional features",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 25259,
+    "amount_text": "25 259 €",
+    "currency": "EUR",
+    "year": null,
+    "market": "France",
+    "version": "2008 model, two seats, lithium-ion battery",
+    "kind": "list",
+    "source": "wikipedia:fr",
+    "url": "https://fr.wikipedia.org/wiki/Th!nk_City",
+    "confidence": "high",
+    "quote": "Dans sa version 2 places, équipées de batteries Lithium-Ion la Th!nk était proposée à 25 259 €",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 36495,
+    "amount_text": "US$36,495",
+    "currency": "USD",
+    "year": 2010,
+    "market": "United States",
+    "version": "2008 model",
+    "kind": "list",
+    "source": "wikipedia:en",
+    "url": "https://en.wikipedia.org/wiki/Think_City",
+    "confidence": "high",
+    "quote": "The Th!nk City retail price was US$36,495",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Toyota bB",
+  "y": 2000,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 1298000,
+    "amount_text": "1,298",
+    "currency": "JPY",
+    "year": 2000,
+    "market": "Japan",
+    "version": "1.3S, 2WD, automatic",
+    "kind": "launch",
+    "source": "web",
+    "site": "global.toyota (Toyota press release)",
+    "url": "https://global.toyota/jp/detail/12085259",
+    "confidence": "high",
+    "quote": "1.3S 2WD （FF） 2NZ-FE （1.3リットルガソリン） Super ECT 1,298",
+    "note": "Manufacturer's suggested retail price in thousands of yen, before consumption tax; on sale 3 February 2000.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Tata Ace Zip",
+  "y": 2010,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 200000,
+    "amount_text": "Rs 200,000",
+    "approx": "just under",
+    "currency": "INR",
+    "year": 2010,
+    "market": "India",
+    "version": null,
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "url": "https://en.wikipedia.org/wiki/Tata_Ace_Zip",
+    "confidence": "medium",
+    "quote": "Tata Motors launched the Ace Zip micro-truck in May 2010 for just under Rs 200,000.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Peugeot Hoggar (coupé utility)",
+  "y": 2010,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 31400,
+    "amount_text": "R$ 31.400",
+    "currency": "BRL",
+    "year": 2010,
+    "market": "Brazil",
+    "version": "X-Line 1.4",
+    "kind": "launch",
+    "source": "web",
+    "site": "verificarauto.com.br",
+    "url": "https://verificarauto.com.br/peugeot-hoggar-usada-fipe/",
+    "confidence": "medium",
+    "quote": "Em 2010, a Hoggar X-Line custava R$ 31.400.",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 43500,
+    "amount_text": "R$ 43.500",
+    "currency": "BRL",
+    "year": 2010,
+    "market": "Brazil",
+    "version": "Escapade 1.6",
+    "kind": "launch",
+    "source": "web",
+    "site": "verificarauto.com.br",
+    "url": "https://verificarauto.com.br/peugeot-hoggar-usada-fipe/",
+    "confidence": "medium",
+    "quote": "A XR saía por R$ 35.350, enquanto a Escapade chegava a R$ 43.500.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Geely Galaxy Starship 7",
+  "y": 2024,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 99800,
+    "amount_text": "99,800",
+    "currency": "CNY",
+    "year": 2024,
+    "market": "China",
+    "version": "55 km Sailing Edition (plug-in hybrid)",
+    "kind": "launch",
+    "source": "web",
+    "site": "carnewschina.com",
+    "url": "https://carnewschina.com/2024/12/06/geely-galaxy-starship-7-phev-with-1420-km-range-launched-price-starts-at-13700-usd/",
+    "confidence": "medium",
+    "quote": "with a limited-time price range of 99,800 – 132,800 yuan",
+    "note": "Launch offer price, 6 December 2024.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "212 T01",
+  "y": 2024,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 139900,
+    "amount_text": "CNY 139,900",
+    "currency": "CNY",
+    "year": 2024,
+    "market": "China",
+    "version": "Base (Mechanic)",
+    "kind": "launch",
+    "source": "web",
+    "site": "marklines.com",
+    "url": "https://www.marklines.com/en/news/313392",
+    "confidence": "high",
+    "quote": "with prices ranging from CNY 139,900 to CNY 172,900",
+    "note": "Launched 22 August 2024.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ }
+]

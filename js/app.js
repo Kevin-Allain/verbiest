@@ -33,7 +33,7 @@
   const makerCars = makers.map(() => []);
   cars.forEach((c, i) => {
     c._i = i;
-    c._n = norm(c.n);
+    c._n = norm(c.l ? `${c.l} ${c.n}` : c.n); // a car shown under another name ("L'Obéissante") is found by both
     if (c.fr && c.fr !== c.n) c._nf = norm(c.fr);
     if (c.m >= 0) makerCars[c.m].push(i);
   });
@@ -818,7 +818,7 @@
   });
 
   /* ------------------------------------------------------------------ Wikipedia text (whole article, in the app's language) */
-  const carName = (c) => (LANG === "fr" && c.fr ? c.fr : c.n);
+  const carName = (c) => (LANG === "fr" && c.fr ? c.fr : c.l || c.n); // l: display name when the article title is not the car's name
   // French Wikipedia titles known from the data; others are looked up when needed
   const frTitleOf = new Map();
   for (const c of cars) if (c.fr) frTitleOf.set(c.n, c.fr);
@@ -1103,6 +1103,7 @@
       h("div", { class: "d-body" },
         garageControls(c),
         tags.length ? h("div", { class: "d-tags" }, tags) : null,
+        priceSection(c),
         articleBlock(c.n, c.s),
         family.length > 1 ? h("section", { class: "d-sec" }, secHead(t("sec.generations")), shelf(family, i)) : null,
         h("section", { class: "d-sec" },
@@ -1119,6 +1120,52 @@
         linksList([[t("link.read"), wikiLink(c.n)], c.i ? [t("link.photo"), commonsPage(c.i)] : null]),
         h("p", { class: "d-source" }, t("src.car")))
     );
+  }
+
+  /* ------------------------------------------------------------------ price when new
+     Prices as published at the time, in the money of the day, each checked against its
+     source page by scripts/launch_prices.py. The main one (usually the launch price in the
+     car's home market) comes first. */
+  const PRICE_FMT = {            // [English, French]; # is the amount
+    USD: ["$#", "# $"], GBP: ["£#", "# £"], EUR: ["€#", "# €"], JPY: ["¥#", "# ¥"], CNY: ["# yuan", "# yuans"],
+    INR: ["₹#", "# roupies"], CAD: ["CA$#", "# $ CA"], NZD: ["NZ$#", "# $ NZ"], BRL: ["R$#", "# R$"], NOK: ["# kr", "# couronnes"],
+    CZK: ["# Kč", "# Kč"], DEM: ["# DM", "# DM"], FRF: ["# francs", "# F"], AF: ["# old francs", "# anciens francs"],
+    RM: ["# Reichsmark", "# Reichsmark"], DDM: ["# East German marks", "# marks est-allemands"], MK: ["# marks", "# marks"],
+    SUR: ["# roubles", "# roubles"], ESP: ["# pesetas", "# pesetas"],
+  };
+  const MARKET_FR = { "Europe": "Europe", "West Germany": "Allemagne de l’Ouest", "New Zealand": "Nouvelle-Zélande" };
+  const marketName = (m) => (!m ? null : LANG === "fr" ? I18N.countryFr[m] || MARKET_FR[m] || m : m);
+
+  function priceAmount(p) {
+    let s;
+    if (p.c === "GBP" && p.a % 1 && (p.y || 0) < 1971) { // pre-decimal pounds, shillings and pence
+      const L = Math.floor(p.a), r = (p.a - L) * 20, sh = Math.floor(r + 1e-9), d = Math.round((r - sh) * 12);
+      s = LANG === "fr" ? `${num(L)} £ ${sh} s ${d} d` : `£${num(L)} ${sh}s ${d}d`;
+    } else {
+      const f = PRICE_FMT[p.c] || [`# ${p.c}`, `# ${p.c}`];
+      s = f[LANG === "fr" ? 1 : 0].replace("#", p.a2 ? `${num(p.a)}–${num(p.a2)}` : num(p.a)); // a2: top of a range
+    }
+    const x = { "~": t("price.about"), "<": t("price.under"), ">": t("price.over") }[p.x];
+    return x ? `${x} ${s}` : s;
+  }
+
+  function priceSection(c) {
+    if (!c.pr || !c.pr.length) return null;
+    const src = (p) => (p.s && p.s.startsWith("w:") ? t("price.wiki", p.s.slice(2).toUpperCase()) : p.s);
+    const rows = c.pr.map((p) => {
+      const version = LANG === "fr" ? p.vf || p.v : p.v;
+      return h("a", { class: "lrow tinted price-row" + (p.main ? " main" : ""), href: p.u, target: "_blank", rel: "noopener" },
+        h("span", { class: "lrow-main" },
+          h("span", { class: "lrow-title price-amt" }, priceAmount(p)),
+          h("span", { class: "lrow-sub" }, [p.k === "l" ? t("price.list") : t("price.launch"), p.y, marketName(p.m)].filter(Boolean).join(" · ")),
+          version ? h("span", { class: "lrow-sub" }, version) : null,
+          h("span", { class: "price-src" }, t("price.source", src(p)))),
+        icon("arrowUpRight", "ext"));
+    });
+    return h("section", { class: "d-sec price-sec" },
+      secHead(t("price.head")),
+      h("p", { class: "d-note" }, t("price.note")),
+      h("div", { class: "list d-list price-list" }, rows));
   }
 
   /** "Find one for sale": the sites' own search pages (nothing is copied into the app). */

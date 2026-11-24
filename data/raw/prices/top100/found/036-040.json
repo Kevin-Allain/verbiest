@@ -1,0 +1,119 @@
+[
+ {
+  "n": "Opel Astra",
+  "y": 1991,
+  "status": "none",
+  "note": "No 1991 price found (only modern euro conversions on the web, and a 2019 French price table without version names on Wikipedia).",
+  "prices": []
+ },
+ {
+  "n": "Range Rover",
+  "y": 1970,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 1998,
+    "amount_text": "£1,998",
+    "currency": "GBP",
+    "year": 1970,
+    "market": "United Kingdom",
+    "version": "Two-door",
+    "kind": "launch",
+    "source": "web",
+    "site": "allisons.org",
+    "url": "https://allisons.org/ll/4/LandRover/Range-Rover/",
+    "confidence": "medium",
+    "quote": "full-time four wheel drive, all for £1,998.",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Renault Clio",
+  "y": 1990,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 53100,
+    "amount_text": "53 100 F",
+    "currency": "FRF",
+    "year": 1990,
+    "market": "France",
+    "version": "Cheapest version",
+    "kind": "launch",
+    "source": "web",
+    "site": "largus.fr (L'argus, test of May 1990)",
+    "url": "https://www.largus.fr/actualite-automobile/renault-clio-elle-fete-deja-ses-30-ans-10238403.html",
+    "confidence": "high",
+    "quote": "Avec un premier prix à 53 100 F pour la Clio",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Tesla Roadster (first generation)",
+  "y": 2007,
+  "status": "found",
+  "prices": [
+   {
+    "main": true,
+    "amount": 98950,
+    "amount_text": "$98,950",
+    "currency": "USD",
+    "year": 2008,
+    "market": "United States",
+    "version": "Roadster (base)",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "Base price $80,000–$120,000 $98,950",
+    "url": "https://en.wikipedia.org/wiki/Tesla_Roadster_(first_generation)",
+    "quote_ok": true,
+    "amount_ok": true,
+    "note": "Second column of the table: the first production Roadster; the first figure is the range announced in 2006."
+   },
+   {
+    "amount": 84000,
+    "amount_text": "84 000 €",
+    "approx": "about",
+    "currency": "EUR",
+    "year": 2008,
+    "market": "Europe",
+    "version": "Roadster",
+    "kind": "launch",
+    "source": "wikipedia:fr",
+    "confidence": "medium",
+    "quote": "au prix initial d'environ 84 000 €",
+    "url": "https://fr.wikipedia.org/wiki/Tesla_Roadster_(premi%C3%A8re_g%C3%A9n%C3%A9ration)",
+    "quote_ok": true,
+    "amount_ok": true
+   },
+   {
+    "amount": 86950,
+    "amount_text": "£86,950",
+    "currency": "GBP",
+    "year": 2010,
+    "market": "United Kingdom",
+    "version": "Right-hand drive",
+    "kind": "launch",
+    "source": "wikipedia:en",
+    "confidence": "high",
+    "quote": "The Roadster started at £86,950",
+    "url": "https://en.wikipedia.org/wiki/Tesla_Roadster_(first_generation)",
+    "quote_ok": true,
+    "amount_ok": true
+   }
+  ]
+ },
+ {
+  "n": "Toyota RAV4",
+  "y": 1994,
+  "status": "none",
+  "note": "Toyota Japan's catalogue gives the 1994 prices, but only on pages that need a browser to display; nothing could be checked.",
+  "prices": []
+ }
+]
